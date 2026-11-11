@@ -1,0 +1,299 @@
+{
+  "train_mean_last100": 98.86,
+  "train_time_s": 993.8556156158447,
+  "best_periodic_eval": {
+    "episode": 900,
+    "mean": 233.26,
+    "std": 29.834081182432957,
+    "min": 173.0,
+    "max": 311.0,
+    "n": 50
+  },
+  "periodic_evals": [
+    {
+      "episode": 50,
+      "mean": 9.26,
+      "std": 0.6873136110975833,
+      "min": 8.0,
+      "max": 10.0,
+      "n": 50
+    },
+    {
+      "episode": 100,
+      "mean": 9.26,
+      "std": 0.6873136110975833,
+      "min": 8.0,
+      "max": 10.0,
+      "n": 50
+    },
+    {
+      "episode": 150,
+      "mean": 9.26,
+      "std": 0.6873136110975833,
+      "min": 8.0,
+      "max": 10.0,
+      "n": 50
+    },
+    {
+      "episode": 200,
+      "mean": 10.24,
+      "std": 0.9499473669630334,
+      "min": 9.0,
+      "max": 12.0,
+      "n": 50
+    },
+    {
+      "episode": 250,
+      "mean": 127.32,
+      "std": 52.81645198231324,
+      "min": 21.0,
+      "max": 379.0,
+      "n": 50
+    },
+    {
+      "episode": 300,
+      "mean": 20.2,
+      "std": 7.5232971495216105,
+      "min": 9.0,
+      "max": 28.0,
+      "n": 50
+    },
+    {
+      "episode": 350,
+      "mean": 40.9,
+      "std": 22.56390923576852,
+      "min": 11.0,
+      "max": 78.0,
+      "n": 50
+    },
+    {
+      "episode": 400,
+      "mean": 37.12,
+      "std": 34.88532069510039,
+      "min": 11.0,
+      "max": 119.0,
+      "n": 50
+    },
+    {
+      "episode": 450,
+      "mean": 108.98,
+      "std": 36.825800738069496,
+      "min": 12.0,
+      "max": 133.0,
+      "n": 50
+    },
+    {
+      "episode": 500,
+      "mean": 109.88,
+      "std": 47.755895971073556,
+      "min": 11.0,
+      "max": 152.0,
+      "n": 50
+    },
+    {
+      "episode": 550,
+      "mean": 105.8,
+      "std": 34.64678917302439,
+      "min": 12.0,
+      "max": 124.0,
+      "n": 50
+    },
+    {
+      "episode": 600,
+      "mean": 143.36,
+      "std": 17.27050665151431,
+      "min": 32.0,
+      "max": 162.0,
+      "n": 50
+    },
+    {
+      "episode": 650,
+      "mean": 117.5,
+      "std": 31.15397245938309,
+      "min": 12.0,
+      "max": 132.0,
+      "n": 50
+    },
+    {
+      "episode": 700,
+      "mean": 109.66,
+      "std": 28.894712319038582,
+      "min": 12.0,
+      "max": 124.0,
+      "n": 50
+    },
+    {
+      "episode": 750,
+      "mean": 157.04,
+      "std": 21.136660095672635,
+      "min": 13.0,
+      "max": 171.0,
+      "n": 50
+    },
+    {
+      "episode": 800,
+      "mean": 199.5,
+      "std": 10.709341716464182,
+      "min": 172.0,
+      "max": 222.0,
+      "n": 50
+    },
+    {
+      "episode": 850,
+      "mean": 147.14,
+      "std": 16.693723371375242,
+      "min": 124.0,
+      "max": 184.0,
+      "n": 50
+    },
+    {
+      "episode": 900,
+      "mean": 233.26,
+      "std": 29.834081182432957,
+      "min": 173.0,
+      "max": 311.0,
+      "n": 50
+    },
+    {
+      "episode": 950,
+      "mean": 95.62,
+      "std": 2.270594635772753,
+      "min": 91.0,
+      "max": 100.0,
+      "n": 50
+    },
+    {
+      "episode": 1000,
+      "mean": 197.44,
+      "std": 96.84547692071116,
+      "min": 142.0,
+      "max": 500.0,
+      "n": 50
+    },
+    {
+      "episode": 1050,
+      "mean": 197.82,
+      "std": 9.754363126314296,
+      "min": 180.0,
+      "max": 227.0,
+      "n": 50
+    },
+    {
+      "episode": 1100,
+      "mean": 130.72,
+      "std": 3.504511378209522,
+      "min": 123.0,
+      "max": 138.0,
+      "n": 50
+    },
+    {
+      "episode": 1150,
+      "mean": 92.1,
+      "std": 2.3,
+      "min": 88.0,
+      "max": 96.0,
+      "n": 50
+    },
+    {
+      "episode": 1200,
+      "mean": 121.1,
+      "std": 3.556683848755748,
+      "min": 114.0,
+      "max": 128.0,
+      "n": 50
+    },
+    {
+      "episode": 1250,
+      "mean": 25.6,
+      "std": 4.833218389437829,
+      "min": 19.0,
+      "max": 39.0,
+      "n": 50
+    },
+    {
+      "episode": 1300,
+      "mean": 136.28,
+      "std": 3.7896701703446434,
+      "min": 130.0,
+      "max": 144.0,
+      "n": 50
+    },
+    {
+      "episode": 1350,
+      "mean": 89.06,
+      "std": 1.9940912717325654,
+      "min": 85.0,
+      "max": 93.0,
+      "n": 50
+    },
+    {
+      "episode": 1400,
+      "mean": 89.28,
+      "std": 1.887220177933672,
+      "min": 86.0,
+      "max": 93.0,
+      "n": 50
+    },
+    {
+      "episode": 1450,
+      "mean": 89.22,
+      "std": 1.9420607611503817,
+      "min": 86.0,
+      "max": 93.0,
+      "n": 50
+    },
+    {
+      "episode": 1500,
+      "mean": 89.46,
+      "std": 1.971902634513175,
+      "min": 86.0,
+      "max": 93.0,
+      "n": 50
+    }
+  ],
+  "final_eval_100ep": {
+    "n": 100,
+    "mean": 89.68,
+    "std": 2.092271492899523,
+    "min": 85.0,
+    "max": 95.0
+  },
+  "final_net_eval_100ep": {
+    "n": 100,
+    "mean": 89.68,
+    "std": 2.092271492899523,
+    "min": 85.0,
+    "max": 95.0
+  },
+  "dqn_checkpoint_is": "best_checkpoint (by periodic eval)",
+  "hyperparams": {
+    "seed": 0,
+    "episodes": 1500,
+    "hidden": 128,
+    "lr": 0.001,
+    "gamma": 0.99,
+    "batch_size": 64,
+    "buffer_size": 50000,
+    "eps_start": 1.0,
+    "eps_end": 0.02,
+    "eps_decay_episodes": 1000,
+    "target_update_every": 100,
+    "warmup": 1000,
+    "loss": "mse",
+    "grad_clip": 0.0,
+    "double_dqn": true,
+    "eval_every": 50,
+    "eval_episodes": 50,
+    "eval_seed_offset": 10000,
+    "env": "CartPole-v1",
+    "outdir": "results/cartpole-dqn/run8"
+  },
+  "best_checkpoint_eval_100ep": {
+    "n": 100,
+    "mean": 234.51,
+    "std": 34.59,
+    "min": 169.0,
+    "max": 395.0
+  },
+  "best_checkpoint_eval_100ep_source": "train_run.log FINAL EVAL (100 ep, greedy) \u2014 eval of the promoted best checkpoint (ep 900); summary final_eval_100ep (89.68) is the LAST-EPISODE net, see final_net_eval_100ep"
+}

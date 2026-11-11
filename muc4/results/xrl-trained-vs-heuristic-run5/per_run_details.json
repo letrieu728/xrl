@@ -1,0 +1,415 @@
+{
+  "label": "BART (R/dbarts via rpy2) - real CausalXRL estimator",
+  "estimator": "bart",
+  "checkpoint": "results/cartpole-dqn/dqn_checkpoint.pt",
+  "checkpoint_hyperparams": {
+    "seed": 0,
+    "episodes": 600,
+    "hidden": 128,
+    "lr": 0.001,
+    "gamma": 0.99,
+    "batch_size": 64,
+    "buffer_size": 50000,
+    "eps_start": 1.0,
+    "eps_end": 0.02,
+    "eps_decay_episodes": 400,
+    "target_update_every": 10,
+    "warmup": 1000,
+    "loss": "mse",
+    "grad_clip": 0.0,
+    "double_dqn": true,
+    "env": "CartPole-v1",
+    "outdir": "results/cartpole-dqn/run5"
+  },
+  "checkpoint_final_eval_100ep": {
+    "n": 100,
+    "mean": 272.68,
+    "std": 58.53424296939357,
+    "min": 203.0,
+    "max": 500.0
+  },
+  "episodes": 200,
+  "seed": 0,
+  "repo_commit": "ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162",
+  "runs": {
+    "heuristic": {
+      "n_transitions": 6330,
+      "rollout_s": 0.08,
+      "mean_ep_len": 32.6,
+      "action1_frac": 0.5044,
+      "methods": {
+        "ate": {
+          "n_edges": 17,
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_cart_position_t+1",
+            "state_pole_angle_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> action_push_t+1",
+            "state_pole_velocity_t -> state_cart_position_t+1",
+            "state_pole_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "edges_collapsed": [
+            "action_push_t -> state_cart_velocity_t",
+            "action_push_t -> state_pole_velocity_t",
+            "state_cart_position_t -> action_push_t",
+            "state_cart_velocity_t -> state_cart_position_t",
+            "state_pole_angle_t -> action_push_t",
+            "state_pole_angle_t -> state_cart_position_t",
+            "state_pole_angle_t -> state_cart_velocity_t",
+            "state_pole_angle_t -> state_pole_velocity_t",
+            "state_pole_velocity_t -> action_push_t",
+            "state_pole_velocity_t -> state_cart_position_t",
+            "state_pole_velocity_t -> state_cart_velocity_t",
+            "state_pole_velocity_t -> state_pole_angle_t"
+          ],
+          "per_target_causes": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ]
+          },
+          "infer_s": 121.32
+        },
+        "hte": {
+          "n_edges": 13,
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_cart_velocity_t -> state_pole_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "edges_collapsed": [
+            "action_push_t -> state_cart_velocity_t",
+            "action_push_t -> state_pole_velocity_t",
+            "state_cart_position_t -> action_push_t",
+            "state_cart_velocity_t -> state_cart_position_t",
+            "state_cart_velocity_t -> state_pole_velocity_t",
+            "state_pole_angle_t -> action_push_t",
+            "state_pole_angle_t -> state_pole_velocity_t",
+            "state_pole_velocity_t -> state_pole_angle_t"
+          ],
+          "per_target_causes": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          },
+          "infer_s": 88.04
+        }
+      },
+      "fidelity_eval_notebook": {
+        "valid_steps": 5548,
+        "n_test_dt_lr": 2220,
+        "dt_acc": 0.9477477477477477,
+        "dt_f1": 0.9536741214057508,
+        "lr_acc": 0.9175675675675675,
+        "lr_f1": 0.927352123858674,
+        "global_cause_push_parents": [
+          "push",
+          "cart_position",
+          "pole_angle"
+        ],
+        "bart_test_cap": 200,
+        "bart_test_capped": true,
+        "n_test_bart": 200,
+        "bart_acc": 0.92,
+        "bart_f1": 0.9322033898305084
+      }
+    },
+    "dqn": {
+      "n_transitions": 51939,
+      "rollout_s": 3.02,
+      "mean_ep_len": 260.7,
+      "action1_frac": 0.5075,
+      "methods": {
+        "ate": {
+          "n_edges": 17,
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_angle_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_position_t -> state_cart_velocity_t+1",
+            "state_cart_position_t -> state_pole_velocity_t+1",
+            "state_cart_velocity_t -> action_push_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_cart_velocity_t -> state_pole_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> action_push_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "edges_collapsed": [
+            "action_push_t -> state_cart_velocity_t",
+            "action_push_t -> state_pole_angle_t",
+            "action_push_t -> state_pole_velocity_t",
+            "state_cart_position_t -> action_push_t",
+            "state_cart_position_t -> state_cart_velocity_t",
+            "state_cart_position_t -> state_pole_velocity_t",
+            "state_cart_velocity_t -> action_push_t",
+            "state_cart_velocity_t -> state_cart_position_t",
+            "state_cart_velocity_t -> state_pole_velocity_t",
+            "state_pole_angle_t -> action_push_t",
+            "state_pole_velocity_t -> action_push_t",
+            "state_pole_velocity_t -> state_pole_angle_t"
+          ],
+          "per_target_causes": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "pole_angle": [
+              "action_push_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ]
+          },
+          "infer_s": 1039.32
+        },
+        "hte": {
+          "n_edges": 17,
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_position_t -> state_cart_velocity_t+1",
+            "state_cart_position_t -> state_pole_velocity_t+1",
+            "state_cart_velocity_t -> action_push_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> action_push_t+1",
+            "state_pole_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "edges_collapsed": [
+            "action_push_t -> state_cart_velocity_t",
+            "action_push_t -> state_pole_velocity_t",
+            "state_cart_position_t -> action_push_t",
+            "state_cart_position_t -> state_cart_velocity_t",
+            "state_cart_position_t -> state_pole_velocity_t",
+            "state_cart_velocity_t -> action_push_t",
+            "state_cart_velocity_t -> state_cart_position_t",
+            "state_pole_angle_t -> action_push_t",
+            "state_pole_angle_t -> state_pole_velocity_t",
+            "state_pole_velocity_t -> action_push_t",
+            "state_pole_velocity_t -> state_cart_velocity_t",
+            "state_pole_velocity_t -> state_pole_angle_t"
+          ],
+          "per_target_causes": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ]
+          },
+          "infer_s": 801.05
+        }
+      },
+      "fidelity_eval_notebook": {
+        "valid_steps": 49615,
+        "n_test_dt_lr": 19846,
+        "dt_acc": 0.9519298599213948,
+        "dt_f1": 0.9514750762970499,
+        "lr_acc": 0.8644563136148342,
+        "lr_f1": 0.8610393635706168,
+        "global_cause_push_parents": [
+          "push",
+          "cart_position",
+          "cart_velocity",
+          "pole_angle",
+          "pole_velocity"
+        ],
+        "bart_test_cap": 200,
+        "bart_test_capped": true,
+        "n_test_bart": 200,
+        "bart_acc": 0.885,
+        "bart_f1": 0.8795811518324608
+      }
+    }
+  },
+  "provenance": {
+    "heuristic": "run 5 (full run, 2026-11-11 07:27-07:31, comparison_run.log in this dir)",
+    "dqn_ate": "run 5 (full run, DQN ate 17 edges, infer 1039.32 s)",
+    "dqn_hte_fidelity": "DQN-only run with memory-fixed run_hte (per-target model dropping), see results/xrl-trained-vs-heuristic-dqn-only/",
+    "checkpoint": "results/cartpole-dqn/dqn_checkpoint.pt",
+    "note": "DQN hte from run 4 (17 edges, run5 checkpoint, infer 818.97 s) is NOT used here; the merged DQN hte comes from the DQN-only run on the same run5 checkpoint, same as DQN ate."
+  },
+  "comparison_trained_vs_heuristic": {
+    "hte": {
+      "heuristic_n_edges": 13,
+      "dqn_n_edges": 17,
+      "jaccard": 0.6667,
+      "symdiff": 6,
+      "only_heuristic": [
+        "state_cart_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "only_dqn": [
+        "state_cart_position_t -> state_cart_velocity_t+1",
+        "state_cart_position_t -> state_pole_velocity_t+1",
+        "state_cart_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1"
+      ],
+      "common": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ]
+    },
+    "ate": {
+      "heuristic_n_edges": 17,
+      "dqn_n_edges": 17,
+      "jaccard": 0.5455,
+      "symdiff": 10,
+      "only_heuristic": [
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_cart_position_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1"
+      ],
+      "only_dqn": [
+        "action_push_t -> state_pole_angle_t+1",
+        "state_cart_position_t -> state_cart_velocity_t+1",
+        "state_cart_position_t -> state_pole_velocity_t+1",
+        "state_cart_velocity_t -> action_push_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "common": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+CartPole-v1 evaluation (100 episodes each, greedy/deterministic, env seeds 10000..10099)
+checkpoint: results/cartpole-dqn/run9/best_checkpoint.pt
+
+DQN (trained, this work):
+  mean = 500.00
+  std  = 0.00
+  min  = 500
+  max  = 500
+
+Heuristic (CausalXRL repo, hand-written):
+  mean = 31.53
+  std  = 11.16
+  min  = 11
+  max  = 63
+
+DQN - heuristic mean difference: +468.47
+
+Note: training used gymnasium (not gym 0.20, incompatible with Python 3.12); the trained policy is a plain pi(state)->action function, so it plugs into the authors' XRL(env, pi) interface.

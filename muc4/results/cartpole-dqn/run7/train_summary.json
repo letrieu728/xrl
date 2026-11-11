@@ -1,0 +1,55 @@
+{
+  "note": "PARTIAL RUN \u2014 killed by VM restart during episode 1041-1050 (uptime showed up 0 min after the restart; no traceback, no TRAIN DONE). training_log.csv has episodes 1-1040, eval_log.csv has 20 periodic evals (last at ep 1000). Best checkpoint saved incrementally at ep 900 survives and is verified below.",
+  "episodes_planned": 1500,
+  "episodes_completed": 1040,
+  "status": "partial (VM restart)",
+  "train_mean_last100_at_ep1000": 155.5,
+  "best_periodic_eval": {
+    "episode": 900,
+    "mean": 344.78,
+    "std": 23.85,
+    "min": 308.0,
+    "max": 402.0,
+    "n": 50
+  },
+  "final_eval_100ep_best_checkpoint": {
+    "n": 100,
+    "mean": 343.26,
+    "std": 22.3,
+    "min": 308.0,
+    "max": 421.0
+  },
+  "eval_100ep_file": "results/cartpole-dqn/run7/eval_100ep_best.txt",
+  "dqn_checkpoint_is": "best_checkpoint.pt (ep 900, by periodic eval); no dqn_checkpoint.pt/final_checkpoint.pt because the run was killed before TRAIN DONE",
+  "hyperparams": {
+    "seed": 0,
+    "episodes": 1500,
+    "hidden": 128,
+    "lr": 0.001,
+    "gamma": 0.99,
+    "batch_size": 64,
+    "buffer_size": 50000,
+    "eps_start": 1.0,
+    "eps_end": 0.02,
+    "eps_decay_episodes": 1000,
+    "target_update_every": 10,
+    "warmup": 1000,
+    "loss": "mse",
+    "grad_clip": 0.0,
+    "double_dqn": true,
+    "env": "CartPole-v1",
+    "eval_every": 50,
+    "eval_episodes": 50,
+    "eval_seed_offset": 10000
+  },
+  "train_mean_last100": 155.5,
+  "train_time_s": null,
+  "best_checkpoint_eval_100ep": {
+    "n": 100,
+    "mean": 343.26,
+    "std": 22.3,
+    "min": 308.0,
+    "max": 421.0
+  },
+  "best_checkpoint_eval_100ep_source": "eval_100ep_best.txt (evaluate_cartpole.py on best_checkpoint.pt, ep 900)"
+}

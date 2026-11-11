@@ -1,0 +1,1847 @@
+{
+  "hte_50": {
+    "nepisodes": 50,
+    "method": "hte",
+    "n_transitions": 1572,
+    "rollout_s": 0.1,
+    "mean_ep_len": 32.4,
+    "action1_frac": 0.493,
+    "infer_s": 23.62,
+    "edges": [
+      "state_cart_position_t -> state_cart_position_t+1",
+      "state_cart_velocity_t -> state_cart_velocity_t+1",
+      "state_cart_velocity_t -> state_pole_velocity_t+1",
+      "state_pole_angle_t -> state_pole_angle_t+1",
+      "state_pole_velocity_t -> state_pole_velocity_t+1"
+    ],
+    "edges_collapsed": [
+      "state_cart_velocity_t -> state_pole_velocity_t"
+    ],
+    "n_edges": 5,
+    "fidelity": {
+      "dt_acc": 0.9778,
+      "dt_f1": 0.9775,
+      "lr_acc": 0.9778,
+      "lr_f1": 0.9772,
+      "n_test": 315,
+      "action1_frac": 0.493
+    },
+    "per_target_causes": {
+      "cart_position": [
+        "state_cart_position_t"
+      ],
+      "cart_velocity": [
+        "state_cart_velocity_t"
+      ],
+      "pole_angle": [
+        "state_pole_angle_t"
+      ],
+      "pole_velocity": [
+        "state_cart_velocity_t",
+        "state_pole_velocity_t"
+      ],
+      "push": []
+    },
+    "hte_cluster_table": {
+      "cart_position": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 82,
+            "5": 47,
+            "6": 208,
+            "7": 66,
+            "8": 69
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 47,
+            "4": 55,
+            "6": 252,
+            "7": 71,
+            "8": 47
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "4": 49,
+            "5": 218,
+            "6": 47,
+            "7": 90,
+            "8": 68
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 47,
+            "5": 94,
+            "6": 237,
+            "7": 47,
+            "8": 47
+          }
+        },
+        "push": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "3": 68,
+            "5": 141,
+            "6": 48,
+            "7": 83,
+            "9": 85,
+            "10": 47
+          }
+        }
+      },
+      "cart_velocity": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 47,
+            "5": 59,
+            "6": 254,
+            "7": 64,
+            "8": 48
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 47,
+            "5": 284,
+            "6": 47,
+            "7": 47,
+            "8": 47
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 47,
+            "4": 59,
+            "6": 238,
+            "7": 77,
+            "8": 51
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "1": 47,
+            "3": 58,
+            "6": 62,
+            "7": 57,
+            "9": 178,
+            "10": 70
+          }
+        },
+        "push": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 63,
+            "4": 47,
+            "6": 50,
+            "7": 264,
+            "8": 48
+          }
+        }
+      },
+      "pole_angle": {
+        "cart_position": {
+          "n_clusters": 7,
+          "cluster_sizes": {
+            "3": 66,
+            "5": 105,
+            "6": 47,
+            "9": 47,
+            "10": 57,
+            "11": 73,
+            "12": 77
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 47,
+            "3": 47,
+            "5": 60,
+            "7": 266,
+            "8": 52
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 54,
+            "4": 87,
+            "6": 190,
+            "7": 74,
+            "8": 67
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 47,
+            "5": 73,
+            "6": 231,
+            "7": 73,
+            "8": 48
+          }
+        },
+        "push": {
+          "n_clusters": 7,
+          "cluster_sizes": {
+            "1": 48,
+            "4": 86,
+            "5": 50,
+            "8": 138,
+            "9": 47,
+            "11": 47,
+            "12": 56
+          }
+        }
+      },
+      "pole_velocity": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 47,
+            "5": 251,
+            "6": 64,
+            "7": 63,
+            "8": 47
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 47,
+            "3": 49,
+            "6": 122,
+            "7": 207,
+            "8": 47
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "1": 58,
+            "4": 54,
+            "6": 201,
+            "7": 49,
+            "9": 63,
+            "10": 47
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 47,
+            "5": 283,
+            "6": 47,
+            "7": 48,
+            "8": 47
+          }
+        },
+        "push": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 61,
+            "4": 53,
+            "6": 231,
+            "7": 80,
+            "8": 47
+          }
+        }
+      },
+      "push": {
+        "cart_position": {
+          "n_clusters": 7,
+          "cluster_sizes": {
+            "4": 96,
+            "5": 51,
+            "6": 55,
+            "7": 85,
+            "9": 56,
+            "11": 47,
+            "12": 82
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 8,
+          "cluster_sizes": {
+            "4": 47,
+            "5": 82,
+            "7": 60,
+            "8": 54,
+            "11": 84,
+            "12": 49,
+            "13": 47,
+            "14": 49
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 69,
+            "5": 47,
+            "6": 224,
+            "7": 55,
+            "8": 77
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 61,
+            "5": 92,
+            "6": 189,
+            "7": 56,
+            "8": 74
+          }
+        },
+        "push": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "1": 70,
+            "5": 64,
+            "6": 67,
+            "8": 105,
+            "9": 80,
+            "10": 86
+          }
+        }
+      }
+    }
+  },
+  "ate_50": {
+    "nepisodes": 50,
+    "method": "ate",
+    "n_transitions": 1572,
+    "rollout_s": 0.1,
+    "mean_ep_len": 32.4,
+    "action1_frac": 0.493,
+    "infer_s": 22.5,
+    "edges": [
+      "action_push_t -> state_cart_velocity_t+1",
+      "action_push_t -> state_pole_velocity_t+1",
+      "state_cart_position_t -> action_push_t+1",
+      "state_cart_position_t -> state_cart_position_t+1",
+      "state_cart_velocity_t -> state_cart_position_t+1",
+      "state_cart_velocity_t -> state_cart_velocity_t+1",
+      "state_cart_velocity_t -> state_pole_velocity_t+1",
+      "state_pole_angle_t -> state_cart_velocity_t+1",
+      "state_pole_angle_t -> state_pole_angle_t+1",
+      "state_pole_angle_t -> state_pole_velocity_t+1",
+      "state_pole_velocity_t -> state_cart_position_t+1",
+      "state_pole_velocity_t -> state_pole_velocity_t+1"
+    ],
+    "edges_collapsed": [
+      "action_push_t -> state_cart_velocity_t",
+      "action_push_t -> state_pole_velocity_t",
+      "state_cart_position_t -> action_push_t",
+      "state_cart_velocity_t -> state_cart_position_t",
+      "state_cart_velocity_t -> state_pole_velocity_t",
+      "state_pole_angle_t -> state_cart_velocity_t",
+      "state_pole_angle_t -> state_pole_velocity_t",
+      "state_pole_velocity_t -> state_cart_position_t"
+    ],
+    "n_edges": 12,
+    "fidelity": {
+      "dt_acc": 0.9778,
+      "dt_f1": 0.9775,
+      "lr_acc": 0.9778,
+      "lr_f1": 0.9772,
+      "n_test": 315,
+      "action1_frac": 0.493
+    },
+    "per_target_causes": {
+      "cart_position": [
+        "state_cart_position_t",
+        "state_cart_velocity_t",
+        "state_pole_velocity_t"
+      ],
+      "cart_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t",
+        "state_pole_angle_t"
+      ],
+      "pole_angle": [
+        "state_pole_angle_t"
+      ],
+      "pole_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t",
+        "state_pole_angle_t",
+        "state_pole_velocity_t"
+      ],
+      "push": [
+        "state_cart_position_t"
+      ]
+    },
+    "ate_table": {
+      "cart_position": {
+        "cart_position": [
+          0.1526,
+          0.0051,
+          0.3249
+        ],
+        "cart_velocity": [
+          0.0076,
+          0.0008,
+          0.0131
+        ],
+        "pole_angle": [
+          0.0001,
+          -0.0136,
+          0.0112
+        ],
+        "pole_velocity": [
+          -0.0067,
+          -0.0121,
+          -0.0007
+        ],
+        "push": [
+          0.0,
+          -0.0002,
+          0.0004
+        ]
+      },
+      "cart_velocity": {
+        "cart_position": [
+          -0.0959,
+          -0.2699,
+          0.0082
+        ],
+        "cart_velocity": [
+          1.3853,
+          1.2362,
+          1.454
+        ],
+        "pole_angle": [
+          0.2814,
+          0.0677,
+          0.514
+        ],
+        "pole_velocity": [
+          -0.0096,
+          -0.09,
+          0.078
+        ],
+        "push": [
+          0.3221,
+          0.2258,
+          0.3942
+        ]
+      },
+      "pole_angle": {
+        "cart_position": [
+          -0.001,
+          -0.0481,
+          0.043
+        ],
+        "cart_velocity": [
+          -0.0072,
+          -0.016,
+          0.0028
+        ],
+        "pole_angle": [
+          0.2779,
+          0.175,
+          0.3765
+        ],
+        "pole_velocity": [
+          0.0062,
+          -0.0027,
+          0.0137
+        ],
+        "push": [
+          0.0001,
+          -0.0002,
+          0.0009
+        ]
+      },
+      "pole_velocity": {
+        "cart_position": [
+          0.1739,
+          -0.0215,
+          0.5526
+        ],
+        "cart_velocity": [
+          -0.8416,
+          -1.2529,
+          -0.4801
+        ],
+        "pole_angle": [
+          -0.4259,
+          -0.8235,
+          -0.1163
+        ],
+        "pole_velocity": [
+          0.7846,
+          0.4937,
+          1.0398
+        ],
+        "push": [
+          -0.4196,
+          -0.5131,
+          -0.2759
+        ]
+      },
+      "push": {
+        "cart_position": [
+          0.4274,
+          0.0632,
+          0.9505
+        ],
+        "cart_velocity": [
+          -0.0145,
+          -0.0599,
+          0.0395
+        ],
+        "pole_angle": [
+          0.4718,
+          -0.2962,
+          0.9936
+        ],
+        "pole_velocity": [
+          0.038,
+          -0.0357,
+          0.1234
+        ],
+        "push": [
+          0.1225,
+          0.0,
+          0.6313
+        ]
+      }
+    }
+  },
+  "hte_100": {
+    "nepisodes": 100,
+    "method": "hte",
+    "n_transitions": 3183,
+    "rollout_s": 0.29,
+    "mean_ep_len": 32.8,
+    "action1_frac": 0.4951,
+    "infer_s": 43.2,
+    "edges": [
+      "action_push_t -> state_cart_velocity_t+1",
+      "action_push_t -> state_pole_velocity_t+1",
+      "state_cart_position_t -> state_cart_position_t+1",
+      "state_cart_velocity_t -> state_cart_velocity_t+1",
+      "state_cart_velocity_t -> state_pole_velocity_t+1",
+      "state_pole_angle_t -> state_pole_angle_t+1",
+      "state_pole_velocity_t -> state_pole_velocity_t+1"
+    ],
+    "edges_collapsed": [
+      "action_push_t -> state_cart_velocity_t",
+      "action_push_t -> state_pole_velocity_t",
+      "state_cart_velocity_t -> state_pole_velocity_t"
+    ],
+    "n_edges": 7,
+    "fidelity": {
+      "dt_acc": 0.9859,
+      "dt_f1": 0.9857,
+      "lr_acc": 0.9859,
+      "lr_f1": 0.9857,
+      "n_test": 637,
+      "action1_frac": 0.4951
+    },
+    "per_target_causes": {
+      "cart_position": [
+        "state_cart_position_t"
+      ],
+      "cart_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t"
+      ],
+      "pole_angle": [
+        "state_pole_angle_t"
+      ],
+      "pole_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t",
+        "state_pole_velocity_t"
+      ],
+      "push": []
+    },
+    "hte_cluster_table": {
+      "cart_position": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 134,
+            "4": 96,
+            "6": 475,
+            "7": 95,
+            "8": 155
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 95,
+            "4": 95,
+            "6": 574,
+            "7": 95,
+            "8": 96
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 95,
+            "5": 130,
+            "6": 501,
+            "7": 95,
+            "8": 134
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 102,
+            "5": 481,
+            "6": 169,
+            "7": 107,
+            "8": 96
+          }
+        },
+        "push": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "2": 109,
+            "5": 452,
+            "6": 97,
+            "8": 95,
+            "9": 103,
+            "10": 99
+          }
+        }
+      },
+      "cart_velocity": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "4": 559,
+            "5": 95,
+            "6": 100,
+            "7": 106,
+            "8": 95
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 95,
+            "5": 95,
+            "6": 575,
+            "7": 95,
+            "8": 95
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 95,
+            "3": 99,
+            "5": 188,
+            "7": 96,
+            "8": 477
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 117,
+            "4": 95,
+            "6": 95,
+            "7": 553,
+            "8": 95
+          }
+        },
+        "push": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 95,
+            "5": 96,
+            "6": 574,
+            "7": 95,
+            "8": 95
+          }
+        }
+      },
+      "pole_angle": {
+        "cart_position": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "2": 183,
+            "5": 228,
+            "6": 95,
+            "8": 135,
+            "9": 175,
+            "10": 139
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 95,
+            "4": 103,
+            "6": 535,
+            "7": 127,
+            "8": 95
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 119,
+            "5": 440,
+            "6": 153,
+            "7": 123,
+            "8": 120
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 97,
+            "5": 130,
+            "6": 538,
+            "7": 95,
+            "8": 95
+          }
+        },
+        "push": {
+          "n_clusters": 8,
+          "cluster_sizes": {
+            "2": 95,
+            "3": 158,
+            "7": 95,
+            "8": 124,
+            "9": 95,
+            "12": 128,
+            "13": 95,
+            "14": 165
+          }
+        }
+      },
+      "pole_velocity": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "3": 96,
+            "5": 545,
+            "6": 117,
+            "7": 102,
+            "8": 95
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 113,
+            "5": 556,
+            "6": 95,
+            "7": 96,
+            "8": 95
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 95,
+            "3": 123,
+            "5": 137,
+            "7": 95,
+            "8": 505
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "1": 95,
+            "3": 95,
+            "6": 185,
+            "7": 213,
+            "9": 239,
+            "10": 128
+          }
+        },
+        "push": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 96,
+            "5": 504,
+            "6": 141,
+            "7": 110,
+            "8": 104
+          }
+        }
+      },
+      "push": {
+        "cart_position": {
+          "n_clusters": 7,
+          "cluster_sizes": {
+            "4": 152,
+            "5": 95,
+            "6": 152,
+            "7": 181,
+            "10": 95,
+            "11": 185,
+            "12": 95
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 8,
+          "cluster_sizes": {
+            "4": 161,
+            "5": 95,
+            "6": 124,
+            "8": 96,
+            "9": 113,
+            "11": 95,
+            "13": 95,
+            "14": 176
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 136,
+            "4": 102,
+            "6": 100,
+            "7": 508,
+            "8": 109
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "3": 95,
+            "4": 96,
+            "7": 258,
+            "8": 257,
+            "9": 152,
+            "10": 97
+          }
+        },
+        "push": {
+          "n_clusters": 9,
+          "cluster_sizes": {
+            "3": 95,
+            "4": 155,
+            "6": 102,
+            "7": 113,
+            "10": 95,
+            "12": 108,
+            "13": 95,
+            "15": 96,
+            "16": 96
+          }
+        }
+      }
+    }
+  },
+  "ate_100": {
+    "nepisodes": 100,
+    "method": "ate",
+    "n_transitions": 3183,
+    "rollout_s": 0.29,
+    "mean_ep_len": 32.8,
+    "action1_frac": 0.4951,
+    "infer_s": 32.92,
+    "edges": [
+      "action_push_t -> state_cart_velocity_t+1",
+      "action_push_t -> state_pole_velocity_t+1",
+      "state_cart_position_t -> action_push_t+1",
+      "state_cart_position_t -> state_pole_velocity_t+1",
+      "state_cart_velocity_t -> state_cart_position_t+1",
+      "state_cart_velocity_t -> state_cart_velocity_t+1",
+      "state_cart_velocity_t -> state_pole_velocity_t+1",
+      "state_pole_angle_t -> action_push_t+1",
+      "state_pole_angle_t -> state_cart_velocity_t+1",
+      "state_pole_angle_t -> state_pole_angle_t+1",
+      "state_pole_angle_t -> state_pole_velocity_t+1",
+      "state_pole_velocity_t -> state_cart_position_t+1",
+      "state_pole_velocity_t -> state_pole_angle_t+1",
+      "state_pole_velocity_t -> state_pole_velocity_t+1"
+    ],
+    "edges_collapsed": [
+      "action_push_t -> state_cart_velocity_t",
+      "action_push_t -> state_pole_velocity_t",
+      "state_cart_position_t -> action_push_t",
+      "state_cart_position_t -> state_pole_velocity_t",
+      "state_cart_velocity_t -> state_cart_position_t",
+      "state_cart_velocity_t -> state_pole_velocity_t",
+      "state_pole_angle_t -> action_push_t",
+      "state_pole_angle_t -> state_cart_velocity_t",
+      "state_pole_angle_t -> state_pole_velocity_t",
+      "state_pole_velocity_t -> state_cart_position_t",
+      "state_pole_velocity_t -> state_pole_angle_t"
+    ],
+    "n_edges": 14,
+    "fidelity": {
+      "dt_acc": 0.9859,
+      "dt_f1": 0.9857,
+      "lr_acc": 0.9859,
+      "lr_f1": 0.9857,
+      "n_test": 637,
+      "action1_frac": 0.4951
+    },
+    "per_target_causes": {
+      "cart_position": [
+        "state_cart_velocity_t",
+        "state_pole_velocity_t"
+      ],
+      "cart_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t",
+        "state_pole_angle_t"
+      ],
+      "pole_angle": [
+        "state_pole_angle_t",
+        "state_pole_velocity_t"
+      ],
+      "pole_velocity": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_cart_velocity_t",
+        "state_pole_angle_t",
+        "state_pole_velocity_t"
+      ],
+      "push": [
+        "state_cart_position_t",
+        "state_pole_angle_t"
+      ]
+    },
+    "ate_table": {
+      "cart_position": {
+        "cart_position": [
+          0.1871,
+          -0.0278,
+          0.3352
+        ],
+        "cart_velocity": [
+          0.0056,
+          0.0006,
+          0.0101
+        ],
+        "pole_angle": [
+          0.0074,
+          -0.0005,
+          0.0146
+        ],
+        "pole_velocity": [
+          -0.008,
+          -0.0119,
+          -0.0038
+        ],
+        "push": [
+          0.0,
+          -0.0002,
+          0.0002
+        ]
+      },
+      "cart_velocity": {
+        "cart_position": [
+          -0.117,
+          -0.2751,
+          0.0543
+        ],
+        "cart_velocity": [
+          1.3763,
+          1.2951,
+          1.4262
+        ],
+        "pole_angle": [
+          0.2213,
+          0.0901,
+          0.4241
+        ],
+        "pole_velocity": [
+          0.0014,
+          -0.0254,
+          0.0548
+        ],
+        "push": [
+          0.3721,
+          0.3127,
+          0.4017
+        ]
+      },
+      "pole_angle": {
+        "cart_position": [
+          0.0034,
+          -0.0638,
+          0.0662
+        ],
+        "cart_velocity": [
+          -0.0043,
+          -0.0107,
+          0.0026
+        ],
+        "pole_angle": [
+          0.2233,
+          0.1411,
+          0.3144
+        ],
+        "pole_velocity": [
+          0.009,
+          0.0019,
+          0.0148
+        ],
+        "push": [
+          0.0001,
+          -0.0001,
+          0.0008
+        ]
+      },
+      "pole_velocity": {
+        "cart_position": [
+          0.2436,
+          0.0324,
+          0.4589
+        ],
+        "cart_velocity": [
+          -0.9155,
+          -1.1555,
+          -0.5701
+        ],
+        "pole_angle": [
+          -0.316,
+          -0.5222,
+          -0.1075
+        ],
+        "pole_velocity": [
+          0.737,
+          0.5515,
+          0.9741
+        ],
+        "push": [
+          -0.4954,
+          -0.5243,
+          -0.4428
+        ]
+      },
+      "push": {
+        "cart_position": [
+          0.5111,
+          0.123,
+          0.9573
+        ],
+        "cart_velocity": [
+          -0.0219,
+          -0.0723,
+          0.0384
+        ],
+        "pole_angle": [
+          0.6443,
+          0.0363,
+          0.9862
+        ],
+        "pole_velocity": [
+          0.0296,
+          -0.0221,
+          0.1031
+        ],
+        "push": [
+          0.1137,
+          0.0,
+          0.6273
+        ]
+      }
+    }
+  },
+  "hte_200": {
+    "nepisodes": 200,
+    "method": "hte",
+    "n_transitions": 6330,
+    "rollout_s": 0.57,
+    "mean_ep_len": 32.6,
+    "action1_frac": 0.5044,
+    "infer_s": 71.9,
+    "edges": [
+      "action_push_t -> state_cart_velocity_t+1",
+      "action_push_t -> state_pole_velocity_t+1",
+      "state_cart_position_t -> state_cart_position_t+1",
+      "state_cart_velocity_t -> state_cart_velocity_t+1",
+      "state_cart_velocity_t -> state_pole_velocity_t+1",
+      "state_pole_angle_t -> state_pole_angle_t+1",
+      "state_pole_velocity_t -> state_pole_velocity_t+1"
+    ],
+    "edges_collapsed": [
+      "action_push_t -> state_cart_velocity_t",
+      "action_push_t -> state_pole_velocity_t",
+      "state_cart_velocity_t -> state_pole_velocity_t"
+    ],
+    "n_edges": 7,
+    "fidelity": {
+      "dt_acc": 0.9834,
+      "dt_f1": 0.9835,
+      "lr_acc": 0.9889,
+      "lr_f1": 0.989,
+      "n_test": 1266,
+      "action1_frac": 0.5044
+    },
+    "per_target_causes": {
+      "cart_position": [
+        "state_cart_position_t"
+      ],
+      "cart_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t"
+      ],
+      "pole_angle": [
+        "state_pole_angle_t"
+      ],
+      "pole_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t",
+        "state_pole_velocity_t"
+      ],
+      "push": []
+    },
+    "hte_cluster_table": {
+      "cart_position": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 252,
+            "5": 195,
+            "6": 1031,
+            "7": 189,
+            "8": 232
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 199,
+            "4": 189,
+            "6": 202,
+            "7": 1111,
+            "8": 198
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 253,
+            "4": 213,
+            "6": 943,
+            "7": 258,
+            "8": 232
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 196,
+            "4": 189,
+            "6": 193,
+            "7": 1132,
+            "8": 189
+          }
+        },
+        "push": {
+          "n_clusters": 6,
+          "cluster_sizes": {
+            "1": 189,
+            "3": 190,
+            "6": 612,
+            "7": 349,
+            "9": 366,
+            "10": 193
+          }
+        }
+      },
+      "cart_velocity": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "3": 265,
+            "5": 1052,
+            "6": 204,
+            "7": 189,
+            "8": 189
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 189,
+            "5": 1143,
+            "6": 189,
+            "7": 189,
+            "8": 189
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 189,
+            "4": 191,
+            "6": 1091,
+            "7": 234,
+            "8": 194
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "3": 199,
+            "5": 1133,
+            "6": 189,
+            "7": 189,
+            "8": 189
+          }
+        },
+        "push": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 236,
+            "3": 287,
+            "6": 190,
+            "7": 997,
+            "8": 189
+          }
+        }
+      },
+      "pole_angle": {
+        "cart_position": {
+          "n_clusters": 7,
+          "cluster_sizes": {
+            "4": 334,
+            "5": 392,
+            "7": 246,
+            "8": 311,
+            "10": 189,
+            "11": 189,
+            "12": 238
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 189,
+            "5": 373,
+            "6": 924,
+            "7": 222,
+            "8": 191
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 237,
+            "5": 905,
+            "6": 330,
+            "7": 189,
+            "8": 238
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 189,
+            "5": 193,
+            "6": 1137,
+            "7": 189,
+            "8": 191
+          }
+        },
+        "push": {
+          "n_clusters": 7,
+          "cluster_sizes": {
+            "3": 189,
+            "4": 356,
+            "6": 353,
+            "8": 217,
+            "9": 369,
+            "11": 207,
+            "12": 208
+          }
+        }
+      },
+      "pole_velocity": {
+        "cart_position": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 189,
+            "5": 191,
+            "6": 1128,
+            "7": 202,
+            "8": 189
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 189,
+            "4": 190,
+            "6": 1126,
+            "7": 201,
+            "8": 193
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 216,
+            "4": 286,
+            "6": 916,
+            "7": 256,
+            "8": 225
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "4": 1058,
+            "5": 274,
+            "6": 189,
+            "7": 189,
+            "8": 189
+          }
+        },
+        "push": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 268,
+            "4": 242,
+            "6": 846,
+            "7": 212,
+            "8": 331
+          }
+        }
+      },
+      "push": {
+        "cart_position": {
+          "n_clusters": 8,
+          "cluster_sizes": {
+            "4": 229,
+            "5": 189,
+            "6": 312,
+            "8": 313,
+            "9": 190,
+            "12": 189,
+            "13": 249,
+            "14": 228
+          }
+        },
+        "cart_velocity": {
+          "n_clusters": 8,
+          "cluster_sizes": {
+            "1": 193,
+            "5": 351,
+            "6": 189,
+            "8": 268,
+            "9": 222,
+            "11": 197,
+            "13": 290,
+            "14": 189
+          }
+        },
+        "pole_angle": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "1": 223,
+            "5": 201,
+            "6": 1029,
+            "7": 189,
+            "8": 257
+          }
+        },
+        "pole_velocity": {
+          "n_clusters": 5,
+          "cluster_sizes": {
+            "2": 355,
+            "5": 894,
+            "6": 264,
+            "7": 189,
+            "8": 197
+          }
+        },
+        "push": {
+          "n_clusters": 7,
+          "cluster_sizes": {
+            "3": 300,
+            "5": 235,
+            "6": 266,
+            "7": 195,
+            "10": 364,
+            "11": 231,
+            "12": 308
+          }
+        }
+      }
+    }
+  },
+  "ate_200": {
+    "nepisodes": 200,
+    "method": "ate",
+    "n_transitions": 6330,
+    "rollout_s": 0.57,
+    "mean_ep_len": 32.6,
+    "action1_frac": 0.5044,
+    "infer_s": 59.07,
+    "edges": [
+      "action_push_t -> state_cart_velocity_t+1",
+      "action_push_t -> state_pole_velocity_t+1",
+      "state_cart_position_t -> action_push_t+1",
+      "state_cart_position_t -> state_cart_position_t+1",
+      "state_cart_position_t -> state_cart_velocity_t+1",
+      "state_cart_velocity_t -> state_cart_velocity_t+1",
+      "state_cart_velocity_t -> state_pole_velocity_t+1",
+      "state_pole_angle_t -> state_cart_velocity_t+1",
+      "state_pole_angle_t -> state_pole_angle_t+1",
+      "state_pole_angle_t -> state_pole_velocity_t+1",
+      "state_pole_velocity_t -> action_push_t+1",
+      "state_pole_velocity_t -> state_cart_position_t+1",
+      "state_pole_velocity_t -> state_pole_angle_t+1",
+      "state_pole_velocity_t -> state_pole_velocity_t+1"
+    ],
+    "edges_collapsed": [
+      "action_push_t -> state_cart_velocity_t",
+      "action_push_t -> state_pole_velocity_t",
+      "state_cart_position_t -> action_push_t",
+      "state_cart_position_t -> state_cart_velocity_t",
+      "state_cart_velocity_t -> state_pole_velocity_t",
+      "state_pole_angle_t -> state_cart_velocity_t",
+      "state_pole_angle_t -> state_pole_velocity_t",
+      "state_pole_velocity_t -> action_push_t",
+      "state_pole_velocity_t -> state_cart_position_t",
+      "state_pole_velocity_t -> state_pole_angle_t"
+    ],
+    "n_edges": 14,
+    "fidelity": {
+      "dt_acc": 0.9834,
+      "dt_f1": 0.9835,
+      "lr_acc": 0.9889,
+      "lr_f1": 0.989,
+      "n_test": 1266,
+      "action1_frac": 0.5044
+    },
+    "per_target_causes": {
+      "cart_position": [
+        "state_cart_position_t",
+        "state_pole_velocity_t"
+      ],
+      "cart_velocity": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_cart_velocity_t",
+        "state_pole_angle_t"
+      ],
+      "pole_angle": [
+        "state_pole_angle_t",
+        "state_pole_velocity_t"
+      ],
+      "pole_velocity": [
+        "action_push_t",
+        "state_cart_velocity_t",
+        "state_pole_angle_t",
+        "state_pole_velocity_t"
+      ],
+      "push": [
+        "state_cart_position_t",
+        "state_pole_velocity_t"
+      ]
+    },
+    "ate_table": {
+      "cart_position": {
+        "cart_position": [
+          0.2509,
+          0.0267,
+          0.3519
+        ],
+        "cart_velocity": [
+          0.0026,
+          -0.0035,
+          0.0079
+        ],
+        "pole_angle": [
+          0.0133,
+          -0.0036,
+          0.0273
+        ],
+        "pole_velocity": [
+          -0.0061,
+          -0.0106,
+          -0.0014
+        ],
+        "push": [
+          0.0,
+          -0.0001,
+          0.0002
+        ]
+      },
+      "cart_velocity": {
+        "cart_position": [
+          -0.0849,
+          -0.2484,
+          -0.0002
+        ],
+        "cart_velocity": [
+          1.3744,
+          1.2805,
+          1.4185
+        ],
+        "pole_angle": [
+          0.3231,
+          0.1258,
+          0.5597
+        ],
+        "pole_velocity": [
+          0.0236,
+          -0.0099,
+          0.0881
+        ],
+        "push": [
+          0.3833,
+          0.3609,
+          0.4086
+        ]
+      },
+      "pole_angle": {
+        "cart_position": [
+          0.0017,
+          -0.0336,
+          0.0423
+        ],
+        "cart_velocity": [
+          -0.0035,
+          -0.0099,
+          0.0037
+        ],
+        "pole_angle": [
+          0.2508,
+          0.1751,
+          0.3322
+        ],
+        "pole_velocity": [
+          0.0067,
+          0.0015,
+          0.0124
+        ],
+        "push": [
+          0.0,
+          -0.0,
+          0.0002
+        ]
+      },
+      "pole_velocity": {
+        "cart_position": [
+          0.0607,
+          -0.0762,
+          0.2444
+        ],
+        "cart_velocity": [
+          -0.917,
+          -1.0767,
+          -0.6712
+        ],
+        "pole_angle": [
+          -0.5729,
+          -0.7535,
+          -0.3024
+        ],
+        "pole_velocity": [
+          0.7045,
+          0.5618,
+          0.8795
+        ],
+        "push": [
+          -0.5147,
+          -0.5383,
+          -0.4978
+        ]
+      },
+      "push": {
+        "cart_position": [
+          0.2361,
+          0.0954,
+          0.5916
+        ],
+        "cart_velocity": [
+          0.0291,
+          -0.0342,
+          0.0992
+        ],
+        "pole_angle": [
+          0.4221,
+          -0.4471,
+          0.9483
+        ],
+        "pole_velocity": [
+          0.097,
+          0.0088,
+          0.1953
+        ],
+        "push": [
+          0.137,
+          -0.0,
+          0.5825
+        ]
+      }
+    }
+  },
+  "ci_sensitivity_200ep": {
+    "hte": {
+      "0.9": {
+        "edges": [
+          "action_push_t -> state_cart_velocity_t+1",
+          "action_push_t -> state_pole_velocity_t+1",
+          "state_cart_position_t -> state_cart_position_t+1",
+          "state_cart_velocity_t -> state_cart_velocity_t+1",
+          "state_cart_velocity_t -> state_pole_velocity_t+1",
+          "state_pole_angle_t -> state_pole_angle_t+1",
+          "state_pole_velocity_t -> state_pole_angle_t+1",
+          "state_pole_velocity_t -> state_pole_velocity_t+1"
+        ],
+        "per_target": {
+          "cart_position": [
+            "cart_position"
+          ],
+          "cart_velocity": [
+            "cart_velocity",
+            "push"
+          ],
+          "pole_angle": [
+            "pole_angle",
+            "pole_velocity"
+          ],
+          "pole_velocity": [
+            "cart_velocity",
+            "pole_velocity",
+            "push"
+          ],
+          "push": []
+        }
+      },
+      "0.95": {
+        "edges": [
+          "action_push_t -> state_cart_velocity_t+1",
+          "action_push_t -> state_pole_velocity_t+1",
+          "state_cart_position_t -> state_cart_position_t+1",
+          "state_cart_velocity_t -> state_cart_velocity_t+1",
+          "state_cart_velocity_t -> state_pole_velocity_t+1",
+          "state_pole_angle_t -> state_pole_angle_t+1",
+          "state_pole_velocity_t -> state_pole_velocity_t+1"
+        ],
+        "per_target": {
+          "cart_position": [
+            "cart_position"
+          ],
+          "cart_velocity": [
+            "cart_velocity",
+            "push"
+          ],
+          "pole_angle": [
+            "pole_angle"
+          ],
+          "pole_velocity": [
+            "cart_velocity",
+            "pole_velocity",
+            "push"
+          ],
+          "push": []
+        }
+      }
+    },
+    "ate": {
+      "0.9": {
+        "edges": [
+          "action_push_t -> state_cart_velocity_t+1",
+          "action_push_t -> state_pole_velocity_t+1",
+          "state_cart_position_t -> action_push_t+1",
+          "state_cart_position_t -> state_cart_position_t+1",
+          "state_cart_position_t -> state_cart_velocity_t+1",
+          "state_cart_velocity_t -> state_cart_velocity_t+1",
+          "state_cart_velocity_t -> state_pole_velocity_t+1",
+          "state_pole_angle_t -> state_cart_velocity_t+1",
+          "state_pole_angle_t -> state_pole_angle_t+1",
+          "state_pole_angle_t -> state_pole_velocity_t+1",
+          "state_pole_velocity_t -> action_push_t+1",
+          "state_pole_velocity_t -> state_cart_position_t+1",
+          "state_pole_velocity_t -> state_pole_angle_t+1",
+          "state_pole_velocity_t -> state_pole_velocity_t+1"
+        ],
+        "per_target": {
+          "cart_position": [
+            "cart_position",
+            "pole_velocity"
+          ],
+          "cart_velocity": [
+            "cart_position",
+            "cart_velocity",
+            "pole_angle",
+            "push"
+          ],
+          "pole_angle": [
+            "pole_angle",
+            "pole_velocity"
+          ],
+          "pole_velocity": [
+            "cart_velocity",
+            "pole_angle",
+            "pole_velocity",
+            "push"
+          ],
+          "push": [
+            "cart_position",
+            "pole_velocity"
+          ]
+        }
+      },
+      "0.95": {
+        "edges": [
+          "action_push_t -> state_cart_velocity_t+1",
+          "action_push_t -> state_pole_velocity_t+1",
+          "state_cart_position_t -> action_push_t+1",
+          "state_cart_position_t -> state_cart_position_t+1",
+          "state_cart_position_t -> state_cart_velocity_t+1",
+          "state_cart_velocity_t -> state_cart_velocity_t+1",
+          "state_cart_velocity_t -> state_pole_velocity_t+1",
+          "state_pole_angle_t -> state_cart_velocity_t+1",
+          "state_pole_angle_t -> state_pole_angle_t+1",
+          "state_pole_angle_t -> state_pole_velocity_t+1",
+          "state_pole_velocity_t -> action_push_t+1",
+          "state_pole_velocity_t -> state_cart_position_t+1",
+          "state_pole_velocity_t -> state_pole_angle_t+1",
+          "state_pole_velocity_t -> state_pole_velocity_t+1"
+        ],
+        "per_target": {
+          "cart_position": [
+            "cart_position",
+            "pole_velocity"
+          ],
+          "cart_velocity": [
+            "cart_position",
+            "cart_velocity",
+            "pole_angle",
+            "push"
+          ],
+          "pole_angle": [
+            "pole_angle",
+            "pole_velocity"
+          ],
+          "pole_velocity": [
+            "cart_velocity",
+            "pole_angle",
+            "pole_velocity",
+            "push"
+          ],
+          "push": [
+            "cart_position",
+            "pole_velocity"
+          ]
+        }
+      }
+    }
+  },
+  "comparison_vs_200ep": {
+    "hte": {
+      "50": {
+        "n_edges": 5,
+        "jaccard_vs_200": 0.7143,
+        "symdiff_vs_200": 2,
+        "edges_only_here": [],
+        "edges_missing_vs_200": [
+          "action_push_t -> state_cart_velocity_t+1",
+          "action_push_t -> state_pole_velocity_t+1"
+        ]
+      },
+      "100": {
+        "n_edges": 7,
+        "jaccard_vs_200": 1.0,
+        "symdiff_vs_200": 0,
+        "edges_only_here": [],
+        "edges_missing_vs_200": []
+      },
+      "200": {
+        "n_edges": 7,
+        "jaccard_vs_200": 1.0,
+        "symdiff_vs_200": 0,
+        "edges_only_here": [],
+        "edges_missing_vs_200": []
+      },
+      "stable_edges_all_counts": [
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "unstable_edges": [
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1"
+      ]
+    },
+    "ate": {
+      "50": {
+        "n_edges": 12,
+        "jaccard_vs_200": 0.7333,
+        "symdiff_vs_200": 4,
+        "edges_only_here": [
+          "state_cart_velocity_t -> state_cart_position_t+1"
+        ],
+        "edges_missing_vs_200": [
+          "state_cart_position_t -> state_cart_velocity_t+1",
+          "state_pole_velocity_t -> action_push_t+1",
+          "state_pole_velocity_t -> state_pole_angle_t+1"
+        ]
+      },
+      "100": {
+        "n_edges": 14,
+        "jaccard_vs_200": 0.6471,
+        "symdiff_vs_200": 6,
+        "edges_only_here": [
+          "state_cart_position_t -> state_pole_velocity_t+1",
+          "state_cart_velocity_t -> state_cart_position_t+1",
+          "state_pole_angle_t -> action_push_t+1"
+        ],
+        "edges_missing_vs_200": [
+          "state_cart_position_t -> state_cart_position_t+1",
+          "state_cart_position_t -> state_cart_velocity_t+1",
+          "state_pole_velocity_t -> action_push_t+1"
+        ]
+      },
+      "200": {
+        "n_edges": 14,
+        "jaccard_vs_200": 1.0,
+        "symdiff_vs_200": 0,
+        "edges_only_here": [],
+        "edges_missing_vs_200": []
+      },
+      "stable_edges_all_counts": [
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_cart_position_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "unstable_edges": [
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_position_t -> state_cart_velocity_t+1",
+        "state_cart_position_t -> state_pole_velocity_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1"
+      ]
+    }
+  }
+}

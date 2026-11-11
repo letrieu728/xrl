@@ -1,0 +1,27 @@
+{
+  "train_mean_last100": 264.49,
+  "train_time_s": 1671.4555158615112,
+  "final_eval_100ep": {
+    "n": 100,
+    "mean": 246.16,
+    "std": 10.894695957207801,
+    "min": 230.0,
+    "max": 282.0
+  },
+  "hyperparams": {
+    "seed": 0,
+    "episodes": 600,
+    "hidden": 128,
+    "lr": 0.001,
+    "gamma": 0.99,
+    "batch_size": 64,
+    "buffer_size": 50000,
+    "eps_start": 1.0,
+    "eps_end": 0.02,
+    "eps_decay_episodes": 400,
+    "target_update_every": 10,
+    "warmup": 1000,
+    "env": "CartPole-v1",
+    "outdir": "results/cartpole-dqn"
+  }
+}

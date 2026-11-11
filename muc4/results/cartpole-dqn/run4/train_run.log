@@ -1,0 +1,17 @@
+seed=0 episodes=600 env=CartPole-v1 torch=2.15.0+cpu device=cpu
+ep    1 reward= 14 mean_last100=  14.0 eps=1.000 loss=nan elapsed=0s
+ep   50 reward= 19 mean_last100=  23.0 eps=0.880 loss=0.0001 elapsed=2s
+ep  100 reward= 13 mean_last100=  24.5 eps=0.757 loss=0.0185 elapsed=36s
+ep  150 reward= 31 mean_last100=  31.4 eps=0.635 loss=0.0492 elapsed=70s
+ep  200 reward= 15 mean_last100=  34.8 eps=0.512 loss=0.0822 elapsed=89s
+ep  250 reward= 16 mean_last100=  33.4 eps=0.390 loss=0.1180 elapsed=105s
+ep  300 reward= 79 mean_last100=  39.9 eps=0.267 loss=0.2182 elapsed=125s
+ep  350 reward= 19 mean_last100=  46.6 eps=0.145 loss=0.3199 elapsed=161s
+ep  400 reward= 86 mean_last100=  50.3 eps=0.022 loss=0.3566 elapsed=211s
+ep  450 reward= 99 mean_last100=  72.0 eps=0.020 loss=0.4646 elapsed=307s
+ep  500 reward= 43 mean_last100=  90.5 eps=0.020 loss=0.3557 elapsed=391s
+ep  550 reward= 99 mean_last100=  91.9 eps=0.020 loss=0.5638 elapsed=458s
+ep  600 reward= 69 mean_last100=  79.7 eps=0.020 loss=0.6426 elapsed=514s
+TRAIN DONE: episodes=600 mean_last100=79.68 time=513.8s
+FINAL EVAL (100 ep, greedy): mean=56.81 std=7.94 min=40 max=72
+checkpoint saved: results/cartpole-dqn/run4/dqn_checkpoint.pt

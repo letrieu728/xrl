@@ -1,0 +1,295 @@
+{
+  "rows": [
+    {
+      "policy": "heuristic",
+      "method": "hte",
+      "n_transitions": 6330,
+      "n_edges": 14,
+      "edges": "action_push_t -> action_push_t+1; action_push_t -> state_cart_velocity_t+1; action_push_t -> state_pole_velocity_t+1; state_cart_position_t -> action_push_t+1; state_cart_position_t -> state_cart_position_t+1; state_cart_velocity_t -> state_cart_position_t+1; state_cart_velocity_t -> state_cart_velocity_t+1; state_cart_velocity_t -> state_pole_angle_t+1; state_pole_angle_t -> action_push_t+1; state_pole_angle_t -> state_pole_angle_t+1; state_pole_angle_t -> state_pole_velocity_t+1; state_pole_velocity_t -> state_cart_velocity_t+1; state_pole_velocity_t -> state_pole_angle_t+1; state_pole_velocity_t -> state_pole_velocity_t+1",
+      "edges_collapsed": "action_push_t -> state_cart_velocity_t; action_push_t -> state_pole_velocity_t; state_cart_position_t -> action_push_t; state_cart_velocity_t -> state_cart_position_t; state_cart_velocity_t -> state_pole_angle_t; state_pole_angle_t -> action_push_t; state_pole_angle_t -> state_pole_velocity_t; state_pole_velocity_t -> state_cart_velocity_t; state_pole_velocity_t -> state_pole_angle_t",
+      "per_target_causes": "{\"cart_position\": [\"state_cart_position_t\", \"state_cart_velocity_t\"], \"cart_velocity\": [\"action_push_t\", \"state_cart_velocity_t\", \"state_pole_velocity_t\"], \"pole_angle\": [\"state_cart_velocity_t\", \"state_pole_angle_t\", \"state_pole_velocity_t\"], \"pole_velocity\": [\"action_push_t\", \"state_pole_angle_t\", \"state_pole_velocity_t\"], \"push\": [\"action_push_t\", \"state_cart_position_t\", \"state_pole_angle_t\"]}",
+      "time_s": 85.84,
+      "rollout_s": 0.08,
+      "fid_valid_steps": 6329,
+      "fid_n_test_dt_lr": 2532,
+      "dt_acc": 0.9491,
+      "dt_f1": 0.9498,
+      "lr_acc": 0.9111,
+      "lr_f1": 0.9121,
+      "bart_acc": 0.935,
+      "bart_f1": 0.934,
+      "bart_n_test": 200,
+      "bart_test_capped": true,
+      "global_cause_push_parents": "[\"push\", \"cart_position\", \"pole_angle\"]"
+    },
+    {
+      "policy": "heuristic",
+      "method": "ate",
+      "n_transitions": 6330,
+      "n_edges": 15,
+      "edges": "action_push_t -> action_push_t+1; action_push_t -> state_cart_velocity_t+1; action_push_t -> state_pole_velocity_t+1; state_cart_position_t -> action_push_t+1; state_cart_position_t -> state_cart_position_t+1; state_cart_velocity_t -> state_cart_position_t+1; state_cart_velocity_t -> state_cart_velocity_t+1; state_pole_angle_t -> action_push_t+1; state_pole_angle_t -> state_cart_position_t+1; state_pole_angle_t -> state_cart_velocity_t+1; state_pole_angle_t -> state_pole_angle_t+1; state_pole_angle_t -> state_pole_velocity_t+1; state_pole_velocity_t -> action_push_t+1; state_pole_velocity_t -> state_cart_velocity_t+1; state_pole_velocity_t -> state_pole_velocity_t+1",
+      "edges_collapsed": "action_push_t -> state_cart_velocity_t; action_push_t -> state_pole_velocity_t; state_cart_position_t -> action_push_t; state_cart_velocity_t -> state_cart_position_t; state_pole_angle_t -> action_push_t; state_pole_angle_t -> state_cart_position_t; state_pole_angle_t -> state_cart_velocity_t; state_pole_angle_t -> state_pole_velocity_t; state_pole_velocity_t -> action_push_t; state_pole_velocity_t -> state_cart_velocity_t",
+      "per_target_causes": "{\"cart_position\": [\"state_cart_position_t\", \"state_cart_velocity_t\", \"state_pole_angle_t\"], \"cart_velocity\": [\"action_push_t\", \"state_cart_velocity_t\", \"state_pole_angle_t\", \"state_pole_velocity_t\"], \"pole_angle\": [\"state_pole_angle_t\"], \"pole_velocity\": [\"action_push_t\", \"state_pole_angle_t\", \"state_pole_velocity_t\"], \"push\": [\"action_push_t\", \"state_cart_position_t\", \"state_pole_angle_t\", \"state_pole_velocity_t\"]}",
+      "time_s": 120.38,
+      "rollout_s": 0.08
+    },
+    {
+      "policy": "dqn",
+      "method": "hte",
+      "n_transitions": 99800,
+      "n_edges": 14,
+      "edges": "action_push_t -> action_push_t+1; action_push_t -> state_cart_velocity_t+1; action_push_t -> state_pole_velocity_t+1; state_cart_position_t -> action_push_t+1; state_cart_position_t -> state_cart_position_t+1; state_cart_velocity_t -> action_push_t+1; state_cart_velocity_t -> state_cart_position_t+1; state_cart_velocity_t -> state_cart_velocity_t+1; state_pole_angle_t -> action_push_t+1; state_pole_angle_t -> state_pole_angle_t+1; state_pole_angle_t -> state_pole_velocity_t+1; state_pole_velocity_t -> action_push_t+1; state_pole_velocity_t -> state_pole_angle_t+1; state_pole_velocity_t -> state_pole_velocity_t+1",
+      "edges_collapsed": "action_push_t -> state_cart_velocity_t; action_push_t -> state_pole_velocity_t; state_cart_position_t -> action_push_t; state_cart_velocity_t -> action_push_t; state_cart_velocity_t -> state_cart_position_t; state_pole_angle_t -> action_push_t; state_pole_angle_t -> state_pole_velocity_t; state_pole_velocity_t -> action_push_t; state_pole_velocity_t -> state_pole_angle_t",
+      "per_target_causes": "{\"cart_position\": [\"state_cart_position_t\", \"state_cart_velocity_t\"], \"cart_velocity\": [\"action_push_t\", \"state_cart_velocity_t\"], \"pole_angle\": [\"state_pole_angle_t\", \"state_pole_velocity_t\"], \"pole_velocity\": [\"action_push_t\", \"state_pole_angle_t\", \"state_pole_velocity_t\"], \"push\": [\"action_push_t\", \"state_cart_position_t\", \"state_cart_velocity_t\", \"state_pole_angle_t\", \"state_pole_velocity_t\"]}",
+      "time_s": 1738.58,
+      "rollout_s": 5.62
+    }
+  ],
+  "details": {
+    "label": "BART (R/dbarts via rpy2) - real CausalXRL estimator",
+    "estimator": "bart",
+    "checkpoint": "results/cartpole-dqn/dqn_checkpoint.pt",
+    "checkpoint_hyperparams": {
+      "seed": 0,
+      "episodes": 2000,
+      "hidden": 128,
+      "lr": 0.001,
+      "gamma": 0.99,
+      "batch_size": 64,
+      "buffer_size": 50000,
+      "eps_start": 1.0,
+      "eps_end": 0.02,
+      "eps_decay_episodes": 1300,
+      "target_update_every": 10,
+      "warmup": 1000,
+      "loss": "mse",
+      "grad_clip": 0.0,
+      "double_dqn": true,
+      "eval_every": 50,
+      "eval_episodes": 50,
+      "eval_seed_offset": 10000,
+      "env": "CartPole-v1",
+      "outdir": "results/cartpole-dqn/run9"
+    },
+    "checkpoint_final_eval_100ep": {
+      "n": 100,
+      "mean": 500.0,
+      "std": 0.0,
+      "min": 500.0,
+      "max": 500.0
+    },
+    "episodes": 200,
+    "seed": 0,
+    "repo_commit": "ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162",
+    "runs": {
+      "heuristic": {
+        "n_transitions": 6330,
+        "rollout_s": 0.08,
+        "mean_ep_len": 32.6,
+        "action1_frac": 0.5044,
+        "methods": {
+          "hte": {
+            "n_edges": 14,
+            "edges": [
+              "action_push_t -> action_push_t+1",
+              "action_push_t -> state_cart_velocity_t+1",
+              "action_push_t -> state_pole_velocity_t+1",
+              "state_cart_position_t -> action_push_t+1",
+              "state_cart_position_t -> state_cart_position_t+1",
+              "state_cart_velocity_t -> state_cart_position_t+1",
+              "state_cart_velocity_t -> state_cart_velocity_t+1",
+              "state_cart_velocity_t -> state_pole_angle_t+1",
+              "state_pole_angle_t -> action_push_t+1",
+              "state_pole_angle_t -> state_pole_angle_t+1",
+              "state_pole_angle_t -> state_pole_velocity_t+1",
+              "state_pole_velocity_t -> state_cart_velocity_t+1",
+              "state_pole_velocity_t -> state_pole_angle_t+1",
+              "state_pole_velocity_t -> state_pole_velocity_t+1"
+            ],
+            "edges_collapsed": [
+              "action_push_t -> state_cart_velocity_t",
+              "action_push_t -> state_pole_velocity_t",
+              "state_cart_position_t -> action_push_t",
+              "state_cart_velocity_t -> state_cart_position_t",
+              "state_cart_velocity_t -> state_pole_angle_t",
+              "state_pole_angle_t -> action_push_t",
+              "state_pole_angle_t -> state_pole_velocity_t",
+              "state_pole_velocity_t -> state_cart_velocity_t",
+              "state_pole_velocity_t -> state_pole_angle_t"
+            ],
+            "per_target_causes": {
+              "cart_position": [
+                "state_cart_position_t",
+                "state_cart_velocity_t"
+              ],
+              "cart_velocity": [
+                "action_push_t",
+                "state_cart_velocity_t",
+                "state_pole_velocity_t"
+              ],
+              "pole_angle": [
+                "state_cart_velocity_t",
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ],
+              "pole_velocity": [
+                "action_push_t",
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ],
+              "push": [
+                "action_push_t",
+                "state_cart_position_t",
+                "state_pole_angle_t"
+              ]
+            },
+            "infer_s": 85.84
+          },
+          "ate": {
+            "n_edges": 15,
+            "edges": [
+              "action_push_t -> action_push_t+1",
+              "action_push_t -> state_cart_velocity_t+1",
+              "action_push_t -> state_pole_velocity_t+1",
+              "state_cart_position_t -> action_push_t+1",
+              "state_cart_position_t -> state_cart_position_t+1",
+              "state_cart_velocity_t -> state_cart_position_t+1",
+              "state_cart_velocity_t -> state_cart_velocity_t+1",
+              "state_pole_angle_t -> action_push_t+1",
+              "state_pole_angle_t -> state_cart_position_t+1",
+              "state_pole_angle_t -> state_cart_velocity_t+1",
+              "state_pole_angle_t -> state_pole_angle_t+1",
+              "state_pole_angle_t -> state_pole_velocity_t+1",
+              "state_pole_velocity_t -> action_push_t+1",
+              "state_pole_velocity_t -> state_cart_velocity_t+1",
+              "state_pole_velocity_t -> state_pole_velocity_t+1"
+            ],
+            "edges_collapsed": [
+              "action_push_t -> state_cart_velocity_t",
+              "action_push_t -> state_pole_velocity_t",
+              "state_cart_position_t -> action_push_t",
+              "state_cart_velocity_t -> state_cart_position_t",
+              "state_pole_angle_t -> action_push_t",
+              "state_pole_angle_t -> state_cart_position_t",
+              "state_pole_angle_t -> state_cart_velocity_t",
+              "state_pole_angle_t -> state_pole_velocity_t",
+              "state_pole_velocity_t -> action_push_t",
+              "state_pole_velocity_t -> state_cart_velocity_t"
+            ],
+            "per_target_causes": {
+              "cart_position": [
+                "state_cart_position_t",
+                "state_cart_velocity_t",
+                "state_pole_angle_t"
+              ],
+              "cart_velocity": [
+                "action_push_t",
+                "state_cart_velocity_t",
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ],
+              "pole_angle": [
+                "state_pole_angle_t"
+              ],
+              "pole_velocity": [
+                "action_push_t",
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ],
+              "push": [
+                "action_push_t",
+                "state_cart_position_t",
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ]
+            },
+            "infer_s": 120.38
+          }
+        },
+        "fidelity_eval_notebook": {
+          "valid_steps": 6329,
+          "n_test_dt_lr": 2532,
+          "dt_acc": 0.9490521327014217,
+          "dt_f1": 0.9497859089139743,
+          "lr_acc": 0.9111374407582938,
+          "lr_f1": 0.9121436938695822,
+          "global_cause_push_parents": [
+            "push",
+            "cart_position",
+            "pole_angle"
+          ],
+          "bart_test_cap": 200,
+          "bart_test_capped": true,
+          "n_test_bart": 200,
+          "bart_acc": 0.935,
+          "bart_f1": 0.934010152284264
+        }
+      },
+      "dqn": {
+        "n_transitions": 99800,
+        "rollout_s": 5.62,
+        "mean_ep_len": 500.0,
+        "action1_frac": 0.4979,
+        "methods": {
+          "hte": {
+            "n_edges": 14,
+            "edges": [
+              "action_push_t -> action_push_t+1",
+              "action_push_t -> state_cart_velocity_t+1",
+              "action_push_t -> state_pole_velocity_t+1",
+              "state_cart_position_t -> action_push_t+1",
+              "state_cart_position_t -> state_cart_position_t+1",
+              "state_cart_velocity_t -> action_push_t+1",
+              "state_cart_velocity_t -> state_cart_position_t+1",
+              "state_cart_velocity_t -> state_cart_velocity_t+1",
+              "state_pole_angle_t -> action_push_t+1",
+              "state_pole_angle_t -> state_pole_angle_t+1",
+              "state_pole_angle_t -> state_pole_velocity_t+1",
+              "state_pole_velocity_t -> action_push_t+1",
+              "state_pole_velocity_t -> state_pole_angle_t+1",
+              "state_pole_velocity_t -> state_pole_velocity_t+1"
+            ],
+            "edges_collapsed": [
+              "action_push_t -> state_cart_velocity_t",
+              "action_push_t -> state_pole_velocity_t",
+              "state_cart_position_t -> action_push_t",
+              "state_cart_velocity_t -> action_push_t",
+              "state_cart_velocity_t -> state_cart_position_t",
+              "state_pole_angle_t -> action_push_t",
+              "state_pole_angle_t -> state_pole_velocity_t",
+              "state_pole_velocity_t -> action_push_t",
+              "state_pole_velocity_t -> state_pole_angle_t"
+            ],
+            "per_target_causes": {
+              "cart_position": [
+                "state_cart_position_t",
+                "state_cart_velocity_t"
+              ],
+              "cart_velocity": [
+                "action_push_t",
+                "state_cart_velocity_t"
+              ],
+              "pole_angle": [
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ],
+              "pole_velocity": [
+                "action_push_t",
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ],
+              "push": [
+                "action_push_t",
+                "state_cart_position_t",
+                "state_cart_velocity_t",
+                "state_pole_angle_t",
+                "state_pole_velocity_t"
+              ]
+            },
+            "infer_s": 1738.58
+          }
+        }
+      }
+    }
+  }
+}
