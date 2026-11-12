@@ -81,18 +81,15 @@ toàn văn (28 trang, đủ 8/8 hình): thư mục Drive dưới đây.
    Xem `muc3/EXPERIMENT_REPORT.md`.
 3. **Mục 4 — Mở rộng** (11/11): Hướng D — train DQN thật và so sánh XRL
    trained-vs-heuristic; Hướng A — ablation. Xem `muc4/results/REPORT.md`.
-4. **3 bước tăng điểm** (12/11): sửa tính so sánh của Mục 3 (baseline đúng
-   protocol + weighted-F1), chạy lại ablation bằng BART thật, chạy tối thiểu
-   MicroRTS + sửa counterfactual.
-5. **Nhóm việc 1** (12/11): khôi phục weighted-F1 cho BART LunarLander
+4. **Nhóm việc 1** (12/11): khôi phục weighted-F1 cho BART LunarLander
    (81,52%) từ checkpoint đã lưu, căn split baseline CartPole, vẽ đồ thị
    Mục 3 + case study local.
-6. **Nhóm việc 2** (12/11): MicroRTS 100 episode + sửa dashboard, mở rộng
+5. **Nhóm việc 2** (12/11): MicroRTS 100 episode + sửa dashboard, mở rộng
    counterfactual (6 query CartPole + 4 query LunarLander), DQN LunarLander
    và CartPole seed 1.
 
 Bảng đối chiếu đầy đủ mọi con số: `SO-SANH-TAC-GIA-VS-NHOM.md`.
-Bản thông tin thuyết trình (15–20 phút): `THUYET-TRINH.md`.
+
 
 ## Kết quả chính đã kiểm chứng
 
