@@ -1,0 +1,3429 @@
+{
+  "label": "BART (R/dbarts via rpy2) - real CausalXRL estimator",
+  "estimator": "bart",
+  "run_label": "main",
+  "seed": 0,
+  "repo_commit": "ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162",
+  "repo_dir": "/home/hatch/workspace/goals/cschttt-new-presentation-paper-selection/files/causalxrl-muc4-mo-rong/repo-causal-xrl",
+  "versions": {
+    "sklearn": "1.9.1",
+    "gymnasium": "1.4.0",
+    "networkx": "3.7",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1",
+    "python": "3.12.3",
+    "rpy2": "3.5.16",
+    "dbarts": "0.9.34",
+    "R": "4.3.3"
+  },
+  "runs": {
+    "hte_50": {
+      "nepisodes": 50,
+      "method": "hte",
+      "n_transitions": 1572,
+      "rollout_s": 0.02,
+      "mean_ep_len": 32.4,
+      "action1_frac": 0.493,
+      "infer_s": 19.86,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "edges_collapsed": [
+        "action_push_t -> state_cart_velocity_t",
+        "action_push_t -> state_pole_velocity_t",
+        "state_cart_position_t -> action_push_t",
+        "state_cart_velocity_t -> state_cart_position_t",
+        "state_cart_velocity_t -> state_pole_angle_t",
+        "state_pole_angle_t -> action_push_t",
+        "state_pole_velocity_t -> state_pole_angle_t"
+      ],
+      "n_edges": 12,
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t"
+        ],
+        "pole_angle": [
+          "state_cart_velocity_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t"
+        ]
+      },
+      "fidelity": {
+        "dt_acc": 0.9778,
+        "dt_f1": 0.9775,
+        "lr_acc": 0.9778,
+        "lr_f1": 0.9772,
+        "n_test": 315,
+        "action1_frac": 0.493
+      }
+    },
+    "ate_50": {
+      "nepisodes": 50,
+      "method": "ate",
+      "n_transitions": 1572,
+      "rollout_s": 0.02,
+      "mean_ep_len": 32.4,
+      "action1_frac": 0.493,
+      "infer_s": 29.11,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "edges_collapsed": [
+        "action_push_t -> state_cart_velocity_t",
+        "action_push_t -> state_pole_velocity_t",
+        "state_cart_position_t -> action_push_t",
+        "state_cart_velocity_t -> state_cart_position_t",
+        "state_pole_angle_t -> action_push_t",
+        "state_pole_angle_t -> state_cart_position_t",
+        "state_pole_angle_t -> state_cart_velocity_t",
+        "state_pole_angle_t -> state_pole_velocity_t",
+        "state_pole_velocity_t -> state_cart_velocity_t",
+        "state_pole_velocity_t -> state_pole_angle_t"
+      ],
+      "n_edges": 15,
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_angle": [
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t"
+        ]
+      },
+      "fidelity": {
+        "dt_acc": 0.9778,
+        "dt_f1": 0.9775,
+        "lr_acc": 0.9778,
+        "lr_f1": 0.9772,
+        "n_test": 315,
+        "action1_frac": 0.493
+      },
+      "ate_table_95": {
+        "cart_position": {
+          "cart_position": [
+            0.1152,
+            0.0776,
+            0.1465
+          ],
+          "cart_velocity": [
+            0.0067,
+            0.0034,
+            0.011
+          ],
+          "pole_angle": [
+            0.0542,
+            0.044,
+            0.069
+          ],
+          "pole_velocity": [
+            0.0009,
+            -0.0012,
+            0.0053
+          ],
+          "push": [
+            -0.0004,
+            -0.0039,
+            0.0022
+          ]
+        },
+        "cart_velocity": {
+          "cart_position": [
+            0.0731,
+            -0.0816,
+            0.3356
+          ],
+          "cart_velocity": [
+            0.6794,
+            0.6465,
+            0.7159
+          ],
+          "pole_angle": [
+            0.2603,
+            0.1538,
+            0.3248
+          ],
+          "pole_velocity": [
+            0.0499,
+            0.0324,
+            0.0692
+          ],
+          "push": [
+            0.3737,
+            0.2967,
+            0.4078
+          ]
+        },
+        "pole_angle": {
+          "cart_position": [
+            -0.0392,
+            -0.0736,
+            0.0095
+          ],
+          "cart_velocity": [
+            0.0028,
+            -0.0003,
+            0.0064
+          ],
+          "pole_angle": [
+            0.1202,
+            0.0926,
+            0.1397
+          ],
+          "pole_velocity": [
+            0.0073,
+            0.0041,
+            0.0095
+          ],
+          "push": [
+            0.0042,
+            -0.002,
+            0.0098
+          ]
+        },
+        "pole_velocity": {
+          "cart_position": [
+            0.2754,
+            -0.0322,
+            0.5084
+          ],
+          "cart_velocity": [
+            -0.0343,
+            -0.145,
+            0.0346
+          ],
+          "pole_angle": [
+            -0.2444,
+            -0.3437,
+            -0.1635
+          ],
+          "pole_velocity": [
+            0.6064,
+            0.5598,
+            0.6442
+          ],
+          "push": [
+            -0.5869,
+            -0.6202,
+            -0.5576
+          ]
+        },
+        "push": {
+          "cart_position": [
+            1.003,
+            0.1574,
+            1.9246
+          ],
+          "cart_velocity": [
+            -0.0068,
+            -0.325,
+            0.2503
+          ],
+          "pole_angle": [
+            1.2429,
+            0.2108,
+            2.1737
+          ],
+          "pole_velocity": [
+            0.1189,
+            -0.0915,
+            0.3427
+          ],
+          "push": [
+            1.3968,
+            0.8599,
+            1.9313
+          ]
+        }
+      }
+    },
+    "hte_100": {
+      "nepisodes": 100,
+      "method": "hte",
+      "n_transitions": 3183,
+      "rollout_s": 0.06,
+      "mean_ep_len": 32.8,
+      "action1_frac": 0.4951,
+      "infer_s": 43.54,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "edges_collapsed": [
+        "action_push_t -> state_cart_velocity_t",
+        "action_push_t -> state_pole_velocity_t",
+        "state_cart_position_t -> action_push_t",
+        "state_cart_velocity_t -> state_cart_position_t",
+        "state_cart_velocity_t -> state_pole_velocity_t",
+        "state_pole_angle_t -> action_push_t",
+        "state_pole_velocity_t -> action_push_t",
+        "state_pole_velocity_t -> state_pole_angle_t"
+      ],
+      "n_edges": 13,
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t"
+        ],
+        "pole_angle": [
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ]
+      },
+      "fidelity": {
+        "dt_acc": 0.9859,
+        "dt_f1": 0.9857,
+        "lr_acc": 0.9859,
+        "lr_f1": 0.9857,
+        "n_test": 637,
+        "action1_frac": 0.4951
+      }
+    },
+    "ate_100": {
+      "nepisodes": 100,
+      "method": "ate",
+      "n_transitions": 3183,
+      "rollout_s": 0.06,
+      "mean_ep_len": 32.8,
+      "action1_frac": 0.4951,
+      "infer_s": 62.18,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "edges_collapsed": [
+        "action_push_t -> state_cart_velocity_t",
+        "action_push_t -> state_pole_velocity_t",
+        "state_cart_position_t -> action_push_t",
+        "state_cart_velocity_t -> state_cart_position_t",
+        "state_cart_velocity_t -> state_pole_angle_t",
+        "state_pole_angle_t -> action_push_t",
+        "state_pole_angle_t -> state_cart_position_t",
+        "state_pole_angle_t -> state_cart_velocity_t",
+        "state_pole_velocity_t -> state_cart_velocity_t",
+        "state_pole_velocity_t -> state_pole_angle_t"
+      ],
+      "n_edges": 15,
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_angle": [
+          "state_cart_velocity_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t"
+        ]
+      },
+      "fidelity": {
+        "dt_acc": 0.9859,
+        "dt_f1": 0.9857,
+        "lr_acc": 0.9859,
+        "lr_f1": 0.9857,
+        "n_test": 637,
+        "action1_frac": 0.4951
+      },
+      "ate_table_95": {
+        "cart_position": {
+          "cart_position": [
+            0.1675,
+            0.1363,
+            0.2125
+          ],
+          "cart_velocity": [
+            0.0063,
+            0.0033,
+            0.009
+          ],
+          "pole_angle": [
+            0.0647,
+            0.0298,
+            0.0907
+          ],
+          "pole_velocity": [
+            0.0025,
+            -0.0026,
+            0.0052
+          ],
+          "push": [
+            0.0001,
+            -0.0024,
+            0.0027
+          ]
+        },
+        "cart_velocity": {
+          "cart_position": [
+            0.4837,
+            -0.3216,
+            1.3024
+          ],
+          "cart_velocity": [
+            0.6932,
+            0.6644,
+            0.7177
+          ],
+          "pole_angle": [
+            0.3436,
+            0.212,
+            0.5341
+          ],
+          "pole_velocity": [
+            0.0724,
+            0.0476,
+            0.0872
+          ],
+          "push": [
+            0.3966,
+            0.3765,
+            0.417
+          ]
+        },
+        "pole_angle": {
+          "cart_position": [
+            -0.0589,
+            -0.1408,
+            0.0101
+          ],
+          "cart_velocity": [
+            0.0059,
+            0.0019,
+            0.0094
+          ],
+          "pole_angle": [
+            0.1029,
+            0.0735,
+            0.1257
+          ],
+          "pole_velocity": [
+            0.0075,
+            0.0056,
+            0.0103
+          ],
+          "push": [
+            0.002,
+            -0.0033,
+            0.0092
+          ]
+        },
+        "pole_velocity": {
+          "cart_position": [
+            -0.1695,
+            -0.7268,
+            0.1091
+          ],
+          "cart_velocity": [
+            -0.0305,
+            -0.0755,
+            0.0307
+          ],
+          "pole_angle": [
+            -0.0343,
+            -0.2459,
+            0.1583
+          ],
+          "pole_velocity": [
+            0.642,
+            0.5884,
+            0.6958
+          ],
+          "push": [
+            -0.5824,
+            -0.6137,
+            -0.5274
+          ]
+        },
+        "push": {
+          "cart_position": [
+            1.6309,
+            0.8086,
+            2.6041
+          ],
+          "cart_velocity": [
+            -0.0312,
+            -0.3151,
+            0.2543
+          ],
+          "pole_angle": [
+            2.5698,
+            1.6139,
+            3.5471
+          ],
+          "pole_velocity": [
+            0.2014,
+            -0.0325,
+            0.4169
+          ],
+          "push": [
+            1.2884,
+            0.711,
+            1.8621
+          ]
+        }
+      }
+    },
+    "hte_200": {
+      "nepisodes": 200,
+      "method": "hte",
+      "n_transitions": 6330,
+      "rollout_s": 0.09,
+      "mean_ep_len": 32.6,
+      "action1_frac": 0.5044,
+      "infer_s": 88.87,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "edges_collapsed": [
+        "action_push_t -> state_cart_velocity_t",
+        "action_push_t -> state_pole_velocity_t",
+        "state_cart_position_t -> action_push_t",
+        "state_cart_velocity_t -> state_cart_position_t",
+        "state_cart_velocity_t -> state_pole_velocity_t",
+        "state_pole_angle_t -> action_push_t",
+        "state_pole_angle_t -> state_pole_velocity_t",
+        "state_pole_velocity_t -> state_pole_angle_t"
+      ],
+      "n_edges": 13,
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t"
+        ],
+        "pole_angle": [
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t"
+        ]
+      },
+      "fidelity": {
+        "dt_acc": 0.9834,
+        "dt_f1": 0.9835,
+        "lr_acc": 0.9889,
+        "lr_f1": 0.989,
+        "n_test": 1266,
+        "action1_frac": 0.5044
+      },
+      "sensitivity_s": 67.11,
+      "sensitivity_n_edges": {
+        "0.9": 13,
+        "0.95": 13,
+        "0.99": 11
+      }
+    },
+    "ate_200": {
+      "nepisodes": 200,
+      "method": "ate",
+      "n_transitions": 6330,
+      "rollout_s": 0.09,
+      "mean_ep_len": 32.6,
+      "action1_frac": 0.5044,
+      "infer_s": 124.06,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "edges_collapsed": [
+        "action_push_t -> state_cart_velocity_t",
+        "action_push_t -> state_pole_velocity_t",
+        "state_cart_position_t -> action_push_t",
+        "state_cart_velocity_t -> state_cart_position_t",
+        "state_pole_angle_t -> action_push_t",
+        "state_pole_angle_t -> state_cart_position_t",
+        "state_pole_angle_t -> state_cart_velocity_t",
+        "state_pole_angle_t -> state_pole_velocity_t",
+        "state_pole_velocity_t -> action_push_t",
+        "state_pole_velocity_t -> state_cart_velocity_t"
+      ],
+      "n_edges": 15,
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_angle": [
+          "state_pole_angle_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ]
+      },
+      "fidelity": {
+        "dt_acc": 0.9834,
+        "dt_f1": 0.9835,
+        "lr_acc": 0.9889,
+        "lr_f1": 0.989,
+        "n_test": 1266,
+        "action1_frac": 0.5044
+      },
+      "ate_table_95": {
+        "cart_position": {
+          "cart_position": [
+            0.1637,
+            0.136,
+            0.1884
+          ],
+          "cart_velocity": [
+            0.0104,
+            0.0058,
+            0.0176
+          ],
+          "pole_angle": [
+            0.0936,
+            0.0588,
+            0.1275
+          ],
+          "pole_velocity": [
+            0.006,
+            -0.0,
+            0.0135
+          ],
+          "push": [
+            0.0012,
+            -0.003,
+            0.0084
+          ]
+        },
+        "cart_velocity": {
+          "cart_position": [
+            0.0115,
+            -0.2576,
+            0.2138
+          ],
+          "cart_velocity": [
+            0.6623,
+            0.6313,
+            0.6886
+          ],
+          "pole_angle": [
+            0.3297,
+            0.2638,
+            0.4186
+          ],
+          "pole_velocity": [
+            0.0453,
+            0.0142,
+            0.0765
+          ],
+          "push": [
+            0.3839,
+            0.3661,
+            0.4004
+          ]
+        },
+        "pole_angle": {
+          "cart_position": [
+            0.0232,
+            -0.0106,
+            0.0662
+          ],
+          "cart_velocity": [
+            0.0001,
+            -0.0044,
+            0.0044
+          ],
+          "pole_angle": [
+            0.0551,
+            0.0278,
+            0.0807
+          ],
+          "pole_velocity": [
+            0.0041,
+            -0.0007,
+            0.0078
+          ],
+          "push": [
+            -0.0005,
+            -0.0088,
+            0.0071
+          ]
+        },
+        "pole_velocity": {
+          "cart_position": [
+            -0.1186,
+            -0.358,
+            0.198
+          ],
+          "cart_velocity": [
+            -0.0297,
+            -0.1045,
+            0.0142
+          ],
+          "pole_angle": [
+            -0.2375,
+            -0.4433,
+            -0.088
+          ],
+          "pole_velocity": [
+            0.6002,
+            0.5744,
+            0.6229
+          ],
+          "push": [
+            -0.5627,
+            -0.6013,
+            -0.4814
+          ]
+        },
+        "push": {
+          "cart_position": [
+            2.1166,
+            1.4078,
+            2.8578
+          ],
+          "cart_velocity": [
+            0.0653,
+            -0.219,
+            0.3762
+          ],
+          "pole_angle": [
+            3.4381,
+            2.6546,
+            4.249
+          ],
+          "pole_velocity": [
+            0.2788,
+            0.0477,
+            0.4834
+          ],
+          "push": [
+            1.1726,
+            0.7096,
+            1.5864
+          ]
+        }
+      },
+      "sensitivity_s": 112.95,
+      "sensitivity_n_edges": {
+        "0.9": 17,
+        "0.95": 15,
+        "0.99": 14
+      }
+    }
+  },
+  "ci_sensitivity_200ep": {
+    "hte": {
+      "levels": {
+        "0.9": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_cart_velocity_t -> state_pole_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 13,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          }
+        },
+        "0.95": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_cart_velocity_t -> state_pole_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 13,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          }
+        },
+        "0.99": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_cart_velocity_t -> state_pole_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 11,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          }
+        }
+      },
+      "validation": {
+        "mismatches_95": [],
+        "n_checked": 25
+      },
+      "detail": {
+        "cart_position": {
+          "cart_position": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "2": 189,
+              "5": 862,
+              "6": 396,
+              "7": 192,
+              "8": 260
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "cart_velocity": {
+            "n_clusters": 7,
+            "cluster_sizes": {
+              "2": 221,
+              "5": 189,
+              "6": 555,
+              "8": 189,
+              "9": 206,
+              "11": 350,
+              "12": 189
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "8": false,
+                "9": true,
+                "11": false,
+                "12": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "8": false,
+                "9": true,
+                "11": false,
+                "12": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": false,
+                "6": true,
+                "8": false,
+                "9": false,
+                "11": false,
+                "12": false
+              }
+            }
+          },
+          "pole_angle": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "1": 332,
+              "3": 202,
+              "6": 198,
+              "7": 978,
+              "8": 189
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "pole_velocity": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "1": 196,
+              "3": 189,
+              "6": 1059,
+              "7": 264,
+              "8": 191
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "push": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "1": 245,
+              "4": 349,
+              "6": 927,
+              "7": 189,
+              "8": 189
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "4": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "4": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "4": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          }
+        },
+        "cart_velocity": {
+          "cart_position": {
+            "n_clusters": 6,
+            "cluster_sizes": {
+              "4": 189,
+              "5": 828,
+              "6": 189,
+              "8": 189,
+              "9": 287,
+              "10": 217
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            }
+          },
+          "cart_velocity": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "4": 1083,
+              "5": 237,
+              "6": 195,
+              "7": 189,
+              "8": 195
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "4": true,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "4": true,
+                "5": true,
+                "6": false,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "4": true,
+                "5": true,
+                "6": false,
+                "7": true,
+                "8": false
+              }
+            }
+          },
+          "pole_angle": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "4": 1088,
+              "5": 191,
+              "6": 190,
+              "7": 223,
+              "8": 207
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "pole_velocity": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "2": 190,
+              "5": 590,
+              "6": 739,
+              "7": 191,
+              "8": 189
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "push": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "2": 191,
+              "5": 189,
+              "6": 1057,
+              "7": 273,
+              "8": 189
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": true
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": true
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": true
+              }
+            }
+          }
+        },
+        "pole_angle": {
+          "cart_position": {
+            "n_clusters": 6,
+            "cluster_sizes": {
+              "4": 189,
+              "5": 725,
+              "6": 330,
+              "8": 197,
+              "9": 205,
+              "10": 253
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            }
+          },
+          "cart_velocity": {
+            "n_clusters": 7,
+            "cluster_sizes": {
+              "1": 215,
+              "4": 331,
+              "5": 189,
+              "8": 193,
+              "9": 280,
+              "11": 500,
+              "12": 191
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "4": false,
+                "5": false,
+                "8": false,
+                "9": false,
+                "11": false,
+                "12": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "4": false,
+                "5": false,
+                "8": false,
+                "9": false,
+                "11": false,
+                "12": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "4": false,
+                "5": false,
+                "8": false,
+                "9": false,
+                "11": false,
+                "12": false
+              }
+            }
+          },
+          "pole_angle": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "1": 372,
+              "3": 200,
+              "6": 949,
+              "7": 189,
+              "8": 189
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": true,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "pole_velocity": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "1": 216,
+              "5": 596,
+              "6": 709,
+              "7": 189,
+              "8": 189
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": true,
+                "6": true,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": true,
+                "6": true,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "1": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "push": {
+            "n_clusters": 6,
+            "cluster_sizes": {
+              "2": 194,
+              "4": 334,
+              "6": 609,
+              "7": 248,
+              "9": 325,
+              "10": 189
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "4": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "4": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "4": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": false
+              }
+            }
+          }
+        },
+        "pole_velocity": {
+          "cart_position": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "4": 962,
+              "5": 189,
+              "6": 274,
+              "7": 285,
+              "8": 189
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "4": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "cart_velocity": {
+            "n_clusters": 6,
+            "cluster_sizes": {
+              "1": 192,
+              "3": 189,
+              "6": 227,
+              "7": 412,
+              "9": 553,
+              "10": 326
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "9": true,
+                "10": true
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": true
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "3": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": true
+              }
+            }
+          },
+          "pole_angle": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "3": 268,
+              "5": 852,
+              "6": 270,
+              "7": 191,
+              "8": 318
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "3": false,
+                "5": true,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "3": false,
+                "5": true,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "3": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "8": false
+              }
+            }
+          },
+          "pole_velocity": {
+            "n_clusters": 6,
+            "cluster_sizes": {
+              "1": 204,
+              "5": 344,
+              "6": 189,
+              "8": 189,
+              "9": 781,
+              "10": 192
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": true,
+                "6": false,
+                "8": true,
+                "9": true,
+                "10": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": true,
+                "6": false,
+                "8": true,
+                "9": true,
+                "10": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": false,
+                "6": false,
+                "8": true,
+                "9": true,
+                "10": false
+              }
+            }
+          },
+          "push": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "2": 223,
+              "4": 189,
+              "6": 761,
+              "7": 537,
+              "8": 189
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "4": true,
+                "6": true,
+                "7": true,
+                "8": true
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "4": true,
+                "6": true,
+                "7": true,
+                "8": true
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "4": false,
+                "6": true,
+                "7": true,
+                "8": true
+              }
+            }
+          }
+        },
+        "push": {
+          "cart_position": {
+            "n_clusters": 7,
+            "cluster_sizes": {
+              "2": 371,
+              "5": 189,
+              "6": 384,
+              "7": 191,
+              "10": 314,
+              "11": 189,
+              "12": 261
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "5": true,
+                "6": true,
+                "7": true,
+                "10": false,
+                "11": false,
+                "12": true
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "2": true,
+                "5": true,
+                "6": true,
+                "7": true,
+                "10": false,
+                "11": false,
+                "12": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "7": true,
+                "10": false,
+                "11": false,
+                "12": false
+              }
+            }
+          },
+          "cart_velocity": {
+            "n_clusters": 6,
+            "cluster_sizes": {
+              "2": 241,
+              "5": 555,
+              "6": 369,
+              "7": 217,
+              "9": 328,
+              "10": 189
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "5": false,
+                "6": false,
+                "7": false,
+                "9": false,
+                "10": false
+              }
+            }
+          },
+          "pole_angle": {
+            "n_clusters": 7,
+            "cluster_sizes": {
+              "2": 247,
+              "5": 191,
+              "6": 479,
+              "7": 236,
+              "9": 189,
+              "11": 189,
+              "12": 368
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "7": true,
+                "9": false,
+                "11": false,
+                "12": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "7": true,
+                "9": false,
+                "11": false,
+                "12": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "2": false,
+                "5": true,
+                "6": true,
+                "7": false,
+                "9": false,
+                "11": false,
+                "12": false
+              }
+            }
+          },
+          "pole_velocity": {
+            "n_clusters": 6,
+            "cluster_sizes": {
+              "2": 243,
+              "3": 244,
+              "7": 662,
+              "8": 193,
+              "9": 368,
+              "10": 189
+            },
+            "0.9": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "3": false,
+                "7": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.95": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "3": false,
+                "7": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            },
+            "0.99": {
+              "significant": false,
+              "cluster_sig": {
+                "2": false,
+                "3": false,
+                "7": false,
+                "8": false,
+                "9": false,
+                "10": false
+              }
+            }
+          },
+          "push": {
+            "n_clusters": 5,
+            "cluster_sizes": {
+              "1": 238,
+              "5": 286,
+              "6": 810,
+              "7": 375,
+              "8": 190
+            },
+            "0.9": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.95": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            },
+            "0.99": {
+              "significant": true,
+              "cluster_sig": {
+                "1": false,
+                "5": true,
+                "6": true,
+                "7": true,
+                "8": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "ate": {
+      "levels": {
+        "0.9": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_cart_position_t+1",
+            "state_pole_angle_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> action_push_t+1",
+            "state_pole_velocity_t -> state_cart_position_t+1",
+            "state_pole_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 17,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ]
+          }
+        },
+        "0.95": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_cart_position_t+1",
+            "state_pole_angle_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> action_push_t+1",
+            "state_pole_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 15,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ]
+          }
+        },
+        "0.99": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_cart_position_t+1",
+            "state_pole_angle_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 14,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          }
+        }
+      },
+      "validation": {
+        "mismatches_95": [],
+        "n_checked": 25
+      },
+      "detail": {
+        "cart_position": {
+          "cart_position": {
+            "ate": 0.1637,
+            "0.9": {
+              "lci": 0.1388,
+              "uci": 0.1853,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.136,
+              "uci": 0.1884,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.125,
+              "uci": 0.1948,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.1637,
+              0.136,
+              0.1884
+            ]
+          },
+          "cart_velocity": {
+            "ate": 0.0104,
+            "0.9": {
+              "lci": 0.0061,
+              "uci": 0.017,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.0058,
+              "uci": 0.0176,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.0053,
+              "uci": 0.0184,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.0104,
+              0.0058,
+              0.0176
+            ]
+          },
+          "pole_angle": {
+            "ate": 0.0936,
+            "0.9": {
+              "lci": 0.0618,
+              "uci": 0.1244,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.0588,
+              "uci": 0.1275,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.0531,
+              "uci": 0.1306,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.0936,
+              0.0588,
+              0.1275
+            ]
+          },
+          "pole_velocity": {
+            "ate": 0.006,
+            "0.9": {
+              "lci": 0.0004,
+              "uci": 0.0132,
+              "significant": true
+            },
+            "0.95": {
+              "lci": -0.0,
+              "uci": 0.0135,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.0007,
+              "uci": 0.0144,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.006,
+              -0.0,
+              0.0135
+            ]
+          },
+          "push": {
+            "ate": 0.0012,
+            "0.9": {
+              "lci": -0.0023,
+              "uci": 0.0074,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.003,
+              "uci": 0.0084,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.0039,
+              "uci": 0.0091,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.0012,
+              -0.003,
+              0.0084
+            ]
+          }
+        },
+        "cart_velocity": {
+          "cart_position": {
+            "ate": 0.0115,
+            "0.9": {
+              "lci": -0.2139,
+              "uci": 0.1721,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.2576,
+              "uci": 0.2138,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.3108,
+              "uci": 0.2739,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.0115,
+              -0.2576,
+              0.2138
+            ]
+          },
+          "cart_velocity": {
+            "ate": 0.6623,
+            "0.9": {
+              "lci": 0.635,
+              "uci": 0.6872,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.6313,
+              "uci": 0.6886,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.6236,
+              "uci": 0.6916,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.6623,
+              0.6313,
+              0.6886
+            ]
+          },
+          "pole_angle": {
+            "ate": 0.3297,
+            "0.9": {
+              "lci": 0.2685,
+              "uci": 0.4108,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.2638,
+              "uci": 0.4186,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.2551,
+              "uci": 0.4302,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.3297,
+              0.2638,
+              0.4186
+            ]
+          },
+          "pole_velocity": {
+            "ate": 0.0453,
+            "0.9": {
+              "lci": 0.0187,
+              "uci": 0.0743,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.0142,
+              "uci": 0.0765,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.0094,
+              "uci": 0.0787,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.0453,
+              0.0142,
+              0.0765
+            ]
+          },
+          "push": {
+            "ate": 0.3839,
+            "0.9": {
+              "lci": 0.3678,
+              "uci": 0.3971,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.3661,
+              "uci": 0.4004,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.3616,
+              "uci": 0.4043,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.3839,
+              0.3661,
+              0.4004
+            ]
+          }
+        },
+        "pole_angle": {
+          "cart_position": {
+            "ate": 0.0232,
+            "0.9": {
+              "lci": -0.0047,
+              "uci": 0.0601,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.0106,
+              "uci": 0.0662,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.0183,
+              "uci": 0.0734,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.0232,
+              -0.0106,
+              0.0662
+            ]
+          },
+          "cart_velocity": {
+            "ate": 0.0001,
+            "0.9": {
+              "lci": -0.0037,
+              "uci": 0.0037,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.0044,
+              "uci": 0.0044,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.0052,
+              "uci": 0.0056,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.0001,
+              -0.0044,
+              0.0044
+            ]
+          },
+          "pole_angle": {
+            "ate": 0.0551,
+            "0.9": {
+              "lci": 0.0311,
+              "uci": 0.0781,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.0278,
+              "uci": 0.0807,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.0174,
+              "uci": 0.0865,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.0551,
+              0.0278,
+              0.0807
+            ]
+          },
+          "pole_velocity": {
+            "ate": 0.0041,
+            "0.9": {
+              "lci": 0.0001,
+              "uci": 0.0072,
+              "significant": true
+            },
+            "0.95": {
+              "lci": -0.0007,
+              "uci": 0.0078,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.0012,
+              "uci": 0.0086,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.0041,
+              -0.0007,
+              0.0078
+            ]
+          },
+          "push": {
+            "ate": -0.0005,
+            "0.9": {
+              "lci": -0.0085,
+              "uci": 0.0062,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.0088,
+              "uci": 0.0071,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.0094,
+              "uci": 0.0081,
+              "significant": false
+            },
+            "repo_ate95": [
+              -0.0005,
+              -0.0088,
+              0.0071
+            ]
+          }
+        },
+        "pole_velocity": {
+          "cart_position": {
+            "ate": -0.1186,
+            "0.9": {
+              "lci": -0.3165,
+              "uci": 0.1138,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.358,
+              "uci": 0.198,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.4043,
+              "uci": 0.3311,
+              "significant": false
+            },
+            "repo_ate95": [
+              -0.1186,
+              -0.358,
+              0.198
+            ]
+          },
+          "cart_velocity": {
+            "ate": -0.0297,
+            "0.9": {
+              "lci": -0.1011,
+              "uci": 0.0105,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.1045,
+              "uci": 0.0142,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.116,
+              "uci": 0.0183,
+              "significant": false
+            },
+            "repo_ate95": [
+              -0.0297,
+              -0.1045,
+              0.0142
+            ]
+          },
+          "pole_angle": {
+            "ate": -0.2375,
+            "0.9": {
+              "lci": -0.426,
+              "uci": -0.1034,
+              "significant": true
+            },
+            "0.95": {
+              "lci": -0.4433,
+              "uci": -0.088,
+              "significant": true
+            },
+            "0.99": {
+              "lci": -0.4553,
+              "uci": -0.0613,
+              "significant": true
+            },
+            "repo_ate95": [
+              -0.2375,
+              -0.4433,
+              -0.088
+            ]
+          },
+          "pole_velocity": {
+            "ate": 0.6002,
+            "0.9": {
+              "lci": 0.5803,
+              "uci": 0.6202,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.5744,
+              "uci": 0.6229,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.5707,
+              "uci": 0.6305,
+              "significant": true
+            },
+            "repo_ate95": [
+              0.6002,
+              0.5744,
+              0.6229
+            ]
+          },
+          "push": {
+            "ate": -0.5627,
+            "0.9": {
+              "lci": -0.5998,
+              "uci": -0.4903,
+              "significant": true
+            },
+            "0.95": {
+              "lci": -0.6013,
+              "uci": -0.4814,
+              "significant": true
+            },
+            "0.99": {
+              "lci": -0.6032,
+              "uci": -0.4697,
+              "significant": true
+            },
+            "repo_ate95": [
+              -0.5627,
+              -0.6013,
+              -0.4814
+            ]
+          }
+        },
+        "push": {
+          "cart_position": {
+            "ate": 2.1166,
+            "0.9": {
+              "lci": 1.5156,
+              "uci": 2.7567,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 1.4078,
+              "uci": 2.8578,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 1.2528,
+              "uci": 3.0724,
+              "significant": true
+            },
+            "repo_ate95": [
+              2.1166,
+              1.4078,
+              2.8578
+            ]
+          },
+          "cart_velocity": {
+            "ate": 0.0653,
+            "0.9": {
+              "lci": -0.181,
+              "uci": 0.2985,
+              "significant": false
+            },
+            "0.95": {
+              "lci": -0.219,
+              "uci": 0.3762,
+              "significant": false
+            },
+            "0.99": {
+              "lci": -0.3429,
+              "uci": 0.455,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.0653,
+              -0.219,
+              0.3762
+            ]
+          },
+          "pole_angle": {
+            "ate": 3.4381,
+            "0.9": {
+              "lci": 2.7724,
+              "uci": 4.1059,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 2.6546,
+              "uci": 4.249,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 2.459,
+              "uci": 4.5585,
+              "significant": true
+            },
+            "repo_ate95": [
+              3.4381,
+              2.6546,
+              4.249
+            ]
+          },
+          "pole_velocity": {
+            "ate": 0.2788,
+            "0.9": {
+              "lci": 0.0751,
+              "uci": 0.4635,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.0477,
+              "uci": 0.4834,
+              "significant": true
+            },
+            "0.99": {
+              "lci": -0.0327,
+              "uci": 0.5085,
+              "significant": false
+            },
+            "repo_ate95": [
+              0.2788,
+              0.0477,
+              0.4834
+            ]
+          },
+          "push": {
+            "ate": 1.1726,
+            "0.9": {
+              "lci": 0.8064,
+              "uci": 1.51,
+              "significant": true
+            },
+            "0.95": {
+              "lci": 0.7096,
+              "uci": 1.5864,
+              "significant": true
+            },
+            "0.99": {
+              "lci": 0.641,
+              "uci": 1.7264,
+              "significant": true
+            },
+            "repo_ate95": [
+              1.1726,
+              0.7096,
+              1.5864
+            ]
+          }
+        }
+      }
+    }
+  },
+  "comparison_vs_200ep": {
+    "hte": {
+      "50": {
+        "n_edges": 12,
+        "jaccard_vs_200": 0.7857,
+        "symdiff_vs_200": 3,
+        "edges_only_here": [
+          "state_cart_velocity_t -> state_pole_angle_t+1"
+        ],
+        "edges_missing_vs_200": [
+          "state_cart_velocity_t -> state_pole_velocity_t+1",
+          "state_pole_angle_t -> state_pole_velocity_t+1"
+        ]
+      },
+      "100": {
+        "n_edges": 13,
+        "jaccard_vs_200": 0.8571,
+        "symdiff_vs_200": 2,
+        "edges_only_here": [
+          "state_pole_velocity_t -> action_push_t+1"
+        ],
+        "edges_missing_vs_200": [
+          "state_pole_angle_t -> state_pole_velocity_t+1"
+        ]
+      },
+      "200": {
+        "n_edges": 13,
+        "jaccard_vs_200": 1.0,
+        "symdiff_vs_200": 0,
+        "edges_only_here": [],
+        "edges_missing_vs_200": []
+      },
+      "stable_edges_all_counts": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "unstable_edges": [
+        "state_cart_velocity_t -> state_pole_angle_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> action_push_t+1"
+      ]
+    },
+    "ate": {
+      "50": {
+        "n_edges": 15,
+        "jaccard_vs_200": 0.875,
+        "symdiff_vs_200": 2,
+        "edges_only_here": [
+          "state_pole_velocity_t -> state_pole_angle_t+1"
+        ],
+        "edges_missing_vs_200": [
+          "state_pole_velocity_t -> action_push_t+1"
+        ]
+      },
+      "100": {
+        "n_edges": 15,
+        "jaccard_vs_200": 0.7647,
+        "symdiff_vs_200": 4,
+        "edges_only_here": [
+          "state_cart_velocity_t -> state_pole_angle_t+1",
+          "state_pole_velocity_t -> state_pole_angle_t+1"
+        ],
+        "edges_missing_vs_200": [
+          "state_pole_angle_t -> state_pole_velocity_t+1",
+          "state_pole_velocity_t -> action_push_t+1"
+        ]
+      },
+      "200": {
+        "n_edges": 15,
+        "jaccard_vs_200": 1.0,
+        "symdiff_vs_200": 0,
+        "edges_only_here": [],
+        "edges_missing_vs_200": []
+      },
+      "stable_edges_all_counts": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "unstable_edges": [
+        "state_cart_velocity_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1"
+      ]
+    }
+  },
+  "bart_vs_surrogate": {
+    "hte_50": {
+      "bart_n_edges": 12,
+      "surrogate_n_edges": 5,
+      "jaccard_bart_vs_surrogate": 0.3077,
+      "symdiff": 9,
+      "only_bart": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1"
+      ],
+      "only_surrogate": [
+        "state_cart_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "bart_push_parents": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_pole_angle_t"
+      ],
+      "surrogate_push_parents": [],
+      "bart_infer_s": 19.86,
+      "surrogate_infer_s": 23.62
+    },
+    "ate_50": {
+      "bart_n_edges": 15,
+      "surrogate_n_edges": 12,
+      "jaccard_bart_vs_surrogate": 0.5882,
+      "symdiff": 7,
+      "only_bart": [
+        "action_push_t -> action_push_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1"
+      ],
+      "only_surrogate": [
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_cart_position_t+1"
+      ],
+      "bart_push_parents": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_pole_angle_t"
+      ],
+      "surrogate_push_parents": [
+        "state_cart_position_t"
+      ],
+      "bart_infer_s": 29.11,
+      "surrogate_infer_s": 22.5
+    },
+    "hte_100": {
+      "bart_n_edges": 13,
+      "surrogate_n_edges": 7,
+      "jaccard_bart_vs_surrogate": 0.5385,
+      "symdiff": 6,
+      "only_bart": [
+        "action_push_t -> action_push_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_velocity_t -> action_push_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1"
+      ],
+      "only_surrogate": [],
+      "bart_push_parents": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_pole_angle_t",
+        "state_pole_velocity_t"
+      ],
+      "surrogate_push_parents": [],
+      "bart_infer_s": 43.54,
+      "surrogate_infer_s": 43.2
+    },
+    "ate_100": {
+      "bart_n_edges": 15,
+      "surrogate_n_edges": 14,
+      "jaccard_bart_vs_surrogate": 0.5263,
+      "symdiff": 9,
+      "only_bart": [
+        "action_push_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1"
+      ],
+      "only_surrogate": [
+        "state_cart_position_t -> state_pole_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_cart_position_t+1"
+      ],
+      "bart_push_parents": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_pole_angle_t"
+      ],
+      "surrogate_push_parents": [
+        "state_cart_position_t",
+        "state_pole_angle_t"
+      ],
+      "bart_infer_s": 62.18,
+      "surrogate_infer_s": 32.92
+    },
+    "hte_200": {
+      "bart_n_edges": 13,
+      "surrogate_n_edges": 7,
+      "jaccard_bart_vs_surrogate": 0.5385,
+      "symdiff": 6,
+      "only_bart": [
+        "action_push_t -> action_push_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1"
+      ],
+      "only_surrogate": [],
+      "bart_push_parents": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_pole_angle_t"
+      ],
+      "surrogate_push_parents": [],
+      "bart_infer_s": 88.87,
+      "surrogate_infer_s": 71.9
+    },
+    "ate_200": {
+      "bart_n_edges": 15,
+      "surrogate_n_edges": 14,
+      "jaccard_bart_vs_surrogate": 0.5263,
+      "symdiff": 9,
+      "only_bart": [
+        "action_push_t -> action_push_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_velocity_t -> state_cart_velocity_t+1"
+      ],
+      "only_surrogate": [
+        "state_cart_position_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_cart_position_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1"
+      ],
+      "bart_push_parents": [
+        "action_push_t",
+        "state_cart_position_t",
+        "state_pole_angle_t",
+        "state_pole_velocity_t"
+      ],
+      "surrogate_push_parents": [
+        "state_cart_position_t",
+        "state_pole_velocity_t"
+      ],
+      "bart_infer_s": 124.06,
+      "surrogate_infer_s": 59.07
+    }
+  },
+  "repeat_hte200_pilot_vs_grid": {
+    "config": "hte, 200 episodes, heuristic policy, seed 0, CartPole-v1 (gymnasium)",
+    "method": "Two independent processes, same script (run_ablation_bart.py), same seed and data-collection code. Pilot run first (run_label=pilot-hte200, output results/ablation-bart-pilot/, local only, not pushed); grid run second (run_label=main). Differences measure real run-to-run BART noise (train_test_split random_state=None re-seeded identically, but R/dbarts multithreaded MCMC is not bit-reproducible across processes).",
+    "pilot": {
+      "run_label": "pilot-hte200",
+      "n_edges": 12,
+      "infer_s": 92.68,
+      "n_transitions": 6330,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_cart_position_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t"
+        ],
+        "pole_angle": [
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t"
+        ]
+      },
+      "sensitivity_s": 67.96,
+      "sensitivity_n_edges": {
+        "0.9": 15,
+        "0.95": 12,
+        "0.99": 11
+      },
+      "sensitivity_levels": {
+        "0.9": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_angle_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_cart_position_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_angle_t -> state_pole_velocity_t+1",
+            "state_pole_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 15,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_angle": [
+              "action_push_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          }
+        },
+        "0.95": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_cart_position_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 12,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t",
+              "state_pole_angle_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          }
+        },
+        "0.99": {
+          "edges": [
+            "action_push_t -> action_push_t+1",
+            "action_push_t -> state_cart_velocity_t+1",
+            "action_push_t -> state_pole_velocity_t+1",
+            "state_cart_position_t -> action_push_t+1",
+            "state_cart_position_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_position_t+1",
+            "state_cart_velocity_t -> state_cart_velocity_t+1",
+            "state_pole_angle_t -> action_push_t+1",
+            "state_pole_angle_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_angle_t+1",
+            "state_pole_velocity_t -> state_pole_velocity_t+1"
+          ],
+          "n_edges": 11,
+          "per_target": {
+            "cart_position": [
+              "state_cart_position_t",
+              "state_cart_velocity_t"
+            ],
+            "cart_velocity": [
+              "action_push_t",
+              "state_cart_velocity_t"
+            ],
+            "pole_angle": [
+              "state_pole_angle_t",
+              "state_pole_velocity_t"
+            ],
+            "pole_velocity": [
+              "action_push_t",
+              "state_pole_velocity_t"
+            ],
+            "push": [
+              "action_push_t",
+              "state_cart_position_t",
+              "state_pole_angle_t"
+            ]
+          }
+        }
+      },
+      "versions": {
+        "sklearn": "1.9.1",
+        "gymnasium": "1.4.0",
+        "networkx": "3.7",
+        "matplotlib": "3.11.2",
+        "numpy": "2.5.4",
+        "pandas": "3.1.1",
+        "scipy": "1.18.1",
+        "python": "3.12.3",
+        "rpy2": "3.5.16",
+        "dbarts": "0.9.34",
+        "R": "4.3.3"
+      },
+      "repo_commit": "ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162"
+    },
+    "grid": {
+      "run_label": "main",
+      "n_edges": 13,
+      "infer_s": 88.87,
+      "n_transitions": 6330,
+      "edges": [
+        "action_push_t -> action_push_t+1",
+        "action_push_t -> state_cart_velocity_t+1",
+        "action_push_t -> state_pole_velocity_t+1",
+        "state_cart_position_t -> action_push_t+1",
+        "state_cart_position_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_position_t+1",
+        "state_cart_velocity_t -> state_cart_velocity_t+1",
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> action_push_t+1",
+        "state_pole_angle_t -> state_pole_angle_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1",
+        "state_pole_velocity_t -> state_pole_angle_t+1",
+        "state_pole_velocity_t -> state_pole_velocity_t+1"
+      ],
+      "per_target_causes": {
+        "cart_position": [
+          "state_cart_position_t",
+          "state_cart_velocity_t"
+        ],
+        "cart_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t"
+        ],
+        "pole_angle": [
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "pole_velocity": [
+          "action_push_t",
+          "state_cart_velocity_t",
+          "state_pole_angle_t",
+          "state_pole_velocity_t"
+        ],
+        "push": [
+          "action_push_t",
+          "state_cart_position_t",
+          "state_pole_angle_t"
+        ]
+      },
+      "sensitivity_s": 67.11,
+      "sensitivity_n_edges": {
+        "0.9": 13,
+        "0.95": 13,
+        "0.99": 11
+      },
+      "versions": {
+        "sklearn": "1.9.1",
+        "gymnasium": "1.4.0",
+        "networkx": "3.7",
+        "matplotlib": "3.11.2",
+        "numpy": "2.5.4",
+        "pandas": "3.1.1",
+        "scipy": "1.18.1",
+        "python": "3.12.3",
+        "rpy2": "3.5.16",
+        "dbarts": "0.9.34",
+        "R": "4.3.3"
+      },
+      "repo_commit": "ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162"
+    },
+    "comparison_95": {
+      "jaccard": 0.7857,
+      "symdiff": 3,
+      "only_grid": [
+        "state_cart_velocity_t -> state_pole_velocity_t+1",
+        "state_pole_angle_t -> state_pole_velocity_t+1"
+      ],
+      "only_pilot": [
+        "state_pole_angle_t -> state_cart_position_t+1"
+      ],
+      "push_parents_identical": true
+    },
+    "sensitivity_pilot_vs_grid": {
+      "0.9": {
+        "pilot_n_edges": 15,
+        "grid_n_edges": 13,
+        "jaccard": 0.75,
+        "symdiff": 4,
+        "only_grid": [
+          "state_cart_velocity_t -> state_pole_velocity_t+1"
+        ],
+        "only_pilot": [
+          "action_push_t -> state_pole_angle_t+1",
+          "state_pole_angle_t -> state_cart_position_t+1",
+          "state_pole_velocity_t -> state_cart_velocity_t+1"
+        ]
+      },
+      "0.95": {
+        "pilot_n_edges": 12,
+        "grid_n_edges": 13,
+        "jaccard": 0.7857,
+        "symdiff": 3,
+        "only_grid": [
+          "state_cart_velocity_t -> state_pole_velocity_t+1",
+          "state_pole_angle_t -> state_pole_velocity_t+1"
+        ],
+        "only_pilot": [
+          "state_pole_angle_t -> state_cart_position_t+1"
+        ]
+      },
+      "0.99": {
+        "pilot_n_edges": 11,
+        "grid_n_edges": 11,
+        "jaccard": 0.8333,
+        "symdiff": 2,
+        "only_grid": [
+          "state_cart_velocity_t -> state_pole_velocity_t+1"
+        ],
+        "only_pilot": [
+          "state_pole_velocity_t -> state_pole_angle_t+1"
+        ]
+      }
+    },
+    "grid_vs_xrl_run9_heuristic": {
+      "hte": {
+        "grid_n_edges": 13,
+        "xrl_run9_n_edges": 14,
+        "grid_infer_s": 88.87,
+        "xrl_run9_infer_s": 85.84,
+        "jaccard": 0.8,
+        "symdiff": 3,
+        "only_grid": [
+          "state_cart_velocity_t -> state_pole_velocity_t+1"
+        ],
+        "only_xrl_run9": [
+          "state_cart_velocity_t -> state_pole_angle_t+1",
+          "state_pole_velocity_t -> state_cart_velocity_t+1"
+        ]
+      },
+      "ate": {
+        "grid_n_edges": 15,
+        "xrl_run9_n_edges": 15,
+        "grid_infer_s": 124.06,
+        "xrl_run9_infer_s": 120.38,
+        "jaccard": 1.0,
+        "symdiff": 0,
+        "only_grid": [],
+        "only_xrl_run9": []
+      }
+    },
+    "conclusion": "hte_200 varies by 1 edge in count (12 vs 13) with a 3-edge symmetric difference between two identical-seed runs; push parents identical. ate_200 reproduced EXACTLY (15 edges, symdiff 0) vs the independent XRL run-9 run. Cross-episode differences of 2-4 edges in the ablation grid are therefore within/near run noise for hte and must not be over-interpreted; only differences larger than this band (e.g. BART-vs-surrogate symdiff 6-9) are estimator effects."
+  }
+}

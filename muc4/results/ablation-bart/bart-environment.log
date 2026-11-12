@@ -1,0 +1,217 @@
+=== BART environment restore — Step 2 (2026-11-12) ===
+start: 2026-11-12 03:28:11 UTC (+0000)
+R present: R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+dbarts before: MISSING (packageVersion error, checked 2026-11-12 ~10:27 +07)
+rpy2 in .venv-ablation: 3.5.16 (checked, present)
+command: Rscript -e install.packages("dbarts", repos="https://cloud.r-project.org")
+--- install output ---
+Installing package into '/usr/local/lib/R/site-library'
+(as 'lib' is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/dbarts_0.9-34.tar.gz'
+Content type 'application/x-gzip' length 883697 bytes (862 KB)
+==================================================
+downloaded 862 KB
+
+* installing *source* package 'dbarts' ...
+** package 'dbarts' successfully unpacked and MD5 sums checked
+** using staged installation
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking how to run the C preprocessor... gcc -E
+checking whether the compiler supports GNU C++... yes
+checking whether g++ -std=gnu++17 accepts -g... yes
+checking for g++ -std=gnu++17 option to enable C++11 features... none needed
+checking how to run the C++ preprocessor... g++ -std=gnu++17 -E
+checking for C/C++ restrict keyword... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for C compiler vendor... gnu
+checking whether C compiler accepts ... yes
+checking whether C compiler accepts -msse2... yes
+checking whether C compiler accepts -msse4.1... yes
+checking whether C compiler accepts -mavx... yes
+checking whether C compiler accepts -mavx2... yes
+checking for a sed that does not truncate output... /bin/sed
+checking for egrep -e... /usr/bin/grep -E
+checking whether gcc is Clang... no
+checking whether pthreads work with "-pthread" and "-lpthread"... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking whether more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+checking for cstdint... yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking for malloc.h... yes
+checking for int64_t... yes
+checking for uint64_t... yes
+checking size of size_t... 8
+checking alignment of void*... 8
+checking for gettimeofday... yes
+checking for clock_gettime... yes
+checking for ffs... yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for working posix_memalign... yes
+checking for g++ -std=gnu++17 options needed to detect all undeclared functions... none needed
+checking whether strerror_r is declared... yes
+checking whether strerror_r returns char *... yes
+checking for snprintf... yes
+checking if g++ supports namespace std... yes
+checking whether snprintf is in std::... yes
+checking for log1p... yes
+checking whether log1p is in std::... no
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/config.hpp
+config.status: creating src/dbarts/config.hpp
+config.status: creating src/misc/config.h
+config.status: creating src/external/config.h
+config.status: creating inst/include/dbarts/types.hpp
+config.status: creating src/include/misc/types.h
+** libs
+using C compiler: 'gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0'
+using C++ compiler: 'g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0'
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c R_C_interface.cpp -o R_C_interface.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c R_interface.cpp -o R_interface.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c R_interface_common.cpp -o R_interface_common.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c R_interface_crossvalidate.cpp -o R_interface_crossvalidate.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c R_interface_rbart.cpp -o R_interface_rbart.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c R_interface_sampler.cpp -o R_interface_sampler.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c crossvalidate.cpp -o crossvalidate.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c guessNumCores.cpp -o guessNumCores.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../inst/include -Iinclude -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -c makeModelMatrixFromDataFrame.c -o makeModelMatrixFromDataFrame.o
+make[1]: Entering directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/dbarts'
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c bartFit.cpp -o bartFit.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c binaryIO.cpp -o binaryIO.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c birthDeathRule.cpp -o birthDeathRule.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c changeRule.cpp -o changeRule.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c functions.cpp -o functions.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c likelihood.cpp -o likelihood.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c node.cpp -o node.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c parameterPrior.cpp -o parameterPrior.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c state.cpp -o state.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c swapRule.cpp -o swapRule.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c tree.cpp -o tree.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -I../../inst/include -I../include  -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c treePrior.cpp -o treePrior.o
+ar rv ../dbarts.a bartFit.o binaryIO.o birthDeathRule.o changeRule.o functions.o likelihood.o node.o parameterPrior.o state.o swapRule.o tree.o treePrior.o
+ar: creating ../dbarts.a
+a - bartFit.o
+a - binaryIO.o
+a - birthDeathRule.o
+a - changeRule.o
+a - functions.o
+a - likelihood.o
+a - node.o
+a - parameterPrior.o
+a - state.o
+a - swapRule.o
+a - tree.o
+a - treePrior.o
+make[1]: Leaving directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/dbarts'
+make[1]: Entering directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/external'
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c io.c -o io.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c randomBase.c -o randomBase.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c randomNorm.c -o randomNorm.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c random.c -o random.o
+ar rv ../external.a io.o randomBase.o randomNorm.o random.o
+ar: creating ../external.a
+a - io.o
+a - randomBase.o
+a - randomNorm.o
+a - random.o
+make[1]: Leaving directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/external'
+make[1]: Entering directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/misc'
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -msse2 -c adaptiveRadixTree.c -o adaptiveRadixTree.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c binaryIO.c -o binaryIO.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c blockingThreadManager.c -o blockingThreadManager.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c hierarchicalThreadManager.c -o hierarchicalThreadManager.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c linearAlgebra.c -o linearAlgebra.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c moments.c -o moments.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c partition.c -o partition.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c simd.c -o simd.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c string.c -o string.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c thread.c -o thread.o
+echo gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c linearAlgebra_sse2.c -o linearAlgebra_sse2.c
+gcc -I/usr/share/R/include -DNDEBUG -I../include -pthread -fpic -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3 -fpic -c linearAlgebra_sse2.c -o linearAlgebra_sse2.c
+echo gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c moments_sse2.c -o moments_sse2.o
+gcc -I/usr/share/R/include -DNDEBUG -I../include -pthread -fpic -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3 -fpic -c moments_sse2.c -o moments_sse2.o
+echo gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c partition_sse2.c -o partition_sse2.o
+gcc -I/usr/share/R/include -DNDEBUG -I../include -pthread -fpic -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3 -fpic -c partition_sse2.c -o partition_sse2.o
+echo gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c partition_sse4_1.c -o partition_sse4_1.o
+gcc -I/usr/share/R/include -DNDEBUG -I../include -pthread -fpic -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3 -fpic -c partition_sse4_1.c -o partition_sse4_1.o
+echo gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c linearAlgebra_avx.c -o linearAlgebra_avx.c
+gcc -I/usr/share/R/include -DNDEBUG -I../include -pthread -fpic -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3 -fpic -c linearAlgebra_avx.c -o linearAlgebra_avx.c
+echo gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread      -fpic  -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c partition_avx2.c -o partition_avx2.o
+gcc -I/usr/share/R/include -DNDEBUG -I../include -pthread -fpic -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3 -fpic -c partition_avx2.c -o partition_avx2.o
+ar rv ../misc.a adaptiveRadixTree.o binaryIO.o blockingThreadManager.o hierarchicalThreadManager.o linearAlgebra.o moments.o partition.o simd.o string.o thread.o linearAlgebra_sse2.o moments_sse2.o partition_sse2.o partition_sse4_1.o linearAlgebra_avx.o partition_avx2.o
+ar: creating ../misc.a
+a - adaptiveRadixTree.o
+a - binaryIO.o
+a - blockingThreadManager.o
+a - hierarchicalThreadManager.o
+a - linearAlgebra.o
+a - moments.o
+a - partition.o
+a - simd.o
+a - string.o
+a - thread.o
+a - linearAlgebra_sse2.o
+a - moments_sse2.o
+a - partition_sse2.o
+a - partition_sse4_1.o
+a - linearAlgebra_avx.o
+a - partition_avx2.o
+make[1]: Leaving directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/misc'
+make[1]: Entering directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/rc'
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread     -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c bounds.c -o bounds.o
+gcc -I"/usr/share/R/include" -DNDEBUG -I../include -pthread     -g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-FPSnzf/r-base-4.3.3=/usr/src/r-base-4.3.3-2build2 -Wdate-time -D_FORTIFY_SOURCE=3  -fpic -c util.c -o util.o
+ar rv ../rc.a bounds.o util.o
+ar: creating ../rc.a
+a - bounds.o
+a - util.o
+make[1]: Leaving directory '/tmp/RtmpSVtteu/R.INSTALL3f09414835cb/dbarts/src/rc'
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -Wl,-z,relro -o dbarts.so R_C_interface.o R_interface.o R_interface_common.o R_interface_crossvalidate.o R_interface_rbart.o R_interface_sampler.o crossvalidate.o guessNumCores.o makeModelMatrixFromDataFrame.o dbarts.a external.a misc.a rc.a -pthread -L/usr/lib/R/lib -lR
+installing to /usr/local/lib/R/site-library/00LOCK-dbarts/00new/dbarts/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dbarts)
+
+The downloaded source packages are in
+	'/tmp/RtmpnN6rUe/downloaded_packages'
+R install exit code: 0
+end: 2026-11-12 03:28:52 UTC
+dbarts version: 0.9.34 
+R version 4.3.3 (2024-02-29) 
+
+=== smoke test (2026-11-12, after reinstall) ===
+command: R_HOME=/usr/lib/R .venv-ablation/bin/python -B scripts/smoke_bart.py
+result: SMOKE TEST PASSED — fit 0.7s (n=300); ITE shape (500, 50); ATE col0 = 0.993 CI (0.865, 1.118) vs true effect +1/SD; is_causal_HTE col0 True, col1 True, col2 (noise) False
+versions: R 4.3.3, dbarts 0.9.34 (fresh CRAN install, exit 0, ~41s, no errors), rpy2 3.5.16 (pre-existing in .venv-ablation), Python 3.12.3
+note: R itself survived (present at check); only dbarts was missing and was reinstalled. No apt reinstall needed.
