@@ -1,0 +1,3 @@
+DBN edges=23 causal edges=23 total_time=498.3s
+scm keys=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] fitted=12 scaler keys=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12]
+MERGE DONE

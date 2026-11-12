@@ -1,0 +1,52 @@
+{
+  "strategy_state_epwt.npz": {
+    "bytes": 512380,
+    "sha256": "6daadc4d75b9f05d002353e9b89feccccbe16d6bfad82ebe55d2e23f4ab13bba"
+  },
+  "scm500_hte.pickle": {
+    "bytes": 377659346,
+    "sha256": "6ccf17105b2651ad721545b154987e64687208b6768e682b909c9f1d33157ef3"
+  },
+  "scaler500_hte.pickle": {
+    "bytes": 4571,
+    "sha256": "00e1fa9f4839c4f0ef40236fa3b7c848920014dd0d57e681fe6524aa7146ff2d"
+  },
+  "strategy_states_shape": [
+    4924,
+    13
+  ],
+  "scm_keys": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "scaler_keys": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12
+  ],
+  "scm_fitted": 12,
+  "ep_play_front_data.npz": {
+    "bytes": 8324972,
+    "sha256": "a2af3f1b21e7668387e5aa8990155336db5193a97912c0503341cb86ae0133f5"
+  }
+}

@@ -1,0 +1,26 @@
+BART SLA elapsed time: 0.0 seconds
+XRL built in 246.5s; pi n_classes=4
+replay: 7005 transitions; action dist: {0: 3640, 1: 386, 2: 2680, 3: 299}
+causalG edges: [('action_action_t', 'action_action_t'), ('action_action_t', 'state_angular_velocity_t'), ('action_action_t', 'state_left_contact_t'), ('action_action_t', 'state_vy_t'), ('state_angle_t', 'state_angle_t'), ('state_angle_t', 'state_angular_velocity_t'), ('state_angular_velocity_t', 'state_angle_t'), ('state_angular_velocity_t', 'state_angular_velocity_t'), ('state_left_contact_t', 'action_action_t'), ('state_left_contact_t', 'state_angular_velocity_t'), ('state_left_contact_t', 'state_left_contact_t'), ('state_left_contact_t', 'state_right_contact_t'), ('state_left_contact_t', 'state_vx_t'), ('state_right_contact_t', 'action_action_t'), ('state_right_contact_t', 'state_angle_t'), ('state_right_contact_t', 'state_angular_velocity_t'), ('state_right_contact_t', 'state_left_contact_t'), ('state_right_contact_t', 'state_right_contact_t'), ('state_right_contact_t', 'state_vx_t'), ('state_vx_t', 'state_vx_t'), ('state_vx_t', 'state_x_t'), ('state_vy_t', 'action_action_t'), ('state_vy_t', 'state_vy_t'), ('state_x_t', 'state_x_t'), ('state_y_t', 'state_left_contact_t'), ('state_y_t', 'state_right_contact_t'), ('state_y_t', 'state_y_t')]
+queries (row, observed, desired): [(0, 0, 2), (184, 1, 3), (40, 2, 0), (211, 3, 1)]
+
+--- query row 0: observed=0 desired=2 ---
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  7.83it/s]100%|██████████| 1/1 [00:00<00:00,  7.81it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  8.84it/s]100%|██████████| 1/1 [00:00<00:00,  8.81it/s]
+A OK: raw=40 final=8 verified=8/8
+
+--- query row 184: observed=1 desired=3 ---
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  8.79it/s]100%|██████████| 1/1 [00:00<00:00,  8.76it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  8.74it/s]100%|██████████| 1/1 [00:00<00:00,  8.72it/s]
+A OK: raw=40 final=4 verified=4/4
+
+--- query row 40: observed=2 desired=0 ---
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  8.12it/s]100%|██████████| 1/1 [00:00<00:00,  8.02it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  7.85it/s]100%|██████████| 1/1 [00:00<00:00,  7.82it/s]
+A OK: raw=40 final=2 verified=2/2
+
+--- query row 211: observed=3 desired=1 ---
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  5.18it/s]100%|██████████| 1/1 [00:00<00:00,  5.17it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  3.74it/s]100%|██████████| 1/1 [00:00<00:00,  3.60it/s]
+A OK: raw=40 final=2 verified=2/2
+saved LunarLander results; DONE

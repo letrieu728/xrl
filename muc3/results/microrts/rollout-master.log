@@ -1,0 +1,146 @@
+===== batch01: 10 episodes from ep 12 seed 1001 (2026-11-12T07:19:35Z) =====
+===== batch01 EXIT:0 (2026-11-12T07:25:18Z) =====
+[rollout] ep 12: 48 transitions, 1052 env steps, done=1, 53.9s
+[rollout] ep 13: 49 transitions, 1051 env steps, done=1, 35.2s
+[rollout] ep 14: 60 transitions, 1293 env steps, done=1, 35.5s
+[rollout] ep 15: 53 transitions, 1068 env steps, done=1, 27.8s
+[rollout] ep 16: 89 transitions, 1610 env steps, done=1, 46.4s
+[rollout] ep 17: 50 transitions, 1166 env steps, done=1, 34.0s
+[rollout] ep 18: 45 transitions, 964 env steps, done=1, 24.0s
+[rollout] ep 19: 45 transitions, 1024 env steps, done=1, 26.2s
+[rollout] ep 20: 39 transitions, 866 env steps, done=1, 22.1s
+[rollout] ep 21: 56 transitions, 1248 env steps, done=1, 30.5s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch01.npz: 534 transitions from 10 episodes in 337.3s
+[rollout] action_label histogram: {-1: 158, 0: 239, 1: 54, 2: 2, 4: 80, 5: 1}
+[rollout] n_valid per transition: min=0 max=8 mean=1.82
+[rollout] DONE
+===== batch02: 10 episodes from ep 22 seed 1002 (2026-11-12T07:25:18Z) =====
+===== batch02 EXIT:0 (2026-11-12T07:31:19Z) =====
+[rollout] ep 22: 50 transitions, 1056 env steps, done=1, 53.7s
+[rollout] ep 23: 46 transitions, 1066 env steps, done=1, 36.8s
+[rollout] ep 24: 46 transitions, 1046 env steps, done=1, 36.5s
+[rollout] ep 25: 48 transitions, 1313 env steps, done=1, 36.4s
+[rollout] ep 26: 41 transitions, 899 env steps, done=1, 26.7s
+[rollout] ep 27: 55 transitions, 1163 env steps, done=1, 33.5s
+[rollout] ep 28: 57 transitions, 1314 env steps, done=1, 36.8s
+[rollout] ep 29: 59 transitions, 1256 env steps, done=1, 33.8s
+[rollout] ep 30: 45 transitions, 962 env steps, done=1, 26.2s
+[rollout] ep 31: 59 transitions, 1277 env steps, done=1, 30.8s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch02.npz: 506 transitions from 10 episodes in 353.0s
+[rollout] action_label histogram: {-1: 180, 0: 200, 1: 67, 4: 59}
+[rollout] n_valid per transition: min=0 max=8 mean=1.62
+[rollout] DONE
+===== batch03: 10 episodes from ep 32 seed 1003 (2026-11-12T07:31:19Z) =====
+===== batch03 EXIT:0 (2026-11-12T07:37:54Z) =====
+[rollout] ep 32: 46 transitions, 1024 env steps, done=1, 52.3s
+[rollout] ep 33: 64 transitions, 1299 env steps, done=1, 39.0s
+[rollout] ep 34: 47 transitions, 1057 env steps, done=1, 28.6s
+[rollout] ep 35: 49 transitions, 1101 env steps, done=1, 27.5s
+[rollout] ep 36: 53 transitions, 1141 env steps, done=1, 34.9s
+[rollout] ep 37: 45 transitions, 1105 env steps, done=1, 26.2s
+[rollout] ep 38: 53 transitions, 1158 env steps, done=1, 28.5s
+[rollout] ep 39: 60 transitions, 1299 env steps, done=1, 35.9s
+[rollout] ep 40: 84 transitions, 4000 env steps, done=1, 91.8s
+[rollout] ep 41: 43 transitions, 961 env steps, done=1, 22.2s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch03.npz: 544 transitions from 10 episodes in 388.7s
+[rollout] action_label histogram: {-1: 178, 0: 232, 1: 59, 2: 2, 4: 72, 5: 1}
+[rollout] n_valid per transition: min=0 max=9 mean=1.69
+[rollout] DONE
+===== batch04: 10 episodes from ep 42 seed 1004 (2026-11-12T07:37:54Z) =====
+===== batch04 EXIT:0 (2026-11-12T07:43:16Z) =====
+[rollout] ep 42: 47 transitions, 1055 env steps, done=1, 49.5s
+[rollout] ep 43: 59 transitions, 1267 env steps, done=1, 38.6s
+[rollout] ep 44: 40 transitions, 892 env steps, done=1, 22.8s
+[rollout] ep 45: 50 transitions, 1145 env steps, done=1, 29.8s
+[rollout] ep 46: 50 transitions, 1032 env steps, done=1, 30.0s
+[rollout] ep 47: 56 transitions, 1146 env steps, done=1, 33.3s
+[rollout] ep 48: 50 transitions, 1102 env steps, done=1, 26.7s
+[rollout] ep 49: 54 transitions, 1150 env steps, done=1, 34.7s
+[rollout] ep 50: 40 transitions, 894 env steps, done=1, 25.8s
+[rollout] ep 51: 42 transitions, 966 env steps, done=1, 22.3s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch04.npz: 488 transitions from 10 episodes in 315.5s
+[rollout] action_label histogram: {-1: 162, 0: 196, 1: 57, 2: 1, 4: 72}
+[rollout] n_valid per transition: min=0 max=9 mean=1.62
+[rollout] DONE
+===== batch05: 10 episodes from ep 52 seed 1005 (2026-11-12T07:43:16Z) =====
+===== batch05 EXIT:0 (2026-11-12T07:48:20Z) =====
+[rollout] ep 52: 51 transitions, 1147 env steps, done=1, 51.9s
+[rollout] ep 53: 56 transitions, 1088 env steps, done=1, 37.2s
+[rollout] ep 54: 47 transitions, 1071 env steps, done=1, 31.8s
+[rollout] ep 55: 54 transitions, 1148 env steps, done=1, 27.5s
+[rollout] ep 56: 40 transitions, 1150 env steps, done=1, 30.5s
+[rollout] ep 57: 43 transitions, 959 env steps, done=1, 24.2s
+[rollout] ep 58: 38 transitions, 901 env steps, done=1, 23.1s
+[rollout] ep 59: 42 transitions, 949 env steps, done=1, 23.3s
+[rollout] ep 60: 34 transitions, 798 env steps, done=1, 20.5s
+[rollout] ep 61: 44 transitions, 1004 env steps, done=1, 24.9s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch05.npz: 449 transitions from 10 episodes in 297.1s
+[rollout] action_label histogram: {-1: 173, 0: 173, 1: 49, 4: 54}
+[rollout] n_valid per transition: min=0 max=8 mean=1.37
+[rollout] DONE
+===== batch06: 10 episodes from ep 62 seed 1006 (2026-11-12T07:48:20Z) =====
+===== batch06 EXIT:0 (2026-11-12T07:54:03Z) =====
+[rollout] ep 62: 49 transitions, 1057 env steps, done=1, 43.2s
+[rollout] ep 63: 81 transitions, 4000 env steps, done=1, 95.7s
+[rollout] ep 64: 53 transitions, 1136 env steps, done=1, 30.6s
+[rollout] ep 65: 50 transitions, 1143 env steps, done=1, 23.7s
+[rollout] ep 66: 40 transitions, 900 env steps, done=1, 21.4s
+[rollout] ep 67: 38 transitions, 839 env steps, done=1, 20.8s
+[rollout] ep 68: 42 transitions, 965 env steps, done=1, 20.5s
+[rollout] ep 69: 48 transitions, 1047 env steps, done=1, 26.7s
+[rollout] ep 70: 34 transitions, 778 env steps, done=1, 25.0s
+[rollout] ep 71: 52 transitions, 1207 env steps, done=1, 27.5s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch06.npz: 487 transitions from 10 episodes in 336.9s
+[rollout] action_label histogram: {-1: 167, 0: 210, 1: 67, 4: 43}
+[rollout] n_valid per transition: min=0 max=8 mean=1.61
+[rollout] DONE
+===== batch07: 10 episodes from ep 72 seed 1007 (2026-11-12T07:54:03Z) =====
+===== batch07: 10 episodes from ep 72 seed 1007 (2026-11-12T08:18:35Z) =====
+===== batch07 EXIT:0 (2026-11-12T08:22:38Z) =====
+[rollout] ep 72: 37 transitions, 896 env steps, done=1, 36.7s
+[rollout] ep 73: 47 transitions, 978 env steps, done=1, 27.9s
+[rollout] ep 74: 39 transitions, 891 env steps, done=1, 22.0s
+[rollout] ep 75: 51 transitions, 1055 env steps, done=1, 23.2s
+[rollout] ep 76: 45 transitions, 984 env steps, done=1, 21.9s
+[rollout] ep 77: 40 transitions, 935 env steps, done=1, 21.8s
+[rollout] ep 78: 39 transitions, 865 env steps, done=1, 19.7s
+[rollout] ep 79: 42 transitions, 922 env steps, done=1, 20.0s
+[rollout] ep 80: 35 transitions, 741 env steps, done=1, 17.4s
+[rollout] ep 81: 43 transitions, 1012 env steps, done=1, 22.8s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch07.npz: 418 transitions from 10 episodes in 235.2s
+[rollout] action_label histogram: {-1: 155, 0: 161, 1: 53, 4: 49}
+[rollout] n_valid per transition: min=0 max=9 mean=1.66
+[rollout] DONE
+===== batch08: 10 episodes from ep 82 seed 1008 (2026-11-12T08:22:38Z) =====
+===== batch08 EXIT:0 (2026-11-12T08:28:24Z) =====
+[rollout] ep 82: 60 transitions, 1277 env steps, done=1, 49.6s
+[rollout] ep 83: 31 transitions, 796 env steps, done=1, 23.8s
+[rollout] ep 84: 48 transitions, 1065 env steps, done=1, 30.6s
+[rollout] ep 85: 41 transitions, 933 env steps, done=1, 22.4s
+[rollout] ep 86: 56 transitions, 1162 env steps, done=1, 30.0s
+[rollout] ep 87: 57 transitions, 1300 env steps, done=1, 28.9s
+[rollout] ep 88: 35 transitions, 842 env steps, done=1, 19.8s
+[rollout] ep 89: 73 transitions, 4000 env steps, done=1, 84.1s
+[rollout] ep 90: 50 transitions, 1110 env steps, done=1, 23.9s
+[rollout] ep 91: 42 transitions, 1002 env steps, done=1, 24.0s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch08.npz: 493 transitions from 10 episodes in 338.8s
+[rollout] action_label histogram: {-1: 165, 0: 206, 1: 60, 4: 62}
+[rollout] n_valid per transition: min=0 max=9 mean=1.68
+[rollout] DONE
+===== batch09: 10 episodes from ep 92 seed 1009 (2026-11-12T08:28:24Z) =====
+===== batch09 EXIT:0 (2026-11-12T08:34:04Z) =====
+[rollout] ep 92: 43 transitions, 998 env steps, done=1, 39.1s
+[rollout] ep 93: 48 transitions, 1043 env steps, done=1, 32.8s
+[rollout] ep 94: 50 transitions, 1109 env steps, done=1, 29.7s
+[rollout] ep 95: 50 transitions, 1145 env steps, done=1, 27.0s
+[rollout] ep 96: 45 transitions, 984 env steps, done=1, 21.5s
+[rollout] ep 97: 46 transitions, 929 env steps, done=1, 25.3s
+[rollout] ep 98: 51 transitions, 1073 env steps, done=1, 26.0s
+[rollout] ep 99: 58 transitions, 4000 env steps, done=1, 87.3s
+[rollout] ep 100: 48 transitions, 1007 env steps, done=1, 22.6s
+[rollout] ep 101: 46 transitions, 960 env steps, done=1, 21.0s
+[rollout] SAVED /home/hatch/workspace/step3-scratch/group2/batches/batch09.npz: 485 transitions from 10 episodes in 334.4s
+[rollout] action_label histogram: {-1: 191, 0: 185, 1: 52, 2: 1, 3: 1, 4: 55}
+[rollout] n_valid per transition: min=0 max=9 mean=1.20
+[rollout] DONE
+RESUME DONE: episodes 2..101 complete (100 eps)

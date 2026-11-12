@@ -1,0 +1,71 @@
+===== target base1 (2026-11-12T08:34:09Z) =====
+target base1 EXIT:0
+[base1] n=4924 nonzero=32 causes=['base1'] (34.3s)
+[base1] checkpoint written; status=ok
+===== target barrack1 (2026-11-12T08:34:49Z) =====
+target barrack1 EXIT:0
+[barrack1] n=4924 nonzero=349 causes=['base1', 'ranged2'] (44.4s)
+[barrack1] checkpoint written; status=ok
+===== target worker1 (2026-11-12T08:35:37Z) =====
+target worker1 EXIT:0
+[worker1] n=4924 nonzero=3244 causes=['base1', 'worker1', 'base2', 'barrack2', 'heavy2'] (41.7s)
+[worker1] checkpoint written; status=ok
+===== target light1 (2026-11-12T08:36:24Z) =====
+target light1 EXIT:0
+[light1] n=4924 nonzero=284 causes=[] (38.0s)
+[light1] checkpoint written; status=ok
+===== target heavy1 (2026-11-12T08:37:06Z) =====
+target heavy1 EXIT:0
+[heavy1] n=4924 nonzero=466 causes=['ranged2'] (38.5s)
+[heavy1] checkpoint written; status=ok
+===== target ranged1 (2026-11-12T08:37:49Z) =====
+target ranged1 EXIT:0
+[ranged1] n=4924 nonzero=427 causes=['ranged1'] (38.0s)
+[ranged1] checkpoint written; status=ok
+===== target base2 (2026-11-12T08:38:32Z) =====
+target base2 EXIT:0
+[base2] n=4924 nonzero=198 causes=[] (42.3s)
+[base2] checkpoint written; status=ok
+===== target barrack2 (2026-11-12T08:39:18Z) =====
+target barrack2 EXIT:0
+[barrack2] n=4924 nonzero=200 causes=['base2', 'barrack2'] (40.2s)
+[barrack2] checkpoint written; status=ok
+===== target worker2 (2026-11-12T08:40:02Z) =====
+target worker2 EXIT:0
+[worker2] n=4924 nonzero=400 causes=['worker1', 'base2', 'worker2'] (44.8s)
+[worker2] checkpoint written; status=ok
+===== target light2 (2026-11-12T08:40:52Z) =====
+target light2 EXIT:0
+[light2] CONSTANT -> causes=[]
+[light2] checkpoint written; status=constant
+===== target heavy2 (2026-11-12T08:40:56Z) =====
+target heavy2 EXIT:0
+[heavy2] n=4924 nonzero=208 causes=['base2', 'worker2', 'heavy2', 'timestep'] (42.5s)
+[heavy2] checkpoint written; status=ok
+===== target ranged2 (2026-11-12T08:41:42Z) =====
+target ranged2 EXIT:0
+[ranged2] n=4924 nonzero=404 causes=['base2', 'ranged2', 'timestep'] (41.4s)
+[ranged2] checkpoint written; status=ok
+===== target timestep (2026-11-12T08:42:28Z) =====
+target timestep EXIT:0
+[timestep] n=4924 nonzero=4924 causes=['barrack2'] (31.0s)
+[timestep] checkpoint written; status=ok
+===== target action (2026-11-12T08:43:03Z) =====
+target action EXIT:0
+[action] n=2832 nonzero=982 causes=['heavy2'] (21.2s)
+[action] checkpoint written; status=ok
+===== summary =====
+action ok ['heavy2'] 21.2s
+barrack1 ok ['base1', 'ranged2'] 44.4s
+barrack2 ok ['base2', 'barrack2'] 40.2s
+base1 ok ['base1'] 34.3s
+base2 ok [] 42.3s
+heavy1 ok ['ranged2'] 38.5s
+heavy2 ok ['base2', 'worker2', 'heavy2', 'timestep'] 42.5s
+light1 ok [] 38.0s
+light2 constant [] 0.0s
+ranged1 ok ['ranged1'] 38.0s
+ranged2 ok ['base2', 'ranged2', 'timestep'] 41.4s
+timestep ok ['barrack2'] 31.0s
+worker1 ok ['base1', 'worker1', 'base2', 'barrack2', 'heavy2'] 41.7s
+worker2 ok ['worker1', 'base2', 'worker2'] 44.8s

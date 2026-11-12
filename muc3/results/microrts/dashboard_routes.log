@@ -1,0 +1,120 @@
+/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py:122: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  agent1.load_state_dict(torch.load(agent_model_path, map_location=device))
+GET /: {'status': 200, 'n_bytes': 18741}
+POST /utt_to_uht: {'status': 200}
+POST /read_xml_map: {'status': 200}
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+GET /get_board_state: {'status': 200, 'utt_keys': ['1', '2', '3', '4', '5', '6', '7'], 'n_unit_cells': 8, 'uot_shape': [16, 16], 'uht_nonzero': 8}
+GET /compute_global_causal: {'status': 200, 'json': {'error_code': '0'}}
+[2026-11-12 08:54:45,260] ERROR in app: Exception on /get_local_causal [POST]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py", line 436, in get_local_causal
+    localG, edges_data = local_causal_network_hte(query_state, scm_hte, G_scaler_hte, [12], num_cols_hte)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/xrl_causal/xrl_causal.py", line 255, in local_causal_network_hte
+    X_scaled[:,num_cols] = scaler.transform(X_scaled[:,num_cols])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/utils/_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/preprocessing/_data.py", line 1045, in transform
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/base.py", line 654, in _validate_data
+    self._check_n_features(X, reset=reset)
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/base.py", line 443, in _check_n_features
+    raise ValueError(
+ValueError: X has 10 features, but StandardScaler is expecting 8 features as input.
+POST /get_local_causal step_id=0: {'status': 500, 'body_head': '<!doctype html>\n<html lang=en>\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>\n'}
+[2026-11-12 08:54:45,291] ERROR in app: Exception on /get_local_causal [POST]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py", line 436, in get_local_causal
+    localG, edges_data = local_causal_network_hte(query_state, scm_hte, G_scaler_hte, [12], num_cols_hte)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/xrl_causal/xrl_causal.py", line 255, in local_causal_network_hte
+    X_scaled[:,num_cols] = scaler.transform(X_scaled[:,num_cols])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/utils/_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/preprocessing/_data.py", line 1045, in transform
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/base.py", line 654, in _validate_data
+    self._check_n_features(X, reset=reset)
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/base.py", line 443, in _check_n_features
+    raise ValueError(
+ValueError: X has 10 features, but StandardScaler is expecting 8 features as input.
+POST /get_local_causal step_id=10: {'status': 500, 'body_head': '<!doctype html>\n<html lang=en>\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>\n'}
+[2026-11-12 08:54:45,293] ERROR in app: Exception on /get_local_causal [POST]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py", line 436, in get_local_causal
+    localG, edges_data = local_causal_network_hte(query_state, scm_hte, G_scaler_hte, [12], num_cols_hte)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/xrl_causal/xrl_causal.py", line 255, in local_causal_network_hte
+    X_scaled[:,num_cols] = scaler.transform(X_scaled[:,num_cols])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/utils/_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/preprocessing/_data.py", line 1045, in transform
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/base.py", line 654, in _validate_data
+    self._check_n_features(X, reset=reset)
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/sklearn/base.py", line 443, in _check_n_features
+    raise ValueError(
+ValueError: X has 10 features, but StandardScaler is expecting 8 features as input.
+POST /get_local_causal step_id=100: {'status': 500, 'body_head': '<!doctype html>\n<html lang=en>\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>\n'}
+POST /run_env_episode: {'status': 200, 'n_rawobs': 1160, 'n_gamesteps': 1160}
+DASHBOARD ROUTE CHECK DONE -> /home/hatch/workspace/step3-scratch/group2/dashboard_routes.json
+SUMMARY: {
+  "GET /": 200,
+  "POST /utt_to_uht": 200,
+  "POST /read_xml_map": 200,
+  "GET /get_board_state": 200,
+  "GET /compute_global_causal": 200,
+  "POST /get_local_causal step_id=0": 500,
+  "POST /get_local_causal step_id=10": 500,
+  "POST /get_local_causal step_id=100": 500,
+  "POST /run_env_episode": 200
+}

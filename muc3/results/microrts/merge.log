@@ -1,0 +1,12 @@
+merging 10 batch files
+  batch00.npz: 520 transitions, episodes 2..11
+  batch01.npz: 534 transitions, episodes 12..21
+  batch02.npz: 506 transitions, episodes 22..31
+  batch03.npz: 544 transitions, episodes 32..41
+  batch04.npz: 488 transitions, episodes 42..51
+  batch05.npz: 449 transitions, episodes 52..61
+  batch06.npz: 487 transitions, episodes 62..71
+  batch07.npz: 418 transitions, episodes 72..81
+  batch08.npz: 493 transitions, episodes 82..91
+  batch09.npz: 485 transitions, episodes 92..101
+MERGED: 4924 transitions, 100 episodes, labels={-1: 1724, 0: 2002, 1: 575, 2: 6, 3: 1, 4: 614, 5: 2}

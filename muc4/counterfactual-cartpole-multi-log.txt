@@ -1,0 +1,42 @@
+BART SLA elapsed time: 0.0 seconds
+XRL built in 87.4s; pi n_classes=2
+replay: 6115 transitions; actions: 0=3139 1=2976
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+
+--- query row 6: observed=0 desired=1 ---
+query: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 11.65it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.56it/s]
+raw DiCE=40 final=2 verified=2/2 score={'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}
+
+--- query row 100: observed=1 desired=0 ---
+query: {'cart_position': -0.1050264835357666, 'cart_velocity': -0.0008316540624946356, 'pole_angle': 0.1421779990196228, 'pole_velocity': 0.06291511654853821, 'action': 1}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 12.66it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.25it/s]
+raw DiCE=40 final=1 verified=1/1 score={'cart_position': 0.0, 'cart_velocity': 0.0, 'pole_angle': 1.0, 'pole_velocity': 0.0}
+
+--- query row 500: observed=0 desired=1 ---
+query: {'cart_position': 0.02937905117869377, 'cart_velocity': 0.5783985257148743, 'pole_angle': -0.031116316094994545, 'pole_velocity': -0.813716471195221, 'action': 0}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.69it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.56it/s]
+raw DiCE=40 final=2 verified=2/2 score={'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}
+
+--- query row 1000: observed=1 desired=0 ---
+query: {'cart_position': -0.10296107083559036, 'cart_velocity': 1.132018804550171, 'pole_angle': 0.13348932564258575, 'pole_velocity': -1.1863620281219482, 'action': 1}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 10.99it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.74it/s]
+raw DiCE=40 final=1 verified=1/1 score={'cart_position': 0.0, 'cart_velocity': 0.0, 'pole_angle': 1.0, 'pole_velocity': 0.0}
+
+--- query row 2000: observed=0 desired=1 ---
+query: {'cart_position': 0.07467637956142426, 'cart_velocity': 0.7432167530059814, 'pole_angle': -0.12432975322008133, 'pole_velocity': -0.9601575136184692, 'action': 0}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.81it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.79it/s]
+raw DiCE=40 final=1 verified=1/1 score={'cart_position': 0.0, 'cart_velocity': 0.0, 'pole_angle': 1.0, 'pole_velocity': 0.0}
+
+--- query row 3000: observed=1 desired=0 ---
+query: {'cart_position': -0.002483833348378539, 'cart_velocity': -0.393555611371994, 'pole_angle': 0.024297282099723816, 'pole_velocity': 0.47855207324028015, 'action': 1}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.78it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 13.79it/s]
+raw DiCE=40 final=2 verified=2/2 score={'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}
+REGRESSION row6 vs step3: {'same_n': True, 'max_abs_diff_state_values': 0.0, 'old_score': {'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}, 'new_score': {'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}}
+saved multi-query results; DONE

@@ -77,7 +77,9 @@ chỉ có 8 người (8/8 so với 4/8 ở bài dự đoán hành vi với SHAP)
   có 6 ảnh đồ thị BART, `muc4/results/so-sanh/` có 3 biểu đồ so sánh,
   `muc4/results/cartpole-dqn/`); checkpoint DQN `.pt`
   (`muc4/results/cartpole-dqn/`); và file dữ liệu `.npz`
-  (`muc3/results/`).
+  (`muc3/results/`), checkpoint LunarLander `.pt`
+  (`muc4/results/lunarlander-dqn/`), SCM/scaler MicroRTS + file rollout
+  `.npz` (`muc3/results/microrts/`).
 
 ## Kết quả chính đã kiểm chứng (Mục 3)
 
@@ -104,17 +106,28 @@ của paper: F1 nhị phân ở CartPole, weighted-F1 ở LunarLander/PongDuel
 - Thời gian học cấu trúc BART (tổng các process riêng lẻ, không so trực tiếp
   với paper): CartPole 242,19s; LunarLander 1.086,40s; PongDuel 35.531,20s.
 
-### MicroRTS-Lite — đã chạy tối thiểu thật (chưa có fidelity theo Table 1)
+### MicroRTS-Lite — đã chạy 100 episode + sửa dashboard (nhóm 2, 12/11/2026; fidelity theo đúng protocol: không đo được)
 
 - Sửa **22 chỗ** import `stratvis` → `cxrl_microRTS` trong **8 file**,
   lấy được checkpoint PPO `agent-3.pt` công khai (SHA-256 `ad21e903…`,
   load strict OK, 5.433.185 tham số, **không đưa vào repo**).
-- Env thật chạy được (JVM + PPO trả action hợp lệ); dashboard Flask `/`
-  → 200, nhưng 2 route `/get_board_state` và `/compute_global_causal`
-  còn 500 (bug của tác giả + thiếu thư mục `data/`).
-- Đồ thị toàn cục **20 cạnh** từ **10 episode / 537 transition** thật.
-  **Chưa có fidelity MicroRTS theo Table 1.** Chi tiết xem
-  `muc3/microRTS-thu-nghiem.md`.
+- Env thật chạy được (JVM + PPO trả action hợp lệ). Dashboard Flask:
+  `/get_board_state` đã sửa → **200** (trả board thật),
+  `/compute_global_causal` → **200** sau khi tự sinh thư mục `data/` từ
+  dữ liệu 100 episode; `/get_local_causal` **vẫn 500** (danh sách cột
+  hard-code của tác giả không khớp scaler học từ dữ liệu thật — xem báo
+  cáo). Không khẳng định dashboard chạy đầy đủ.
+- Đồ thị toàn cục **23 cạnh** từ **100 episode / 4.924 transition** thật
+  (498,3 giây học BART). **Hiệu đính:** đồ thị bước 3 ghi "10 episode /
+  537 transition" thực ra chỉ có 8 episode duy nhất (109 transition bị
+  đếm trùng do seed ở cấp import) — xem báo cáo.
+- **Fidelity MicroRTS:** theo đúng protocol notebook của tác giả thì
+  **không đo được** (tập valid rỗng: action chỉ có 1 cause toàn cục
+  `heavy2`, không hàng nào có >1 cạnh local vào nút action). Bản
+  không-lọc (ghi rõ là lệch protocol) cho BART 25–31% acc, thua xa
+  baseline đa số ~62–64% — con số 86,0%/85,9% của paper không tái tạo
+  được từ repo (paper không cho mã hóa action). Chi tiết + mọi lệch
+  protocol xem `muc3/microRTS-thu-nghiem.md`.
 
 ## Kết quả chính đã kiểm chứng (Mục 4)
 
@@ -134,6 +147,22 @@ target network, Adam), **không dùng stable-baselines3**. Train bằng gymnasiu
 - Các run khác (cùng eval 100 ep): run 1: 246,16; run 5 (Double DQN):
   272,68; run 7: dở dang do VM restart, best 343,26; run 8 (target-update
   10→100): 234,51 — thụt lùi, không dùng.
+- **Seed 1 (nhóm 2, đúng hyperparameter run 9): eval cuối 500,00 ± 0,00
+  / 100 ep** — 500/500 tái hiện qua seed khác, nhưng quỹ đạo rất khác
+  (8/40 eval đạt 500, trough dài ~85–195, sụp cuối train rồi hồi phục
+  đúng ep 2000; train mean 100 ep cuối chỉ 147,48). Chi tiết xem
+  `muc4/results/REPORT.md`.
+
+### Hướng D — DQN LunarLander (nhóm 2): 222,03 ± 69,29 / 100 episode, train dở dang ở ep 873/1000
+
+Cùng kiến trúc/phương pháp như run 9 (MLP 8→128→128→4, Double DQN,
+1.000 episode, eps-decay 650, seed 0). Train bị VM restart giết ở ep
+873/1000; checkpoint tốt nhất @ ep 850 (eval định kỳ 228,54 ± 58,98)
+đánh giá lại 100 episode greedy: **222,03 ± 69,29 (min −60,38, max
+308,35)** — vượt ngưỡng solved ~200, nhưng độ lệch chuẩn lớn và policy
+còn dao động (eval @700 tụt còn −34,11). Kém chắc chắn hơn CartPole
+run 9. Chi tiết xem `muc4/results/REPORT.md`; checkpoint `.pt` trên
+Drive.
 
 ### Hướng D — So sánh XRL (BART thật) trained-vs-heuristic
 
@@ -193,15 +222,18 @@ XRL/
 │   └── CausalXRL-MUC3-CODEX-HANDOFF.md # quy tắc giao Codex làm Mục 3
 ├── muc3/                      # Mục 3 — Thực nghiệm của sinh viên
 │   ├── EXPERIMENT_REPORT.md   # báo cáo Mục 3 (đọc file này trước)
+│   ├── microRTS-thu-nghiem.md # báo cáo MicroRTS (bước 3 + nhóm 2: 100 ep, dashboard, fidelity)
 │   ├── scripts/               # collect/metrics/BART fidelity + recompute_baselines_weighted_f1.py
 │   ├── notes/                 # lỗi đã gặp + cách fix, blocker
-│   └── results/               # replay.npz + metrics.json + bart_fidelity.json từng môi trường
+│   └── results/               # replay.npz + metrics.json + bart_fidelity.json từng môi trường; microrts/ (nhóm 2: manifest, đồ thị, fidelity, log dashboard)
 └── muc4/                      # Mục 4 — Mở rộng
-    ├── scripts/               # train_dqn_cartpole.py, run_xrl_comparison.py, ...
+    ├── counterfactual-thu-nghiem.md # báo cáo counterfactual (bước 3 + nhóm 2: 6 query CartPole, 4 query LunarLander)
+    ├── scripts/               # train_dqn_cartpole.py, train_dqn_lunarlander.py, run_xrl_comparison.py, ...
     ├── notes/                 # lỗi đã gặp + cách fix, kiểm tra BART
     └── results/
         ├── REPORT.md          # báo cáo tổng hợp Mục 4 (đọc file này trước)
         ├── cartpole-dqn/      # checkpoint run 9 (eval 500/500) + log + CSV + ảnh
+        ├── lunarlander-dqn/   # DQN LunarLander nhóm 2 (best @ ep 850, eval 222,03; .pt trên Drive)
         ├── ablation/          # bảng + ảnh đồ thị (surrogate — đã thay thế)
         ├── ablation-bart/     # ablation + sensitivity bằng BART thật (ảnh đồ thị trên Drive)
         ├── so-sanh/           # script vẽ 3 biểu đồ so sánh (ảnh PNG trên Drive)
@@ -251,9 +283,10 @@ python muc4/scripts/run_ablation.py
 
 - Số của **tác giả** (Table 1, 8 chuyên gia, MicroRTS-Lite) chỉ trích từ paper
   arXiv:2610.42028v1, ghi rõ nguồn. Nhóm **không** làm human study và
-  **không** có số fidelity MicroRTS theo Table 1; MicroRTS chỉ chạy tối
-  thiểu (env + dashboard một phần + đồ thị 10 episode, xem
-  `muc3/microRTS-thu-nghiem.md`).
+  **không** tái tạo được số fidelity MicroRTS 86,0%/85,9% của Table 1
+  (theo đúng protocol notebook thì tập valid rỗng; bản không-lọc cho
+  BART 25–31% — xem `muc3/microRTS-thu-nghiem.md` §9). MicroRTS đã chạy
+  100 episode + sửa 2 route dashboard, nhưng `/get_local_causal` vẫn 500.
 - Số của **nhóm** là số chạy thật, có log/CSV/checkpoint kèm theo. Số BART
   dao động ±1–2 cạnh giữa các lần chạy.
 - Ablation **lần đầu** dùng **surrogate RandomForest, không phải BART** —

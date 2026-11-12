@@ -1,11 +1,15 @@
-# Bước 3 (fallback) — Sửa và chạy `XRL.counterfactual` cho CartPole
+# Bước 3 (fallback) + Nhóm 2 — Sửa và chạy `XRL.counterfactual` cho CartPole và LunarLander
 
-Ngày chạy: 2026-11-12. Code gốc: `yanmluk/causal-xrl`
+Ngày chạy bước 3: 2026-11-12. Cập nhật nhóm 2: 2026-11-12 (6 query
+CartPole, 4 query LunarLander, sửa đa lớp). Code gốc: `yanmluk/causal-xrl`
 `ae9096ea`, file `cxrl/lib/xrl/xrl.py`. Mọi sửa đổi chỉ làm trên **bản
-copy**; patch: `muc4/xrl-counterfactual-fix.patch` (đã kiểm chứng áp
-sạch lên cây gốc). Log đầy đủ: `muc4/counterfactual-thu-nghiem-log.txt`.
-Kết quả: `muc4/counterfactual_result.json` + `.csv`. Script chạy:
-`muc4/scripts/run_counterfactual_cartpole.py`.
+copy**; patch bước 3: `muc4/xrl-counterfactual-fix.patch` (đã kiểm chứng
+áp sạch lên cây gốc); patch nhóm 2: `muc4/xrl-multiclass-fix.patch`
+(áp lên trên patch bước 3, đã kiểm chứng: cây gốc + patch bước 3 +
+patch đa lớp = đúng bản copy đang chạy). Log đầy đủ bước 3:
+`muc4/counterfactual-thu-nghiem-log.txt`. Log nhóm 2: xem §6.
+Kết quả bước 3: `muc4/counterfactual_result.json` + `.csv`. Script chạy
+bước 3: `muc4/scripts/run_counterfactual_cartpole.py`.
 
 ## Vị trí của fallback này — đọc trước
 
@@ -145,7 +149,7 @@ score. 3 lần chạy trước đó sập lần lượt ở: `DataFrame.append`
 (shim), tuple key (Sửa 3), set indexer (Sửa 3) — xem log để biết lỗi
 đầy đủ từng lần.
 
-## 5. Kết luận trung thực
+## 5. Kết luận trung thực (bước 3 — xem §7 cho cập nhật nhóm 2)
 
 - Code gốc **không bao giờ** chạy được `counterfactual()` (thiếu
   `self.exp`, `self.state_features`, sai kiểu `self.pi`).
@@ -156,3 +160,93 @@ score. 3 lần chạy trước đó sập lần lượt ở: `DataFrame.append`
   chưa thử policy DQN của Mục 4, chưa thử LunarLander/PongDuel; DiCE ở
   đây là phương pháp `random` (mặc định của constructor `Dice`), không
   phải `genetic`/`kdtree`.
+
+## 6. Nhóm 2 — Sửa đa lớp + nhiều query CartPole + LunarLander (2c)
+
+### 6.1. Sửa đa lớp (`xrl-multiclass-fix.patch`, trên bản copy)
+
+Code sau patch bước 3 vẫn giả định nhị phân: `DummySklearn` trả
+`predict_proba` 2 cột `[[1−a, a]]`, chỉ đúng khi action ∈ {0, 1}.
+Patch nhóm 2 thêm tham số `n_classes=2` cho `DummySklearn.__init__`,
+trả one-hot trên `n_classes` cột; `XRL.__init__` truyền
+`env.action_space.n` (mặc định 2 nếu env không có). Hành vi nhị phân
+không đổi chút nào: one-hot 2 cột trùng đúng `[[1−a, a]]` — đã kiểm
+chứng bằng hồi quy row 6 ở §6.2 (kết quả giống hệt bước 3). Không sửa
+lời gọi `generate_counterfactuals` hay logic simplify/dominating.
+
+### 6.2. CartPole: 6 query (script `muc4/scripts/run_counterfactual_cartpole_multi.py`)
+
+Cùng thiết lập §3 (seed 99, 200 episode, heuristic notebook). `XRL`
+dựng trong 87,4 giây; replay **6.115 transition** (0: 3.139, 1: 2.976)
+— giống hệt bước 3; đồ thị nhân quả 10 cạnh. Mỗi query đặt lại
+`random.seed(99)` + `np.random.seed(99)` trước khi gọi
+`counterfactual()`; mỗi counterfactual cuối đều kiểm chứng lại bằng
+hàm policy gốc. Kết quả đầy đủ:
+`muc4/counterfactual_cartpole_multi.json` + `.csv`.
+
+| Hàng replay | Action quan sát → mong muốn | DiCE thô | Còn lại | Kiểm chứng lật | Score (chỉ đặc trưng ≠ 0) |
+|---:|---:|---:|---:|---:|---|
+| 6 | 0 → 1 | 40 | 2 | 2/2 | cart_position 0,5; pole_angle 0,5 |
+| 100 | 1 → 0 | 40 | 1 | 1/1 | pole_angle 1,0 |
+| 500 | 0 → 1 | 40 | 2 | 2/2 | cart_position 0,5; pole_angle 0,5 |
+| 1000 | 1 → 0 | 40 | 1 | 1/1 | pole_angle 1,0 |
+| 2000 | 0 → 1 | 40 | 1 | 1/1 | pole_angle 1,0 |
+| 3000 | 1 → 0 | 40 | 2 | 2/2 | cart_position 0,5; pole_angle 0,5 |
+
+Tổng: **9/9** counterfactual cuối lật đúng action khi kiểm chứng bằng
+policy gốc. Mẫu nhất quán: chỉ `cart_position` và `pole_angle` xuất
+hiện trong score (đúng — policy heuristic chỉ phụ thuộc 2 đặc trưng
+này); `cart_velocity`/`pole_velocity` luôn 0. Hồi quy row 6 so với
+bước 3: cùng số lượng, giá trị state chênh lệch tối đa 0,0, cùng score
+— patch đa lớp không làm đổi hành vi nhị phân. Thời gian mỗi lần gọi
+`counterfactual()`: 0,08–0,11 giây.
+
+### 6.3. LunarLander: 4 query, 4 action (script `muc4/scripts/run_counterfactual_lunarlander.py`)
+
+- Env: `gym` LunarLander-v2 (gym 0.21.0, cần Box2D — xem §6.4), seed
+  99, **30 episode** (đúng `NEPISODES` của notebook
+  `eval_fidelity_Lunar Lander.ipynb` của tác giả).
+- Policy: PD của chính notebook tác giả, copy nguyên văn (điều khiển
+  theo x/y/vx/vy/angle/angular_velocity + tiếp xúc chân).
+- `repr_names` = 8 tên state + `action`, `repr_integration=False`,
+  `one_hot_actions=False`. `XRL` dựng trong 246,5 giây (BART thật qua
+  R/dbarts); replay **7.005 transition**, phân phối action
+  {0: 3.640, 1: 386, 2: 2.680, 3: 299}; đồ thị nhân quả 27 cạnh.
+- Query: hàng đầu tiên của mỗi action quan sát, action mong muốn =
+  (quan sát + 2) mod 4. **Cả 4 query đều chạy được bằng
+  `counterfactual()` gốc đã sửa (attempt A)** — không cần phương án dự
+  phòng B (DiCE với outcome dạng chuỗi). Kết quả đầy đủ:
+  `muc4/counterfactual_lunarlander.json` + `.csv`.
+
+| Hàng replay | Action quan sát → mong muốn | DiCE thô | Còn lại | Kiểm chứng lật | Score (chỉ đặc trưng ≠ 0) |
+|---:|---:|---:|---:|---:|---|
+| 0 | 0 → 2 | 40 | 8 | 8/8 | y 0,33; vy 0,40; x 0,07; left_contact 0,07; right_contact 0,13 |
+| 184 | 1 → 3 | 40 | 4 | 4/4 | angle 0,40; x 0,20; vx 0,20; angular_velocity 0,20 |
+| 40 | 2 → 0 | 40 | 2 | 2/2 | y 0,50; vy 0,50 |
+| 211 | 3 → 1 | 40 | 2 | 2/2 | angle 0,50; angular_velocity 0,50 |
+
+Tổng: **16/16** counterfactual cuối lật đúng action khi kiểm chứng
+bằng policy PD gốc. Thời gian mỗi lần gọi: 0,25–0,49 giây. Đây là bằng
+chứng đầu tiên trong repo rằng `counterfactual()` đã sửa chạy được cho
+env 4 action, không chỉ nhị phân.
+
+### 6.4. Môi trường nhóm 2
+
+Cùng venv bước 3 + `box2d-py` 2.3.8 (build bằng SWIG 4.2.0) và
+`pygame` 2.6.1 để `LunarLander-v2` chạy được trên gym 0.21. R/dbarts:
+chạy với `R_LIBS=~/workspace/R-lib` sau VM restart (xem báo cáo MicroRTS
+§11). Log chạy: `muc4/counterfactual-cartpole-multi-log.txt`,
+`muc4/counterfactual-lunarlander-log.txt`.
+
+## 7. Kết luận trung thực (cập nhật sau nhóm 2)
+
+- Code gốc **không bao giờ** chạy được `counterfactual()` (thiếu
+  `self.exp`, `self.state_features`, sai kiểu `self.pi`); code sau patch
+  bước 3 vẫn giả định nhị phân.
+- Với patch bước 3 + patch đa lớp (§6.1), `counterfactual()` chạy được
+  đầu-cuối cho CartPole (6 query, 9/9 CF kiểm chứng lật) và LunarLander
+  4 action (4 query, 16/16 CF kiểm chứng lật), đều kiểm chứng bằng
+  policy gốc, không qua DiCE.
+- Giới hạn còn lại: chưa thử policy DQN của Mục 4 (chỉ heuristic/PD);
+  chưa thử PongDuel; DiCE vẫn là phương pháp `random`; query LunarLander
+  chỉ lấy hàng đầu tiên của mỗi action, chưa quét nhiều hàng như CartPole.

@@ -1,0 +1,37 @@
+seed=0 episodes=1000 env=LunarLander-v3 torch=2.15.0+cpu device=cpu
+env dims: state_dim=8 action_dim=4
+ep    1 reward= -181.7 mean_last100=-181.7 eps=1.000 loss=nan elapsed=0s
+  [periodic eval ep 50] greedy 50ep: mean=-243.08 std=112.39 min=-548 max=-61 NEW BEST (best so far: -243.08 @ ep 50)
+ep   50 reward=  -82.6 mean_last100=-186.9 eps=0.926 loss=39.0550 elapsed=33s
+  [periodic eval ep 100] greedy 50ep: mean=-190.51 std=91.80 min=-349 max=-53 NEW BEST (best so far: -190.51 @ ep 100)
+ep  100 reward=  -90.5 mean_last100=-163.1 eps=0.851 loss=20.9942 elapsed=79s
+  [periodic eval ep 150] greedy 50ep: mean=-75.64 std=30.03 min=-132 max=-0 NEW BEST (best so far: -75.64 @ ep 150)
+ep  150 reward= -131.0 mean_last100=-126.2 eps=0.775 loss=17.8826 elapsed=123s
+  [periodic eval ep 200] greedy 50ep: mean=-102.93 std=110.34 min=-403 max=242  (best so far: -75.64 @ ep 150)
+ep  200 reward=   -6.0 mean_last100= -94.6 eps=0.700 loss=8.2073 elapsed=168s
+  [periodic eval ep 250] greedy 50ep: mean=-214.75 std=45.26 min=-312 max=-92  (best so far: -75.64 @ ep 150)
+ep  250 reward= -170.4 mean_last100= -74.4 eps=0.625 loss=12.2278 elapsed=216s
+  [periodic eval ep 300] greedy 50ep: mean=-199.65 std=115.20 min=-532 max=-14  (best so far: -75.64 @ ep 150)
+ep  300 reward=  -42.5 mean_last100= -56.6 eps=0.549 loss=11.8937 elapsed=278s
+  [periodic eval ep 350] greedy 50ep: mean=-136.18 std=106.30 min=-465 max=93  (best so far: -75.64 @ ep 150)
+ep  350 reward=  -80.6 mean_last100= -42.2 eps=0.474 loss=8.6288 elapsed=351s
+  [periodic eval ep 400] greedy 50ep: mean=-98.27 std=119.32 min=-340 max=203  (best so far: -75.64 @ ep 150)
+ep  400 reward= -190.6 mean_last100= -36.1 eps=0.398 loss=9.4099 elapsed=476s
+  [periodic eval ep 450] greedy 50ep: mean=-124.15 std=77.88 min=-269 max=10  (best so far: -75.64 @ ep 150)
+ep  450 reward=  -25.9 mean_last100= -14.5 eps=0.323 loss=10.6979 elapsed=681s
+  [periodic eval ep 500] greedy 50ep: mean=-54.23 std=44.14 min=-180 max=-10 NEW BEST (best so far: -54.23 @ ep 500)
+ep  500 reward=   69.0 mean_last100=  16.9 eps=0.248 loss=7.7308 elapsed=970s
+  [periodic eval ep 550] greedy 50ep: mean=-52.35 std=75.17 min=-252 max=103 NEW BEST (best so far: -52.35 @ ep 550)
+ep  550 reward=  258.2 mean_last100=  29.8 eps=0.172 loss=4.5397 elapsed=1296s
+  [periodic eval ep 600] greedy 50ep: mean=-13.58 std=16.78 min=-49 max=20 NEW BEST (best so far: -13.58 @ ep 600)
+ep  600 reward=   17.5 mean_last100=  16.8 eps=0.097 loss=5.9796 elapsed=1658s
+  [periodic eval ep 650] greedy 50ep: mean=195.11 std=45.05 min=41 max=265 NEW BEST (best so far: 195.11 @ ep 650)
+ep  650 reward=  203.1 mean_last100=  17.0 eps=0.022 loss=4.2271 elapsed=1989s
+  [periodic eval ep 700] greedy 50ep: mean=-34.11 std=115.04 min=-459 max=169  (best so far: 195.11 @ ep 650)
+ep  700 reward=  116.1 mean_last100=  34.0 eps=0.020 loss=5.0755 elapsed=2348s
+  [periodic eval ep 750] greedy 50ep: mean=133.46 std=94.64 min=-119 max=282  (best so far: 195.11 @ ep 650)
+ep  750 reward=  173.5 mean_last100=  75.4 eps=0.020 loss=11.4033 elapsed=2644s
+  [periodic eval ep 800] greedy 50ep: mean=121.73 std=151.58 min=-249 max=275  (best so far: 195.11 @ ep 650)
+ep  800 reward=  -62.1 mean_last100= 135.7 eps=0.020 loss=17.5806 elapsed=2845s
+  [periodic eval ep 850] greedy 50ep: mean=228.54 std=58.98 min=-60 max=308 NEW BEST (best so far: 228.54 @ ep 850)
+ep  850 reward=  286.2 mean_last100= 160.7 eps=0.020 loss=17.9385 elapsed=3008s

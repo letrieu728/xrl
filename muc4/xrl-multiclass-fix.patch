@@ -1,0 +1,62 @@
+--- a/cxrl/lib/xrl/xrl.py
++++ b/cxrl/lib/xrl/xrl.py
+@@ -12,25 +12,37 @@
+ class DummySklearn:
+     """ Class which makes a policy function look like a sklearn model. """
+ 
+-    def __init__(self, pi):
+-        """ Constructor for the DummySklearn class. """
++    def __init__(self, pi, n_classes=2):
++        """ Constructor for the DummySklearn class.
++
++        --- FIX (Group 2, 2026-11-12): the authors' version hard-coded a
++        2-column predict_proba ([[1-a, a]]), which is only valid for
++        binary policies (CartPole). For multi-class policies
++        (LunarLander, 4 actions) DiCE needs one probability column per
++        class. n_classes defaults to 2, so binary behaviour is exactly
++        unchanged (one-hot over 2 classes == [[1-a, a]]).
++        """
+         self.pi = pi
++        self.n_classes = int(n_classes)
+ 
+     def predict_proba(self, X):
+-        """ Predict probability of action 
++        """ Predict probability of action
+         (i.e. 1 for the action taken and 0 o.w.)
+ 
+         Args:
+             X: States to "predict" action on.
+-        
++
+         Returns:
+-            A vector for each state where which contains 1 
+-        for the action taken and 0 o.w.
++            One-hot rows with n_classes columns: 1 in the column of the
++            action taken, 0 elsewhere.
+         """
+         X = convert_and_expand(X).astype(float)
+-        
+-        actions = [self.pi(state_v) for state_v in X]        
+-        return np.array([[1.-a, a] for a in actions])
++
++        actions = [self.pi(state_v) for state_v in X]
++        proba = np.zeros((len(actions), self.n_classes), dtype=float)
++        for i, a in enumerate(actions):
++            proba[i, int(a)] = 1.0
++        return proba
+         
+     def predict(self, X):
+         """ Returns the predicted action for each state. """        
+@@ -61,7 +73,11 @@
+         # DummySklearn (defined above, shipped by the authors) wraps the
+         # policy with the sklearn predict/predict_proba API that both
+         # __simplify_counterfactuals and DiCE require.
+-        self.pi = DummySklearn(pi)
++        # --- FIX (Group 2, 2026-11-12): pass the action-space size so
++        # DummySklearn returns one probability column per class
++        # (binary default preserved when the space is not Discrete).
++        _n_classes = getattr(getattr(env, "action_space", None), "n", 2)
++        self.pi = DummySklearn(pi, n_classes=_n_classes)
+ 
+         # infer the causal network form the environment
+         self.causalG, self.scm, self.replay_buffer = infer_from_env(self.env, pi=pi, repr_names=repr_names, **kwargs)

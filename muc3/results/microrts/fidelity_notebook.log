@@ -1,0 +1,7 @@
+action global causes: ['heavy2'] status=ok
+A pairs=2832  B rows=3200  total transitions=4924
+[A_next_action_notebook_style] candidates=2832 notebook-valid=0 (0.000) screen=0.2s
+[A_next_action_notebook_style] ABORT: too few valid rows for a 60/40 split
+[B_same_row_state_to_action] candidates=3200 notebook-valid=0 (0.000) screen=0.2s
+[B_same_row_state_to_action] ABORT: too few valid rows for a 60/40 split
+FIDELITY DONE -> /home/hatch/workspace/step3-scratch/group2/microrts100/fidelity.json

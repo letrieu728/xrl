@@ -1,0 +1,23 @@
+--- a/cxrl_microRTS/app.py
++++ b/cxrl_microRTS/app.py
+@@ -25,7 +25,19 @@
+ 
+ @app.route('/get_board_state', methods=['GET'])
+ def get_board_state():
+-    rl_agent = RLAgent()
++    # --- FIX (Group 2, 2026-11-12): the original code called RLAgent()
++    # with no arguments, but RLAgent.__init__ requires obs_, rawobs_ and
++    # mappath_ -> TypeError 500 on every call (step-3 finding). Construct
++    # the agent on the shipped basesWorkers16x16 map (the same map the
++    # trajectory collection uses) and reset the env once so rawobs holds
++    # a REAL initial board; get_*_raw() then read that board. No library
++    # code is changed; only this route's construction call.
++    rl_agent = RLAgent(obs_=torch.Tensor(np.zeros((1, 16, 16, 27))),
++                       rawobs_=np.zeros((5, 16, 16), dtype=int),
++                       mappath_="maps/16x16/basesWorkers16x16.xml")
++    _init_obs, raw_obs_ext = rl_agent.envs.reset()
++    rl_agent.obs = torch.Tensor(_init_obs)
++    rl_agent.rawobs = np.squeeze(raw_obs_ext)
+     utt = rl_agent.get_utt_raw()
+     uot = rl_agent.get_uot_raw()
+     urt = rl_agent.get_urt_raw()

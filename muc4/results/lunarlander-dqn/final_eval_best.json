@@ -1,0 +1,20 @@
+{
+  "checkpoint": "best_checkpoint.pt",
+  "best_eval_episode": 850,
+  "periodic_best_eval": {
+    "n": 50,
+    "mean": 228.5428156224153,
+    "std": 58.97606949926013,
+    "min": -60.37554300541697,
+    "max": 308.3542001013347
+  },
+  "final_eval_100ep": {
+    "n": 100,
+    "mean": 222.03340358957288,
+    "std": 69.29493899740132,
+    "min": -60.37554300541697,
+    "max": 308.3542001013347
+  },
+  "eval_protocol": "greedy, 100 episodes, fresh env seeds 10000..10099, same evaluate() as train_dqn_lunarlander.py",
+  "training_status": "INTERRUPTED by VM restart at episode 873/1000 (last training_log row 2026-11-12T09:52:57Z); final-net eval unavailable (last-episode net was never saved)"
+}

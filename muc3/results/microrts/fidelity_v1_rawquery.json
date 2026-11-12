@@ -1,0 +1,45 @@
+{
+  "n_transitions": 4924,
+  "episodes": 100,
+  "n_acted_transitions": 3200,
+  "action_label_dist_all": {
+    "-1": 1724,
+    "0": 2002,
+    "1": 575,
+    "2": 6,
+    "3": 1,
+    "4": 614,
+    "5": 2
+  },
+  "action_target_status": "ok",
+  "global_causes_action": [
+    "heavy2"
+  ],
+  "num_cols_action": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    8,
+    11,
+    12,
+    13
+  ],
+  "construction_A": {
+    "construction": "A_next_action_notebook_style",
+    "n_candidate": 2832,
+    "screen_time_s": 0.2,
+    "n_valid": 0,
+    "valid_fraction": 0.0,
+    "error": "too few valid rows for a 60/40 split"
+  },
+  "construction_B": {
+    "construction": "B_same_row_state_to_action",
+    "n_candidate": 3200,
+    "screen_time_s": 0.2,
+    "n_valid": 0,
+    "valid_fraction": 0.0,
+    "error": "too few valid rows for a 60/40 split"
+  }
+}
