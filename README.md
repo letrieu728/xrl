@@ -60,6 +60,16 @@ chỉ có 8 người (8/8 so với 4/8 ở bài dự đoán hành vi với SHAP)
   `muc3/results/baselines_recomputed.md`); BART không chạy lại.
 - **Mục 4 — Mở rộng (xem `muc4/results/REPORT.md`)** — Hướng D (train agent
   RL thật) là chính, Hướng A (ablation) là dự phòng.
+- **So sánh tất cả con số tác giả vs nhóm** — xem
+  `SO-SANH-TAC-GIA-VS-NHOM.md` (bảng đầy đủ theo từng môi trường + hạng
+  mục, mỗi số kèm nguồn và caveat; 3 biểu đồ vẽ bằng
+  `muc4/results/so-sanh/ve_bieu_do_so_sanh.py`, ảnh PNG ở thư mục Drive
+  dưới đây vì GitHub không nhận file nhị phân qua connector).
+- **File nhị phân (ảnh, checkpoint, PDF)** — toàn bộ file nhị phân của
+  repo nằm ở thư mục Drive
+  [XRL - file nhi phan](https://drive.google.com/drive/folders/1rK_Br_Kj3Dr-OZb8c5V2AgJeUW8bx_ea)
+  (cùng cấu trúc thư mục với repo: `muc4/results/ablation-bart/graphs/`
+  có 6 ảnh đồ thị BART, `muc4/results/so-sanh/` có 3 biểu đồ so sánh).
 
 ## Kết quả chính đã kiểm chứng (Mục 3)
 
@@ -141,6 +151,7 @@ seed 0: DT/LR dự đoán action 0,978–0,989. **hte ổn định từ 100 epis
 XRL/
 ├── README.md                  # file này
 ├── THUYET-TRINH.md            # bản thông tin dùng trong thuyết trình (15–20 phút)
+├── SO-SANH-TAC-GIA-VS-NHOM.md # bảng so sánh tất cả con số tác giả vs nhóm + link biểu đồ
 ├── paper/
 │   └── CausalXRL-2610.42028.pdf        # PDF gốc của tác giả
 ├── ban-dich/
@@ -161,7 +172,9 @@ XRL/
     └── results/
         ├── REPORT.md          # báo cáo tổng hợp Mục 4 (đọc file này trước)
         ├── cartpole-dqn/      # checkpoint run 9 (eval 500/500) + log + CSV + ảnh
-        ├── ablation/          # bảng + ảnh đồ thị (surrogate)
+        ├── ablation/          # bảng + ảnh đồ thị (surrogate — đã thay thế)
+        ├── ablation-bart/     # ablation + sensitivity bằng BART thật (ảnh đồ thị trên Drive)
+        ├── so-sanh/           # script vẽ 3 biểu đồ so sánh (ảnh PNG trên Drive)
         ├── xrl-trained-vs-heuristic/        # bảng so sánh mới (checkpoint run 9)
         └── xrl-trained-vs-heuristic-run5/   # bảng cũ lưu trữ (checkpoint run 5)
 ```
@@ -207,12 +220,16 @@ python muc4/scripts/run_ablation.py
 ## Phạm vi trung thực — đọc trước khi trích số
 
 - Số của **tác giả** (Table 1, 8 chuyên gia, MicroRTS-Lite) chỉ trích từ paper
-  arXiv:2610.42028v1, ghi rõ nguồn. Nhóm **không** chạy MicroRTS (thiếu dữ
-  liệu, repo import `stratvis` sót) và **không** làm human study.
+  arXiv:2610.42028v1, ghi rõ nguồn. Nhóm **không** làm human study và
+  **không** có số fidelity MicroRTS theo Table 1; MicroRTS chỉ chạy tối
+  thiểu (env + dashboard một phần + đồ thị 10 episode, xem
+  `muc3/microRTS-thu-nghiem.md`).
 - Số của **nhóm** là số chạy thật, có log/CSV/checkpoint kèm theo. Số BART
   dao động ±1–2 cạnh giữa các lần chạy.
-- Ablation dùng **surrogate RandomForest, không phải BART** — không được ghi
-  thành số CausalXRL/BART.
+- Ablation **lần đầu** dùng **surrogate RandomForest, không phải BART** —
+  không được ghi thành số CausalXRL/BART. Ablation đã chạy lại bằng BART
+  thật ở `muc4/results/ablation-bart/` (xem REPORT.md); số chốt là số
+  BART thật, số surrogate chỉ giữ làm lịch sử.
 - Repo tác giả **không train agent RL**; policy trong notebook của tác giả là
   heuristic viết tay. Agent DQN trong repo này là do nhóm train thêm (Hướng D,
   Mục 4 — mở rộng, không phải tái hiện).
