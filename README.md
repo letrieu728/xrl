@@ -9,7 +9,7 @@ University), arXiv:2610.42028v1, ICML 2026.
 Repo gốc của tác giả: <https://github.com/yanmluk/causal-xrl> (commit
 `ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162`, MIT).
 
-> Repo này là **private**. Mọi số liệu trong README này đều là số nhóm chạy
+> Mọi số liệu trong README này đều là số nhóm chạy
 > thật, có log/CSV/checkpoint kèm theo trong repo hoặc trong thư mục Drive
 > dưới đây. Số của tác giả luôn được ghi rõ nguồn và chỉ dùng để đối chiếu.
 
