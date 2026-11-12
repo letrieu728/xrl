@@ -1,0 +1,14 @@
+{
+  "target_index": 9,
+  "target": "dir_NE1",
+  "causes": [
+    "dir_NE1",
+    "dir_NE2"
+  ],
+  "cause_indices": [
+    9,
+    19
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "elapsed_seconds": 1344.4788418000098
+}

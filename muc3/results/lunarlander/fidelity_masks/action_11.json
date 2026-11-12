@@ -1,0 +1,20 @@
+{
+  "action_index": 11,
+  "action": "fire_right_engine",
+  "global_causes": [
+    "vx",
+    "angle",
+    "angular_velocity",
+    "fire_main_engine",
+    "fire_right_engine"
+  ],
+  "global_cause_indices": [
+    2,
+    4,
+    5,
+    10,
+    11
+  ],
+  "samples_with_more_than_one_nonself_local_cause": 844,
+  "elapsed_seconds": 60.03531760000624
+}

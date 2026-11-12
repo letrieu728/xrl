@@ -1,0 +1,16 @@
+{
+  "target_index": 5,
+  "target": "dir_W1",
+  "causes": [
+    "dir_W1",
+    "dir_W2",
+    "encoded_action"
+  ],
+  "cause_indices": [
+    5,
+    15,
+    20
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "elapsed_seconds": 3607.784514799947
+}

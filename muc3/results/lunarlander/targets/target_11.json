@@ -1,0 +1,21 @@
+{
+  "target_index": 11,
+  "target": "fire_right_engine",
+  "causes": [
+    "vx",
+    "vy",
+    "angle",
+    "angular_velocity",
+    "fire_right_engine"
+  ],
+  "cause_indices": [
+    2,
+    3,
+    4,
+    5,
+    11
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "one_hot_actions": true,
+  "elapsed_seconds": 102.92783330008388
+}

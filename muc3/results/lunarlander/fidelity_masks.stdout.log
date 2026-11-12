@@ -1,0 +1,102 @@
+{
+  "action_index": 8,
+  "action": "do_nothing",
+  "global_causes": [
+    "vy",
+    "left_contact",
+    "right_contact",
+    "do_nothing",
+    "fire_main_engine"
+  ],
+  "global_cause_indices": [
+    3,
+    6,
+    7,
+    8,
+    10
+  ],
+  "samples_with_more_than_one_nonself_local_cause": 7362,
+  "elapsed_seconds": 48.30216019996442
+}
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+{
+  "action_index": 9,
+  "action": "fire_left_engine",
+  "global_causes": [
+    "vy",
+    "angle",
+    "angular_velocity",
+    "fire_left_engine",
+    "fire_main_engine"
+  ],
+  "global_cause_indices": [
+    3,
+    4,
+    5,
+    9,
+    10
+  ],
+  "samples_with_more_than_one_nonself_local_cause": 2205,
+  "elapsed_seconds": 43.965148200048134
+}
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+{
+  "action_index": 10,
+  "action": "fire_main_engine",
+  "global_causes": [
+    "x",
+    "y",
+    "vy",
+    "left_contact",
+    "right_contact",
+    "fire_main_engine"
+  ],
+  "global_cause_indices": [
+    0,
+    1,
+    3,
+    6,
+    7,
+    10
+  ],
+  "samples_with_more_than_one_nonself_local_cause": 7381,
+  "elapsed_seconds": 48.89954030001536
+}
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+{
+  "action_index": 11,
+  "action": "fire_right_engine",
+  "global_causes": [
+    "vx",
+    "angle",
+    "angular_velocity",
+    "fire_main_engine",
+    "fire_right_engine"
+  ],
+  "global_cause_indices": [
+    2,
+    4,
+    5,
+    10,
+    11
+  ],
+  "samples_with_more_than_one_nonself_local_cause": 844,
+  "elapsed_seconds": 60.03531760000624
+}
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 

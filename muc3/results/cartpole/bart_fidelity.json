@@ -1,0 +1,13 @@
+{
+  "environment": "CartPole-v0",
+  "method": "repository local BART weighted-treatment fidelity logic",
+  "valid_local_action_samples": 6114,
+  "test_samples": 2446,
+  "action_global_causes": [
+    "cart_position",
+    "pole_angle",
+    "push"
+  ],
+  "accuracy": 0.9161896974652494,
+  "f1": 0.9150435142975549
+}

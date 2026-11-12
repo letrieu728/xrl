@@ -1,0 +1,14 @@
+{
+  "target_index": 2,
+  "target": "pole_angle",
+  "causes": [
+    "cart_velocity",
+    "pole_angle"
+  ],
+  "cause_indices": [
+    1,
+    2
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "elapsed_seconds": 49.17861600010656
+}

@@ -1,0 +1,15 @@
+{
+  "target_index": 2,
+  "target": "vx",
+  "causes": [
+    "vx",
+    "angle"
+  ],
+  "cause_indices": [
+    2,
+    4
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "one_hot_actions": true,
+  "elapsed_seconds": 49.39886540011503
+}

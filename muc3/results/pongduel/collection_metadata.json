@@ -1,0 +1,8 @@
+{
+  "environment": "PongDuel-v0",
+  "seed": 99,
+  "episodes": 200,
+  "policy": "repository notebook strong/weak heuristic joint policy",
+  "transitions": 74445,
+  "episode_length_mean": 373.225
+}

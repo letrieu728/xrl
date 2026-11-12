@@ -1,0 +1,10 @@
+{
+  "environment": "CartPole-v0",
+  "seed": 99,
+  "episodes": 200,
+  "policy": "repository notebook hand-written linear rule",
+  "transitions": 6115,
+  "episode_length_mean": 31.575,
+  "episode_length_min": 11,
+  "episode_length_max": 59
+}

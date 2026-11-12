@@ -1,0 +1,13 @@
+{
+  "target_index": 5,
+  "target": "angular_velocity",
+  "causes": [
+    "angular_velocity"
+  ],
+  "cause_indices": [
+    5
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "one_hot_actions": true,
+  "elapsed_seconds": 88.67394429980777
+}

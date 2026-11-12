@@ -1,0 +1,16 @@
+{
+  "target_index": 14,
+  "target": "dir_NW2",
+  "causes": [
+    "ball_col1",
+    "dir_NW1",
+    "ball_col2"
+  ],
+  "cause_indices": [
+    3,
+    4,
+    13
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "elapsed_seconds": 2014.5137696000747
+}

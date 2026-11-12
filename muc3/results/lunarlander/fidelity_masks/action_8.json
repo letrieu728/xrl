@@ -1,0 +1,20 @@
+{
+  "action_index": 8,
+  "action": "do_nothing",
+  "global_causes": [
+    "vy",
+    "left_contact",
+    "right_contact",
+    "do_nothing",
+    "fire_main_engine"
+  ],
+  "global_cause_indices": [
+    3,
+    6,
+    7,
+    8,
+    10
+  ],
+  "samples_with_more_than_one_nonself_local_cause": 7362,
+  "elapsed_seconds": 48.30216019996442
+}

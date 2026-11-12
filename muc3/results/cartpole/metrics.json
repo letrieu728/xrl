@@ -1,0 +1,100 @@
+{
+  "environment": "CartPole-v0",
+  "seed": 99,
+  "episodes": 200,
+  "evaluation_scope": "heuristic-policy evaluation only; no RL training",
+  "baselines": {
+    "logistic_regression": {
+      "accuracy": 0.9076042518397384,
+      "f1": 0.9043183742591024
+    },
+    "decision_tree": {
+      "accuracy": 0.982011447260834,
+      "f1": 0.981574539363484
+    }
+  },
+  "structure_seconds": {
+    "bart_hte_isolated_target_sum": 242.1864874002058,
+    "pc_fisherz_wall_clock": 0.07641829992644489,
+    "fci_fisherz_wall_clock": 0.06145859998650849
+  },
+  "bart_targets": [
+    {
+      "target_index": 0,
+      "target": "cart_position",
+      "causes": [
+        "cart_position",
+        "cart_velocity",
+        "pole_angle"
+      ],
+      "cause_indices": [
+        0,
+        1,
+        2
+      ],
+      "method": "BART heterogeneous treatment effects",
+      "elapsed_seconds": 51.1255634999834
+    },
+    {
+      "target_index": 1,
+      "target": "cart_velocity",
+      "causes": [
+        "cart_velocity",
+        "push"
+      ],
+      "cause_indices": [
+        1,
+        4
+      ],
+      "method": "BART heterogeneous treatment effects",
+      "elapsed_seconds": 43.01283360016532
+    },
+    {
+      "target_index": 2,
+      "target": "pole_angle",
+      "causes": [
+        "cart_velocity",
+        "pole_angle"
+      ],
+      "cause_indices": [
+        1,
+        2
+      ],
+      "method": "BART heterogeneous treatment effects",
+      "elapsed_seconds": 49.17861600010656
+    },
+    {
+      "target_index": 3,
+      "target": "pole_velocity",
+      "causes": [
+        "pole_angle",
+        "pole_velocity",
+        "push"
+      ],
+      "cause_indices": [
+        2,
+        3,
+        4
+      ],
+      "method": "BART heterogeneous treatment effects",
+      "elapsed_seconds": 47.520942999981344
+    },
+    {
+      "target_index": 4,
+      "target": "push",
+      "causes": [
+        "cart_position",
+        "pole_angle",
+        "push"
+      ],
+      "cause_indices": [
+        0,
+        2,
+        4
+      ],
+      "method": "BART heterogeneous treatment effects",
+      "elapsed_seconds": 51.34853129996918
+    }
+  ],
+  "timing_note": "BART is the sum of five isolated fresh Python/R processes. PC/FCI are full algorithm wall-clock times on the same replay; they are not the paper's simulated CI-test timer."
+}

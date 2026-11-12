@@ -1,0 +1,9 @@
+{
+  "environment": "LunarLander-v2",
+  "method": "repository local BART weighted-treatment fidelity logic, isolated per action",
+  "valid_local_action_samples": 7381,
+  "test_samples": 2953,
+  "accuracy": 0.8279715543515069,
+  "f1_macro": 0.6409663108209958,
+  "note": "Each one-vs-rest action score was computed in a separate Python/R process; rows without an active local cause use that action's test-set class prior."
+}

@@ -1,0 +1,10 @@
+{
+  "environment": "LunarLander-v2",
+  "seed": 99,
+  "episodes": 30,
+  "policy": "repository notebook hand-written PD controller",
+  "transitions": 7382,
+  "episode_length_mean": 247.06666666666666,
+  "episode_length_min": 169,
+  "episode_length_max": 754
+}

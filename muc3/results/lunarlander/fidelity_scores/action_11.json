@@ -1,0 +1,13 @@
+{
+  "action_index": 11,
+  "action": "fire_right_engine",
+  "global_causes": [
+    "vx",
+    "angle",
+    "angular_velocity",
+    "fire_main_engine"
+  ],
+  "valid_samples": 7381,
+  "test_samples": 2953,
+  "elapsed_seconds": 206.46085930010304
+}

@@ -1,0 +1,18 @@
+{
+  "target_index": 19,
+  "target": "dir_NE2",
+  "causes": [
+    "dir_NE1",
+    "ball_col2",
+    "dir_NE2",
+    "encoded_action"
+  ],
+  "cause_indices": [
+    9,
+    13,
+    19,
+    20
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "elapsed_seconds": 1821.52556920005
+}

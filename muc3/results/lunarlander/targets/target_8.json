@@ -1,0 +1,21 @@
+{
+  "target_index": 8,
+  "target": "do_nothing",
+  "causes": [
+    "vy",
+    "left_contact",
+    "right_contact",
+    "do_nothing",
+    "fire_main_engine"
+  ],
+  "cause_indices": [
+    3,
+    6,
+    7,
+    8,
+    10
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "one_hot_actions": true,
+  "elapsed_seconds": 111.93183299992234
+}

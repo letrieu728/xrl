@@ -1,0 +1,14 @@
+{
+  "environment": "PongDuel-v0",
+  "method": "documented numeric-action BART proxy; rounded regression output for 9 joint classes",
+  "not_exact_paper_fidelity": true,
+  "global_action_causes": [
+    0,
+    20
+  ],
+  "local_candidate_samples": 14995,
+  "test_samples": 5998,
+  "accuracy": 0.8172724241413805,
+  "f1_macro": 0.1950834997882522,
+  "elapsed_seconds": 1089.1445255000144
+}

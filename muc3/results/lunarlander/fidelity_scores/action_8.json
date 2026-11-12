@@ -1,0 +1,14 @@
+{
+  "action_index": 8,
+  "action": "do_nothing",
+  "global_causes": [
+    "vy",
+    "left_contact",
+    "right_contact",
+    "fire_left_engine",
+    "fire_main_engine"
+  ],
+  "valid_samples": 7381,
+  "test_samples": 2953,
+  "elapsed_seconds": 199.0086035998538
+}

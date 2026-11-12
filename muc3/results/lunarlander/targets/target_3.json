@@ -1,0 +1,15 @@
+{
+  "target_index": 3,
+  "target": "vy",
+  "causes": [
+    "vy",
+    "left_contact"
+  ],
+  "cause_indices": [
+    3,
+    6
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "one_hot_actions": true,
+  "elapsed_seconds": 59.363270400092006
+}

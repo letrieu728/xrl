@@ -1,0 +1,14 @@
+{
+  "target_index": 10,
+  "target": "agent2_row",
+  "causes": [
+    "agent2_row",
+    "encoded_action"
+  ],
+  "cause_indices": [
+    10,
+    20
+  ],
+  "method": "BART heterogeneous treatment effects",
+  "elapsed_seconds": 848.035652599996
+}
