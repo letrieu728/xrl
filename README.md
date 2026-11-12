@@ -50,13 +50,41 @@ chỉ có 8 người (8/8 so với 4/8 ở bài dự đoán hành vi với SHAP)
   tay), kế hoạch chấm điểm theo form Nhóm 8 / Nhóm 5.
 - **Bản dịch tiếng Việt toàn văn** — `ban-dich/causalxrl-ban-dich-bao-cao.pdf`
   (28 trang, đủ 8/8 hình, code và công thức giữ nguyên).
-- **Mục 3 — Thực nghiệm của sinh viên (evaluation-only)** — xem
-  `docs/CausalXRL-MUC3-CODEX-HANDOFF.md`. Chạy CartPole → LunarLander →
-  PongDuel, 200 episode/môi trường, CPU-only. *Trạng thái: đang chạy trên máy
-  của chủ repo (Codex); kết quả sẽ bổ sung vào repo khi xong. Trong repo này
-  chưa có số Mục 3 — đừng lấy số Table 1 của tác giả ghi thành số của nhóm.*
+- **Mục 3 — Thực nghiệm của sinh viên (evaluation-only): ĐÃ XONG** — xem
+  `muc3/EXPERIMENT_REPORT.md` (kế hoạch giao việc ở
+  `docs/CausalXRL-MUC3-CODEX-HANDOFF.md`). Chạy CartPole (200 episode) →
+  LunarLander (30 episode) → PongDuel (200 episode), seed 99, CPU-only,
+  heuristic của repo tác giả, không train RL. Số chốt ở § "Kết quả chính đã
+  kiểm chứng (Mục 3)" dưới đây. Baseline CartPole đã sửa ngày 12/11/2026 theo
+  đúng protocol notebook fidelity của tác giả (xem
+  `muc3/results/baselines_recomputed.md`); BART không chạy lại.
 - **Mục 4 — Mở rộng (xem `muc4/results/REPORT.md`)** — Hướng D (train agent
   RL thật) là chính, Hướng A (ablation) là dự phòng.
+
+## Kết quả chính đã kiểm chứng (Mục 3)
+
+Evaluation-only, seed 99, heuristic viết tay của repo tác giả (không train
+RL). Chi tiết + protocol: `muc3/EXPERIMENT_REPORT.md`. F1 so được với Table 1
+của paper: F1 nhị phân ở CartPole, weighted-F1 ở LunarLander/PongDuel
+(paper §5.2: weighted khi multiclass).
+
+| Môi trường | BART | Logistic Regression | Decision Tree |
+|---|---|---|---|
+| CartPole (200 ep) | 91,62% / F1 nhị phân 91,50% | 89,62% / 89,26% | 93,83% / 93,64% |
+| LunarLander (30 ep) | 82,80% / macro-F1 64,10% | 77,21% / weighted-F1 76,24% | 79,14% / weighted-F1 79,06% |
+| PongDuel (200 ep) | 81,73% / macro-F1 19,51% (PROXY) | 81,79% / weighted-F1 81,38% | 96,21% / weighted-F1 96,21% |
+
+- Như paper, ở CartPole Decision Tree thắng BART (93,83% so với 91,62%).
+- **LunarLander chỉ 30 episode** (theo notebook đánh giá của tác giả, vì chạy
+  đắt). BART LunarLander chỉ có macro-F1 — **chưa so được** với F1 weighted
+  86,6% của Table 1 (dự đoán từng mẫu của BART không được lưu, muốn có
+  weighted-F1 phải chạy lại BART).
+- **BART PongDuel là PROXY** (hồi quy số làm tròn 0–8, 14.995 mẫu ứng viên
+  local), không phải fidelity phân loại tương đương paper — không so với
+  90,2%/90,7% của Table 1. Baseline PongDuel là chuyển thể theo mẫu
+  CartPole/LunarLander vì tác giả không có notebook fidelity cho PongDuel.
+- Thời gian học cấu trúc BART (tổng các process riêng lẻ, không so trực tiếp
+  với paper): CartPole 242,19s; LunarLander 1.086,40s; PongDuel 35.531,20s.
 
 ## Kết quả chính đã kiểm chứng (Mục 4)
 
@@ -122,6 +150,11 @@ XRL/
 │   ├── CausalXRL-Phan-tich-ma-nguon.md # phân tích code repo thật
 │   ├── CausalXRL-KE-HOACH-CHAM-DIEM.md # kế hoạch chấm điểm (§0–§6)
 │   └── CausalXRL-MUC3-CODEX-HANDOFF.md # quy tắc giao Codex làm Mục 3
+├── muc3/                      # Mục 3 — Thực nghiệm của sinh viên
+│   ├── EXPERIMENT_REPORT.md   # báo cáo Mục 3 (đọc file này trước)
+│   ├── scripts/               # collect/metrics/BART fidelity + recompute_baselines_weighted_f1.py
+│   ├── notes/                 # lỗi đã gặp + cách fix, blocker
+│   └── results/               # replay.npz + metrics.json + bart_fidelity.json từng môi trường
 └── muc4/                      # Mục 4 — Mở rộng
     ├── scripts/               # train_dqn_cartpole.py, run_xrl_comparison.py, ...
     ├── notes/                 # lỗi đã gặp + cách fix, kiểm tra BART
@@ -183,6 +216,10 @@ python muc4/scripts/run_ablation.py
 - Repo tác giả **không train agent RL**; policy trong notebook của tác giả là
   heuristic viết tay. Agent DQN trong repo này là do nhóm train thêm (Hướng D,
   Mục 4 — mở rộng, không phải tái hiện).
+- Baseline CartPole cũ trong `muc3/results/cartpole/metrics.json` đo task khác
+  với notebook của tác giả (state_t → action_t) — đã sửa ngày 12/11/2026, số
+  chốt theo protocol notebook ở `muc3/EXPERIMENT_REPORT.md`; file
+  `metrics.json` cũ giữ nguyên làm lịch sử.
 
 ## File đã bỏ qua khi đưa lên repo (và lý do)
 

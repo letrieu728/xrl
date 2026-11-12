@@ -71,13 +71,31 @@ Nói đúng như tác giả viết:
 
 Phạm vi: **evaluation-only, không huấn luyện RL**. Repo tác giả không có code
 train agent; policy trong notebook là heuristic viết tay. Chạy theo thứ tự
-CartPole → LunarLander → PongDuel, 200 episode/môi trường, CPU-only.
+CartPole (200 episode) → LunarLander (30 episode, theo notebook đánh giá của
+tác giả) → PongDuel (200 episode), seed 99, CPU-only. Chi tiết:
+`muc3/EXPERIMENT_REPORT.md`. Không làm MicroRTS (thiếu dữ liệu, README ghi
+liên hệ tác giả; import `stratvis` sót trong repo).
 
-> **Trạng thái khi viết bản này: Mục 3 đang chạy (Codex), chưa có số chốt
-> trong repo.** Phần này trình bày theo kế hoạch, thay số thật vào khi Codex
-> xong — hiện tại chỉ dùng số Table 1 của tác giả ở §3, không ghi số tác giả
-> thành số của nhóm. Không làm MicroRTS (thiếu dữ liệu, README ghi liên hệ
-> tác giả; import `stratvis` sót trong repo).
+Số chốt của nhóm (accuracy / F1 so được với Table 1 — F1 nhị phân ở CartPole,
+weighted-F1 ở LunarLander/PongDuel; baseline CartPole đã sửa ngày 12/11/2026
+theo đúng protocol notebook fidelity của tác giả):
+
+| Môi trường | BART | Logistic Regression | Decision Tree |
+|---|---|---|---|
+| CartPole | 91,62% / 91,50% | 89,62% / 89,26% | 93,83% / 93,64% |
+| LunarLander | 82,80% / macro-F1 64,10% | 77,21% / 76,24% | 79,14% / 79,06% |
+| PongDuel | 81,73% / macro-F1 19,51% (PROXY) | 81,79% / 81,38% | 96,21% / 96,21% |
+
+Nói thẳng 3 caveat:
+
+- CartPole: Decision Tree thắng BART (93,83% so với 91,62%) — **giống paper**
+  (94,1% so với 91,4%), không phải lỗi của nhóm.
+- LunarLander: BART chỉ có macro-F1 64,10% — **đừng so** với F1 weighted
+  86,6% của Table 1, vì khác định nghĩa F1 (dự đoán từng mẫu của BART không
+  được lưu). Chỉ so accuracy: 82,80% so với 88,7%.
+- PongDuel: số BART là **proxy** (hồi quy số làm tròn, 14.995 mẫu ứng viên
+  local), không phải fidelity phân loại tương đương paper — đừng so với
+  90,2%/90,7% của Table 1.
 
 ## 5. Mở rộng của nhóm — Mục 4, Hướng D (5 phút — phần hay nhất)
 

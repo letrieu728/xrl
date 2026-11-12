@@ -1,0 +1,884 @@
+{
+  "title": "Mục 3 baselines recomputed under the authors' fidelity-notebook protocol",
+  "date": "2026-11-12",
+  "correction": "CartPole baselines in metrics.json measured states->action_t (20%/seed 99). Recomputed as [state_t, action_t]->action_{t+1} (40%/seed 10, notebook protocol). LunarLander/PongDuel gain weighted-F1 alongside macro-F1. BART NOT rerun.",
+  "author_repo": "https://github.com/yanmluk/causal-xrl",
+  "author_commit": "ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162",
+  "paper": "arXiv:2610.42028v1, Table 1 and section 5.2 (F1 weighted if multiclass)",
+  "environment_versions": {
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4"
+  },
+  "script": "muc3/scripts/recompute_baselines_weighted_f1.py",
+  "environments": {
+    "cartpole": {
+      "environment": "CartPole-v0",
+      "collection": {
+        "environment": "CartPole-v0",
+        "seed": 99,
+        "episodes": 200,
+        "policy": "repository notebook hand-written linear rule",
+        "transitions": 6115,
+        "episode_length_mean": 31.575,
+        "episode_length_min": 11,
+        "episode_length_max": 59
+      },
+      "replay_file": {
+        "path": "muc3/results/cartpole/replay.npz",
+        "bytes": 219083,
+        "sha256": "da5e73d17dc3ce749273e7c7f75a2b42f9183b63ed6c4f8f8a7c756a5fa89f09",
+        "keys": {
+          "states": {
+            "shape": [
+              6115,
+              4
+            ],
+            "dtype": "float64"
+          },
+          "actions": {
+            "shape": [
+              6115
+            ],
+            "dtype": "float64"
+          },
+          "rewards": {
+            "shape": [
+              6115
+            ],
+            "dtype": "float64"
+          },
+          "next_states": {
+            "shape": [
+              6115,
+              4
+            ],
+            "dtype": "float64"
+          }
+        },
+        "transitions": 6115,
+        "action_counts_all_rows": {
+          "0": 3139,
+          "1": 2976
+        }
+      },
+      "features": [
+        "cart_position",
+        "cart_velocity",
+        "pole_angle",
+        "pole_velocity",
+        "push"
+      ],
+      "task": "features at t (including action at t) -> action at t+1",
+      "valid_steps": {
+        "candidates": 6114,
+        "used": 6114,
+        "source": "all t -> t+1 candidate pairs; bart_fidelity.json reports 6114 valid samples, equal to the candidate count 6114",
+        "bart_valid_count_equals_candidate_count": true,
+        "bart_fidelity_valid_samples": 6114,
+        "bart_fidelity_test_samples": 2446
+      },
+      "models": {
+        "logistic_regression": {
+          "class": "LogisticRegression",
+          "random_state": 1
+        },
+        "decision_tree": {
+          "class": "DecisionTreeClassifier",
+          "random_state": 1
+        }
+      },
+      "primary": {
+        "label": "notebook protocol",
+        "split": {
+          "test_size": 0.4,
+          "random_state": 10
+        },
+        "n_eval": 6114,
+        "n_train": 3668,
+        "n_test": 2446,
+        "train_label_counts": {
+          "0": 1890,
+          "1": 1778
+        },
+        "test_label_counts": {
+          "0": 1249,
+          "1": 1197
+        },
+        "logistic_regression": {
+          "accuracy": 0.8961569910057237,
+          "f1_weighted": 0.8961142457588966,
+          "f1_macro": 0.8960401539977296,
+          "per_class": [
+            {
+              "label": 0,
+              "precision": 0.8889757623143081,
+              "recall": 0.910328262610088,
+              "f1": 0.8995253164556962,
+              "support": 1249
+            },
+            {
+              "label": 1,
+              "precision": 0.9040274207369323,
+              "recall": 0.8813700918964077,
+              "f1": 0.8925549915397631,
+              "support": 1197
+            }
+          ],
+          "warnings": [],
+          "f1_binary": 0.8925549915397631,
+          "n_iter": [
+            24
+          ],
+          "max_iter": 100
+        },
+        "decision_tree": {
+          "accuracy": 0.9382665576451349,
+          "f1_weighted": 0.9382526265385568,
+          "f1_macro": 0.9382144992995003,
+          "per_class": [
+            {
+              "label": 0,
+              "precision": 0.9329652996845426,
+              "recall": 0.9471577261809447,
+              "f1": 0.9400079459674215,
+              "support": 1249
+            },
+            {
+              "label": 1,
+              "precision": 0.9439728353140917,
+              "recall": 0.9289891395154553,
+              "f1": 0.9364210526315789,
+              "support": 1197
+            }
+          ],
+          "warnings": [],
+          "f1_binary": 0.9364210526315789
+        }
+      },
+      "variants": {
+        "stratified_same_split_as_bart_fidelity": {
+          "label": "stratified_same_split_as_bart_fidelity",
+          "split": {
+            "test_size": 0.4,
+            "random_state": 10,
+            "stratify": "labels"
+          },
+          "n_eval": 6114,
+          "n_train": 3668,
+          "n_test": 2446,
+          "train_label_counts": {
+            "0": 1883,
+            "1": 1785
+          },
+          "test_label_counts": {
+            "0": 1256,
+            "1": 1190
+          },
+          "logistic_regression": {
+            "accuracy": 0.9043336058871627,
+            "f1_weighted": 0.9043439724128124,
+            "f1_macro": 0.9042869565217391,
+            "per_class": [
+              {
+                "label": 0,
+                "precision": 0.9107717041800643,
+                "recall": 0.9020700636942676,
+                "f1": 0.9064,
+                "support": 1256
+              },
+              {
+                "label": 1,
+                "precision": 0.8976705490848585,
+                "recall": 0.9067226890756303,
+                "f1": 0.9021739130434783,
+                "support": 1190
+              }
+            ],
+            "warnings": [],
+            "f1_binary": 0.9021739130434783,
+            "n_iter": [
+              22
+            ],
+            "max_iter": 100
+          },
+          "decision_tree": {
+            "accuracy": 0.9542109566639412,
+            "f1_weighted": 0.9542159184198077,
+            "f1_macro": 0.9541886287625418,
+            "per_class": [
+              {
+                "label": 0,
+                "precision": 0.9598070739549839,
+                "recall": 0.9506369426751592,
+                "f1": 0.9552,
+                "support": 1256
+              },
+              {
+                "label": 1,
+                "precision": 0.9484193011647255,
+                "recall": 0.957983193277311,
+                "f1": 0.9531772575250836,
+                "support": 1190
+              }
+            ],
+            "warnings": [],
+            "f1_binary": 0.9531772575250836
+          }
+        }
+      },
+      "old_baselines_from_metrics_json": {
+        "logistic_regression": {
+          "accuracy": 0.9076042518397384,
+          "f1": 0.9043183742591024
+        },
+        "decision_tree": {
+          "accuracy": 0.982011447260834,
+          "f1": 0.981574539363484
+        }
+      },
+      "bart_fidelity_from_json_not_recomputed": {
+        "environment": "CartPole-v0",
+        "method": "repository local BART weighted-treatment fidelity logic",
+        "valid_local_action_samples": 6114,
+        "test_samples": 2446,
+        "action_global_causes": [
+          "cart_position",
+          "pole_angle",
+          "push"
+        ],
+        "accuracy": 0.9161896974652494,
+        "f1": 0.9150435142975549
+      },
+      "paper_table_1": {
+        "linear_model": {
+          "accuracy": 0.885,
+          "f1": 0.9
+        },
+        "decision_tree": {
+          "accuracy": 0.941,
+          "f1": 0.946
+        },
+        "causal_xrl": {
+          "accuracy": 0.914,
+          "f1": 0.916
+        }
+      }
+    },
+    "lunarlander": {
+      "environment": "LunarLander-v2",
+      "collection": {
+        "environment": "LunarLander-v2",
+        "seed": 99,
+        "episodes": 30,
+        "policy": "repository notebook hand-written PD controller",
+        "transitions": 7382,
+        "episode_length_mean": 247.06666666666666,
+        "episode_length_min": 169,
+        "episode_length_max": 754
+      },
+      "replay_file": {
+        "path": "muc3/results/lunarlander/replay.npz",
+        "bytes": 449788,
+        "sha256": "11ef1ea62efc6824a31994cb787e1a157b1869f5be92769f7c3c780bb628e03d",
+        "keys": {
+          "states": {
+            "shape": [
+              7382,
+              8
+            ],
+            "dtype": "float64"
+          },
+          "actions": {
+            "shape": [
+              7382
+            ],
+            "dtype": "int32"
+          },
+          "rewards": {
+            "shape": [
+              7382
+            ],
+            "dtype": "float64"
+          },
+          "next_states": {
+            "shape": [
+              7382,
+              8
+            ],
+            "dtype": "float64"
+          }
+        },
+        "transitions": 7382,
+        "action_counts_all_rows": {
+          "0": 3697,
+          "1": 397,
+          "2": 2962,
+          "3": 326
+        }
+      },
+      "features": [
+        "x",
+        "y",
+        "vx",
+        "vy",
+        "angle",
+        "angular_velocity",
+        "left_contact",
+        "right_contact",
+        "do_nothing",
+        "fire_left_engine",
+        "fire_main_engine",
+        "fire_right_engine"
+      ],
+      "task": "features at t (including action at t) -> action at t+1",
+      "valid_steps": {
+        "candidates": 7381,
+        "used": 7381,
+        "source": "all t -> t+1 candidate pairs; bart_fidelity.json reports 7381 valid samples, equal to the candidate count 7381",
+        "bart_valid_count_equals_candidate_count": true,
+        "bart_fidelity_valid_samples": 7381,
+        "bart_fidelity_test_samples": 2953
+      },
+      "models": {
+        "logistic_regression": {
+          "class": "LogisticRegression",
+          "random_state": 1,
+          "max_iter": 1000
+        },
+        "decision_tree": {
+          "class": "DecisionTreeClassifier",
+          "random_state": 1
+        }
+      },
+      "primary": {
+        "label": "notebook protocol",
+        "split": {
+          "test_size": 0.4,
+          "random_state": 10,
+          "stratify": "labels"
+        },
+        "n_eval": 7381,
+        "n_train": 4428,
+        "n_test": 2953,
+        "train_label_counts": {
+          "0": 2217,
+          "1": 238,
+          "2": 1777,
+          "3": 196
+        },
+        "test_label_counts": {
+          "0": 1479,
+          "1": 159,
+          "2": 1185,
+          "3": 130
+        },
+        "logistic_regression": {
+          "accuracy": 0.7720961733830003,
+          "f1_weighted": 0.7624388028614671,
+          "f1_macro": 0.5990753758284416,
+          "per_class": [
+            {
+              "label": 0,
+              "precision": 0.8729198184568835,
+              "recall": 0.7802569303583502,
+              "f1": 0.8239914316315602,
+              "support": 1479
+            },
+            {
+              "label": 1,
+              "precision": 0.6438356164383562,
+              "recall": 0.29559748427672955,
+              "f1": 0.4051724137931034,
+              "support": 159
+            },
+            {
+              "label": 2,
+              "precision": 0.6897689768976898,
+              "recall": 0.8818565400843882,
+              "f1": 0.774074074074074,
+              "support": 1185
+            },
+            {
+              "label": 3,
+              "precision": 0.7906976744186046,
+              "recall": 0.26153846153846155,
+              "f1": 0.3930635838150289,
+              "support": 130
+            }
+          ],
+          "warnings": [],
+          "n_iter": [
+            41
+          ],
+          "max_iter": 1000
+        },
+        "decision_tree": {
+          "accuracy": 0.7913985777175754,
+          "f1_weighted": 0.7905718358727634,
+          "f1_macro": 0.6324514903532639,
+          "per_class": [
+            {
+              "label": 0,
+              "precision": 0.8579052701801201,
+              "recall": 0.8695064232589588,
+              "f1": 0.8636668905305575,
+              "support": 1479
+            },
+            {
+              "label": 1,
+              "precision": 0.5266666666666666,
+              "recall": 0.4968553459119497,
+              "f1": 0.511326860841424,
+              "support": 159
+            },
+            {
+              "label": 2,
+              "precision": 0.7857142857142857,
+              "recall": 0.779746835443038,
+              "f1": 0.7827191867852605,
+              "support": 1185
+            },
+            {
+              "label": 3,
+              "precision": 0.375,
+              "recall": 0.36923076923076925,
+              "f1": 0.37209302325581395,
+              "support": 130
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "variants": {},
+      "old_baselines_from_metrics_json": {
+        "logistic_regression": {
+          "accuracy": 0.7720961733830003,
+          "f1_macro": 0.5990753758284416
+        },
+        "decision_tree": {
+          "accuracy": 0.7880121909922113,
+          "f1_macro": 0.627532065304094
+        }
+      },
+      "bart_fidelity_from_json_not_recomputed": {
+        "environment": "LunarLander-v2",
+        "method": "repository local BART weighted-treatment fidelity logic, isolated per action",
+        "valid_local_action_samples": 7381,
+        "test_samples": 2953,
+        "accuracy": 0.8279715543515069,
+        "f1_macro": 0.6409663108209958,
+        "note": "Each one-vs-rest action score was computed in a separate Python/R process; rows without an active local cause use that action's test-set class prior."
+      },
+      "paper_table_1": {
+        "linear_model": {
+          "accuracy": 0.813,
+          "f1": 0.802
+        },
+        "decision_tree": {
+          "accuracy": 0.851,
+          "f1": 0.847
+        },
+        "causal_xrl": {
+          "accuracy": 0.887,
+          "f1": 0.866
+        }
+      },
+      "reproduction_note": "LR reproduces metrics.json exactly. DT recomputed with random_state=1 (committed script + notebook) gives accuracy 0.7914 / macro-F1 0.6325, vs stored 0.7880 / 0.6275. The stored accuracy matches DecisionTreeClassifier(random_state=99) exactly; the stored macro-F1 matches neither random_state=1 nor 99 under scikit-learn 1.5.2 or 1.9.1. Cause of the residual macro-F1 gap is unconfirmed; the recomputed random_state=1 values are the notebook-faithful ones and are kept."
+    },
+    "pongduel": {
+      "environment": "PongDuel-v0",
+      "collection": {
+        "environment": "PongDuel-v0",
+        "seed": 99,
+        "episodes": 200,
+        "policy": "repository notebook strong/weak heuristic joint policy",
+        "transitions": 74445,
+        "episode_length_mean": 373.225
+      },
+      "replay_file": {
+        "path": "muc3/results/pongduel/replay.npz",
+        "bytes": 1301209,
+        "sha256": "4244ab7a81a7a66c981eeee998118be6dc936ee6aa2b92eb475b498e39f81f1d",
+        "keys": {
+          "states": {
+            "shape": [
+              74445,
+              20
+            ],
+            "dtype": "float32"
+          },
+          "actions": {
+            "shape": [
+              74445
+            ],
+            "dtype": "int32"
+          },
+          "rewards": {
+            "shape": [
+              74445
+            ],
+            "dtype": "int32"
+          },
+          "next_states": {
+            "shape": [
+              74445,
+              20
+            ],
+            "dtype": "float32"
+          }
+        },
+        "transitions": 74445,
+        "action_counts_all_rows": {
+          "0": 34802,
+          "1": 6628,
+          "2": 6812,
+          "3": 11780,
+          "4": 856,
+          "5": 336,
+          "6": 12079,
+          "7": 341,
+          "8": 811
+        }
+      },
+      "features": [
+        "state_0",
+        "state_1",
+        "state_2",
+        "state_3",
+        "state_4",
+        "state_5",
+        "state_6",
+        "state_7",
+        "state_8",
+        "state_9",
+        "state_10",
+        "state_11",
+        "state_12",
+        "state_13",
+        "state_14",
+        "state_15",
+        "state_16",
+        "state_17",
+        "state_18",
+        "state_19",
+        "encoded_action"
+      ],
+      "task": "features at t (including action at t) -> action at t+1",
+      "valid_steps": {
+        "candidates": 74444,
+        "used": 74444,
+        "source": "all t -> t+1 candidate pairs (baseline scope; the BART proxy used a different 14995-row local-candidate subset -- see note)",
+        "bart_valid_count_equals_candidate_count": false,
+        "bart_fidelity_valid_samples": 14995,
+        "bart_fidelity_test_samples": 5998
+      },
+      "models": {
+        "logistic_regression": {
+          "class": "LogisticRegression",
+          "random_state": 1,
+          "max_iter": 1000
+        },
+        "decision_tree": {
+          "class": "DecisionTreeClassifier",
+          "random_state": 1
+        }
+      },
+      "primary": {
+        "label": "notebook protocol",
+        "split": {
+          "test_size": 0.4,
+          "random_state": 10,
+          "stratify": "labels"
+        },
+        "n_eval": 74444,
+        "n_train": 44666,
+        "n_test": 29778,
+        "train_label_counts": {
+          "0": 20881,
+          "1": 3977,
+          "2": 4087,
+          "3": 7067,
+          "4": 513,
+          "5": 202,
+          "6": 7247,
+          "7": 205,
+          "8": 487
+        },
+        "test_label_counts": {
+          "0": 13921,
+          "1": 2651,
+          "2": 2725,
+          "3": 4712,
+          "4": 343,
+          "5": 134,
+          "6": 4832,
+          "7": 136,
+          "8": 324
+        },
+        "logistic_regression": {
+          "accuracy": 0.8179192692591847,
+          "f1_weighted": 0.8138432484271928,
+          "f1_macro": 0.6265000994061565,
+          "per_class": [
+            {
+              "label": 0,
+              "precision": 0.8484413453650533,
+              "recall": 0.8915307808347102,
+              "f1": 0.8694525202283793,
+              "support": 13921
+            },
+            {
+              "label": 1,
+              "precision": 0.7618437900128041,
+              "recall": 0.6733308185590343,
+              "f1": 0.7148578293952743,
+              "support": 2651
+            },
+            {
+              "label": 2,
+              "precision": 0.765988909426987,
+              "recall": 0.7603669724770642,
+              "f1": 0.7631675874769798,
+              "support": 2725
+            },
+            {
+              "label": 3,
+              "precision": 0.8210665491405905,
+              "recall": 0.7907470288624788,
+              "f1": 0.8056216216216217,
+              "support": 4712
+            },
+            {
+              "label": 4,
+              "precision": 0.39790575916230364,
+              "recall": 0.22157434402332363,
+              "f1": 0.2846441947565543,
+              "support": 343
+            },
+            {
+              "label": 5,
+              "precision": 0.9393939393939394,
+              "recall": 0.23134328358208955,
+              "f1": 0.3712574850299401,
+              "support": 134
+            },
+            {
+              "label": 6,
+              "precision": 0.8028616852146264,
+              "recall": 0.8360927152317881,
+              "f1": 0.819140308191403,
+              "support": 4832
+            },
+            {
+              "label": 7,
+              "precision": 0.5633802816901409,
+              "recall": 0.29411764705882354,
+              "f1": 0.3864734299516908,
+              "support": 136
+            },
+            {
+              "label": 8,
+              "precision": 0.7383966244725738,
+              "recall": 0.5401234567901234,
+              "f1": 0.6238859180035651,
+              "support": 324
+            }
+          ],
+          "warnings": [],
+          "n_iter": [
+            451
+          ],
+          "max_iter": 1000
+        },
+        "decision_tree": {
+          "accuracy": 0.9621196856739875,
+          "f1_weighted": 0.9620769065835483,
+          "f1_macro": 0.9021393248518113,
+          "per_class": [
+            {
+              "label": 0,
+              "precision": 0.9715941614195764,
+              "recall": 0.9754327993678615,
+              "f1": 0.9735096963831237,
+              "support": 13921
+            },
+            {
+              "label": 1,
+              "precision": 0.9781626506024096,
+              "recall": 0.980007544322897,
+              "f1": 0.9790842283776144,
+              "support": 2651
+            },
+            {
+              "label": 2,
+              "precision": 0.9758771929824561,
+              "recall": 0.9798165137614679,
+              "f1": 0.97784288591833,
+              "support": 2725
+            },
+            {
+              "label": 3,
+              "precision": 0.9489190334887664,
+              "recall": 0.9501273344651953,
+              "f1": 0.9495227995758219,
+              "support": 4712
+            },
+            {
+              "label": 4,
+              "precision": 0.8958333333333334,
+              "recall": 0.8775510204081632,
+              "f1": 0.8865979381443299,
+              "support": 343
+            },
+            {
+              "label": 5,
+              "precision": 0.7426470588235294,
+              "recall": 0.753731343283582,
+              "f1": 0.7481481481481481,
+              "support": 134
+            },
+            {
+              "label": 6,
+              "precision": 0.953141416263921,
+              "recall": 0.9387417218543046,
+              "f1": 0.9458867688457929,
+              "support": 4832
+            },
+            {
+              "label": 7,
+              "precision": 0.8267716535433071,
+              "recall": 0.7720588235294118,
+              "f1": 0.7984790874524715,
+              "support": 136
+            },
+            {
+              "label": 8,
+              "precision": 0.8473053892215568,
+              "recall": 0.8734567901234568,
+              "f1": 0.8601823708206687,
+              "support": 324
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "variants": {},
+      "old_baselines_from_metrics_json": {
+        "logistic_regression": {
+          "accuracy": 0.8177177782255356,
+          "f1_macro": 0.6262296251965734
+        },
+        "decision_tree": {
+          "accuracy": 0.9621196856739875,
+          "f1_macro": 0.9021393248518113
+        }
+      },
+      "bart_fidelity_from_json_not_recomputed": {
+        "environment": "PongDuel-v0",
+        "method": "documented numeric-action BART proxy; rounded regression output for 9 joint classes",
+        "not_exact_paper_fidelity": true,
+        "global_action_causes": [
+          0,
+          20
+        ],
+        "local_candidate_samples": 14995,
+        "test_samples": 5998,
+        "accuracy": 0.8172724241413805,
+        "f1_macro": 0.1950834997882522,
+        "elapsed_seconds": 1089.1445255000144
+      },
+      "paper_table_1": {
+        "linear_model": {
+          "accuracy": 0.815,
+          "f1": 0.811
+        },
+        "decision_tree": {
+          "accuracy": 0.883,
+          "f1": 0.884
+        },
+        "causal_xrl": {
+          "accuracy": 0.902,
+          "f1": 0.907
+        }
+      },
+      "reproduction_note": "DT reproduces metrics.json exactly. LR differs by <0.03 pp in accuracy and macro-F1 (solver convergence across environments); treated as reproduced within tolerance."
+    }
+  },
+  "cartpole_old_protocol_check": {
+    "task": "states at t -> action at t (SUPERSEDED; differs from the notebook)",
+    "split": {
+      "test_size": 0.2,
+      "random_state": 99,
+      "stratify": "labels"
+    },
+    "n_train": 4892,
+    "n_test": 1223,
+    "recomputed": {
+      "logistic_regression": {
+        "accuracy": 0.9076042518397384,
+        "f1_weighted": 0.9075808740545797,
+        "f1_macro": 0.9074951555089978,
+        "per_class": [
+          {
+            "label": 0,
+            "precision": 0.9042386185243328,
+            "recall": 0.9171974522292994,
+            "f1": 0.9106719367588932,
+            "support": 628
+          },
+          {
+            "label": 1,
+            "precision": 0.9112627986348123,
+            "recall": 0.8974789915966387,
+            "f1": 0.9043183742591024,
+            "support": 595
+          }
+        ],
+        "warnings": [],
+        "f1_binary": 0.9043183742591024,
+        "n_iter": [
+          22
+        ],
+        "max_iter": 1000
+      },
+      "decision_tree": {
+        "accuracy": 0.982011447260834,
+        "f1_weighted": 0.9820128431327104,
+        "f1_macro": 0.9820013271897292,
+        "per_class": [
+          {
+            "label": 0,
+            "precision": 0.9855769230769231,
+            "recall": 0.9792993630573248,
+            "f1": 0.9824281150159745,
+            "support": 628
+          },
+          {
+            "label": 1,
+            "precision": 0.9782971619365609,
+            "recall": 0.984873949579832,
+            "f1": 0.981574539363484,
+            "support": 595
+          }
+        ],
+        "warnings": [],
+        "f1_binary": 0.981574539363484
+      }
+    },
+    "stored_in_metrics_json": {
+      "logistic_regression": {
+        "accuracy": 0.9076042518397384,
+        "f1": 0.9043183742591024
+      },
+      "decision_tree": {
+        "accuracy": 0.982011447260834,
+        "f1": 0.981574539363484
+      }
+    }
+  },
+  "remaining_gaps": [
+    "BART weighted-F1 (LunarLander) and BART predictions were not saved; computing them needs a BART fidelity rerun with predictions saved.",
+    "Per-step valid masks were not saved; the all-candidates population is justified only by the saved valid counts equalling the candidate counts (CartPole/LunarLander).",
+    "PongDuel BART fidelity remains a documented regression proxy; no categorical BART fidelity exists for PongDuel."
+  ]
+}
