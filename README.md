@@ -371,7 +371,6 @@ liệu `.npz` và SCM/scaler MicroRTS (`muc3/results/microrts/`).
   (`comparison_run.log`, `train_run.log`, `ablation_run.log`) + CSV + JSON.
 - Checkpoint PPO MicroRTS `agent-3.pt` — file nhị phân, không rõ quyền tái
   phân phối; lấy lại bằng script + SHA ghi trong `muc3/microRTS-thu-nghiem.md`.
-- KG-R1 và form mẫu Nhóm 8 — không thuộc bài CausalXRL, không đưa vào repo.
 
 ## Lịch sử commit chính
 
