@@ -28,10 +28,7 @@ hơn** heuristic (BART fidelity 0,8050 so với 0,9350); và số thời gian h�
 trúc của paper hóa ra là timer mô phỏng, không phải wall-clock BART thật —
 nhóm đo wall-clock thật và ghi rõ không so trực tiếp được.
 
-**Tự chấm của nhóm: 6,7/10 so với paper** (chấm sau 3 bước tăng điểm ngày
-12/11/2026, theo 8 tiêu chí đối chiếu paper; chưa chấm lại sau nhóm việc 1+2
-ngày 12/11). Đây là điểm tự đánh giá của nhóm so với nội dung bài báo,
-**không phải điểm môn học**. Nghiên cứu chuyên gia (expert study) của paper
+** Nghiên cứu chuyên gia (expert study) của paper
 nhóm không làm — xem mục "Chưa làm" dưới đây.
 
 ## Bài báo nói gì (tóm tắt)
