@@ -1,0 +1,121 @@
+diff --git a/cxrl_microRTS/app.py b/cxrl_microRTS/app.py
+--- a/cxrl_microRTS/app.py
++++ b/cxrl_microRTS/app.py
+@@ -1,13 +1,13 @@
+ from flask import Flask, render_template, request, jsonify
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+-from stratvis.lib.gym_microrts_rl.xml_to_obs import xml_to_obs
+-from stratvis.lib.gym_microrts_rl.counterfactual_action import draw_counterfactual_action_map, draw_counterfactual_action_map_file
+-from stratvis.lib.gym_microrts_rl.uncertainty_map import draw_counterfactual_uncertainty_map
+-from stratvis.lib.gym_microrts_rl.utils import *
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import unit_ctf_steps, unit_intention_analysis
+-from stratvis.lib.causal_layout.causal_layout import causal_topological_layout
+-from stratvis.lib.xrl_causal.xrl_causal import local_causal_network, local_causal_network_hte
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.xml_to_obs import xml_to_obs
++from cxrl_microRTS.lib.gym_microrts_rl.counterfactual_action import draw_counterfactual_action_map, draw_counterfactual_action_map_file
++from cxrl_microRTS.lib.gym_microrts_rl.uncertainty_map import draw_counterfactual_uncertainty_map
++from cxrl_microRTS.lib.gym_microrts_rl.utils import *
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import unit_ctf_steps, unit_intention_analysis
++from cxrl_microRTS.lib.causal_layout.causal_layout import causal_topological_layout
++from cxrl_microRTS.lib.xrl_causal.xrl_causal import local_causal_network, local_causal_network_hte
+ import rpy2.robjects.numpy2ri
+ import pickle
+ 
+diff --git a/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py b/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py
+--- a/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py
++++ b/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py
+@@ -5,8 +5,8 @@
+ import torch
+ from matplotlib.colors import ListedColormap
+ 
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+ import statistics
+ 
+ import pathlib
+diff --git a/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py b/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py
+--- a/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py
++++ b/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py
+@@ -13,10 +13,10 @@
+ import pickle
+ import random
+ from stable_baselines3.common.vec_env import VecEnvWrapper
+-from  stratvis.lib.gym_microrts_rl.env_tools import VecMonitor, MicroRTSStatsRecorder, MicroRTSRawObsRecorder, CategoricalMasked, layer_init, save_frame, VecVideoRecorder
++from  cxrl_microRTS.lib.gym_microrts_rl.env_tools import VecMonitor, MicroRTSStatsRecorder, MicroRTSRawObsRecorder, CategoricalMasked, layer_init, save_frame, VecVideoRecorder
+ 
+ 
+-from stratvis.lib.gym_microrts_rl.utils import players_rsc_to_urtmat, get_players_rsc, rawobs_to_state
++from cxrl_microRTS.lib.gym_microrts_rl.utils import players_rsc_to_urtmat, get_players_rsc, rawobs_to_state
+ from jpype.imports import registerDomain
+ 
+ '''
+@@ -680,7 +680,7 @@
+ 
+ 
+ import pathlib
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+ 
+ PATH_FILE = open(str(pathlib.Path(__file__).parent.parent.parent.resolve()) + "/map_path.txt", 'r')
+ MAP_PATH = PATH_FILE.readline().strip()
+diff --git a/cxrl_microRTS/lib/gym_microrts_rl/test/test.py b/cxrl_microRTS/lib/gym_microrts_rl/test/test.py
+--- a/cxrl_microRTS/lib/gym_microrts_rl/test/test.py
++++ b/cxrl_microRTS/lib/gym_microrts_rl/test/test.py
+@@ -1,4 +1,4 @@
+-from stratvis.lib.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl import RLAgent
+ 
+ if __name__ == '__main__':
+     rl_agent = RLAgent()
+diff --git a/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py b/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py
+--- a/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py
++++ b/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py
+@@ -2,8 +2,8 @@
+ import torch
+ from collections import Counter
+ 
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+ import pathlib
+ 
+ PATH_FILE = open(str(pathlib.Path(__file__).parent.parent.parent.resolve()) + "/map_path.txt", 'r')
+diff --git a/cxrl_microRTS/lib/models/__init__.py b/cxrl_microRTS/lib/models/__init__.py
+--- a/cxrl_microRTS/lib/models/__init__.py
++++ b/cxrl_microRTS/lib/models/__init__.py
+@@ -1 +1 @@
+-from stratvis.lib.models.bart_regressor import *
+\ No newline at end of file
++from cxrl_microRTS.lib.models.bart_regressor import *
+\ No newline at end of file
+diff --git a/cxrl_microRTS/lib/models/bart_regressor.py b/cxrl_microRTS/lib/models/bart_regressor.py
+--- a/cxrl_microRTS/lib/models/bart_regressor.py
++++ b/cxrl_microRTS/lib/models/bart_regressor.py
+@@ -5,8 +5,8 @@
+ import numpy as np
+ import sklearn.tree
+ 
+-from stratvis.lib.r_to_py.r_to_py import init_R
+-from stratvis.lib.utils.utils import convert_to_numpy, convert_and_expand
++from cxrl_microRTS.lib.r_to_py.r_to_py import init_R
++from cxrl_microRTS.lib.utils.utils import convert_to_numpy, convert_and_expand
+ 
+ def decision_tree_cluster(X, y, **kwargs):
+     """ Clusters points based on a decision tree. 
+diff --git a/cxrl_microRTS/lib/xrl_causal/xrl_causal.py b/cxrl_microRTS/lib/xrl_causal/xrl_causal.py
+--- a/cxrl_microRTS/lib/xrl_causal/xrl_causal.py
++++ b/cxrl_microRTS/lib/xrl_causal/xrl_causal.py
+@@ -1,5 +1,5 @@
+-from stratvis.lib.models.bart_regressor import BARTRegressor
+-from stratvis.lib.utils.utils import convert_and_expand
++from cxrl_microRTS.lib.models.bart_regressor import BARTRegressor
++from cxrl_microRTS.lib.utils.utils import convert_and_expand
+ 
+ import networkx as nx
+ import numpy as np

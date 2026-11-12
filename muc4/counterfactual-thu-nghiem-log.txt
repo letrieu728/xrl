@@ -1,0 +1,108 @@
+FALLBACK LOG — extracted from step3-master.log (lines 524-628), 2026-11-12.
+4 runs: (1) DataFrame.append error, (2) dominating tuple IndexError, (3) set-indexer TypeError, (4) SUCCESS + diagnostic rerun (same output). Full context in muc3/microRTS-thu-nghiem-log.txt.
+==================================================================
+BART SLA elapsed time: 0.0 seconds
+XRL built in 85.1s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+  0%|          | 0/1 [00:00<?, ?it/s]  0%|          | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 96, in <module>
+    main()
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 69, in main
+    cf_df, score = xrl.counterfactual(query, desired)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 244, in counterfactual
+    e1 = self.exp.generate_counterfactuals(query_instance, total_CFs=40, desired_range=None,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/dice_ml/explainer_interfaces/explainer_base.py", line 92, in generate_counterfactuals
+    res = self._generate_counterfactuals(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/dice_ml/explainer_interfaces/dice_random.py", line 124, in _generate_counterfactuals
+    cfs_df = cfs_df.append(rows_to_add)
+             ^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/generic.py", line 6204, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+BART SLA elapsed time: 0.0 seconds
+XRL built in 84.4s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 12.03it/s]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 102, in <module>
+    main()
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 75, in main
+    cf_df, score = xrl.counterfactual(query, desired)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 250, in counterfactual
+    cf_df = self.__dominating_counterfactuals(cf_df, query_instance)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 201, in __dominating_counterfactuals
+    lesser_cols = cf_difference.columns[k1]  
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 5383, in __getitem__
+    result = getitem(key)
+             ^^^^^^^^^^^^
+IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed
+BART SLA elapsed time: 0.0 seconds
+XRL built in 86.9s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 12.13it/s]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 102, in <module>
+    main()
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 75, in main
+    cf_df, score = xrl.counterfactual(query, desired)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 258, in counterfactual
+    cf_df = self.__dominating_counterfactuals(cf_df, query_instance)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 230, in __dominating_counterfactuals
+    return cf_df.loc[dom]
+           ~~~~~~~~~^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1141, in __getitem__
+    check_dict_or_set_indexers(key)
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/indexing.py", line 2687, in check_dict_or_set_indexers
+    raise TypeError(
+TypeError: Passing a set as an indexer is not supported. Use a list instead.
+BART SLA elapsed time: 0.0 seconds
+XRL built in 87.2s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_cart_velocity_t', 'state_pole_angle_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 10.79it/s]
+counterfactual() in 0.1s: 2 rows after simplify+dominating
+score: {'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}
+    cart_position  cart_velocity  pole_angle  pole_velocity  action
+26       0.090188         1.2144   -0.047481      -1.710042       1
+34       0.097737         1.2144   -0.056350      -1.710042       1
+re-verified with raw policy: 2/2 CFs flip to 1
+saved counterfactual_result.json/.csv; FALLBACK DONE
+XRL built in 86.4s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_cart_velocity_t', 'state_pole_angle_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+counterfactual() in 0.1s: 2 rows after simplify+dominating
+DiCE raw: 40 counterfactuals before simplify+dominating
+score: {'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}
+    cart_position  cart_velocity  pole_angle  pole_velocity  action
+26       0.090188         1.2144   -0.047481      -1.710042       1
+34       0.097737         1.2144   -0.056350      -1.710042       1
+re-verified with raw policy: 2/2 CFs flip to 1
+saved counterfactual_result.json/.csv; FALLBACK DONE

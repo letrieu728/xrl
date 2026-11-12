@@ -1,0 +1,281 @@
+{
+  "n_transitions": 537,
+  "episodes": 10,
+  "method": "hte",
+  "state_integration": true,
+  "features": [
+    "base1",
+    "barrack1",
+    "worker1",
+    "light1",
+    "heavy1",
+    "ranged1",
+    "base2",
+    "barrack2",
+    "worker2",
+    "light2",
+    "heavy2",
+    "ranged2",
+    "timestep"
+  ],
+  "per_target": {
+    "base1": {
+      "status": "ok",
+      "nonzero": 8,
+      "causes": []
+    },
+    "barrack1": {
+      "status": "ok",
+      "nonzero": 40,
+      "causes": [
+        "base1",
+        "barrack1",
+        "worker2",
+        "timestep"
+      ]
+    },
+    "worker1": {
+      "status": "ok",
+      "nonzero": 368,
+      "causes": [
+        "worker1",
+        "base2",
+        "timestep"
+      ]
+    },
+    "light1": {
+      "status": "ok",
+      "nonzero": 18,
+      "causes": []
+    },
+    "heavy1": {
+      "status": "ok",
+      "nonzero": 50,
+      "causes": []
+    },
+    "ranged1": {
+      "status": "ok",
+      "nonzero": 40,
+      "causes": [
+        "ranged1"
+      ]
+    },
+    "base2": {
+      "status": "ok",
+      "nonzero": 20,
+      "causes": [
+        "base1",
+        "base2"
+      ]
+    },
+    "barrack2": {
+      "status": "ok",
+      "nonzero": 20,
+      "causes": [
+        "base1",
+        "barrack2"
+      ]
+    },
+    "worker2": {
+      "status": "ok",
+      "nonzero": 40,
+      "causes": [
+        "base2",
+        "worker2",
+        "timestep"
+      ]
+    },
+    "light2": {
+      "status": "constant",
+      "nonzero": 0,
+      "causes": []
+    },
+    "heavy2": {
+      "status": "ok",
+      "nonzero": 20,
+      "causes": [
+        "heavy2",
+        "timestep"
+      ]
+    },
+    "ranged2": {
+      "status": "ok",
+      "nonzero": 37,
+      "causes": [
+        "timestep"
+      ]
+    },
+    "timestep": {
+      "status": "ok",
+      "nonzero": 537,
+      "causes": [
+        "worker1",
+        "barrack2"
+      ]
+    }
+  },
+  "dbn_edges": [
+    [
+      "state_barrack1_t",
+      "state_barrack1_t+1"
+    ],
+    [
+      "state_barrack2_t",
+      "state_barrack2_t+1"
+    ],
+    [
+      "state_barrack2_t",
+      "state_timestep_t+1"
+    ],
+    [
+      "state_base1_t",
+      "state_barrack1_t+1"
+    ],
+    [
+      "state_base1_t",
+      "state_barrack2_t+1"
+    ],
+    [
+      "state_base1_t",
+      "state_base2_t+1"
+    ],
+    [
+      "state_base2_t",
+      "state_base2_t+1"
+    ],
+    [
+      "state_base2_t",
+      "state_worker1_t+1"
+    ],
+    [
+      "state_base2_t",
+      "state_worker2_t+1"
+    ],
+    [
+      "state_heavy2_t",
+      "state_heavy2_t+1"
+    ],
+    [
+      "state_ranged1_t",
+      "state_ranged1_t+1"
+    ],
+    [
+      "state_timestep_t",
+      "state_barrack1_t+1"
+    ],
+    [
+      "state_timestep_t",
+      "state_heavy2_t+1"
+    ],
+    [
+      "state_timestep_t",
+      "state_ranged2_t+1"
+    ],
+    [
+      "state_timestep_t",
+      "state_worker1_t+1"
+    ],
+    [
+      "state_timestep_t",
+      "state_worker2_t+1"
+    ],
+    [
+      "state_worker1_t",
+      "state_timestep_t+1"
+    ],
+    [
+      "state_worker1_t",
+      "state_worker1_t+1"
+    ],
+    [
+      "state_worker2_t",
+      "state_barrack1_t+1"
+    ],
+    [
+      "state_worker2_t",
+      "state_worker2_t+1"
+    ]
+  ],
+  "causal_edges": [
+    [
+      "state_barrack1_t",
+      "state_barrack1_t"
+    ],
+    [
+      "state_barrack2_t",
+      "state_barrack2_t"
+    ],
+    [
+      "state_barrack2_t",
+      "state_timestep_t"
+    ],
+    [
+      "state_base1_t",
+      "state_barrack1_t"
+    ],
+    [
+      "state_base1_t",
+      "state_barrack2_t"
+    ],
+    [
+      "state_base1_t",
+      "state_base2_t"
+    ],
+    [
+      "state_base2_t",
+      "state_base2_t"
+    ],
+    [
+      "state_base2_t",
+      "state_worker1_t"
+    ],
+    [
+      "state_base2_t",
+      "state_worker2_t"
+    ],
+    [
+      "state_heavy2_t",
+      "state_heavy2_t"
+    ],
+    [
+      "state_ranged1_t",
+      "state_ranged1_t"
+    ],
+    [
+      "state_timestep_t",
+      "state_barrack1_t"
+    ],
+    [
+      "state_timestep_t",
+      "state_heavy2_t"
+    ],
+    [
+      "state_timestep_t",
+      "state_ranged2_t"
+    ],
+    [
+      "state_timestep_t",
+      "state_worker1_t"
+    ],
+    [
+      "state_timestep_t",
+      "state_worker2_t"
+    ],
+    [
+      "state_worker1_t",
+      "state_timestep_t"
+    ],
+    [
+      "state_worker1_t",
+      "state_worker1_t"
+    ],
+    [
+      "state_worker2_t",
+      "state_barrack1_t"
+    ],
+    [
+      "state_worker2_t",
+      "state_worker2_t"
+    ]
+  ]
+}

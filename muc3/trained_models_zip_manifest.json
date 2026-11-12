@@ -1,0 +1,614 @@
+{
+  "url": "https://microrts.s3.amazonaws.com/microrts/gym-microrts-paper/trained_models.zip",
+  "total_bytes": 622324025,
+  "entries": [
+    {
+      "name": "trained_models/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 0,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_naive/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 77,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_naive/agent-4.pt",
+      "method": 8,
+      "compressed": 20206256,
+      "uncompressed": 21736521,
+      "local_header_offset": 179,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_naive/agent-1.pt",
+      "method": 8,
+      "compressed": 20232944,
+      "uncompressed": 21736521,
+      "local_header_offset": 20206563,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_naive/agent-3.pt",
+      "method": 8,
+      "compressed": 20063825,
+      "uncompressed": 21736521,
+      "local_header_offset": 40439635,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_naive/agent-2.pt",
+      "method": 8,
+      "compressed": 20147863,
+      "uncompressed": 21736521,
+      "local_header_offset": 60503588,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_no_mask/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 80651579,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_no_mask/agent-4.pt",
+      "method": 8,
+      "compressed": 20200113,
+      "uncompressed": 21736521,
+      "local_header_offset": 80651683,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_no_mask/agent-2.pt",
+      "method": 8,
+      "compressed": 20232975,
+      "uncompressed": 21736521,
+      "local_header_offset": 100851926,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_no_mask/agent-1.pt",
+      "method": 8,
+      "compressed": 20234584,
+      "uncompressed": 21736521,
+      "local_header_offset": 121085031,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_no_mask/agent-3.pt",
+      "method": 8,
+      "compressed": 20206213,
+      "uncompressed": 21736521,
+      "local_header_offset": 141319745,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_naive/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 161526088,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_coacai_naive/agent-3.pt",
+      "method": 8,
+      "compressed": 1444400,
+      "uncompressed": 1552777,
+      "local_header_offset": 161526182,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_naive/agent-2.pt",
+      "method": 8,
+      "compressed": 1444526,
+      "uncompressed": 1552713,
+      "local_header_offset": 162970702,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_naive/agent-1.pt",
+      "method": 8,
+      "compressed": 1442637,
+      "uncompressed": 1552713,
+      "local_header_offset": 164415348,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_naive/agent-4.pt",
+      "method": 8,
+      "compressed": 1444287,
+      "uncompressed": 1552777,
+      "local_header_offset": 165858105,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_partial_mask/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 167302512,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_partial_mask/agent-1.pt",
+      "method": 8,
+      "compressed": 20342488,
+      "uncompressed": 21736521,
+      "local_header_offset": 167302621,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_partial_mask/agent-2.pt",
+      "method": 8,
+      "compressed": 20330403,
+      "uncompressed": 21736521,
+      "local_header_offset": 187645244,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_partial_mask/agent-4.pt",
+      "method": 8,
+      "compressed": 20335821,
+      "uncompressed": 21736521,
+      "local_header_offset": 207975782,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai_partial_mask/agent-3.pt",
+      "method": 8,
+      "compressed": 20312764,
+      "uncompressed": 21736521,
+      "local_header_offset": 228311738,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_partial_mask/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 248624637,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_coacai_partial_mask/agent-4.pt",
+      "method": 8,
+      "compressed": 1444518,
+      "uncompressed": 1552713,
+      "local_header_offset": 248624738,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_partial_mask/agent-1.pt",
+      "method": 8,
+      "compressed": 1443693,
+      "uncompressed": 1552777,
+      "local_header_offset": 250069383,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_partial_mask/agent-2.pt",
+      "method": 8,
+      "compressed": 1443677,
+      "uncompressed": 1552777,
+      "local_header_offset": 251513203,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_partial_mask/agent-3.pt",
+      "method": 8,
+      "compressed": 1443676,
+      "uncompressed": 1552713,
+      "local_header_offset": 252957007,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_encode_decode/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 254400810,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_encode_decode/agent-1.pt",
+      "method": 8,
+      "compressed": 3114400,
+      "uncompressed": 3360355,
+      "local_header_offset": 254400922,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_encode_decode/agent-3.pt",
+      "method": 8,
+      "compressed": 3115221,
+      "uncompressed": 3360355,
+      "local_header_offset": 257515460,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_encode_decode/agent-2.pt",
+      "method": 8,
+      "compressed": 3112697,
+      "uncompressed": 3360355,
+      "local_header_offset": 260630819,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_encode_decode/agent-4.pt",
+      "method": 8,
+      "compressed": 3112807,
+      "uncompressed": 3360355,
+      "local_header_offset": 263743654,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_diverse_encode_decode/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 266856599,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_diverse_encode_decode/agent-2.pt",
+      "method": 8,
+      "compressed": 3113682,
+      "uncompressed": 3360355,
+      "local_header_offset": 266856719,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_diverse_encode_decode/agent-3.pt",
+      "method": 8,
+      "compressed": 3114126,
+      "uncompressed": 3360355,
+      "local_header_offset": 269970547,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_diverse_encode_decode/agent-1.pt",
+      "method": 8,
+      "compressed": 3114146,
+      "uncompressed": 3360355,
+      "local_header_offset": 273084819,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_selfplay_diverse_encode_decode/agent-4.pt",
+      "method": 8,
+      "compressed": 3112960,
+      "uncompressed": 3360355,
+      "local_header_offset": 276199111,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 279312217,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai/agent-4.pt",
+      "method": 8,
+      "compressed": 20418686,
+      "uncompressed": 21734570,
+      "local_header_offset": 279312313,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai/agent-2.pt",
+      "method": 8,
+      "compressed": 20416497,
+      "uncompressed": 21734570,
+      "local_header_offset": 299731121,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai/agent-1.pt",
+      "method": 8,
+      "compressed": 20418208,
+      "uncompressed": 21734570,
+      "local_header_offset": 320147740,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_coacai/agent-3.pt",
+      "method": 8,
+      "compressed": 20425832,
+      "uncompressed": 21734570,
+      "local_header_offset": 340566070,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse_impala/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 360992024,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse_impala/agent-2.pt",
+      "method": 8,
+      "compressed": 19866107,
+      "uncompressed": 21071475,
+      "local_header_offset": 360992128,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse_impala/agent-3.pt",
+      "method": 8,
+      "compressed": 19854722,
+      "uncompressed": 21071475,
+      "local_header_offset": 380858365,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse_impala/agent-4.pt",
+      "method": 8,
+      "compressed": 19867115,
+      "uncompressed": 21071475,
+      "local_header_offset": 400713217,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse_impala/agent-1.pt",
+      "method": 8,
+      "compressed": 19865612,
+      "uncompressed": 21071475,
+      "local_header_offset": 420580462,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse_impala/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 440446204,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_diverse_impala/agent-4.pt",
+      "method": 8,
+      "compressed": 823605,
+      "uncompressed": 887723,
+      "local_header_offset": 440446300,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse_impala/agent-3.pt",
+      "method": 8,
+      "compressed": 823627,
+      "uncompressed": 887723,
+      "local_header_offset": 441270027,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse_impala/agent-1.pt",
+      "method": 8,
+      "compressed": 823571,
+      "uncompressed": 887723,
+      "local_header_offset": 442093776,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse_impala/agent-2.pt",
+      "method": 8,
+      "compressed": 823858,
+      "uncompressed": 887723,
+      "local_header_offset": 442917469,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 443741449,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_coacai/agent-4.pt",
+      "method": 8,
+      "compressed": 1445356,
+      "uncompressed": 1550818,
+      "local_header_offset": 443741537,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai/agent-3.pt",
+      "method": 8,
+      "compressed": 1444748,
+      "uncompressed": 1550818,
+      "local_header_offset": 445187007,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai/agent-1.pt",
+      "method": 8,
+      "compressed": 1445488,
+      "uncompressed": 1550818,
+      "local_header_offset": 446631869,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai/agent-2.pt",
+      "method": 8,
+      "compressed": 1444286,
+      "uncompressed": 1550818,
+      "local_header_offset": 448077471,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_no_mask/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 449521871,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_coacai_no_mask/agent-2.pt",
+      "method": 8,
+      "compressed": 1443895,
+      "uncompressed": 1550818,
+      "local_header_offset": 449521967,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_no_mask/agent-4.pt",
+      "method": 8,
+      "compressed": 1444447,
+      "uncompressed": 1550818,
+      "local_header_offset": 450965984,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_no_mask/agent-1.pt",
+      "method": 8,
+      "compressed": 1444135,
+      "uncompressed": 1550818,
+      "local_header_offset": 452410553,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_coacai_no_mask/agent-3.pt",
+      "method": 8,
+      "compressed": 1443963,
+      "uncompressed": 1550818,
+      "local_header_offset": 453854810,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_naive/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 455298895,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_naive/agent-1.pt",
+      "method": 8,
+      "compressed": 19703499,
+      "uncompressed": 21734570,
+      "local_header_offset": 455298990,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_naive/agent-2.pt",
+      "method": 8,
+      "compressed": 19675127,
+      "uncompressed": 21734570,
+      "local_header_offset": 475002610,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_naive/agent-3.pt",
+      "method": 8,
+      "compressed": 19870263,
+      "uncompressed": 21734570,
+      "local_header_offset": 494677858,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_naive/agent-4.pt",
+      "method": 8,
+      "compressed": 20193868,
+      "uncompressed": 21734570,
+      "local_header_offset": 514548242,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 534742231,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse/agent-4.pt",
+      "method": 8,
+      "compressed": 20457992,
+      "uncompressed": 21734570,
+      "local_header_offset": 534742328,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse/agent-3.pt",
+      "method": 8,
+      "compressed": 20433945,
+      "uncompressed": 21734570,
+      "local_header_offset": 555200443,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse/agent-2.pt",
+      "method": 8,
+      "compressed": 20445667,
+      "uncompressed": 21734570,
+      "local_header_offset": 575634511,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_gridnet_diverse/agent-1.pt",
+      "method": 8,
+      "compressed": 20454953,
+      "uncompressed": 21734570,
+      "local_header_offset": 596080301,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse/",
+      "method": 0,
+      "compressed": 0,
+      "uncompressed": 0,
+      "local_header_offset": 616535377,
+      "flag": 0
+    },
+    {
+      "name": "trained_models/ppo_diverse/agent-2.pt",
+      "method": 8,
+      "compressed": 1444840,
+      "uncompressed": 1550818,
+      "local_header_offset": 616535466,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse/agent-3.pt",
+      "method": 8,
+      "compressed": 1445348,
+      "uncompressed": 1550818,
+      "local_header_offset": 617980421,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse/agent-4.pt",
+      "method": 8,
+      "compressed": 1444457,
+      "uncompressed": 1550818,
+      "local_header_offset": 619425884,
+      "flag": 8
+    },
+    {
+      "name": "trained_models/ppo_diverse/agent-1.pt",
+      "method": 8,
+      "compressed": 1444024,
+      "uncompressed": 1550818,
+      "local_header_offset": 620870456,
+      "flag": 8
+    }
+  ]
+}

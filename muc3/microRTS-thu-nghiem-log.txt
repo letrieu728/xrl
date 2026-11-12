@@ -1,0 +1,644 @@
+STEP 3 MASTER LOG (MicroRTS + fallback) — 2026-11-12, repo yanmluk/causal-xrl @ ae9096e.
+Doc nay la output tho cua cac lenh da chay (theo thu tu). Mot so tieu de muc (echo) khong vao log
+do pipe; thu tu cac doan: A1 stratvis grep+fix -> S1/S2 map features+roundtrip -> S3 import (map_path.txt
+error) -> S4a import OK voi shim -> S4b JVMNotFound -> S4c env run + np.int shim + HeadlessException ->
+S4c probe (run_num_steps OK, JVM shutdown hang) -> S4d case1 -> S5/S5b Flask -> S6a BART -> S6b/S6b2
+trajectories -> S6c infer_DBN crash (heavy2) -> S6c2 per-target graph -> FALLBACK counterfactual x4 runs.
+Chi tiet va ket luan: muc3/microRTS-thu-nghiem.md va muc4/counterfactual-thu-nghiem.md.
+================================================================================
+===== STEP 3 MASTER LOG — 2026-11-12T03:51:27Z =====
+Author repo: yanmluk/causal-xrl @ ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162 (fresh clone, working COPY at /home/hatch/workspace/step3-scratch/causal-xrl-copy; original untouched)
+
+===== A1: stratvis grep BEFORE fix (py files) =====
+cxrl_microRTS/app.py:2:from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+cxrl_microRTS/app.py:3:from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+cxrl_microRTS/app.py:4:from stratvis.lib.gym_microrts_rl.xml_to_obs import xml_to_obs
+cxrl_microRTS/app.py:5:from stratvis.lib.gym_microrts_rl.counterfactual_action import draw_counterfactual_action_map, draw_counterfactual_action_map_file
+cxrl_microRTS/app.py:6:from stratvis.lib.gym_microrts_rl.uncertainty_map import draw_counterfactual_uncertainty_map
+cxrl_microRTS/app.py:7:from stratvis.lib.gym_microrts_rl.utils import *
+cxrl_microRTS/app.py:8:from stratvis.lib.gym_microrts_rl.gym_microrts_rl import unit_ctf_steps, unit_intention_analysis
+cxrl_microRTS/app.py:9:from stratvis.lib.causal_layout.causal_layout import causal_topological_layout
+cxrl_microRTS/app.py:10:from stratvis.lib.xrl_causal.xrl_causal import local_causal_network, local_causal_network_hte
+cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py:8:from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py:9:from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py:16:from  stratvis.lib.gym_microrts_rl.env_tools import VecMonitor, MicroRTSStatsRecorder, MicroRTSRawObsRecorder, CategoricalMasked, layer_init, save_frame, VecVideoRecorder
+cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py:19:from stratvis.lib.gym_microrts_rl.utils import players_rsc_to_urtmat, get_players_rsc, rawobs_to_state
+cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py:683:from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+cxrl_microRTS/lib/gym_microrts_rl/test/test.py:1:from stratvis.lib.gym_microrts_rl import RLAgent
+cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py:5:from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py:6:from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+cxrl_microRTS/lib/models/__init__.py:1:from stratvis.lib.models.bart_regressor import *
+cxrl_microRTS/lib/models/bart_regressor.py:8:from stratvis.lib.r_to_py.r_to_py import init_R
+cxrl_microRTS/lib/models/bart_regressor.py:9:from stratvis.lib.utils.utils import convert_to_numpy, convert_and_expand
+cxrl_microRTS/lib/xrl_causal/xrl_causal.py:1:from stratvis.lib.models.bart_regressor import BARTRegressor
+cxrl_microRTS/lib/xrl_causal/xrl_causal.py:2:from stratvis.lib.utils.utils import convert_and_expand
+22
+files with stratvis imports:
+cxrl_microRTS/app.py
+cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py
+cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py
+cxrl_microRTS/lib/gym_microrts_rl/test/test.py
+cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py
+cxrl_microRTS/lib/models/__init__.py
+cxrl_microRTS/lib/models/bart_regressor.py
+cxrl_microRTS/lib/xrl_causal/xrl_causal.py
+
+===== A1: AFTER fix =====
+remaining stratvis in py files: 0
+remaining stratvis anywhere (expect only static/package*.json name fields):
+cxrl_microRTS/static/package-lock.json:2:  "name": "stratvis",
+cxrl_microRTS/static/package.json:2:  "name": "stratvis",
+
+===== A1: per-file replacement counts =====
+      9 cxrl_microRTS/app.py
+      2 cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py
+      3 cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py
+      1 cxrl_microRTS/lib/gym_microrts_rl/test/test.py
+      2 cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py
+      1 cxrl_microRTS/lib/models/__init__.py
+      2 cxrl_microRTS/lib/models/bart_regressor.py
+      2 cxrl_microRTS/lib/xrl_causal/xrl_causal.py
+total cxrl_microRTS.lib occurrences: 22
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/app.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/app.py	2026-11-12 03:46:23.972396277 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py	2026-11-12 03:51:27.703042803 +0000
+@@ -1,13 +1,13 @@
+ from flask import Flask, render_template, request, jsonify
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+-from stratvis.lib.gym_microrts_rl.xml_to_obs import xml_to_obs
+-from stratvis.lib.gym_microrts_rl.counterfactual_action import draw_counterfactual_action_map, draw_counterfactual_action_map_file
+-from stratvis.lib.gym_microrts_rl.uncertainty_map import draw_counterfactual_uncertainty_map
+-from stratvis.lib.gym_microrts_rl.utils import *
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import unit_ctf_steps, unit_intention_analysis
+-from stratvis.lib.causal_layout.causal_layout import causal_topological_layout
+-from stratvis.lib.xrl_causal.xrl_causal import local_causal_network, local_causal_network_hte
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.xml_to_obs import xml_to_obs
++from cxrl_microRTS.lib.gym_microrts_rl.counterfactual_action import draw_counterfactual_action_map, draw_counterfactual_action_map_file
++from cxrl_microRTS.lib.gym_microrts_rl.uncertainty_map import draw_counterfactual_uncertainty_map
++from cxrl_microRTS.lib.gym_microrts_rl.utils import *
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import unit_ctf_steps, unit_intention_analysis
++from cxrl_microRTS.lib.causal_layout.causal_layout import causal_topological_layout
++from cxrl_microRTS.lib.xrl_causal.xrl_causal import local_causal_network, local_causal_network_hte
+ import rpy2.robjects.numpy2ri
+ import pickle
+ 
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py	2026-11-12 03:46:23.973016959 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py	2026-11-12 03:51:27.705196076 +0000
+@@ -5,8 +5,8 @@
+ import torch
+ from matplotlib.colors import ListedColormap
+ 
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+ import statistics
+ 
+ import pathlib
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py	2026-11-12 03:46:23.973016959 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py	2026-11-12 03:51:27.707379134 +0000
+@@ -13,10 +13,10 @@
+ import pickle
+ import random
+ from stable_baselines3.common.vec_env import VecEnvWrapper
+-from  stratvis.lib.gym_microrts_rl.env_tools import VecMonitor, MicroRTSStatsRecorder, MicroRTSRawObsRecorder, CategoricalMasked, layer_init, save_frame, VecVideoRecorder
++from  cxrl_microRTS.lib.gym_microrts_rl.env_tools import VecMonitor, MicroRTSStatsRecorder, MicroRTSRawObsRecorder, CategoricalMasked, layer_init, save_frame, VecVideoRecorder
+ 
+ 
+-from stratvis.lib.gym_microrts_rl.utils import players_rsc_to_urtmat, get_players_rsc, rawobs_to_state
++from cxrl_microRTS.lib.gym_microrts_rl.utils import players_rsc_to_urtmat, get_players_rsc, rawobs_to_state
+ from jpype.imports import registerDomain
+ 
+ '''
+@@ -680,7 +680,7 @@
+ 
+ 
+ import pathlib
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+ 
+ PATH_FILE = open(str(pathlib.Path(__file__).parent.parent.parent.resolve()) + "/map_path.txt", 'r')
+ MAP_PATH = PATH_FILE.readline().strip()
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/test/test.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/test/test.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/test/test.py	2026-11-12 03:46:23.973016959 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/test/test.py	2026-11-12 03:51:27.709317424 +0000
+@@ -1,4 +1,4 @@
+-from stratvis.lib.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl import RLAgent
+ 
+ if __name__ == '__main__':
+     rl_agent = RLAgent()
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py	2026-11-12 03:46:23.973016959 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/uncertainty_map.py	2026-11-12 03:51:27.711029043 +0000
+@@ -2,8 +2,8 @@
+ import torch
+ from collections import Counter
+ 
+-from stratvis.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
+-from stratvis.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
++from cxrl_microRTS.lib.gym_microrts_rl.obs_gen_xml import obs_to_xml
++from cxrl_microRTS.lib.gym_microrts_rl.gym_microrts_rl import RLAgent
+ import pathlib
+ 
+ PATH_FILE = open(str(pathlib.Path(__file__).parent.parent.parent.resolve()) + "/map_path.txt", 'r')
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/models/__init__.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/models/__init__.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/models/__init__.py	2026-11-12 03:46:23.973016959 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/models/__init__.py	2026-11-12 03:51:27.712914374 +0000
+@@ -1 +1 @@
+-from stratvis.lib.models.bart_regressor import *
+\ No newline at end of file
++from cxrl_microRTS.lib.models.bart_regressor import *
+\ No newline at end of file
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/models/bart_regressor.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/models/bart_regressor.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/models/bart_regressor.py	2026-11-12 03:46:23.973719904 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/models/bart_regressor.py	2026-11-12 03:51:27.714759504 +0000
+@@ -5,8 +5,8 @@
+ import numpy as np
+ import sklearn.tree
+ 
+-from stratvis.lib.r_to_py.r_to_py import init_R
+-from stratvis.lib.utils.utils import convert_to_numpy, convert_and_expand
++from cxrl_microRTS.lib.r_to_py.r_to_py import init_R
++from cxrl_microRTS.lib.utils.utils import convert_to_numpy, convert_and_expand
+ 
+ def decision_tree_cluster(X, y, **kwargs):
+     """ Clusters points based on a decision tree. 
+diff -ru '--exclude=*.min.js' /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/xrl_causal/xrl_causal.py /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/xrl_causal/xrl_causal.py
+--- /tmp/causal-xrl-step3-orig/cxrl_microRTS/lib/xrl_causal/xrl_causal.py	2026-11-12 03:46:23.973909148 +0000
++++ /home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/xrl_causal/xrl_causal.py	2026-11-12 03:51:27.716764744 +0000
+@@ -1,5 +1,5 @@
+-from stratvis.lib.models.bart_regressor import BARTRegressor
+-from stratvis.lib.utils.utils import convert_and_expand
++from cxrl_microRTS.lib.models.bart_regressor import BARTRegressor
++from cxrl_microRTS.lib.utils.utils import convert_and_expand
+ 
+ import networkx as nx
+total 21M
+-rw-rw---- 1 root root 21M Nov 12 03:51 agent-3.pt
+
+===== NOTE: VM restarted during venv build (2026-11-12 ~03:54Z); /tmp wiped, dbarts 0.9.34 in /usr/local/lib/R/site-library LOST. Re-cloned author repo to /tmp; workspace scratch survived. =====
+S1 imports OK: xml_to_obs, utils, obs_gen_xml
+case1: raw_obs=(5, 16, 16) units=10 p1_rsc=[5, 5] state={'base1': 1, 'barrack1': 1, 'worker1': 0, 'light1': 0, 'heavy1': 1, 'ranged1': 0, 'base2': 1, 'barrack2': 1, 'worker2': 0, 'light2': 1, 'heavy2': 0, 'ranged2': 0}
+case2: raw_obs=(5, 16, 16) units=11 p1_rsc=[5, 5] state={'base1': 1, 'barrack1': 1, 'worker1': 0, 'light1': 0, 'heavy1': 0, 'ranged1': 1, 'base2': 1, 'barrack2': 1, 'worker2': 0, 'light2': 0, 'heavy2': 1, 'ranged2': 1}
+case3: raw_obs=(5, 16, 16) units=9 p1_rsc=[6, 5] state={'base1': 1, 'barrack1': 1, 'worker1': 1, 'light1': 0, 'heavy1': 0, 'ranged1': 0, 'base2': 1, 'barrack2': 0, 'worker2': 0, 'light2': 0, 'heavy2': 0, 'ranged2': 1}
+case4: raw_obs=(5, 16, 16) units=19 p1_rsc=[7, 0] state={'base1': 1, 'barrack1': 1, 'worker1': 9, 'light1': 2, 'heavy1': 1, 'ranged1': 1, 'base2': 0, 'barrack2': 1, 'worker2': 0, 'light2': 0, 'heavy2': 1, 'ranged2': 0}
+default_map: raw_obs=(5, 16, 16) units=6 p1_rsc=[5, 5] state={'base1': 1, 'barrack1': 0, 'worker1': 0, 'light1': 0, 'heavy1': 0, 'ranged1': 0, 'base2': 1, 'barrack2': 0, 'worker2': 0, 'light2': 0, 'heavy2': 0, 'ranged2': 0}
+wrote /home/hatch/workspace/step3-scratch/map_strategy_states.json
+roundtrip raw_obs identical: True | player_urt_mat identical: True
+S1+S2 DONE
+/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py:122: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  agent1.load_state_dict(torch.load(agent_model_path, map_location=device))
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py", line 685, in <module>
+    PATH_FILE = open(str(pathlib.Path(__file__).parent.parent.parent.resolve()) + "/map_path.txt", 'r')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/map_path.txt'
+IMPORT OK
+MAP_PATH = /home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16
+agent params: 5433185
+    super().__init__(**kwargs)
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/envs/vec_env.py", line 61, in __init__
+    jpype.startJVM(convertStrings=False)
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/jpype/_core.py", line 281, in startJVM
+    jvmpath = getDefaultJVMPath()
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/jpype/_jvmfinder.py", line 70, in getDefaultJVMPath
+    return finder.get_jvm_path()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/jpype/_jvmfinder.py", line 204, in get_jvm_path
+    raise JVMNotFoundException("No JVM shared library file ({0}) "
+jpype._jvmfinder.JVMNotFoundException: No JVM shared library file (libjvm.so) found. Try setting up the JAVA_HOME environment variable properly.
+constructing RLAgent (JVM start + JNIVecClient)...
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@6325a3ee
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@6325a3ee
+RLAgent constructed in 1.8s; envs=VecMonitor
+action_space nvec: [256   6   4   4   4   4   7  49]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_s4c.py", line 22, in <module>
+    valid = agent.manual_get_valid_action()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py", line 195, in manual_get_valid_action
+    next_obs, raw_obs = self.envs.reset()
+                        ^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/env_tools.py", line 74, in reset
+    obs, raw_obs = self.venv.reset()
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/env_tools.py", line 45, in reset
+    obs, raw_obs = self.venv.reset()
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/env_tools.py", line 38, in reset
+    obs += [self._encode_obs(ro)]
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/envs/vec_env.py", line 120, in _encode_obs
+    sum(self.num_planes)), dtype=np.int)
+                                 ^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/numpy/__init__.py", line 324, in __getattr__
+    raise AttributeError(__former_attrs__[attr])
+AttributeError: module 'numpy' has no attribute 'int'.
+`np.int` was a deprecated alias for the builtin `int`. To avoid this error in existing code, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations. Did you mean: 'inf'?
+constructing RLAgent (JVM start + JNIVecClient)...
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@6325a3ee
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@6325a3ee
+RLAgent constructed in 1.6s; envs=VecMonitor
+action_space nvec: [256   6   4   4   4   4   7  49]
+multi_categoricals [CategoricalMasked(logits: torch.Size([256, 6])), CategoricalMasked(logits: torch.Size([256, 4])), CategoricalMasked(logits: torch.Size([256, 4])), CategoricalMasked(logits: torch.Size([256, 4])), CategoricalMasked(logits: torch.Size([256, 4])), CategoricalMasked(logits: torch.Size([256, 7])), CategoricalMasked(logits: torch.Size([256, 49]))]
+manual_get_valid_action in 0.2s: shape=(2, 8)
+first 3 valid actions:
+ [[17  2  2  3  2  0  2 39]
+ [34  4  3  3  2  3  3  0]]
+Traceback (most recent call last):
+  File "JNIGridnetClient.java", line 124, in tests.JNIGridnetClient.render
+Exception: Java Exception
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_s4c.py", line 33, in <module>
+    logs, steps, urt_log = agent.run_num_steps(3, urt, False)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py", line 241, in run_num_steps
+    self.envs.render()
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/stable_baselines3/common/vec_env/base_vec_env.py", line 282, in render
+    return self.venv.render(mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/stable_baselines3/common/vec_env/base_vec_env.py", line 282, in render
+    return self.venv.render(mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/stable_baselines3/common/vec_env/base_vec_env.py", line 282, in render
+    return self.venv.render(mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/envs/vec_env.py", line 205, in render
+    self.render_client.render(False)
+java.awt.java.awt.HeadlessException: java.awt.HeadlessException: 
+No X11 DISPLAY variable was set,
+or no headful library support was found,
+but this program performed an operation which requires it.
+constructing RLAgent (JVM start + JNIVecClient)...
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@1d16f93d
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@1d16f93d
+RLAgent constructed in 1.6s; envs=VecMonitor
+action_space nvec: [256   6   4   4   4   4   7  49]
+manual_get_valid_action in 0.3s: shape=(2, 8)
+first 3 valid actions:
+ [[17  2  2  3  2  0  2 39]
+ [34  4  3  3  2  3  3  0]]
+Traceback (most recent call last):
+  File "JNIGridnetClient.java", line 124, in tests.JNIGridnetClient.render
+Exception: Java Exception
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_s4c.py", line 33, in <module>
+    logs, steps, urt_log = agent.run_num_steps(3, urt, False)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py", line 241, in run_num_steps
+    self.envs.render()
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/stable_baselines3/common/vec_env/base_vec_env.py", line 282, in render
+    return self.venv.render(mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/stable_baselines3/common/vec_env/base_vec_env.py", line 282, in render
+    return self.venv.render(mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/stable_baselines3/common/vec_env/base_vec_env.py", line 282, in render
+    return self.venv.render(mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/envs/vec_env.py", line 205, in render
+    self.render_client.render(False)
+java.awt.java.awt.HeadlessException: java.awt.HeadlessException: 
+No X11 DISPLAY variable was set,
+or no headful library support was found,
+but this program performed an operation which requires it.
+
+===== S4c retry 3: KILLED after ~4min idle (CPU 0:11 in 4min) - run_num_steps appears BLOCKED, not computing. Investigating with unbuffered run + faulthandler. =====
+
+===== S4c probe (python -u): run_num_steps COMPLETED; hang was JVM shutdown only =====
+constructing RLAgent (JVM start + JNIVecClient)...
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+RLAgent constructed in 1.9s; envs=VecMonitor
+action_space nvec: [256   6   4   4   4   4   7  49]
+manual_get_valid_action in 0.3s: shape=(2, 8)
+first 3 valid actions:
+ [[17  2  2  3  2  0  2 39]
+ [34  4  3  3  2  3  3  0]]
+run_num_steps(3) in 3.1s: rawobs_log=(3, 5, 16, 16) gamesteps=[0, 30, 50] urt_log=(3, 16, 16)
+S4c DONE
+Timeout (0:00:45)!
+Thread 0x00007e46d1691080 (most recent call first):
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/jpype/_core.py", line 516 in _JTerminate
+players_rsc: [5, 5] MAP_PATH: /home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16
+wrote /home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/custom.xml
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/custom.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/custom.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+RLAgent(custom.xml) constructed in 1.7s
+run_num_steps(3) in 1.4s: rawobs_log=(3, 5, 16, 16) gamesteps=[0, 8, 14]
+strategy states:
+ [[1 1 0 0 1 0 1 1 0 1 0 0]
+ [1 1 0 0 1 0 1 1 0 1 0 0]
+ [1 1 0 0 1 0 1 1 0 1 0 0]]
+saved case1_run.npz; S4d DONE
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_s5.py", line 20, in <module>
+    import app as flask_app_module
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py", line 5, in <module>
+    from cxrl_microRTS.lib.gym_microrts_rl.counterfactual_action import draw_counterfactual_action_map, draw_counterfactual_action_map_file
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/counterfactual_action.py", line 3, in <module>
+    import seaborn as sns
+ModuleNotFoundError: No module named 'seaborn'
+app module imported OK; routes: ['/', '/compute_global_causal', '/download_map', '/find_p1_action', '/get_board_state', '/get_counterfactual_map', '/get_local_causal', '/get_p1unit_pos', '/get_uncertainty_map', '/query_counterfactual_map', '/read_xml_map', '/run_ctf_steps', '/run_env_episode', '/runenv_steps', '/static/<path:filename>', '/unit_intention_eval', '/unit_run_ctf_steps', '/utt_to_uht']
+GET / -> 200 len= 18741
+  title snippet: b'<!DOCTYPE html>\n<html>\n<head>\n    <meta charset="utf-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> -->\n    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boo'
+POST /utt_to_uht -> 200 {'uht': [[10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]]}
+POST /get_board_state -> 405
+  body: b'<!doctype html>\n<html lang=en>\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n'
+S5 DONE
+[2026-11-12 04:21:27,356] ERROR in app: Exception on /get_board_state [GET]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py", line 28, in get_board_state
+    rl_agent = RLAgent()
+               ^^^^^^^^^
+TypeError: RLAgent.__init__() missing 3 required positional arguments: 'obs_', 'rawobs_', and 'mappath_'
+GET /get_board_state -> 500
+  body: b'<!doctype html>\n<html lang=en>\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>\n'
+POST /read_xml_map -> 200
+  raw_obs shape: 5 x 16 | player_urt_mat: 16 x 16
+[2026-11-12 04:21:27,370] ERROR in app: Exception on /compute_global_causal [GET]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/app.py", line 398, in compute_global_causal
+    npzfile = np.load('data/strategy_state_epwt.npz')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/numpy/lib/npyio.py", line 427, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/strategy_state_epwt.npz'
+GET /compute_global_causal -> 500
+  body: b'<!doctype html>\n<html lang=en>\n<title>500 Internal Server Error</title>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>\n'
+S5b DONE
+xrl_causal imports OK
+BARTRegressor() constructed (R dbarts loaded)
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+RLAgent ready; collecting 2 episodes...
+episode: 1
+episode: 2
+run_episodes(2) in 98.8s: states_t=(109, 13) states_tp1=(109, 13)
+gamesteps per episode (lengths): [54, 57]
+states_t head:
+ [[  1   0   1   0   0   0   1   0   1   0   0   0   0]
+ [  1   0   2   0   0   0   1   0   2   0   0   0  50]
+ [  1   0   3   0   0   0   1   0   2   0   0   0 100]
+ [  1   0   4   0   0   0   1   0   2   0   0   0 150]
+ [  1   0   5   0   0   0   1   0   2   0   0   0 200]]
+unique values per column (t): [[0, 1], [0, 1, 2], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [0, 1, 2], [0, 1, 2, 3, 4, 5], [0, 1], [0, 1], [0, 1], [0, 1, 2], [0], [0, 1], [0, 1, 2], [0, 50, 100, 150, 200, 240, 250, 300, 350, 360, 400, 401, 405, 435, 450, 460, 470, 497, 500, 526, 528, 550, 551, 556, 558, 560, 590, 600, 601, 615, 631, 643, 650, 651, 670, 688, 690, 691, 698, 700, 701, 713, 716, 718, 725, 727, 737, 751, 760, 770, 774, 801, 810, 822, 829, 842, 848, 850, 851, 867, 873, 901, 902, 917, 931, 932, 937, 950, 951, 958, 966, 1001, 1006, 1016, 1022, 1025, 1026, 1050, 1067, 1073, 1082, 1095, 1143, 1165, 1173]]
+saved microrts_traj.npz; S6b DONE
+input: states=(109, 13) states_new=(109, 13)
+target state =  base1
+state  base1  causes= ['base1']
+target state =  barrack1
+state  barrack1  causes= []
+target state =  worker1
+state  worker1  causes= ['light1']
+target state =  light1
+state  light1  causes= ['light1', 'heavy1', 'ranged1']
+target state =  heavy1
+state  heavy1  causes= ['light1']
+target state =  ranged1
+state  ranged1  causes= ['ranged1']
+target state =  base2
+state  base2  causes= []
+target state =  barrack2
+state  barrack2  causes= ['barrack2']
+target state =  worker2
+state  worker2  causes= []
+target state =  light2
+state  light2  causes= []
+target state =  heavy2
+R[write to console]: Error in .Object$initialize(...) : 
+  sigma estimate must be greater than 0.000000
+
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_s6c.py", line 19, in <module>
+    G, scm, G_scaler = infer_DBN(states, states_new, state_features=FEATURES,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/xrl_causal/xrl_causal.py", line 186, in infer_DBN
+    causes, model, scaler = infer_causes_hte(states, target)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/xrl_causal/xrl_causal.py", line 49, in infer_causes_hte
+    bart.fit(X_train_scaled, y_train)  # fit the model
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/models/bart_regressor.py", line 167, in fit
+    self._bart_machine = self._r_train(X, y)
+                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/rpy2/robjects/functions.py", line 208, in __call__
+    return (super(SignatureTranslatedFunction, self)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/rpy2/robjects/functions.py", line 131, in __call__
+    res = super(Function, self).__call__(*new_args, **new_kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/rpy2/rinterface_lib/conversion.py", line 45, in _
+    cdata = function(*args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/rpy2/rinterface.py", line 890, in __call__
+    raise embedded.RRuntimeError(_rinterface._geterrmessage())
+rpy2.rinterface_lib.embedded.RRuntimeError: Error in .Object$initialize(...) : 
+  sigma estimate must be greater than 0.000000
+
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+RLAgent ready; collecting 8 episodes...
+episode: 1
+episode: 2
+episode: 3
+episode: 4
+episode: 5
+episode: 6
+episode: 7
+episode: 8
+run_episodes(8) in 313.9s: states_t=(428, 13) states_tp1=(428, 13)
+gamesteps per episode (lengths): [54, 57, 42, 81, 49, 53, 45, 55]
+states_t head:
+ [[  1   0   1   0   0   0   1   0   1   0   0   0   0]
+ [  1   0   2   0   0   0   1   0   2   0   0   0  50]
+ [  1   0   3   0   0   0   1   0   2   0   0   0 100]
+ [  1   0   4   0   0   0   1   0   2   0   0   0 150]
+ [  1   0   5   0   0   0   1   0   2   0   0   0 200]]
+unique values per column (t): [[0, 1], [0, 1, 2], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [0, 1, 2], [0, 1, 2, 3, 4, 5], [0, 1, 2, 3, 4], [0, 1], [0, 1], [0, 1, 2], [0], [0, 1], [0, 1, 2], [0, 50, 100, 150, 200, 240, 250, 300, 350, 360, 400, 401, 405, 435, 450, 460, 461, 470, 497, 498, 499, 500, 501, 509, 526, 527, 528, 550, 551, 552, 554, 556, 557, 558, 560, 570, 587, 590, 595, 600, 601, 602, 604, 615, 619, 625, 629, 631, 635, 636, 643, 646, 650, 651, 652, 654, 655, 656, 659, 670, 671, 676, 681, 686, 688, 690, 691, 698, 700, 701, 702, 704, 705, 706, 708, 713, 716, 718, 723, 725, 727, 728, 730, 731, 737, 746, 748, 749, 750, 751, 753, 754, 755, 759, 760, 761, 762, 763, 770, 771, 774, 788, 790, 801, 802, 803, 808, 810, 818, 820, 822, 823, 829, 830, 833, 842, 848, 850, 851, 854, 857, 861, 867, 870, 872, 873, 877, 878, 880, 891, 892, 893, 901, 902, 905, 906, 908, 910, 911, 912, 914, 917, 927, 931, 932, 937, 940, 950, 951, 958, 960, 962, 965, 966, 968, 977, 980, 982, 984, 985, 987, 989, 1001, 1006, 1011, 1016, 1022, 1025, 1026, 1031, 1050, 1051, 1057, 1067, 1073, 1081, 1082, 1086, 1095, 1101, 1102, 1107, 1113, 1124, 1143, 1148, 1165, 1171, 1173, 1203, 1204, 1223, 1251, 1271, 1306, 1335, 1347, 1387, 1457, 1482, 1505, 1527, 1555, 1592, 1605, 1627, 1647, 1700, 1725, 1810, 1845, 1915, 1935, 2025, 2109, 2139]]
+saved /home/hatch/workspace/step3-scratch/microrts_traj8.npz ; S6b DONE
+merged: 537 transitions from 10 episodes
+[base1] nonzero=8 causes=[] (4.3s)
+[barrack1] nonzero=40 causes=['base1', 'barrack1', 'worker2', 'timestep'] (4.4s)
+[worker1] nonzero=368 causes=['worker1', 'base2', 'timestep'] (4.0s)
+[light1] nonzero=18 causes=[] (3.6s)
+[heavy1] nonzero=50 causes=[] (3.9s)
+[ranged1] nonzero=40 causes=['ranged1'] (4.1s)
+[base2] nonzero=20 causes=['base1', 'base2'] (3.2s)
+[barrack2] nonzero=20 causes=['base1', 'barrack2'] (3.6s)
+[worker2] nonzero=40 causes=['base2', 'worker2', 'timestep'] (4.0s)
+[light2] CONSTANT target -> skipped (infer_DBN rule), causes=[]
+[heavy2] nonzero=20 causes=['heavy2', 'timestep'] (4.0s)
+[ranged2] nonzero=37 causes=['timestep'] (4.0s)
+[timestep] nonzero=537 causes=['worker1', 'barrack2'] (3.7s)
+total 46.9s; DBN edges=20
+causal edges (20): [('state_barrack1_t', 'state_barrack1_t'), ('state_barrack2_t', 'state_barrack2_t'), ('state_barrack2_t', 'state_timestep_t'), ('state_base1_t', 'state_barrack1_t'), ('state_base1_t', 'state_barrack2_t'), ('state_base1_t', 'state_base2_t'), ('state_base2_t', 'state_base2_t'), ('state_base2_t', 'state_worker1_t'), ('state_base2_t', 'state_worker2_t'), ('state_heavy2_t', 'state_heavy2_t'), ('state_ranged1_t', 'state_ranged1_t'), ('state_timestep_t', 'state_barrack1_t'), ('state_timestep_t', 'state_heavy2_t'), ('state_timestep_t', 'state_ranged2_t'), ('state_timestep_t', 'state_worker1_t'), ('state_timestep_t', 'state_worker2_t'), ('state_worker1_t', 'state_timestep_t'), ('state_worker1_t', 'state_worker1_t'), ('state_worker2_t', 'state_barrack1_t'), ('state_worker2_t', 'state_worker2_t')]
+saved microrts_graph10.json; S6c2 DONE
+BART SLA elapsed time: 0.0 seconds
+XRL built in 85.1s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 96, in <module>
+    main()
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 69, in main
+    cf_df, score = xrl.counterfactual(query, desired)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 244, in counterfactual
+    e1 = self.exp.generate_counterfactuals(query_instance, total_CFs=40, desired_range=None,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/dice_ml/explainer_interfaces/explainer_base.py", line 92, in generate_counterfactuals
+    res = self._generate_counterfactuals(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/dice_ml/explainer_interfaces/dice_random.py", line 124, in _generate_counterfactuals
+    cfs_df = cfs_df.append(rows_to_add)
+             ^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/generic.py", line 6204, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
+BART SLA elapsed time: 0.0 seconds
+XRL built in 84.4s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00, 12.03it/s]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 102, in <module>
+    main()
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 75, in main
+    cf_df, score = xrl.counterfactual(query, desired)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 250, in counterfactual
+    cf_df = self.__dominating_counterfactuals(cf_df, query_instance)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 201, in __dominating_counterfactuals
+    lesser_cols = cf_difference.columns[k1]  
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 5383, in __getitem__
+    result = getitem(key)
+             ^^^^^^^^^^^^
+IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed
+BART SLA elapsed time: 0.0 seconds
+XRL built in 86.9s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00, 12.13it/s]
+Traceback (most recent call last):
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 102, in <module>
+    main()
+  File "/home/hatch/workspace/step3-scratch/stage_fallback.py", line 75, in main
+    cf_df, score = xrl.counterfactual(query, desired)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 258, in counterfactual
+    cf_df = self.__dominating_counterfactuals(cf_df, query_instance)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl/lib/xrl/xrl.py", line 230, in __dominating_counterfactuals
+    return cf_df.loc[dom]
+           ~~~~~~~~~^^^^^
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1141, in __getitem__
+    check_dict_or_set_indexers(key)
+  File "/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/pandas/core/indexing.py", line 2687, in check_dict_or_set_indexers
+    raise TypeError(
+TypeError: Passing a set as an indexer is not supported. Use a list instead.
+BART SLA elapsed time: 0.0 seconds
+XRL built in 87.2s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_cart_velocity_t', 'state_pole_angle_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00, 10.79it/s]
+counterfactual() in 0.1s: 2 rows after simplify+dominating
+score: {'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}
+    cart_position  cart_velocity  pole_angle  pole_velocity  action
+26       0.090188         1.2144   -0.047481      -1.710042       1
+34       0.097737         1.2144   -0.056350      -1.710042       1
+re-verified with raw policy: 2/2 CFs flip to 1
+saved counterfactual_result.json/.csv; FALLBACK DONE
+XRL built in 86.4s
+replay: 6115 transitions; actions: 0=3139 1=2976
+state_features: ['cart_position', 'cart_velocity', 'pole_angle', 'pole_velocity'] | exp: DiceRandom | pi: DummySklearn
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_cart_velocity_t', 'state_pole_angle_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+query row 6: {'cart_position': 0.09018818289041519, 'cart_velocity': 1.214399814605713, 'pole_angle': -0.05634969472885132, 'pole_velocity': -1.7100423574447632, 'action': 0}
+desired_action: 1
+counterfactual() in 0.1s: 2 rows after simplify+dominating
+DiCE raw: 40 counterfactuals before simplify+dominating
+score: {'cart_position': 0.5, 'cart_velocity': 0.0, 'pole_angle': 0.5, 'pole_velocity': 0.0}
+    cart_position  cart_velocity  pole_angle  pole_velocity  action
+26       0.090188         1.2144   -0.047481      -1.710042       1
+34       0.097737         1.2144   -0.056350      -1.710042       1
+re-verified with raw policy: 2/2 CFs flip to 1
+saved counterfactual_result.json/.csv; FALLBACK DONE
