@@ -3,7 +3,7 @@
 ## Scope and conditions
 
 - No RL agent was trained. CartPole uses the repository's hand-written linear policy; LunarLander uses its hand-written PD controller; PongDuel uses the repository's strong/weak heuristic joint policy.
-- Seed: 99. CartPole: 200 episodes / 6,115 non-terminal transitions. LunarLander: 30 episodes / 7,382 transitions. PongDuel: 200 episodes / 14,996 transitions.
+- Seed: 99. CartPole: 200 episodes / 6,115 non-terminal transitions. LunarLander: 30 episodes / 7,382 transitions. PongDuel: 200 episodes / 74,445 transitions (14,995 local candidate samples used for fidelity).
 - BART runs use `dbarts` through `rpy2`, four posterior chains and one thread. DBN targets were evaluated in isolated Python/R processes so each completed target is independently checkpointed.
 - MicroRTS was intentionally excluded: its old TensorFlow/Torch/gym-microrts stack, missing `stratvis`, and unavailable data are outside this evaluation scope.
 
