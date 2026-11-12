@@ -1,0 +1,334 @@
+{
+  "case_study": "CartPole local causal model, Fig. 4 style",
+  "paper": "arXiv:2610.42028, Figure 4 (p. 7)",
+  "data": {
+    "replay_file": "/tmp/xrl-g1d-fetch/replay_cartpole.npz",
+    "replay_bytes": 219083,
+    "replay_sha256": "da5e73d17dc3ce749273e7c7f75a2b42f9183b63ed6c4f8f8a7c756a5fa89f09",
+    "transitions": 6115,
+    "environment": "CartPole-v0",
+    "seed_collection": 99,
+    "policy": "repository notebook hand-written linear rule",
+    "policy_match_rows": 6115,
+    "replay_source": "muc3/results/cartpole/replay.npz in letrieu728/XRL @ main (downloaded via GitHub, NOT a recreated rollout)"
+  },
+  "method": {
+    "estimator": "BART heterogeneous treatment effects (R/dbarts via rpy2, repo BARTRegressor)",
+    "repo": "github.com/yanmluk/causal-xrl",
+    "repo_commit": "ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162",
+    "repo_path_used": "/tmp/causal-xrl-auth",
+    "functions": [
+      "cxrl.lib.causal.infer_network.infer_causes_hte",
+      "cxrl.lib.models.bart_regressor.BARTRegressor.local_treatments",
+      "cxrl.lib.models.bart_regressor.BARTRegressor.ITE",
+      "cxrl.lib.xrl.xrl.XRL.local_causal_network (replicated)"
+    ],
+    "bart_r_settings": "repo defaults: nskip=200, ndpost=125, nchain=4, nthread=4, R seed=99",
+    "split": "train_test_split(test_size=0.3) per target, numpy global RNG seeded once before the target loop",
+    "seed": 99,
+    "query_convention": "RAW replay row [state_t, action_t] (fidelity-notebook convention; HTE trees were fitted on standardized data \u2014 see diagnostic_standardized_query)",
+    "ite_contrast": "+1 raw unit for state columns, 0 -> 1 for push",
+    "versions": {
+      "python": "3.12.3",
+      "numpy": "2.5.4",
+      "scikit_learn": "1.9.1",
+      "dbarts": "0.9.34"
+    },
+    "refit_seconds_total": 173.81336682100027,
+    "refit_seconds_per_target": {
+      "cart_position": 25.401892648000285,
+      "cart_velocity": 32.98889478299998,
+      "pole_angle": 33.73039885199978,
+      "pole_velocity": 38.17711844800033,
+      "push": 43.50044985100021
+    },
+    "scan_seconds": 2.4199986950002312
+  },
+  "global_causes": {
+    "stored_muc3": {
+      "cart_position": [
+        "cart_position",
+        "cart_velocity",
+        "pole_angle"
+      ],
+      "cart_velocity": [
+        "cart_velocity",
+        "push"
+      ],
+      "pole_angle": [
+        "cart_velocity",
+        "pole_angle"
+      ],
+      "pole_velocity": [
+        "pole_angle",
+        "pole_velocity",
+        "push"
+      ],
+      "push": [
+        "cart_position",
+        "pole_angle",
+        "push"
+      ]
+    },
+    "refit_this_run": {
+      "cart_position": [
+        "cart_position",
+        "cart_velocity"
+      ],
+      "cart_velocity": [
+        "cart_velocity",
+        "push"
+      ],
+      "pole_angle": [
+        "pole_angle",
+        "pole_velocity"
+      ],
+      "pole_velocity": [
+        "pole_velocity",
+        "push"
+      ],
+      "push": [
+        "cart_position",
+        "pole_angle",
+        "push"
+      ]
+    },
+    "note": "Stored lists remain the Section 3 global result. The refit exists only to obtain the SCM for the local model; differences reflect split/BART sampling variability, not a correction."
+  },
+  "scan": {
+    "rows_scanned": 6114,
+    "valid_rows_gt1_non_action_push_cause": 5086,
+    "valid_rows_with_both_policy_inputs": 5086,
+    "selection_rule": "valid row with both policy inputs as local push causes, largest |pole_angle|"
+  },
+  "selected_state": {
+    "row_index": 1131,
+    "state": {
+      "cart_position": -0.15433508157730103,
+      "cart_velocity": 0.1748252958059311,
+      "pole_angle": 0.2074572592973709,
+      "pole_velocity": -0.1254654824733734
+    },
+    "pole_angle_degrees": 11.886425387090512,
+    "action_at_t": 1,
+    "action_name": "push right (1)",
+    "policy_action_matches_replay": true,
+    "next_state": {
+      "cart_position": -0.15083856880664825,
+      "cart_velocity": 0.36646491289138794,
+      "pole_angle": 0.20494796335697174,
+      "pole_velocity": -0.3462052643299103
+    },
+    "action_at_t_plus_1": 1,
+    "note": "action_at_t_plus_1 is the recorded replay action at the next row; no BART action prediction is reported because the SCM was fitted on standardized data and predicting on the raw query row would mix scales."
+  },
+  "local_causal_model": {
+    "local_causes_by_target": {
+      "cart_position": [
+        "cart_position",
+        "cart_velocity"
+      ],
+      "cart_velocity": [
+        "cart_velocity",
+        "push"
+      ],
+      "pole_angle": [
+        "pole_angle"
+      ],
+      "pole_velocity": [
+        "pole_velocity",
+        "push"
+      ],
+      "push": [
+        "cart_position",
+        "pole_angle",
+        "push"
+      ]
+    },
+    "local_edges": [
+      {
+        "source": "cart_position",
+        "target": "cart_position",
+        "ite_mean": 0.08050863333051532,
+        "ite_lci_95": 0.07683765465558991,
+        "ite_uci_95": 0.08474950312462223,
+        "abs_ite": 0.08050863333051532,
+        "n_draws": 500,
+        "contrast": "+1 raw unit"
+      },
+      {
+        "source": "cart_position",
+        "target": "push",
+        "ite_mean": 2.3541263368512273,
+        "ite_lci_95": 1.5438158156889377,
+        "ite_uci_95": 3.438053016871495,
+        "abs_ite": 2.3541263368512273,
+        "n_draws": 500,
+        "contrast": "+1 raw unit"
+      },
+      {
+        "source": "cart_velocity",
+        "target": "cart_position",
+        "ite_mean": 0.018538321469059725,
+        "ite_lci_95": 0.002974089928517577,
+        "ite_uci_95": 0.03899458162666311,
+        "abs_ite": 0.018538321469059725,
+        "n_draws": 500,
+        "contrast": "+1 raw unit"
+      },
+      {
+        "source": "cart_velocity",
+        "target": "cart_velocity",
+        "ite_mean": 0.8044673698993892,
+        "ite_lci_95": 0.5665287278910264,
+        "ite_uci_95": 0.9789802332576499,
+        "abs_ite": 0.8044673698993892,
+        "n_draws": 500,
+        "contrast": "+1 raw unit"
+      },
+      {
+        "source": "pole_angle",
+        "target": "pole_angle",
+        "ite_mean": 0.09952446457193959,
+        "ite_lci_95": 0.09572809497592184,
+        "ite_uci_95": 0.10444437472816116,
+        "abs_ite": 0.09952446457193959,
+        "n_draws": 500,
+        "contrast": "+1 raw unit"
+      },
+      {
+        "source": "pole_angle",
+        "target": "push",
+        "ite_mean": 4.157686860138612,
+        "ite_lci_95": 3.414364780757823,
+        "ite_uci_95": 5.003442610530175,
+        "abs_ite": 4.157686860138612,
+        "n_draws": 500,
+        "contrast": "+1 raw unit"
+      },
+      {
+        "source": "pole_velocity",
+        "target": "pole_velocity",
+        "ite_mean": 1.0480827388269836,
+        "ite_lci_95": 0.8580741791800276,
+        "ite_uci_95": 1.1260676297866494,
+        "abs_ite": 1.0480827388269836,
+        "n_draws": 500,
+        "contrast": "+1 raw unit"
+      },
+      {
+        "source": "push",
+        "target": "cart_velocity",
+        "ite_mean": 0.39065160469109206,
+        "ite_lci_95": 0.38680586638913356,
+        "ite_uci_95": 0.394460163698871,
+        "abs_ite": 0.39065160469109206,
+        "n_draws": 500,
+        "contrast": "0 -> 1"
+      },
+      {
+        "source": "push",
+        "target": "pole_velocity",
+        "ite_mean": -0.576713812595792,
+        "ite_lci_95": -0.5919310927064569,
+        "ite_uci_95": -0.5557792966485658,
+        "abs_ite": 0.576713812595792,
+        "n_draws": 500,
+        "contrast": "0 -> 1"
+      },
+      {
+        "source": "push",
+        "target": "push",
+        "ite_mean": 1.507721794245845,
+        "ite_lci_95": 1.0443599801468924,
+        "ite_uci_95": 2.0232168791861502,
+        "abs_ite": 1.507721794245845,
+        "n_draws": 500,
+        "contrast": "0 -> 1"
+      }
+    ],
+    "n_local_edges": 10,
+    "local_push_causes": [
+      "cart_position",
+      "pole_angle",
+      "push"
+    ],
+    "n_non_action_local_push_causes": 2,
+    "push_target_all_treatment_ite": {
+      "cart_position": {
+        "ite_mean": 2.3541263368512273,
+        "ite_lci_95": 1.5438158156889377,
+        "ite_uci_95": 3.438053016871495,
+        "abs_ite": 2.3541263368512273,
+        "n_draws": 500,
+        "locally_causal": true,
+        "contrast": "+1 raw unit"
+      },
+      "cart_velocity": {
+        "ite_mean": -0.4364457218182868,
+        "ite_lci_95": -1.1682558866394863,
+        "ite_uci_95": 0.20172187064488184,
+        "abs_ite": 0.4364457218182868,
+        "n_draws": 500,
+        "locally_causal": false,
+        "contrast": "+1 raw unit"
+      },
+      "pole_angle": {
+        "ite_mean": 4.157686860138612,
+        "ite_lci_95": 3.414364780757823,
+        "ite_uci_95": 5.003442610530175,
+        "abs_ite": 4.157686860138612,
+        "n_draws": 500,
+        "locally_causal": true,
+        "contrast": "+1 raw unit"
+      },
+      "pole_velocity": {
+        "ite_mean": 1.0696913669933716,
+        "ite_lci_95": 0.36037923382962206,
+        "ite_uci_95": 1.9059390442509037,
+        "abs_ite": 1.0696913669933716,
+        "n_draws": 500,
+        "locally_causal": false,
+        "contrast": "+1 raw unit"
+      },
+      "push": {
+        "ite_mean": 1.507721794245845,
+        "ite_lci_95": 1.0443599801468924,
+        "ite_uci_95": 2.0232168791861502,
+        "abs_ite": 1.507721794245845,
+        "n_draws": 500,
+        "locally_causal": true,
+        "contrast": "0 -> 1"
+      }
+    }
+  },
+  "diagnostic_standardized_query": {
+    "query_standardization": "StandardScaler fit on all replay_t rows; numeric columns only (col 4 unchanged)",
+    "local_causes_by_target": {
+      "cart_position": [],
+      "cart_velocity": [
+        "push"
+      ],
+      "pole_angle": [],
+      "pole_velocity": [],
+      "push": [
+        "cart_position",
+        "push"
+      ]
+    },
+    "agrees_with_raw_query": {
+      "cart_position": false,
+      "cart_velocity": false,
+      "pole_angle": false,
+      "pole_velocity": false,
+      "push": false
+    },
+    "note": "Diagnostic only; the figure and the case study use the RAW query row (notebook convention)."
+  },
+  "caveats": [
+    "Local edges come from a fresh BART refit on the M\u1ee5c 3 replay, not from the stored M\u1ee5c 3 cause lists (the SCM was not saved). Refit global causes are recorded above for comparison.",
+    "The query row is raw-scale while the HTE trees were fitted on standardized data (authors' notebook behaviour). The standardized-query diagnostic in this file shows whether the local model changes under a standardized query.",
+    "ITE contrasts are +1 raw unit per state column, so magnitudes are not unit-free importances across columns with different scales.",
+    "The local model is a behavioural surrogate of the heuristic policy over collected trajectories, not the policy's internal reasoning (paper \u00a74.3.3)."
+  ]
+}

@@ -57,7 +57,9 @@ chỉ có 8 người (8/8 so với 4/8 ở bài dự đoán hành vi với SHAP)
   heuristic của repo tác giả, không train RL. Số chốt ở § "Kết quả chính đã
   kiểm chứng (Mục 3)" dưới đây. Baseline CartPole đã sửa ngày 12/11/2026 theo
   đúng protocol notebook fidelity của tác giả (xem
-  `muc3/results/baselines_recomputed.md`); BART không chạy lại.
+  `muc3/results/baselines_recomputed.md`); BART không chạy lại. MicroRTS
+  đã chạy tối thiểu thật (xem mục MicroRTS-Lite ở § "Kết quả chính đã
+  kiểm chứng (Mục 3)" dưới đây).
 - **Mục 4 — Mở rộng (xem `muc4/results/REPORT.md`)** — Hướng D (train agent
   RL thật) là chính, Hướng A (ablation) là dự phòng.
 - **So sánh tất cả con số tác giả vs nhóm** — xem
@@ -68,8 +70,14 @@ chỉ có 8 người (8/8 so với 4/8 ở bài dự đoán hành vi với SHAP)
 - **File nhị phân (ảnh, checkpoint, PDF)** — toàn bộ file nhị phân của
   repo nằm ở thư mục Drive
   [XRL - file nhi phan](https://drive.google.com/drive/folders/1rK_Br_Kj3Dr-OZb8c5V2AgJeUW8bx_ea)
-  (cùng cấu trúc thư mục với repo: `muc4/results/ablation-bart/graphs/`
-  có 6 ảnh đồ thị BART, `muc4/results/so-sanh/` có 3 biểu đồ so sánh).
+  (cùng cấu trúc thư mục với repo), vì connector GitHub chỉ push được
+  file text UTF-8. Trên Drive có: PDF paper gốc + bản dịch tiếng Việt
+  (`paper/`, `ban-dich/`); ảnh PNG đồ thị nhân quả và curve
+  (`muc4/results/ablation/graphs/`, `muc4/results/ablation-bart/graphs/`
+  có 6 ảnh đồ thị BART, `muc4/results/so-sanh/` có 3 biểu đồ so sánh,
+  `muc4/results/cartpole-dqn/`); checkpoint DQN `.pt`
+  (`muc4/results/cartpole-dqn/`); và file dữ liệu `.npz`
+  (`muc3/results/`).
 
 ## Kết quả chính đã kiểm chứng (Mục 3)
 
@@ -95,6 +103,18 @@ của paper: F1 nhị phân ở CartPole, weighted-F1 ở LunarLander/PongDuel
   CartPole/LunarLander vì tác giả không có notebook fidelity cho PongDuel.
 - Thời gian học cấu trúc BART (tổng các process riêng lẻ, không so trực tiếp
   với paper): CartPole 242,19s; LunarLander 1.086,40s; PongDuel 35.531,20s.
+
+### MicroRTS-Lite — đã chạy tối thiểu thật (chưa có fidelity theo Table 1)
+
+- Sửa **22 chỗ** import `stratvis` → `cxrl_microRTS` trong **8 file**,
+  lấy được checkpoint PPO `agent-3.pt` công khai (SHA-256 `ad21e903…`,
+  load strict OK, 5.433.185 tham số, **không đưa vào repo**).
+- Env thật chạy được (JVM + PPO trả action hợp lệ); dashboard Flask `/`
+  → 200, nhưng 2 route `/get_board_state` và `/compute_global_causal`
+  còn 500 (bug của tác giả + thiếu thư mục `data/`).
+- Đồ thị toàn cục **20 cạnh** từ **10 episode / 537 transition** thật.
+  **Chưa có fidelity MicroRTS theo Table 1.** Chi tiết xem
+  `muc3/microRTS-thu-nghiem.md`.
 
 ## Kết quả chính đã kiểm chứng (Mục 4)
 
@@ -136,14 +156,24 @@ của repo, 200 episode/policy, seed 0, checkpoint DQN run 9.
 - Bảng cũ (checkpoint run 5, eval 272,68) lưu nguyên vẹn ở
   `muc4/results/xrl-trained-vs-heuristic-run5/`.
 
-### Hướng A — Ablation (SURROGATE, không phải BART)
+### Hướng A — Ablation: đã chạy lại bằng BART thật (số surrogate chỉ còn là lịch sử)
 
-Dùng **RandomForest 200 cây thay BART** (R/dbarts chưa cài được lúc làm
-ablation). Mọi số đều ghi nhãn "SURROGATE, NOT BART — chỉ kiểm tra độ ổn
-định, phải chạy lại bằng BART thật". Lưới 6 run (50/100/200 ep × hte/ate),
-seed 0: DT/LR dự đoán action 0,978–0,989. **hte ổn định từ 100 episode**
-(đồ thị 100ep = 200ep, Jaccard 1,0); **ate vẫn thay đổi tới 200 episode**
-(Jaccard 0,647 ở 100ep). CI 90% → 8 cạnh, 95% → 7 cạnh (hte, 200ep).
+**Lần đầu — surrogate, không phải BART:** dùng **RandomForest 200 cây thay
+BART** (R/dbarts chưa cài được lúc làm ablation). Mọi số đều ghi nhãn
+"SURROGATE, NOT BART — chỉ kiểm tra độ ổn định, phải chạy lại bằng BART
+thật". Lưới 6 run (50/100/200 ep × hte/ate), seed 0: DT/LR dự đoán action
+0,978–0,989. Surrogate nói hte ổn định từ 100 episode (đồ thị 100ep =
+200ep, Jaccard 1,0) và ate vẫn thay đổi tới 200 episode (Jaccard 0,647 ở
+100ep). CI 90% → 8 cạnh, 95% → 7 cạnh (hte, 200ep).
+
+**Chạy lại bằng BART thật** (R/dbarts 0.9.34): cùng lưới 50/100/200 episode
+× hte/ate; hte 12–13 cạnh, ate 15 cạnh; sensitivity 90/95/99% đủ cả
+hte/ate. Kết luận cũ từ surrogate — "hte ổn định từ 100 episode, Jaccard
+1,0" — **không còn đứng**: BART thật cho Jaccard 0,79–0,86, trong dải nhiễu
+giữa các lần chạy. Surrogate cho `push: []` trong khi BART thật tìm được
+3–4 nguyên nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/` (thư
+mục mới, không ghi đè `ablation/` cũ). Chi tiết xem
+`muc4/results/REPORT.md`.
 
 ## Cấu trúc thư mục
 

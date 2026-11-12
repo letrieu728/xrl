@@ -73,8 +73,14 @@ Phạm vi: **evaluation-only, không huấn luyện RL**. Repo tác giả không
 train agent; policy trong notebook là heuristic viết tay. Chạy theo thứ tự
 CartPole (200 episode) → LunarLander (30 episode, theo notebook đánh giá của
 tác giả) → PongDuel (200 episode), seed 99, CPU-only. Chi tiết:
-`muc3/EXPERIMENT_REPORT.md`. Không làm MicroRTS (thiếu dữ liệu, README ghi
-liên hệ tác giả; import `stratvis` sót trong repo).
+`muc3/EXPERIMENT_REPORT.md`. MicroRTS đã chạy tối thiểu thật: sửa 22 chỗ
+import `stratvis` → `cxrl_microRTS` trong 8 file, lấy checkpoint PPO
+`agent-3.pt` công khai (SHA-256 `ad21e903…`, 5.433.185 tham số, không đưa
+vào repo), env thật chạy được, dashboard Flask `/` → 200 nhưng 2 route
+`/get_board_state` và `/compute_global_causal` còn 500 (bug tác giả +
+thiếu thư mục `data/`), đồ thị toàn cục 20 cạnh từ 10 episode / 537
+transition thật — chưa có fidelity MicroRTS theo Table 1. Chi tiết:
+`muc3/microRTS-thu-nghiem.md`.
 
 Số chốt của nhóm (accuracy / F1 so được với Table 1 — F1 nhị phân ở CartPole,
 weighted-F1 ở LunarLander/PongDuel; baseline CartPole đã sửa ngày 12/11/2026
@@ -143,10 +149,14 @@ episode/policy, seed 0, checkpoint DQN run 9.
 
 ### 5.3. Ablation — Hướng A (1 phút, nói nhanh)
 
-Dùng **surrogate RandomForest thay BART** (ghi rõ, không phải số BART).
-6 run (50/100/200 ep × hte/ate): DT/LR 0,978–0,989. **hte ổn định từ 100
-episode** (đồ thị 100ep = 200ep, Jaccard 1,0); **ate vẫn thay đổi tới 200
-episode** (Jaccard 0,647 ở 100ep). CI 90% → 8 cạnh, 95% → 7 cạnh (hte).
+Lần đầu dùng **surrogate RandomForest thay BART** (ghi rõ, không phải số
+BART); 6 run (50/100/200 ep × hte/ate), DT/LR 0,978–0,989. Đã **chạy
+lại bằng BART thật** (R/dbarts 0.9.34): lưới 50/100/200 ep × hte/ate,
+hte 12–13 cạnh, ate 15 cạnh; sensitivity 90/95/99% đủ cả hte/ate. Kết luận cũ từ surrogate — "hte ổn định từ 100 episode, Jaccard
+1,0" — **không còn đứng**: BART thật cho Jaccard 0,79–0,86, trong dải
+nhiễu. Surrogate cho `push: []` trong khi BART thật tìm được 3–4 nguyên
+nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
+`muc4/results/REPORT.md`.
 
 ## 6. Hạn chế — nói thẳng (1 phút)
 
@@ -154,11 +164,13 @@ episode** (Jaccard 0,647 ở 100ep). CI 90% → 8 cạnh, 95% → 7 cạnh (hte)
   nghiên cứu chuyên gia chỉ n=8, khám phá; không công bố đủ dữ liệu MicroRTS.
 - Nhóm: CartPole thua DT ở paper (91,4% vs 94,1%) — đó là số của tác giả,
   không phải lỗi của nhóm; BART cần R/dbarts, cài khó, VM restart xóa R 2 lần
-  trong ngày làm; số BART có nhiễu ±1–2 cạnh; ablation chỉ là surrogate, phải
-  chạy lại bằng BART thật; chưa làm LunarLander/PongDuel cho Hướng D.
+  trong ngày làm; số BART có nhiễu ±1–2 cạnh; ablation đã chạy lại bằng
+  BART thật, kết luận cũ từ surrogate không còn đứng; chưa làm
+  LunarLander/PongDuel cho Hướng D.
 - Repo tác giả có bug đã tìm thấy: `counterfactual()` gọi `self.pi.predict`
   trong khi `pi` là hàm; `HTE` assert hardcode 500; `infer_causes_ate_barl`
-  import module không tồn tại; MicroRTS import `stratvis` sót.
+  import module không tồn tại; MicroRTS import `stratvis` sót (nhóm đã sửa
+  22 chỗ trong 8 file khi chạy tối thiểu).
 
 ## 7. Câu hỏi dự kiến + đáp án ngắn
 
@@ -173,9 +185,12 @@ episode** (Jaccard 0,647 ở 100ep). CI 90% → 8 cạnh, 95% → 7 cạnh (hte)
    + `rpy2`; chi tiết trong `muc4/notes/bart-check.md`. VM restart xóa R 2
    lần, khôi phục bằng `dpkg -i /var/cache/apt/archives/*.deb` rồi cài lại
    dbarts.
-4. **"MicroRTS sao không chạy?"** — Thiếu dữ liệu (README ghi liên hệ tác
-   giả), requirements cũ (TF 2.7, torch 1.8), import `stratvis` sót. Nhóm
-   không làm MicroRTS, ghi rõ trong báo cáo.
+4. **"MicroRTS chạy tới đâu?"** — Nhóm đã chạy tối thiểu thật: sửa 22 chỗ
+   import `stratvis` → `cxrl_microRTS` trong 8 file, lấy checkpoint PPO
+   `agent-3.pt` công khai (không đưa vào repo), env thật chạy được,
+   dashboard `/` → 200 nhưng 2 route còn 500 (bug tác giả + thiếu thư mục
+   `data/`), đồ thị toàn cục 20 cạnh từ 10 episode / 537 transition thật.
+   Chưa có fidelity MicroRTS theo Table 1 — ghi rõ trong báo cáo.
 5. **"Đồ thị học được có đúng là nhân quả không?"** — Không chứng minh tuyệt
    đối. Bằng chứng: dự đoán hành vi tốt (fidelity), học nhanh hơn PC/FCI,
    chuyên gia thấy hợp lý (8/8 vs 4/8), và đồ thị DQN vs heuristic khác nhau
@@ -185,9 +200,13 @@ episode** (Jaccard 0,647 ở 100ep). CI 90% → 8 cạnh, 95% → 7 cạnh (hte)
    của mạng nơ-ron phi tuyến, mô hình tuyến tính và BART theo trọng số ITE
    bắt chước kém hơn luật tuyến tính. Giỏi hơn không đồng nghĩa dễ giải thích
    hơn — đây chính là điểm hay nhất của mở rộng.
-7. **"Ablation dùng surrogate thì có tin được không?"** — Chỉ để kiểm tra độ
-   ổn định của đồ thị theo số episode, không phải số CausalXRL/BART. Ghi nhãn
-   rõ trong mọi bảng; phải chạy lại bằng BART thật khi có.
+7. **"Ablation dùng surrogate thì có tin được không?"** — Surrogate chỉ để
+   kiểm tra độ ổn định, không phải số CausalXRL/BART. Nhóm đã chạy lại
+   bằng BART thật (R/dbarts 0.9.34): kết luận cũ "hte ổn định từ 100
+   episode, Jaccard 1,0" không còn đứng (BART thật Jaccard 0,79–0,86,
+   trong dải nhiễu); surrogate cho `push: []` trong khi BART tìm được
+   3–4 nguyên nhân. Số chốt là số BART thật ở
+   `muc4/results/ablation-bart/`.
 8. **"Sao chọn checkpoint theo eval mà không lấy cuối train?"** — Vì
    Q-instability: eval run 9 dao động 500 ↔ ~97 giữa các lần đo cách nhau 50
    episode. Lấy cuối train có thể vớ phải policy đã bị phá hỏng.

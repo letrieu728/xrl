@@ -58,12 +58,12 @@ the BART test rows exactly.
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Logistic Regression (recomputed) | 77.21% | 76.24% | 76.24% | 59.91% | n/a |
 | Decision Tree (recomputed) | 79.14% | 79.06% | 79.06% | 63.25% | n/a |
-| BART (from `bart_fidelity.json`, NOT recomputed) | 82.80% | n/a -- macro-F1 only, not paper-comparable | not available | 64.10% | n/a |
+| BART (from `bart_fidelity.json`, NOT recomputed) | 82.80% | 81.52% (weighted F1, recovered 2026-11-12 -- see note below) | 81.52% | 64.10% | n/a |
 | Paper Table 1 (LM / DT / CausalXRL accuracy) | 81.30% / 85.10% / 88.70% | F1 80.20% / 84.70% / 86.60% | | | |
 
 Old `metrics.json` baselines (same t -> t+1 task, macro-F1 only): LR accuracy 77.21%, macro-F1 59.91%; DT accuracy 78.80%, macro-F1 62.75%. LR reproduces exactly. The recomputed DT differs slightly (see JSON note: the stored DT accuracy matches `random_state=99`, not the `random_state=1` in the committed script and notebook; the stored macro-F1 matches neither). The recomputed DT uses the committed/notebook `random_state=1` and reproduces identically under scikit-learn 1.5.2 and 1.9.1.
 
-BART weighted-F1 cannot be computed from the saved artifacts: per-sample BART predictions were not saved, only accuracy + macro-F1. The BART-vs-paper F1 comparison therefore stays not like-for-like (macro vs weighted) until the BART fidelity run is repeated with predictions saved.
+CORRECTION 2026-11-12 (supersedes the original statement below): BART weighted-F1 **was** recovered from the saved artifacts after all. The per-action BART score checkpoints (`fidelity_scores/action_{8..11}.npz`) were saved, and re-aggregating them reproduces accuracy 82.80% and macro-F1 64.10% with difference 0.0, giving **weighted F1 81.52%** (per-class F1 in `lunarlander/bart_fidelity_weighted.json`; script `scripts/recompute_lunarlander_bart_weighted_f1.py`). The BART-vs-paper F1 comparison is therefore like-for-like after all (82.80% / 81.52% vs the paper's 88.70% / 86.60%). Original (superseded) statement, kept for history: "BART weighted-F1 cannot be computed from the saved artifacts: per-sample BART predictions were not saved, only accuracy + macro-F1."
 
 ## PongDuel-v0
 
@@ -94,7 +94,8 @@ unchanged and only the task definition differed.
 
 - CartPole baselines: comparable to the notebook protocol and, for binary F1,
   to Table 1's binary case. BART comparison carries the split caveat above.
-- LunarLander baselines: weighted-F1 now comparable to Table 1. BART F1 is
-  still macro-only: not comparable to Table 1's weighted F1.
+- LunarLander baselines: weighted-F1 now comparable to Table 1. BART
+  weighted-F1 (81.52%) was recovered 2026-11-12 from the saved score
+  checkpoints, so BART F1 is comparable to Table 1's weighted F1 as well.
 - PongDuel baselines: weighted-F1 comparable to Table 1 as an adaptation
   (no author fidelity notebook). BART proxy: not comparable, by design.
