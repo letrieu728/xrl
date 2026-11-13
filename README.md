@@ -548,6 +548,9 @@ Gói tổng hợp cho thầy đọc (thư giới thiệu + báo cáo + số li�
 - `7a3c64b` — README: thêm dòng lịch sử commit nhóm 3 (13/11)
 - `f31b1bd` — Vẽ lại 3 biểu đồ so sánh: weighted-F1 LunarLander 81,52%,
   thêm cột GES (13/11)
+- `dba9d9a` — Rà soát đồng bộ toàn repo: sửa số PC/FCI MicroRTS, sửa
+  nhãn accuracy/weighted-F1 ở so sánh XRL LunarLander, viết lại README
+  cho thầy đọc (13/11)
 
 ## Credits
 
