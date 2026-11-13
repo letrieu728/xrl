@@ -439,6 +439,7 @@ liệu `.npz` và SCM/scaler MicroRTS (`muc3/results/microrts/`).
 - `585ffff` — Bảng so sánh tác giả vs nhóm + 3 biểu đồ (12/11)
 - `2237c0f` — Nhóm 1: weighted-F1 BART LunarLander, căn split CartPole, đồ thị Mục 3 (12/11)
 - `d798ed8` — Nhóm 2: MicroRTS 100 episode + dashboard, counterfactual mở rộng, DQN LunarLander + CartPole seed 1 (12/11)
+- `d105410` — Nhóm 3: GES đủ 4 môi trường, sửa /get_local_causal, chẩn đoán fidelity MicroRTS, XRL LunarLander, DQN PongDuel âm tính + bỏ qua XRL PongDuel; cập nhật README/THUYET-TRINH/SO-SANH (12/11)
 
 ## Credits
 
