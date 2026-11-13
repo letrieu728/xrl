@@ -111,8 +111,9 @@ plt.close(fig)
 # PC/FCI của nhóm ở 3 env gym lấy từ metrics.json của Mục 3; PC/FCI của
 # MicroRTS (0,165/0,520 s) đo cùng phiên GES, biến thể states-only, khớp
 # với cột GES MicroRTS 0,563 s (biến thể states+action: 0,685 s).
-# BART MicroRTS 498,3 s là 13 target trên 100 episode (nhóm 2), không
-# phải protocol Table 1 của paper.
+# BART MicroRTS 498,3 s là 13 lượt fit (12 target state + target action;
+# light2 hằng nên bỏ qua) trên 100 episode (nhóm 2), không phải protocol
+# Table 1 của paper.
 ENVS4 = ["CartPole", "LunarLander", "PongDuel", "MicroRTS-Lite"]
 author_pc = [1.7, 12.6, 23.2, 20.9]
 author_fci = [0.8, 5.1, 8.7, 7.4]
@@ -154,7 +155,7 @@ ax.text(0.5, -0.24,
         "CAVEAT: thời gian của tác giả (Table 1) là timer mô phỏng trong notebook eval_time_* của repo,\n"
         "không phải wall-clock BART thật. Thời gian của nhóm là wall-clock thật (BART PongDuel 35.531 s ≈ 9,9 giờ).\n"
         "GES của nhóm: causal-learn 0.1.4.8, BIC, median 3 lần lặp (MicroRTS: biến thể states-only 0,563 s;\n"
-        "states+action 0,685 s). BART MicroRTS 498,3 s là 13 target / 100 episode, không phải protocol Table 1.",
+        "states+action 0,685 s). BART MicroRTS 498,3 s là 13 lượt fit (12 state + action) / 100 episode, không phải protocol Table 1.",
         transform=ax.transAxes, ha="center", va="top", fontsize=9, color="#b00000")
 fig.tight_layout()
 fig.savefig(os.path.join(OUT, "bieu-do-2-thoi-gian-hoc-cau-truc.png"), dpi=200)

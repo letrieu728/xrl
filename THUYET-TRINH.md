@@ -77,8 +77,9 @@ tác giả) → PongDuel (200 episode), seed 99, CPU-only. Chi tiết:
 import `stratvis` → `cxrl_microRTS` trong 8 file, lấy checkpoint PPO
 `agent-3.pt` công khai (SHA-256 `ad21e903…`, 5.433.185 tham số, không đưa
 vào repo), env thật chạy được, **100 episode / 4.924 transition**, đồ thị
-toàn cục **23 cạnh**, dashboard Flask đã sửa xong **cả 9 route đều 200**
-(kể cả `/get_local_causal`, sửa ở nhóm 3 ngày 12/11/2026). Fidelity
+toàn cục **23 cạnh**, dashboard Flask đã sửa xong **9 lượt kiểm tra
+trên 7 route đều 200** (kể cả `/get_local_causal`, sửa ở nhóm 3 ngày
+12/11/2026). Fidelity
 MicroRTS theo Table 1 vẫn chưa có — nhóm 3 đã chẩn đoán tới cấp cơ chế:
 tập valid rỗng là bản chất dữ liệu + cơ chế HTE, không sửa được bằng cấu
 hình. GES cũng đã chạy đủ 4 môi trường (nhóm 3). Chi tiết:
@@ -156,7 +157,8 @@ Lần đầu dùng **surrogate RandomForest thay BART** (ghi rõ, không phải 
 BART); 6 run (50/100/200 ep × hte/ate), DT/LR 0,978–0,989. Đã **chạy
 lại bằng BART thật** (R/dbarts 0.9.34): lưới 50/100/200 ep × hte/ate,
 hte 12–13 cạnh, ate 15 cạnh; sensitivity 90/95/99% đủ cả hte/ate. Kết luận cũ từ surrogate — "hte ổn định từ 100 episode, Jaccard
-1,0" — **không còn đứng**: BART thật cho Jaccard 0,79–0,86, trong dải
+1,0" — **không còn đứng**: BART thật cho Jaccard so với đồ thị 200
+episode là 0,79/0,86 (hte) và 0,88/0,76 (ate), trong dải
 nhiễu. Surrogate cho `push: []` trong khi BART thật tìm được 3–4 nguyên
 nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
 `muc4/results/REPORT.md`.
@@ -168,9 +170,10 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
   checkpoint tốt nhất ở ep 850, eval cuối **222,03 ± 69,29** (100 ep).
   Heuristic cùng điều kiện **255,41 ± 74,32** — ở LunarLander heuristic
   mạnh hơn DQN, ngược với CartPole.
-- **So sánh XRL LunarLander** (nhóm 3, BART thật, 30 ep/policy): fidelity
-  weighted-F1 heuristic DT 0,7870 / LR 0,7808 / BART 0,8348 so với DQN DT
-  0,6616 / LR 0,6167 / BART 0,6728. Đồ thị hte 48 vs 51 cạnh (Jaccard
+- **So sánh XRL LunarLander** (nhóm 3, BART thật, 30 ep/policy): accuracy
+  heuristic DT 0,7870 / LR 0,7808 / BART 0,8348 so với DQN DT 0,6616 / LR
+  0,6167 / BART 0,6728; weighted-F1 heuristic 0,7881 / 0,7758 / 0,8304 so
+  với DQN 0,6613 / 0,5502 / 0,6265. Đồ thị hte 48 vs 51 cạnh (Jaccard
   0,5231), ate 46 vs 45 (Jaccard 0,5690); thời gian học cấu trúc chỉ chậm
   hơn ~1,55 lần. Kết luận: đồ thị khác nhau rõ rệt, nhưng số BART có nhiễu
   (refit cùng dữ liệu cho Jaccard 0,65–0,75) nên chỉ kết luận "khác nhau",
@@ -215,16 +218,20 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
    import `stratvis` → `cxrl_microRTS` trong 8 file, lấy checkpoint PPO
    `agent-3.pt` công khai (không đưa vào repo), env thật chạy được,
    100 episode / 4.924 transition, đồ thị toàn cục 23 cạnh, dashboard đã
-   sửa xong cả 9 route đều 200 (kể cả `/get_local_causal`). Chưa có
+   sửa xong (9 lượt kiểm tra trên 7 route đều 200, kể cả
+   `/get_local_causal`). Chưa có
    fidelity MicroRTS theo Table 1 — nhóm 3 đã chẩn đoán: tập valid rỗng
    là bản chất dữ liệu + cơ chế HTE (BART cho `action` chỉ có 1 nguyên
    nhân toàn cục nên ngưỡng >1 cờ không thể đạt được), không sửa được
    bằng cấu hình — ghi rõ trong báo cáo.
 5. **"Đồ thị học được có đúng là nhân quả không?"** — Không chứng minh tuyệt
-   đối. Bằng chứng: dự đoán hành vi tốt (fidelity), học nhanh hơn PC/FCI,
-   chuyên gia thấy hợp lý (8/8 vs 4/8), và đồ thị DQN vs heuristic khác nhau
-   đúng theo bản chất policy (DQN dùng vận tốc, heuristic không). Số BART có
-   nhiễu ±1–2 cạnh giữa các lần chạy.
+   đối. Bằng chứng tác giả đưa ra: dự đoán hành vi tốt (fidelity), học
+   nhanh hơn PC/FCI (theo thời gian Table 1 — nhóm phát hiện thời gian đó
+   đo bằng timer mô phỏng trong notebook của tác giả, không phải wall-clock
+   BART thật, nên không dùng làm bằng chứng mạnh), chuyên gia thấy hợp lý
+   (8/8 vs 4/8), và đồ thị DQN vs heuristic khác nhau đúng theo bản chất
+   policy (DQN dùng vận tốc, heuristic không). Số BART có nhiễu ±1–2 cạnh
+   giữa các lần chạy.
 6. **"Sao DQN 500/500 mà fidelity lại kém heuristic?"** — Vì biên quyết định
    của mạng nơ-ron phi tuyến, mô hình tuyến tính và BART theo trọng số ITE
    bắt chước kém hơn luật tuyến tính. Giỏi hơn không đồng nghĩa dễ giải thích
@@ -232,8 +239,9 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
 7. **"Ablation dùng surrogate thì có tin được không?"** — Surrogate chỉ để
    kiểm tra độ ổn định, không phải số CausalXRL/BART. Nhóm đã chạy lại
    bằng BART thật (R/dbarts 0.9.34): kết luận cũ "hte ổn định từ 100
-   episode, Jaccard 1,0" không còn đứng (BART thật Jaccard 0,79–0,86,
-   trong dải nhiễu); surrogate cho `push: []` trong khi BART tìm được
+   episode, Jaccard 1,0" không còn đứng (BART thật Jaccard 0,79/0,86
+   hte và 0,88/0,76 ate, trong dải nhiễu); surrogate cho `push: []`
+   trong khi BART tìm được
    3–4 nguyên nhân. Số chốt là số BART thật ở
    `muc4/results/ablation-bart/`.
 8. **"Sao chọn checkpoint theo eval mà không lấy cuối train?"** — Vì
@@ -244,7 +252,8 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
    paper nhắc tới (cùng PC/FCI) nhưng Table 1 không có cột GES. Nhóm 3 chạy
    GES đủ 4 môi trường bằng causal-learn, wall-clock thật: CartPole 7 cạnh
    (0,018s), LunarLander 18 cạnh (0,090s), PongDuel 34 cạnh (0,346s),
-   MicroRTS 50 cạnh (0,563s). Không so trực tiếp với thời gian của tác giả
+   MicroRTS 50 cạnh (0,563s, states-only; biến thể states+action 53 cạnh,
+   0,685s). Không so trực tiếp với thời gian của tác giả
    vì thời gian đó là timer mô phỏng.
 10. **"DQN PongDuel thất bại thì có sao không?"** — Không sao nếu nói thẳng:
     recipe DQN đã thắng CartPole (500/500) không học được gì trên joint

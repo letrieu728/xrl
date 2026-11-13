@@ -77,8 +77,9 @@ paper (86,0%/85,9% — đó là expert study, không phải thứ chạy ở đ�
 > là 8 episode duy nhất + 2 episode trùng lặp.
 >
 > **Cập nhật nhóm 3a (2026-11-12):** route `/get_local_causal` còn lại
-> đã sửa → 200 với đồ thị cục bộ thật (§10.4); cả 9 route đã kiểm chứng
-> đều 200. Fidelity đã chẩn đoán xong tới cấp cơ chế (§9.5): không có
+> đã sửa → 200 với đồ thị cục bộ thật (§10.4); 9 lượt kiểm tra trên 7
+> route đều 200. Fidelity đã chẩn đoán xong tới cấp cơ chế (§9.5):
+> không có
 > cách sửa cấu hình nào cho tập valid khác rỗng, và không có số mới.
 
 ## 1. Sửa import `stratvis.*` (A1)
@@ -442,7 +443,8 @@ các target khác), trên toàn bộ 4.924 transition, `state_integration=True`
 | timestep | 4.924 | barrack2 | 31,0 s |
 
 Kết quả: **23 cạnh DBN** (qua đúng hàm `DBN_to_causal` của tác giả, cũng
-23 cạnh nhân quả), tổng thời gian học **498,3 giây** cho 13 target.
+23 cạnh nhân quả), tổng thời gian học **498,3 giây** cho 13 lượt fit
+BART (12 target state + target action; `light2` hằng nên bỏ qua).
 Dữ liệu đầy đủ: `muc3/results/microrts/microrts_graph.json`. So với đồ
 thị 10-episode của bước 3 (20 cạnh, trên dữ liệu có trùng lặp): tập cạnh
 thay đổi đáng kể (vd. `worker1` nay có 5 causes thay vì 3; `light1`/
@@ -452,7 +454,7 @@ target hiệu số, cạnh từ `timestep`) vẫn áp dụng.
 
 Hiệu quả học cấu trúc: paper báo 0,5 s cho MicroRTS-Lite (Table 1) —
 không thể đối chiếu, vì code repo không có cài đặt PC/FCI để so sánh và
-thời gian BART đo được (498,3 s / 13 target, ~38 s/target) lớn hơn nhiều
+thời gian BART đo được (498,3 s / 13 lượt fit, ~38 s/lượt) lớn hơn nhiều
 trăm lần. Báo cáo này chỉ ghi thời gian đo được, không khẳng định khớp
 paper.
 

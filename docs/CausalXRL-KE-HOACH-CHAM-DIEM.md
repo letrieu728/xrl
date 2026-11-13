@@ -1,5 +1,11 @@
 # Kế hoạch chấm điểm CausalXRL — theo tiêu chí thầy gửi (11/11/2026)
 
+> Cập nhật 13/11/2026: kế hoạch này viết ngày 11/11, trước khi chạy thực
+> nghiệm. Cột "hiện trạng" trong các bảng dưới đây phản ánh đúng lúc lập
+> kế hoạch (nhiều mục khi đó "chưa có số chạy thật") và được giữ nguyên
+> làm lịch sử. Thực nghiệm sau đó đã làm xong: xem `README.md` và
+> `SO-SANH-TAC-GIA-VS-NHOM.md` ở gốc repo để biết số chốt.
+
 Bài: CausalXRL: Explainable Reinforcement Learning through Causal Graph Reasoning
 — Yanming Zhang, Eric Papenhausen, Klaus Mueller, arXiv:2610.42028v1, ICML 2026, 17 trang.
 Repo: github.com/yanmluk/causal-xrl, commit `ae9096e`, 0 stars, 3 commits, MIT.
@@ -13,7 +19,7 @@ Dưới 70% là mất điểm nặng ở các tiêu chí trọng số lớn.
 
 ## 0. Form mẫu Nhóm 8, HK1 23-24 — đã đọc thật cả 2 file (11/11/2026)
 
-Triệu gửi 2 file mẫu, đã lưu vào `form-mau-nhom-8-hk1-23-24/` trong cùng thư mục này.
+Triệu gửi 2 file mẫu (lưu ngoài repo này, trong thư mục làm việc của nhóm).
 Lưu ý quan trọng: **mỗi file đều gộp 2 phần — dịch sách + bài báo — chứ không phải 1 báo cáo duy nhất.**
 
 ### a) Bản trình bày giữa kỳ — `Nho_m-8_HK1_23-24_GK__1___1.pptx`, 53 slides, 26 hình
