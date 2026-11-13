@@ -1,6 +1,7 @@
 # So sánh tất cả con số: tác giả CausalXRL vs nhóm
 
-Ngày lập: 12/11/2026. Mọi số trong file này đều đọc từ nguồn gốc ghi ở
+Ngày lập: 12/11/2026. Cập nhật nhóm 1, 2 và 3: 12/11/2026 (xem các mục
+đánh dấu). Mọi số trong file này đều đọc từ nguồn gốc ghi ở
 đầu mỗi mục — không bịa, không lấy số tác giả ghi thành số nhóm.
 Số thập phân viết theo kiểu Việt Nam (dấu phẩy).
 
@@ -10,7 +11,7 @@ Số thập phân viết theo kiểu Việt Nam (dấu phẩy).
 |---|---|
 | Tác giả | Paper arXiv:2610.42028v1 (17 trang): Table 1 tr. 8, §5.1–§5.2, §6 (expert study), Appendix D + Hình 8. PDF gốc: `paper/CausalXRL-2610.42028.pdf`. Repo: github.com/yanmluk/causal-xrl, commit `ae9096e`. |
 | Nhóm — Mục 3 | `muc3/EXPERIMENT_REPORT.md` (đã sửa 12/11/2026, commit `5406c94`), `muc3/results/baselines_recomputed.json/.md`, `muc3/results/*/metrics.json`, `bart_fidelity.json`, `collection_metadata.json`, `replay.npz`. Seed 99, Windows, BART thật (R/dbarts qua rpy2). |
-| Nhóm — Mục 4 | `muc4/results/REPORT.md`, `muc4/results/xrl-trained-vs-heuristic/comparison_table.md`, `muc4/results/ablation-bart/` (BART thật), `muc3/microRTS-thu-nghiem.md`, `muc4/counterfactual-thu-nghiem.md`. |
+| Nhóm — Mục 4 | `muc4/results/REPORT.md`, `muc4/results/xrl-trained-vs-heuristic/comparison_table.md`, `muc4/results/xrl-trained-vs-heuristic-lunarlander/comparison_table.md`, `muc4/results/pongduel-dqn/train_summary.md`, `muc4/results/ablation-bart/` (BART thật), `muc3/microRTS-thu-nghiem.md`, `muc4/counterfactual-thu-nghiem.md`. |
 
 ## Cách đọc — các nhãn caveat dùng trong toàn file
 
@@ -42,7 +43,7 @@ multiclass"). #Rep = số biểu diễn (representations).
 | Môi trường | BART (CausalXRL) Acc / F1 | Logistic Regression Acc / F1 | Decision Tree Acc / F1 |
 |---|---|---|---|
 | CartPole (200 ep) | 91,62% / F1 nhị phân 91,50% | 89,62% / F1 nhị phân 89,26% (weighted 89,61%, macro 89,60%) | 93,83% / F1 nhị phân 93,64% (weighted 93,83%, macro 93,82%) |
-| LunarLander (30 ep) | 82,80% / macro-F1 64,10% (weighted-F1 **không có**) | 77,21% / weighted-F1 76,24% (macro 59,91%) | 79,14% / weighted-F1 79,06% (macro 63,25%) |
+| LunarLander (30 ep) | 82,80% / weighted-F1 **81,52%** (macro-F1 64,10%) — khôi phục đúng từ checkpoint điểm từng action (nhóm 1) | 77,21% / weighted-F1 76,24% (macro 59,91%) | 79,14% / weighted-F1 79,06% (macro 63,25%) |
 | PongDuel (200 ep) | **PROXY** 81,73% / macro-F1 19,51% | 81,79% / weighted-F1 81,38% (macro 62,65%) | 96,21% / weighted-F1 96,21% (macro 90,21%) |
 | MicroRTS-Lite | **Không làm** (không có số fidelity; chỉ chạy tối thiểu ở §6, không đối chiếu Table 1) | **Không làm** | **Không làm** |
 
@@ -51,14 +52,17 @@ multiclass"). #Rep = số biểu diễn (representations).
 | Môi trường | BART: chênh Acc | BART: chênh F1 | LR: chênh Acc / F1 | DT: chênh Acc / F1 |
 |---|---|---|---|---|
 | CartPole | +0,22 điểm % | −0,10 điểm % (F1 nhị phân) | +1,12 / −0,74 điểm % | −0,27 / −0,96 điểm % |
-| LunarLander | −5,90 điểm % | **KHÔNG SO ĐƯỢC** (macro vs weighted) | −4,09 / −3,96 điểm % (weighted) | −5,96 / −5,64 điểm % (weighted) |
+| LunarLander | −5,90 điểm % | **−5,08 điểm %** (weighted vs weighted, so được — nhóm 1) | −4,09 / −3,96 điểm % (weighted) | −5,96 / −5,64 điểm % (weighted) |
 | PongDuel | **KHÔNG SO ĐƯỢC** (PROXY) | **KHÔNG SO ĐƯỢC** (PROXY) | +0,29 / +0,28 điểm % (weighted, chuyển thể) | +7,91 / +7,81 điểm % (weighted, chuyển thể) |
 | MicroRTS-Lite | Không làm | Không làm | Không làm | Không làm |
 
 Con số chênh F1 LunarLander −22,50 điểm % từng báo trước đây đã **rút
-lại**: nó so macro-F1 của nhóm với weighted-F1 của paper. Weighted-F1
-của BART LunarLander không tính được từ file đã lưu (dự đoán từng mẫu
-không được lưu) — muốn có phải chạy lại BART fidelity có lưu dự đoán.
+lại**: nó so macro-F1 của nhóm với weighted-F1 của paper. **Cập nhật
+nhóm 1:** weighted-F1 của BART LunarLander **đã khôi phục được đúng
+81,52%** từ checkpoint điểm từng action đã lưu (theo từng class:
+do_nothing 87,51%, fire_main 83,06%, fire_left 59,68%, fire_right
+26,14%) — câu "không tính được" trước đây đã rút lại. Chênh F1 so với
+paper: −5,08 điểm %.
 
 ### 1.4. Caveat của Mục 3 (đọc kèm bảng trên)
 
@@ -95,7 +99,7 @@ không được lưu) — muốn có phải chạy lại BART fidelity có lưu 
 | CartPole | 200 episode (paper §5.1) | 200 episode / 6.115 transition, seed 99, CartPole-v0 |
 | LunarLander | 200 episode (paper); notebook fidelity dùng 30 episode, notebook timing dùng 20 | 30 episode / 7.382 transition, seed 99, LunarLander-v2 |
 | PongDuel | 200 episode (paper); #Rep ghi 12 nhưng notebook dùng 20 cột quan sát + 1 action = 21 cột | 200 episode / 74.445 transition, seed 99, PongDuel-v0 |
-| MicroRTS | ~500 episode (tên file `scm500_hte` trong repo gợi ý) | 10 episode / 537 transition (chỉ ở §6, không phải Table 1) |
+| MicroRTS | ~500 episode (tên file `scm500_hte` trong repo gợi ý) | 100 episode / 4.924 transition (nhóm 2; chỉ ở §6, không phải Table 1) |
 | BART | R `dbarts` qua rpy2, 4 chain, `nskip=200, ndpost=125, nchain=4, nthread=4, seed=99` | R `dbarts` qua rpy2, 4 chain, 1 thread, từng target chạy process riêng (tránh chết im) |
 | Split fidelity | Notebook: test 40%, seed 10 (CartPole không phân tầng, LunarLander phân tầng) | Baseline tính lại theo đúng notebook; BART CartPole dùng split phân tầng (xem caveat §1.4.3) |
 
@@ -114,12 +118,17 @@ không được lưu) — muốn có phải chạy lại BART fidelity có lưu 
 
 ### 3.2. Số của nhóm (Mục 3, giây, wall-clock thật)
 
-| Môi trường | PC (s) | FCI (s) | BART (s) |
-|---|---:|---:|---:|
-| CartPole | 0,076 | 0,061 | 242,19 (tổng 5 process target riêng lẻ) |
-| LunarLander | 0,197 (8 cột state) | 0,799 (8 cột state) | 1.086,40 (tổng 12 process target riêng lẻ) |
-| PongDuel | 0,997 (basis 10 cột độc lập) | 0,957 (basis 10 cột độc lập) | 35.531,20 ≈ 9,9 giờ (tổng 21 process target riêng lẻ) |
-| MicroRTS-Lite | Không làm | Không làm | Không làm (không đo thời gian học cấu trúc theo Table 1) |
+| Môi trường | PC (s) | FCI (s) | GES (s) — nhóm 3 | BART (s) |
+|---|---:|---:|---:|---:|
+| CartPole | 0,076 | 0,061 | 0,018 (7 cạnh, 0 cạnh có hướng) | 242,19 (tổng 5 process target riêng lẻ) |
+| LunarLander | 0,197 (8 cột state) | 0,799 (8 cột state) | 0,090 (18 cạnh có hướng) | 1.086,40 (tổng 12 process target riêng lẻ) |
+| PongDuel | 0,997 (basis 10 cột độc lập) | 0,957 (basis 10 cột độc lập) | 0,346 (34 cạnh: 32 có hướng, 2 vô hướng) | 35.531,20 ≈ 9,9 giờ (tổng 21 process target riêng lẻ) |
+| MicroRTS-Lite | 0,563/0,685 đo cùng phiên GES (xem chú thích) | (cùng phiên GES) | 0,563 (50 cạnh, states-only) / 0,685 (53 cạnh có hướng, states+action) | 498,3 (13 target, 100 episode — nhóm 2, không phải protocol Table 1) |
+
+GES: causal-learn 0.1.4.8, `local_score_BIC`, 3 lần lặp, tập cạnh giống
+hệt nhau; PC/FCI cùng phiên ghi trong `ges.json` từng môi trường. GES
+chạy trên cùng dữ liệu replay như PC/FCI (không chuẩn hóa, không giới
+hạn số cha).
 
 ### 3.3. Vì sao không so được
 
@@ -130,8 +139,9 @@ ngẫu nhiên `np.random.rand` + cộng dồn thời gian tính quantile của
 đo cho kết quả ngược hướng nhau (tác giả: CausalXRL nhanh hơn PC/FCI
 hàng chục lần; nhóm: BART chậm hơn PC/FCI hàng trăm–hàng chục nghìn
 lần) — đó là khác biệt về **cách đo**, không phải bằng chứng ai đúng
-ai sai. GES: paper nhắc tới nhưng Table 1 không có cột GES; nhóm
-**không chạy GES**.
+ai sai. GES: paper nhắc tới nhưng Table 1 không có cột GES; nhóm **đã
+chạy GES** đủ 4 môi trường ở nhóm 3 (xem §3.2) — vẫn là wall-clock
+thật, không so trực tiếp với timer mô phỏng của tác giả.
 
 Riêng PC/FCI của nhóm ở PongDuel phải chạy trên basis 10 cột độc lập
 (vì 20 cột gốc có cột trùng/one-hot phụ thuộc, ma trận tương quan suy
@@ -148,12 +158,14 @@ biến làm Fisher-Z lỗi) — đã ghi rõ, không so thẳng với paper.
 | CartPole | 5 | 13 | `muc3/results/cartpole/metrics.json` (cha của `push`: x, θ, push) |
 | LunarLander | 12 | 44 | `muc3/results/lunarlander/metrics.json` |
 | PongDuel | 21 | 53 | `muc3/results/pongduel/targets/target_0..20.json` (2 target không có nguyên nhân nào) |
-| MicroRTS | 13 (12 tính được + 1 hằng) | 20 | `muc3/microrts_graph10.json` — chỉ 10 episode, xem §6 |
+| MicroRTS | 13 (12 tính được + 1 hằng) | 23 | `muc3/results/microrts/` — 100 episode / 4.924 transition (nhóm 2), xem §6; đồ thị 20 cạnh/10 episode cũ giữ làm lịch sử |
 
 Tác giả không báo tổng số cạnh cho 3 môi trường gym trong paper nên
-bảng này không có cột tác giả để đối chiếu. Ảnh đồ thị Mục 3: **không
-có trong repo** (chỉ có JSON). Không có case study local kiểu Hình 4
-của paper, không phân tích trọng số cạnh.
+bảng này không có cột tác giả để đối chiếu. **Cập nhật nhóm 1:** ảnh
+đồ thị Mục 3 (CartPole 13, LunarLander 44, PongDuel 53 cạnh) đã vẽ và
+lưu trên Drive (thư mục `muc3/results/` trong "XRL - file nhi phan"),
+kèm case study local kiểu Hình 4 của paper (hàng replay 1131, góc cột
++0,2075 rad). Chưa phân tích trọng số cạnh.
 
 ### 4.2. Mục 4 — đồ thị trained-vs-heuristic (CartPole, BART thật, seed 0, 200 ep/policy)
 
@@ -171,6 +183,25 @@ của paper, không phân tích trọng số cạnh.
   2 lần chạy độc lập.
 
 ---
+
+
+### 4.3. Mục 4 — đồ thị trained-vs-heuristic (LunarLander, BART thật, seed 0, 30 ep/policy — nhóm 3)
+
+| Policy (transitions) | hte: cạnh / thời gian | ate: cạnh / thời gian |
+|---|---|---|
+| Heuristic (7.594) | 48 / 475,45 s | 46 / 723,96 s |
+| DQN (13.105) | 51 / 742,91 s | 45 / 1.121,66 s |
+
+- Jaccard hte = 0,5231 (khác 31 cạnh), ate = 0,5690 (khác 25 cạnh).
+  Khác biệt ổn định: `fire_left` của DQN có nhiều cha hơn (10 vs 6 ở
+  giai đoạn đồ thị).
+- DQN chậm hơn chỉ ~1,55 lần (khác CartPole ~19–20 lần) vì số transition
+  chỉ gấp ~1,7 lần.
+- Nhiễu BART: refit HTE ở giai đoạn fidelity cho đồ thị khác giai đoạn
+  đồ thị (Jaccard 0,7547 heuristic, 0,6452 DQN) vì `bart_train` không
+  gieo seed — chỉ kết luận "đồ thị khác nhau rõ rệt", không đọc từng
+  cạnh. Ảnh 4 đồ thị: Drive, thư mục
+  `muc4/results/xrl-trained-vs-heuristic-lunarlander/graphs/`.
 
 ## 5. Độ nhạy theo ngưỡng CI (sensitivity) — chỉ so xu hướng
 
@@ -202,13 +233,13 @@ cạnh, 95% → 7 cạnh, hte) là **SURROGATE, đã thay thế**, không trích
 
 | Hạng mục | Tác giả | Nhóm |
 |---|---|---|
-| Fidelity MicroRTS-Lite (Table 1) | LM 75,3%/74,5%; DT 80,3%/82,2%; CausalXRL 86,0%/85,9% | **Không làm** — không có số fidelity, không đối chiếu 86,0%/85,9% |
-| Thời gian học cấu trúc | PC 20,9 s / FCI 7,4 s / CausalXRL 0,5 s (timer mô phỏng) | **Không làm** |
+| Fidelity MicroRTS-Lite (Table 1) | LM 75,3%/74,5%; DT 80,3%/82,2%; CausalXRL 86,0%/85,9% | **Không đo được, đã chẩn đoán tới cấp cơ chế (nhóm 3)** — tập valid rỗng: cờ local ⊆ nguyên nhân toàn cục, BART cho `action` chỉ có 1 nguyên nhân (`heavy2`) nên ngưỡng >1 cờ không thể đạt được; 13/14 cột treatment có 0 cluster HTE có ý nghĩa. Không nới ngưỡng, không sinh số mới. Bản không-lọc lệch protocol giữ làm lịch sử audit |
+| Thời gian học cấu trúc | PC 20,9 s / FCI 7,4 s / CausalXRL 0,5 s (timer mô phỏng) | GES 0,563 s / 0,685 s (nhóm 3); BART 498,3 s (13 target, 100 ep — nhóm 2). Wall-clock thật, **KHÔNG SO ĐƯỢC** với timer mô phỏng |
 | Env MicroRTS thật + agent PPO | Có (checkpoint riêng, không công bố trong repo) | **Chạy được**: checkpoint `agent-3.pt` từ nguồn công khai (S3 của repo gym-microrts-paper, 21.734.570 byte, SHA-256 `ad21e903…`, 5.433.185 tham số, `load_state_dict(strict=True)` OK — không chứng minh được giống byte bản riêng của tác giả); JVM + PPO trả 2 action hợp lệ thật; `run_num_steps(3)` chạy được trên map có sẵn và map `case1.xml` |
 | Sửa import `stratvis` | (lỗi trong repo tác giả) | Sửa 22 chỗ trong 8 file `.py` (`stratvis.` → `cxrl_microRTS.`), patch `muc3/stratvis-fix.patch` áp sạch lên cây gốc |
-| Dashboard Flask | Có (17 route, dùng trong expert study) | **Một phần**: `GET /` → 200 (18.741 byte), `/utt_to_uht` → 200, `/read_xml_map` → 200; `/get_board_state` → **500** (bug tác giả: `RLAgent()` thiếu 3 đối số); `/compute_global_causal` → **500** (thiếu thư mục `data/` đã lược). Các route còn lại không thử từng cái. Không khẳng định dashboard chạy đầy đủ |
-| Đồ thị toàn cục MicroRTS | Có (Hình 3, Hình 8; ~500 episode) | 10 episode / 537 transition thật, 12/13 target tính được (target `light2` hằng, bỏ qua đúng luật `infer_DBN`), **20 cạnh** DBN = 20 cạnh sau `DBN_to_causal`. Nhiều cạnh tự vòng; chỉ chứng minh pipeline chạy đầu-cuối, không phải bản sao kết quả tác giả |
-| File dữ liệu `data/` | Không có trong repo công khai (README bảo liên hệ tác giả) | Vẫn thiếu — blocker còn lại |
+| Dashboard Flask | Có (17 route, dùng trong expert study) | **Chạy được, 9/9 route đã kiểm chứng đều 200** (nhóm 2–3): `/get_board_state` và `/compute_global_causal` sửa ở nhóm 2; `/get_local_causal` sửa ở nhóm 3 (patch `muc3/dashboard-local-causal-fix.patch`, danh sách cột suy từ dữ liệu thay vì hard-code 10 cột). Cần `R_LIBS` trỏ tới dbarts và gọi `/compute_global_causal` trước. 8 route còn lại của tác giả không thử từng cái |
+| Đồ thị toàn cục MicroRTS | Có (Hình 3, Hình 8; ~500 episode) | **100 episode / 4.924 transition** thật (nhóm 2), 12/13 target tính được (target `light2` hằng, bỏ qua đúng luật `infer_DBN`), **23 cạnh**. Nhiều cạnh tự vòng; chỉ chứng minh pipeline chạy đầu-cuối, không phải bản sao kết quả tác giả |
+| File dữ liệu `data/` | Không có trong repo công khai (README bảo liên hệ tác giả) | Thư mục `data/` **tự sinh từ dữ liệu 100 episode** (nhóm 2) để dashboard chạy; dữ liệu gốc của tác giả vẫn thiếu |
 
 Chi tiết: `muc3/microRTS-thu-nghiem.md` + log. Checkpoint `.pt`
 **không** đưa vào repo (không rõ quyền tái phân phối); lấy lại bằng
@@ -221,8 +252,8 @@ script Range-fetch + SHA-256 ghi trong báo cáo.
 | Hạng mục | Tác giả | Nhóm |
 |---|---|---|
 | Phương pháp | `XRL.counterfactual()` dùng DiCE, 40 counterfactual thô, rồi lọc simplify + dominating | Chạy được **sau khi sửa code tác giả trên bản copy** (patch `muc4/xrl-counterfactual-fix.patch`): code gốc sập 100% khi gọi (`self.exp` và `self.state_features` không tồn tại, `self.pi` là hàm thuần không có `.predict`) |
-| Chạy thử | Không có số counterfactual nào báo trong paper (chỉ mô tả phương pháp + UI) | 1 query CartPole (hàng replay số 6, action 0 → muốn 1, seed 99, 200 episode, 6.115 transition): DiCE sinh **40** → còn **2** counterfactual; score `{x: 0,5; θ: 0,5; v: 0; w: 0}`; cả **2/2 kiểm chứng độc lập bằng hàm policy gốc đều lật 0→1**; chạy lặp cho kết quả giống hệt |
-| Phạm vi khác | — | **Không làm**: counterfactual cho policy DQN, LunarLander, PongDuel, MicroRTS; DiCE ở đây là phương pháp `random`, không phải `genetic`/`kdtree` |
+| Chạy thử | Không có số counterfactual nào báo trong paper (chỉ mô tả phương pháp + UI) | Bước 3: 1 query CartPole (hàng replay số 6, action 0 → muốn 1, seed 99, 200 episode, 6.115 transition): DiCE sinh **40** → còn **2** counterfactual; cả **2/2 kiểm chứng độc lập bằng hàm policy gốc đều lật 0→1**. **Nhóm 2 (mở rộng): 6 query CartPole → 9/9 lật + 4 query LunarLander (4 action, sửa đa lớp) → 16/16 lật; tổng 25/25** kiểm chứng bằng policy gốc |
+| Phạm vi khác | — | **Không làm**: counterfactual cho policy DQN, PongDuel, MicroRTS; DiCE ở đây là phương pháp `random`, không phải `genetic`/`kdtree` |
 
 Chi tiết: `muc4/counterfactual-thu-nghiem.md`.
 
@@ -262,7 +293,11 @@ Run 9: 10/40 lần eval định kỳ đạt đúng 500,00; eval dao động
 loss MSE đỉnh 34,35 ở ep 1900 — nên chọn checkpoint theo eval định kỳ
 là bắt buộc. Cả mạng cuối train cũng đạt 500,00 nên kết quả không phụ
 thuộc chọn checkpoint. Run 6 dừng giữa chừng, không checkpoint, không
-dùng. DQN cho LunarLander/PongDuel: **không làm**.
+dùng. CartPole seed 1 (nhóm 2): **500,00/500** cả mạng cuối và
+checkpoint tốt nhất — tái hiện qua seed khác. **DQN LunarLander
+(nhóm 2): 222,03 ± 69,29** (100 ep, checkpoint tốt nhất ep 850, train
+dở ở ep 873 do VM restart). **DQN PongDuel (nhóm 3): âm tính** — xem
+§9.5.
 
 ### 9.2. Hướng D — Fidelity trained-vs-heuristic (BART thật, §4.2)
 
@@ -303,6 +338,32 @@ run 5 với run 9 như cùng test set.
 
 ---
 
+
+### 9.4. Hướng D — Fidelity trained-vs-heuristic, LunarLander (BART thật, nhóm 3)
+
+30 episode/policy, seed 0, LunarLander-v3, test set đầy đủ (không giới
+hạn 200 step như CartPole). Heuristic mạnh hơn DQN về reward nên so sánh
+này không cùng hướng với CartPole (xem §4.3).
+
+| Policy | DT acc / F1 | LR acc / F1 | BART acc / F1 |
+|---|---|---|---|
+| Heuristic (7.594 trans, n=3.038) | 0,7870 / 0,7881 | 0,7808 / 0,7758 | 0,8348 / 0,8304 |
+| DQN (13.105 trans, n=5.242) | 0,6616 / 0,6613 | 0,6167 / 0,5502 | 0,6728 / 0,6265 |
+
+### 9.5. Hướng D — DQN PongDuel: kết quả âm tính + bỏ qua XRL PongDuel (nhóm 3)
+
+Joint action 0–8 (1 policy điều khiển cả 2 paddle), cùng recipe run 9 /
+LunarLander. Baseline đo trước khi train (100 ep): heuristic 8,81 ± 1,04;
+random 4,90 ± 1,56. Tiêu chí thành công đặt trước: eval cuối ≥9,30 và
+≥3/4 eval định kỳ cuối trên 8,81. Train dừng ở 800/2.000 episode do VM
+restart; 15 eval định kỳ quanh mức random (tốt nhất 5,42 @ ep 350); eval
+cuối của checkpoint tốt nhất **5,44 ± 1,56** — cả 2 điều kiện đều trượt.
+Recipe này không học được gì có ý nghĩa trên joint-action PongDuel trong
+800 episode. Vì không có policy đã train nên **so sánh XRL PongDuel bỏ
+qua**; ước tính so sánh đầy đủ >70 giờ BART liên tục (~28 giờ với hệ số
+tốc độ 2,5× của VM), quy mô 30 episode vẫn ~5–6 giờ + rủi ro OOM chưa
+kiểm chứng. Bằng chứng: `muc4/results/pongduel-dqn/`.
+
 ## 10. Biểu đồ
 
 3 biểu đồ vẽ bằng matplotlib (script text trong repo, ảnh PNG trên
@@ -326,23 +387,34 @@ Drive vì connector GitHub không push được file nhị phân):
 **Mỗi biểu đồ đều có caveat ghi ngay trên hình.** Khi đưa biểu đồ vào
 slide/báo cáo, không được cắt bỏ phần ghi chú đỏ.
 
+**Lưu ý cập nhật nhóm 3:** 3 biểu đồ vẽ trước nhóm 1–3 nên biểu đồ 1
+vẫn hiển thị LunarLander theo macro-F1 cũ (weighted-F1 81,52% đã khôi
+phục ở nhóm 1) và chưa có GES; vẽ lại biểu đồ đang chờ, số chốt là số
+trong các bảng ở trên.
+
 ---
 
 ## 11. Những gì còn thiếu / chưa làm được (tóm tắt)
 
-1. Fidelity MicroRTS theo Table 1 + thời gian học cấu trúc MicroRTS:
-   **không làm** (dashboard 2 route còn 500, thiếu thư mục `data/`).
+1. Fidelity MicroRTS theo Table 1: **không đo được, đã chẩn đoán tới
+   cấp cơ chế** (nhóm 3) — không phải "không làm". Thời gian học cấu
+   trúc MicroRTS: đã có GES + BART (nhóm 2–3), xem §3.2/§6. Dashboard
+   đã sửa xong cả 9 route.
 2. Expert study: **không làm**.
-3. Weighted-F1 của BART LunarLander: không tính được (dự đoán không
-   được lưu); cần chạy lại BART fidelity có lưu dự đoán.
+3. ~~Weighted-F1 của BART LunarLander: không tính được~~ — **đã khôi
+   phục: 81,52%** (nhóm 1).
 4. Fidelity BART phân loại cho PongDuel: chỉ có PROXY hồi quy; repo
    không có BART phân loại.
-5. GES: **không làm** (paper cũng không báo số GES ở Table 1).
-6. Ảnh đồ thị Mục 3, case study local kiểu Hình 4, phân tích trọng số
-   cạnh: **không làm**.
+5. ~~GES: không làm~~ — **đã chạy đủ 4 môi trường** (nhóm 3).
+6. ~~Ảnh đồ thị Mục 3, case study local kiểu Hình 4: không làm~~ —
+   **đã làm ở nhóm 1** (ảnh trên Drive + case study hàng 1131). Phân
+   tích trọng số cạnh: **chưa làm**.
 7. Sensitivity cho LunarLander/PongDuel/MicroRTS: **không làm**.
-8. Counterfactual cho DQN/LunarLander/PongDuel/MicroRTS: **không làm**.
-9. DQN cho LunarLander/PongDuel: **không làm**.
+8. Counterfactual cho DQN/PongDuel/MicroRTS: **không làm** (CartPole +
+   LunarLander đã làm tới 25/25, nhóm 2).
+9. ~~DQN cho LunarLander/PongDuel: không làm~~ — **LunarLander đã làm
+   (222,03, nhóm 2); PongDuel đã thử, âm tính** (nhóm 3). So sánh XRL
+   PongDuel: **bỏ qua có lý do** (nhóm 3).
 10. Mask valid-step từng mẫu của Mục 3 không được lưu; macro-F1 của DT
     LunarLander cũ lệch 0,04 điểm % chưa giải thích được (xem
     `baselines_recomputed.md`).

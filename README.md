@@ -16,8 +16,8 @@ Repo gốc của tác giả: <https://github.com/yanmluk/causal-xrl> (commit
 ## Đọc nhanh (dành cho thầy)
 
 Nhóm tái hiện CausalXRL ở 3 môi trường gym (CartPole, LunarLander, PongDuel)
-bằng BART thật, chạy tối thiểu được MicroRTS (100 episode + một phần
-dashboard), sửa và chạy được hàm counterfactual của tác giả (vốn không chạy
+bằng BART thật, chạy tối thiểu được MicroRTS (100 episode + dashboard đã sửa xong
+cả 9 route), sửa và chạy được hàm counterfactual của tác giả (vốn không chạy
 được), rồi mở rộng bằng cách **tự train agent DQN thật** — điều repo tác giả
 không có — và so sánh khả năng giải thích của agent đã train với policy
 heuristic viết tay.
@@ -138,9 +138,10 @@ Chi tiết: `muc3/microRTS-thu-nghiem.md`.
 - Env thật chạy được (JVM + PPO trả action hợp lệ). Dashboard Flask:
   `/get_board_state` → **200** (trả board thật),
   `/compute_global_causal` → **200** sau khi tự sinh thư mục `data/` từ dữ
-  liệu 100 episode; `/get_local_causal` **vẫn 500** (danh sách cột hard-code
-  của tác giả không khớp scaler học từ dữ liệu thật). Không khẳng định
-  dashboard chạy đầy đủ.
+  liệu 100 episode; `/get_local_causal` → **200** sau sửa ở nhóm 3
+  (12/11/2026: danh sách cột hard-code của tác giả không khớp scaler học
+  từ dữ liệu thật; xem mục "Nhóm việc 3"). Cả 9 route đã kiểm chứng đều
+  trả 200, với điều kiện `R_LIBS` trỏ tới dbarts.
 - Đồ thị toàn cục **23 cạnh** từ **100 episode / 4.924 transition** thật
   (498,3 giây học BART). Hiệu đính: đồ thị bước 3 ghi "10 episode / 537
   transition" thực ra chỉ có 8 episode duy nhất (109 transition bị đếm trùng
@@ -170,7 +171,8 @@ thích Python 3.12), CPU-only, $0.
 - **LunarLander, seed 0 (nhóm 2): checkpoint tốt nhất @ ep 850, eval cuối
   100 episode 222,03 ± 69,29 (min −60,38, max 308,35)** — vượt ngưỡng solved
   ~200, nhưng train dở dang ở ep 873/1.000 do VM restart và policy còn dao
-  động; kém chắc chắn hơn CartPole. Chưa làm so sánh XRL cho LunarLander.
+  động; kém chắc chắn hơn CartPole. So sánh XRL cho LunarLander đã
+  làm xong ở nhóm 3 (xem mục "Nhóm việc 3").
 
 ### Mục 4 — Hướng D: so sánh XRL (BART thật) trained-vs-heuristic, CartPole
 
@@ -222,9 +224,62 @@ thử policy DQN, chưa thử PongDuel; DiCE dùng phương pháp `random`.
   trong phạm vi tiểu luận. Nhóm không làm và không thay bằng khảo sát
   bạn cùng lớp rồi ghi thành expert study.
 - **Fidelity MicroRTS theo đúng protocol:** tập valid rỗng (xem trên);
-  dashboard còn 1 route 500 (`/get_local_causal`).
-- **GES** (baseline thứ ba trong paper) chưa chạy; so sánh XRL cho
-  LunarLander/PongDuel chưa làm; DQN PongDuel chưa làm.
+  nhóm 3 đã chẩn đoán tới cấp cơ chế và xác nhận không sửa được bằng
+  cấu hình (xem mục "Nhóm việc 3"). Dashboard thì **đã sửa xong**: cả 9
+  route đều trả 200.
+- **GES, so sánh XRL LunarLander, DQN PongDuel: đã làm ở nhóm 3**
+  (GES đủ 4 môi trường; XRL LunarLander xong bằng BART thật; DQN
+  PongDuel âm tính và so sánh XRL PongDuel bỏ qua có lý do — xem mục
+  "Nhóm việc 3").
+
+
+## Nhóm việc 3 (12/11/2026)
+
+6. **GES chạy đủ 4 môi trường** (script `muc3/scripts/run_ges.py`, causal-learn
+   0.1.4.8, `local_score_BIC`, 3 lần lặp, tập cạnh giống hệt nhau): CartPole
+   7 cạnh (0,018 giây), LunarLander 18 cạnh có hướng (0,090 giây), PongDuel
+   34 cạnh (0,346 giây), MicroRTS 50 cạnh (0,563 giây; states+action 53
+   cạnh, 0,685 giây). Thời gian là wall-clock thật, **không** so trực tiếp
+   với timer mô phỏng của tác giả. Kết quả: `muc3/results/*/ges.json`,
+   `muc3/results/ges_run.log`.
+7. **Dashboard `/get_local_causal` sửa xong → 200.** Nguyên nhân: danh sách
+   10 cột hard-code của tác giả trong khi scaler học từ 8 cột. Sửa: lấy danh
+   sách cột từ `strategy_states` theo đúng luật >2 giá trị duy nhất của
+   `infer_causes_hte` (patch `muc3/dashboard-local-causal-fix.patch`, chỉ
+   sửa route, không sửa scaler/thư viện). Cả 9 route đã kiểm chứng đều 200,
+   gồm `/get_local_causal` ở step 0/10/100; cần `R_LIBS` trỏ tới dbarts và
+   gọi `/compute_global_causal` trước. Bằng chứng:
+   `muc3/results/microrts/dashboard_routes_g3a.json`,
+   `muc3/results/microrts/local_causal_g3a.json`.
+8. **Chẩn đoán fidelity MicroRTS: tập valid rỗng là bản chất dữ liệu +
+   cơ chế HTE, không sửa được bằng cấu hình.** Trong code tác giả, một cột
+   chỉ được gắn cờ local nếu có cluster HTE có ý nghĩa, tức cờ local ⊆
+   nguyên nhân toàn cục; BART cho target `action` chỉ có đúng 1 nguyên nhân
+   toàn cục (`heavy2`) nên ngưỡng >1 cờ không thể đạt được về mặt toán học.
+   13/14 cột treatment có 0 cluster có ý nghĩa. Không nới ngưỡng, không
+   sinh số fidelity mới. Chi tiết: `muc3/results/microrts/fidelity_diagnosis.md`.
+9. **So sánh XRL LunarLander xong bằng BART thật** (30 episode/policy, seed 0,
+   12 target, ~89 phút CPU): fidelity (weighted-F1) heuristic DT 0,7870 / LR
+   0,7808 / BART 0,8348 so với DQN DT 0,6616 / LR 0,6167 / BART 0,6728.
+   Lưu ý công bằng: ở LunarLander heuristic **mạnh hơn** DQN về reward
+   (255,41 ± 74,32 so với 222,03 ± 69,29 trên cùng 100 seed) — ngược với
+   CartPole. Đồ thị hte 48 vs 51 cạnh (Jaccard 0,5231), ate 46 vs 45 cạnh
+   (Jaccard 0,5690); thời gian học cấu trúc chỉ chậm hơn ~1,55 lần. Chi
+   tiết: `muc4/results/xrl-trained-vs-heuristic-lunarlander/`.
+10. **DQN PongDuel: kết quả âm tính; so sánh XRL PongDuel bỏ qua.**
+    DQN (joint action 0–8, cùng recipe run 9/LunarLander) dừng ở 800/2.000
+    episode do VM restart; eval cuối của checkpoint tốt nhất **5,44 ± 1,56**
+    so với heuristic 8,81 ± 1,04 — không đạt tiêu chí thành công đã đặt
+    trước khi train. Không có policy đã train để giải thích nên bước so
+    sánh XRL PongDuel bỏ qua; ước tính so sánh đầy đủ >70 giờ BART liên tục
+    (xem `muc4/results/pongduel-dqn/step6_estimate_skipped.md`).
+
+**Điểm tự chấm lại sau nhóm 3 (8 tiêu chí cũ, tự đánh giá so với paper,
+không phải điểm học phần): 7,55/10** — fidelity 3 env gym 2,1/2,5; hiệu
+quả học cấu trúc 0,9/1,5; đồ thị toàn cục + mô hình local 1,3/1,5;
+MicroRTS + dashboard 1,0/1,5; counterfactual + sensitivity 0,85/1,0;
+expert study 0/0,5; mở rộng vượt paper 0,95/1,0; trung thực/kiểm chứng
+được 0,45/0,5. Điểm trước nhóm 3 là 6,7/10 (chấm trước nhóm 1+2).
 
 ## Cấu trúc repo
 

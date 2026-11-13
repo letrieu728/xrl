@@ -1,0 +1,3087 @@
+{
+  "label": "BART (R/dbarts via rpy2) - real CausalXRL estimator",
+  "episodes": 30,
+  "seed": 0,
+  "runs": {
+    "heuristic": {
+      "fidelity_eval_notebook": {
+        "label": "BART (R/dbarts via rpy2) - real CausalXRL estimator",
+        "policy": "heuristic",
+        "dbarts_version": "0.9.34",
+        "seed": 0,
+        "replay": "replay_heuristic.npz",
+        "n_transitions": 7594,
+        "action_counts_replay": [
+          3808,
+          397,
+          2998,
+          391
+        ],
+        "valid_steps": 7593,
+        "valid_fraction": 1.0,
+        "n_train": 4555,
+        "n_test": 3038,
+        "train_action_counts": [
+          2284,
+          238,
+          1798,
+          235
+        ],
+        "test_action_counts": [
+          1524,
+          158,
+          1200,
+          156
+        ],
+        "split": "60/40, random_state=10, stratify=y (author notebook cell 15)",
+        "valid_rule": "any action SCM (indices 8-11) with >1 non-self local cause (author notebook cell 11)",
+        "bart_test_cap": null,
+        "bart_test_note": "full test set, no cap (ITE probe ~7 ms/row); CartPole comparison capped BART-weighted at 200",
+        "decision_tree": {
+          "accuracy": 0.7870309414088216,
+          "f1_weighted": 0.7881391360451946,
+          "f1_macro": 0.6597665281490745,
+          "per_class": [
+            {
+              "action": "do_nothing",
+              "label": 0,
+              "precision": 0.8663967611336032,
+              "recall": 0.84251968503937,
+              "f1": 0.8542914171656687,
+              "support": 1524
+            },
+            {
+              "action": "fire_left_engine",
+              "label": 1,
+              "precision": 0.449438202247191,
+              "recall": 0.5063291139240507,
+              "f1": 0.47619047619047616,
+              "support": 158
+            },
+            {
+              "action": "fire_main_engine",
+              "label": 2,
+              "precision": 0.7686688311688312,
+              "recall": 0.7891666666666667,
+              "f1": 0.7787828947368421,
+              "support": 1200
+            },
+            {
+              "action": "fire_right_engine",
+              "label": 3,
+              "precision": 0.547945205479452,
+              "recall": 0.5128205128205128,
+              "f1": 0.5298013245033113,
+              "support": 156
+            }
+          ],
+          "confusion_matrix": [
+            [
+              1284,
+              35,
+              183,
+              22
+            ],
+            [
+              24,
+              80,
+              54,
+              0
+            ],
+            [
+              147,
+              62,
+              947,
+              44
+            ],
+            [
+              27,
+              1,
+              48,
+              80
+            ]
+          ]
+        },
+        "logistic_regression": {
+          "accuracy": 0.7807768268597761,
+          "f1_weighted": 0.7758031626007005,
+          "f1_macro": 0.6570592557099043,
+          "per_class": [
+            {
+              "action": "do_nothing",
+              "label": 0,
+              "precision": 0.8587105624142661,
+              "recall": 0.821522309711286,
+              "f1": 0.8397048960429242,
+              "support": 1524
+            },
+            {
+              "action": "fire_left_engine",
+              "label": 1,
+              "precision": 0.6666666666666666,
+              "recall": 0.3670886075949367,
+              "f1": 0.47346938775510206,
+              "support": 158
+            },
+            {
+              "action": "fire_main_engine",
+              "label": 2,
+              "precision": 0.7076813655761024,
+              "recall": 0.8291666666666667,
+              "f1": 0.7636224098234843,
+              "support": 1200
+            },
+            {
+              "action": "fire_right_engine",
+              "label": 3,
+              "precision": 0.7701149425287356,
+              "recall": 0.42948717948717946,
+              "f1": 0.551440329218107,
+              "support": 156
+            }
+          ],
+          "confusion_matrix": [
+            [
+              1252,
+              11,
+              255,
+              6
+            ],
+            [
+              16,
+              58,
+              84,
+              0
+            ],
+            [
+              174,
+              17,
+              995,
+              14
+            ],
+            [
+              16,
+              1,
+              72,
+              67
+            ]
+          ]
+        },
+        "bart_weighted": {
+          "accuracy": 0.8347597103357473,
+          "f1_weighted": 0.8304122534506438,
+          "f1_macro": 0.7287333218477913,
+          "per_class": [
+            {
+              "action": "do_nothing",
+              "label": 0,
+              "precision": 0.8957765667574932,
+              "recall": 0.8628608923884514,
+              "f1": 0.8790106951871658,
+              "support": 1524
+            },
+            {
+              "action": "fire_left_engine",
+              "label": 1,
+              "precision": 0.776595744680851,
+              "recall": 0.4620253164556962,
+              "f1": 0.5793650793650794,
+              "support": 158
+            },
+            {
+              "action": "fire_main_engine",
+              "label": 2,
+              "precision": 0.772170151405912,
+              "recall": 0.8925,
+              "f1": 0.8279860842674913,
+              "support": 1200
+            },
+            {
+              "action": "fire_right_engine",
+              "label": 3,
+              "precision": 0.8651685393258427,
+              "recall": 0.4935897435897436,
+              "f1": 0.6285714285714286,
+              "support": 156
+            }
+          ],
+          "confusion_matrix": [
+            [
+              1315,
+              12,
+              191,
+              6
+            ],
+            [
+              19,
+              73,
+              66,
+              0
+            ],
+            [
+              115,
+              8,
+              1071,
+              6
+            ],
+            [
+              19,
+              1,
+              59,
+              77
+            ]
+          ]
+        },
+        "global_causes_per_action": {
+          "do_nothing": [
+            "vx",
+            "vy",
+            "left_contact",
+            "right_contact",
+            "fire_main_engine"
+          ],
+          "fire_left_engine": [
+            "vy",
+            "angle",
+            "angular_velocity",
+            "left_contact"
+          ],
+          "fire_main_engine": [
+            "x",
+            "y",
+            "vy",
+            "left_contact",
+            "right_contact",
+            "do_nothing"
+          ],
+          "fire_right_engine": [
+            "vx",
+            "vy",
+            "angle",
+            "angular_velocity",
+            "right_contact",
+            "fire_main_engine"
+          ]
+        },
+        "fidelity_stage_hte_causes": {
+          "x": [
+            "x",
+            "vx"
+          ],
+          "y": [
+            "y"
+          ],
+          "vx": [
+            "vx"
+          ],
+          "vy": [
+            "vy",
+            "right_contact"
+          ],
+          "angle": [
+            "angle",
+            "angular_velocity",
+            "right_contact"
+          ],
+          "angular_velocity": [
+            "angular_velocity",
+            "left_contact",
+            "right_contact"
+          ],
+          "left_contact": [
+            "y",
+            "left_contact",
+            "right_contact"
+          ],
+          "right_contact": [
+            "y",
+            "vy",
+            "angle",
+            "left_contact",
+            "right_contact"
+          ],
+          "do_nothing": [
+            "vx",
+            "vy",
+            "left_contact",
+            "right_contact",
+            "do_nothing",
+            "fire_main_engine"
+          ],
+          "fire_left_engine": [
+            "vy",
+            "angle",
+            "angular_velocity",
+            "left_contact",
+            "fire_left_engine"
+          ],
+          "fire_main_engine": [
+            "x",
+            "y",
+            "vy",
+            "left_contact",
+            "right_contact",
+            "do_nothing",
+            "fire_main_engine"
+          ],
+          "fire_right_engine": [
+            "vx",
+            "vy",
+            "angle",
+            "angular_velocity",
+            "right_contact",
+            "fire_main_engine",
+            "fire_right_engine"
+          ]
+        },
+        "fidelity_stage_hte_fit_seconds": {
+          "x": 32.85,
+          "y": 32.85,
+          "vx": 33.12,
+          "vy": 33.65,
+          "angle": 36.1,
+          "angular_velocity": 31.66,
+          "left_contact": 38.99,
+          "right_contact": 39.23,
+          "do_nothing": 43.81,
+          "fire_left_engine": 39.09,
+          "fire_main_engine": 41.25,
+          "fire_right_engine": 38.34
+        },
+        "fidelity_bart_pairs": 21,
+        "fidelity_bart_fit_seconds": 148.93,
+        "ite_loop_seconds": 218.7,
+        "prior_fallback_counts_per_action": [
+          0,
+          1,
+          18,
+          654
+        ],
+        "action_priors_train": [
+          0.5014270032930845,
+          0.052250274423710205,
+          0.3947310647639956,
+          0.05159165751920966
+        ]
+      },
+      "methods": {
+        "hte": {
+          "n_edges": 48,
+          "edges": [
+            "action_do_nothing_t -> action_do_nothing_t+1",
+            "action_fire_left_engine_t -> action_fire_left_engine_t+1",
+            "action_fire_left_engine_t -> state_angular_velocity_t+1",
+            "action_fire_left_engine_t -> state_right_contact_t+1",
+            "action_fire_main_engine_t -> action_do_nothing_t+1",
+            "action_fire_main_engine_t -> action_fire_left_engine_t+1",
+            "action_fire_main_engine_t -> action_fire_main_engine_t+1",
+            "action_fire_main_engine_t -> state_vy_t+1",
+            "action_fire_right_engine_t -> action_fire_left_engine_t+1",
+            "action_fire_right_engine_t -> action_fire_right_engine_t+1",
+            "state_angle_t -> action_fire_left_engine_t+1",
+            "state_angle_t -> action_fire_right_engine_t+1",
+            "state_angle_t -> state_angle_t+1",
+            "state_angle_t -> state_angular_velocity_t+1",
+            "state_angle_t -> state_vx_t+1",
+            "state_angular_velocity_t -> action_fire_left_engine_t+1",
+            "state_angular_velocity_t -> action_fire_right_engine_t+1",
+            "state_angular_velocity_t -> state_angle_t+1",
+            "state_angular_velocity_t -> state_angular_velocity_t+1",
+            "state_left_contact_t -> action_do_nothing_t+1",
+            "state_left_contact_t -> action_fire_left_engine_t+1",
+            "state_left_contact_t -> action_fire_main_engine_t+1",
+            "state_left_contact_t -> state_angular_velocity_t+1",
+            "state_left_contact_t -> state_left_contact_t+1",
+            "state_left_contact_t -> state_right_contact_t+1",
+            "state_right_contact_t -> action_do_nothing_t+1",
+            "state_right_contact_t -> action_fire_main_engine_t+1",
+            "state_right_contact_t -> action_fire_right_engine_t+1",
+            "state_right_contact_t -> state_angle_t+1",
+            "state_right_contact_t -> state_angular_velocity_t+1",
+            "state_right_contact_t -> state_left_contact_t+1",
+            "state_right_contact_t -> state_right_contact_t+1",
+            "state_right_contact_t -> state_vy_t+1",
+            "state_vx_t -> action_do_nothing_t+1",
+            "state_vx_t -> action_fire_right_engine_t+1",
+            "state_vx_t -> state_vx_t+1",
+            "state_vx_t -> state_x_t+1",
+            "state_vy_t -> action_do_nothing_t+1",
+            "state_vy_t -> action_fire_main_engine_t+1",
+            "state_vy_t -> state_right_contact_t+1",
+            "state_vy_t -> state_vy_t+1",
+            "state_x_t -> action_fire_main_engine_t+1",
+            "state_x_t -> state_x_t+1",
+            "state_y_t -> action_fire_main_engine_t+1",
+            "state_y_t -> state_left_contact_t+1",
+            "state_y_t -> state_right_contact_t+1",
+            "state_y_t -> state_vy_t+1",
+            "state_y_t -> state_y_t+1"
+          ],
+          "edges_collapsed": [
+            "angle -> angle",
+            "angle -> angular_velocity",
+            "angle -> fire_left_engine",
+            "angle -> fire_right_engine",
+            "angle -> vx",
+            "angular_velocity -> angle",
+            "angular_velocity -> angular_velocity",
+            "angular_velocity -> fire_left_engine",
+            "angular_velocity -> fire_right_engine",
+            "do_nothing -> do_nothing",
+            "fire_left_engine -> angular_velocity",
+            "fire_left_engine -> fire_left_engine",
+            "fire_left_engine -> right_contact",
+            "fire_main_engine -> do_nothing",
+            "fire_main_engine -> fire_left_engine",
+            "fire_main_engine -> fire_main_engine",
+            "fire_main_engine -> vy",
+            "fire_right_engine -> fire_left_engine",
+            "fire_right_engine -> fire_right_engine",
+            "left_contact -> angular_velocity",
+            "left_contact -> do_nothing",
+            "left_contact -> fire_left_engine",
+            "left_contact -> fire_main_engine",
+            "left_contact -> left_contact",
+            "left_contact -> right_contact",
+            "right_contact -> angle",
+            "right_contact -> angular_velocity",
+            "right_contact -> do_nothing",
+            "right_contact -> fire_main_engine",
+            "right_contact -> fire_right_engine",
+            "right_contact -> left_contact",
+            "right_contact -> right_contact",
+            "right_contact -> vy",
+            "vx -> do_nothing",
+            "vx -> fire_right_engine",
+            "vx -> vx",
+            "vx -> x",
+            "vy -> do_nothing",
+            "vy -> fire_main_engine",
+            "vy -> right_contact",
+            "vy -> vy",
+            "x -> fire_main_engine",
+            "x -> x",
+            "y -> fire_main_engine",
+            "y -> left_contact",
+            "y -> right_contact",
+            "y -> vy",
+            "y -> y"
+          ],
+          "per_target_causes": {
+            "x": [
+              "state_vx_t",
+              "state_x_t"
+            ],
+            "y": [
+              "state_y_t"
+            ],
+            "vx": [
+              "state_angle_t",
+              "state_vx_t"
+            ],
+            "vy": [
+              "action_fire_main_engine_t",
+              "state_right_contact_t",
+              "state_vy_t",
+              "state_y_t"
+            ],
+            "angle": [
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_right_contact_t"
+            ],
+            "angular_velocity": [
+              "action_fire_left_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_right_contact_t"
+            ],
+            "left_contact": [
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_y_t"
+            ],
+            "right_contact": [
+              "action_fire_left_engine_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vy_t",
+              "state_y_t"
+            ],
+            "do_nothing": [
+              "action_do_nothing_t",
+              "action_fire_main_engine_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vx_t",
+              "state_vy_t"
+            ],
+            "fire_left_engine": [
+              "action_fire_left_engine_t",
+              "action_fire_main_engine_t",
+              "action_fire_right_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t"
+            ],
+            "fire_main_engine": [
+              "action_fire_main_engine_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vy_t",
+              "state_x_t",
+              "state_y_t"
+            ],
+            "fire_right_engine": [
+              "action_fire_right_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_right_contact_t",
+              "state_vx_t"
+            ]
+          },
+          "infer_s": 475.45,
+          "target_checkpoints": [
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 0,
+              "target": "x",
+              "causes": [
+                0,
+                2
+              ],
+              "cause_names": [
+                "x",
+                "vx"
+              ],
+              "elapsed_seconds": 34.9,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "f63cab1f",
+              "finished_utc": "2026-11-12T14:22:45.149863+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 1,
+              "target": "y",
+              "causes": [
+                1
+              ],
+              "cause_names": [
+                "y"
+              ],
+              "elapsed_seconds": 36.82,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:23:43.124560+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 2,
+              "target": "vx",
+              "causes": [
+                2,
+                4
+              ],
+              "cause_names": [
+                "vx",
+                "angle"
+              ],
+              "elapsed_seconds": 38.0,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:24:21.450974+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 3,
+              "target": "vy",
+              "causes": [
+                1,
+                3,
+                7,
+                10
+              ],
+              "cause_names": [
+                "y",
+                "vy",
+                "right_contact",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 37.54,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:24:59.299992+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 4,
+              "target": "angle",
+              "causes": [
+                4,
+                5,
+                7
+              ],
+              "cause_names": [
+                "angle",
+                "angular_velocity",
+                "right_contact"
+              ],
+              "elapsed_seconds": 37.44,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:25:36.889635+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 5,
+              "target": "angular_velocity",
+              "causes": [
+                4,
+                5,
+                6,
+                7,
+                9
+              ],
+              "cause_names": [
+                "angle",
+                "angular_velocity",
+                "left_contact",
+                "right_contact",
+                "fire_left_engine"
+              ],
+              "elapsed_seconds": 35.06,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:26:12.017317+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 6,
+              "target": "left_contact",
+              "causes": [
+                1,
+                6,
+                7
+              ],
+              "cause_names": [
+                "y",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 40.12,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:26:52.559420+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 7,
+              "target": "right_contact",
+              "causes": [
+                1,
+                3,
+                6,
+                7,
+                9
+              ],
+              "cause_names": [
+                "y",
+                "vy",
+                "left_contact",
+                "right_contact",
+                "fire_left_engine"
+              ],
+              "elapsed_seconds": 42.84,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:27:35.647684+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 8,
+              "target": "do_nothing",
+              "causes": [
+                2,
+                3,
+                6,
+                7,
+                8,
+                10
+              ],
+              "cause_names": [
+                "vx",
+                "vy",
+                "left_contact",
+                "right_contact",
+                "do_nothing",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 46.36,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:28:22.304248+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 9,
+              "target": "fire_left_engine",
+              "causes": [
+                4,
+                5,
+                6,
+                9,
+                10,
+                11
+              ],
+              "cause_names": [
+                "angle",
+                "angular_velocity",
+                "left_contact",
+                "fire_left_engine",
+                "fire_main_engine",
+                "fire_right_engine"
+              ],
+              "elapsed_seconds": 40.73,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:29:03.101911+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 10,
+              "target": "fire_main_engine",
+              "causes": [
+                0,
+                1,
+                3,
+                6,
+                7,
+                10
+              ],
+              "cause_names": [
+                "x",
+                "y",
+                "vy",
+                "left_contact",
+                "right_contact",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 44.75,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:29:47.940944+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "hte",
+              "target_index": 11,
+              "target": "fire_right_engine",
+              "causes": [
+                2,
+                4,
+                5,
+                7,
+                11
+              ],
+              "cause_names": [
+                "vx",
+                "angle",
+                "angular_velocity",
+                "right_contact",
+                "fire_right_engine"
+              ],
+              "elapsed_seconds": 40.89,
+              "n_replay_rows": 7593,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "04a828d4",
+              "finished_utc": "2026-11-12T14:30:28.903343+00:00",
+              "replay": "replay_heuristic.npz"
+            }
+          ],
+          "n_transitions": 7594
+        },
+        "ate": {
+          "n_edges": 46,
+          "edges": [
+            "action_do_nothing_t -> action_do_nothing_t+1",
+            "action_do_nothing_t -> action_fire_right_engine_t+1",
+            "action_fire_left_engine_t -> action_fire_left_engine_t+1",
+            "action_fire_left_engine_t -> state_angular_velocity_t+1",
+            "action_fire_main_engine_t -> action_do_nothing_t+1",
+            "action_fire_right_engine_t -> action_fire_right_engine_t+1",
+            "state_angle_t -> action_fire_left_engine_t+1",
+            "state_angle_t -> action_fire_right_engine_t+1",
+            "state_angle_t -> state_angle_t+1",
+            "state_angle_t -> state_angular_velocity_t+1",
+            "state_angle_t -> state_right_contact_t+1",
+            "state_angle_t -> state_vx_t+1",
+            "state_angular_velocity_t -> action_do_nothing_t+1",
+            "state_angular_velocity_t -> action_fire_left_engine_t+1",
+            "state_angular_velocity_t -> action_fire_right_engine_t+1",
+            "state_angular_velocity_t -> state_angle_t+1",
+            "state_angular_velocity_t -> state_angular_velocity_t+1",
+            "state_angular_velocity_t -> state_right_contact_t+1",
+            "state_left_contact_t -> action_do_nothing_t+1",
+            "state_left_contact_t -> action_fire_main_engine_t+1",
+            "state_left_contact_t -> state_angular_velocity_t+1",
+            "state_left_contact_t -> state_left_contact_t+1",
+            "state_left_contact_t -> state_right_contact_t+1",
+            "state_left_contact_t -> state_vy_t+1",
+            "state_right_contact_t -> action_do_nothing_t+1",
+            "state_right_contact_t -> action_fire_main_engine_t+1",
+            "state_right_contact_t -> state_angle_t+1",
+            "state_right_contact_t -> state_angular_velocity_t+1",
+            "state_right_contact_t -> state_left_contact_t+1",
+            "state_right_contact_t -> state_right_contact_t+1",
+            "state_right_contact_t -> state_vy_t+1",
+            "state_vx_t -> action_fire_left_engine_t+1",
+            "state_vx_t -> action_fire_right_engine_t+1",
+            "state_vx_t -> state_vx_t+1",
+            "state_vx_t -> state_x_t+1",
+            "state_vy_t -> action_do_nothing_t+1",
+            "state_vy_t -> action_fire_main_engine_t+1",
+            "state_vy_t -> state_vy_t+1",
+            "state_x_t -> action_fire_main_engine_t+1",
+            "state_x_t -> action_fire_right_engine_t+1",
+            "state_x_t -> state_angular_velocity_t+1",
+            "state_x_t -> state_x_t+1",
+            "state_y_t -> action_fire_main_engine_t+1",
+            "state_y_t -> state_left_contact_t+1",
+            "state_y_t -> state_right_contact_t+1",
+            "state_y_t -> state_y_t+1"
+          ],
+          "edges_collapsed": [
+            "angle -> angle",
+            "angle -> angular_velocity",
+            "angle -> fire_left_engine",
+            "angle -> fire_right_engine",
+            "angle -> right_contact",
+            "angle -> vx",
+            "angular_velocity -> angle",
+            "angular_velocity -> angular_velocity",
+            "angular_velocity -> do_nothing",
+            "angular_velocity -> fire_left_engine",
+            "angular_velocity -> fire_right_engine",
+            "angular_velocity -> right_contact",
+            "do_nothing -> do_nothing",
+            "do_nothing -> fire_right_engine",
+            "fire_left_engine -> angular_velocity",
+            "fire_left_engine -> fire_left_engine",
+            "fire_main_engine -> do_nothing",
+            "fire_right_engine -> fire_right_engine",
+            "left_contact -> angular_velocity",
+            "left_contact -> do_nothing",
+            "left_contact -> fire_main_engine",
+            "left_contact -> left_contact",
+            "left_contact -> right_contact",
+            "left_contact -> vy",
+            "right_contact -> angle",
+            "right_contact -> angular_velocity",
+            "right_contact -> do_nothing",
+            "right_contact -> fire_main_engine",
+            "right_contact -> left_contact",
+            "right_contact -> right_contact",
+            "right_contact -> vy",
+            "vx -> fire_left_engine",
+            "vx -> fire_right_engine",
+            "vx -> vx",
+            "vx -> x",
+            "vy -> do_nothing",
+            "vy -> fire_main_engine",
+            "vy -> vy",
+            "x -> angular_velocity",
+            "x -> fire_main_engine",
+            "x -> fire_right_engine",
+            "x -> x",
+            "y -> fire_main_engine",
+            "y -> left_contact",
+            "y -> right_contact",
+            "y -> y"
+          ],
+          "per_target_causes": {
+            "x": [
+              "state_vx_t",
+              "state_x_t"
+            ],
+            "y": [
+              "state_y_t"
+            ],
+            "vx": [
+              "state_angle_t",
+              "state_vx_t"
+            ],
+            "vy": [
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vy_t"
+            ],
+            "angle": [
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_right_contact_t"
+            ],
+            "angular_velocity": [
+              "action_fire_left_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_x_t"
+            ],
+            "left_contact": [
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_y_t"
+            ],
+            "right_contact": [
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_y_t"
+            ],
+            "do_nothing": [
+              "action_do_nothing_t",
+              "action_fire_main_engine_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vy_t"
+            ],
+            "fire_left_engine": [
+              "action_fire_left_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_vx_t"
+            ],
+            "fire_main_engine": [
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vy_t",
+              "state_x_t",
+              "state_y_t"
+            ],
+            "fire_right_engine": [
+              "action_do_nothing_t",
+              "action_fire_right_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_vx_t",
+              "state_x_t"
+            ]
+          },
+          "infer_s": 723.96,
+          "target_checkpoints": [
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 0,
+              "target": "x",
+              "causes": [
+                0,
+                2
+              ],
+              "cause_names": [
+                "x",
+                "vx"
+              ],
+              "elapsed_seconds": 58.38,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:31:33.801952+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 1,
+              "target": "y",
+              "causes": [
+                1
+              ],
+              "cause_names": [
+                "y"
+              ],
+              "elapsed_seconds": 57.22,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:32:31.084839+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 2,
+              "target": "vx",
+              "causes": [
+                2,
+                4
+              ],
+              "cause_names": [
+                "vx",
+                "angle"
+              ],
+              "elapsed_seconds": 52.98,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:33:24.135351+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 3,
+              "target": "vy",
+              "causes": [
+                3,
+                6,
+                7
+              ],
+              "cause_names": [
+                "vy",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 55.45,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:34:19.665609+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 4,
+              "target": "angle",
+              "causes": [
+                4,
+                5,
+                7
+              ],
+              "cause_names": [
+                "angle",
+                "angular_velocity",
+                "right_contact"
+              ],
+              "elapsed_seconds": 59.94,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:35:19.723983+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 5,
+              "target": "angular_velocity",
+              "causes": [
+                0,
+                4,
+                5,
+                6,
+                7,
+                9
+              ],
+              "cause_names": [
+                "x",
+                "angle",
+                "angular_velocity",
+                "left_contact",
+                "right_contact",
+                "fire_left_engine"
+              ],
+              "elapsed_seconds": 51.85,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:36:11.999973+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 6,
+              "target": "left_contact",
+              "causes": [
+                1,
+                6,
+                7
+              ],
+              "cause_names": [
+                "y",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 59.81,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:37:12.157232+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 7,
+              "target": "right_contact",
+              "causes": [
+                1,
+                4,
+                5,
+                6,
+                7
+              ],
+              "cause_names": [
+                "y",
+                "angle",
+                "angular_velocity",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 66.5,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:38:18.759184+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 8,
+              "target": "do_nothing",
+              "causes": [
+                3,
+                5,
+                6,
+                7,
+                8,
+                10
+              ],
+              "cause_names": [
+                "vy",
+                "angular_velocity",
+                "left_contact",
+                "right_contact",
+                "do_nothing",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 71.06,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:39:30.125417+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 9,
+              "target": "fire_left_engine",
+              "causes": [
+                2,
+                4,
+                5,
+                9
+              ],
+              "cause_names": [
+                "vx",
+                "angle",
+                "angular_velocity",
+                "fire_left_engine"
+              ],
+              "elapsed_seconds": 62.51,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:40:32.761260+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 10,
+              "target": "fire_main_engine",
+              "causes": [
+                0,
+                1,
+                3,
+                6,
+                7
+              ],
+              "cause_names": [
+                "x",
+                "y",
+                "vy",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 68.81,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:41:41.680372+00:00",
+              "replay": "replay_heuristic.npz"
+            },
+            {
+              "policy": "heuristic",
+              "method": "ate",
+              "target_index": 11,
+              "target": "fire_right_engine",
+              "causes": [
+                0,
+                2,
+                4,
+                5,
+                8,
+                11
+              ],
+              "cause_names": [
+                "x",
+                "vx",
+                "angle",
+                "angular_velocity",
+                "do_nothing",
+                "fire_right_engine"
+              ],
+              "elapsed_seconds": 59.45,
+              "n_replay_rows": 7593,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "26cc16be",
+              "finished_utc": "2026-11-12T14:42:41.440732+00:00",
+              "replay": "replay_heuristic.npz"
+            }
+          ],
+          "n_transitions": 7594
+        }
+      }
+    },
+    "dqn": {
+      "fidelity_eval_notebook": {
+        "label": "BART (R/dbarts via rpy2) - real CausalXRL estimator",
+        "policy": "dqn",
+        "dbarts_version": "0.9.34",
+        "seed": 0,
+        "replay": "replay_dqn.npz",
+        "n_transitions": 13105,
+        "action_counts_replay": [
+          3343,
+          1920,
+          6381,
+          1461
+        ],
+        "valid_steps": 13104,
+        "valid_fraction": 1.0,
+        "n_train": 7862,
+        "n_test": 5242,
+        "train_action_counts": [
+          2006,
+          1151,
+          3828,
+          877
+        ],
+        "test_action_counts": [
+          1337,
+          768,
+          2553,
+          584
+        ],
+        "split": "60/40, random_state=10, stratify=y (author notebook cell 15)",
+        "valid_rule": "any action SCM (indices 8-11) with >1 non-self local cause (author notebook cell 11)",
+        "bart_test_cap": null,
+        "bart_test_note": "full test set, no cap (ITE probe ~7 ms/row); CartPole comparison capped BART-weighted at 200",
+        "decision_tree": {
+          "accuracy": 0.6615795497901564,
+          "f1_weighted": 0.6613351833621582,
+          "f1_macro": 0.5995588326929888,
+          "per_class": [
+            {
+              "action": "do_nothing",
+              "label": 0,
+              "precision": 0.7101769911504425,
+              "recall": 0.7202692595362753,
+              "f1": 0.7151875232083179,
+              "support": 1337
+            },
+            {
+              "action": "fire_left_engine",
+              "label": 1,
+              "precision": 0.531578947368421,
+              "recall": 0.5260416666666666,
+              "f1": 0.5287958115183246,
+              "support": 768
+            },
+            {
+              "action": "fire_main_engine",
+              "label": 2,
+              "precision": 0.7274155538098979,
+              "recall": 0.7254210732471602,
+              "f1": 0.7264169444989214,
+              "support": 2553
+            },
+            {
+              "action": "fire_right_engine",
+              "label": 3,
+              "precision": 0.42931034482758623,
+              "recall": 0.4263698630136986,
+              "f1": 0.42783505154639173,
+              "support": 584
+            }
+          ],
+          "confusion_matrix": [
+            [
+              963,
+              44,
+              241,
+              89
+            ],
+            [
+              59,
+              404,
+              263,
+              42
+            ],
+            [
+              248,
+              253,
+              1852,
+              200
+            ],
+            [
+              86,
+              59,
+              190,
+              249
+            ]
+          ]
+        },
+        "logistic_regression": {
+          "accuracy": 0.61674933231591,
+          "f1_weighted": 0.5501568688869037,
+          "f1_macro": 0.40710485220249115,
+          "per_class": [
+            {
+              "action": "do_nothing",
+              "label": 0,
+              "precision": 0.7551724137931034,
+              "recall": 0.4913986537023186,
+              "f1": 0.5953783416402356,
+              "support": 1337
+            },
+            {
+              "action": "fire_left_engine",
+              "label": 1,
+              "precision": 0.49032258064516127,
+              "recall": 0.09895833333333333,
+              "f1": 0.1646803900325027,
+              "support": 768
+            },
+            {
+              "action": "fire_main_engine",
+              "label": 2,
+              "precision": 0.5997067448680352,
+              "recall": 0.9612220916568742,
+              "f1": 0.7386004514672686,
+              "support": 2553
+            },
+            {
+              "action": "fire_right_engine",
+              "label": 3,
+              "precision": 0.368,
+              "recall": 0.07876712328767123,
+              "f1": 0.12976022566995768,
+              "support": 584
+            }
+          ],
+          "confusion_matrix": [
+            [
+              657,
+              44,
+              624,
+              12
+            ],
+            [
+              160,
+              76,
+              510,
+              22
+            ],
+            [
+              26,
+              28,
+              2454,
+              45
+            ],
+            [
+              27,
+              7,
+              504,
+              46
+            ]
+          ]
+        },
+        "bart_weighted": {
+          "accuracy": 0.6728347958794353,
+          "f1_weighted": 0.6264868791593898,
+          "f1_macro": 0.505875512152665,
+          "per_class": [
+            {
+              "action": "do_nothing",
+              "label": 0,
+              "precision": 0.7882462686567164,
+              "recall": 0.6320119670905011,
+              "f1": 0.7015359070153591,
+              "support": 1337
+            },
+            {
+              "action": "fire_left_engine",
+              "label": 1,
+              "precision": 0.8395061728395061,
+              "recall": 0.265625,
+              "f1": 0.4035608308605341,
+              "support": 768
+            },
+            {
+              "action": "fire_main_engine",
+              "label": 2,
+              "precision": 0.6361249671829876,
+              "recall": 0.9490795142969056,
+              "f1": 0.7617101540396102,
+              "support": 2553
+            },
+            {
+              "action": "fire_right_engine",
+              "label": 3,
+              "precision": 0.4661016949152542,
+              "recall": 0.09417808219178082,
+              "f1": 0.15669515669515668,
+              "support": 584
+            }
+          ],
+          "confusion_matrix": [
+            [
+              845,
+              15,
+              466,
+              11
+            ],
+            [
+              57,
+              204,
+              476,
+              31
+            ],
+            [
+              100,
+              9,
+              2423,
+              21
+            ],
+            [
+              70,
+              15,
+              444,
+              55
+            ]
+          ]
+        },
+        "global_causes_per_action": {
+          "do_nothing": [
+            "vx",
+            "angle",
+            "left_contact",
+            "right_contact",
+            "fire_main_engine"
+          ],
+          "fire_left_engine": [
+            "x",
+            "vx",
+            "vy",
+            "angle",
+            "angular_velocity",
+            "left_contact",
+            "do_nothing",
+            "fire_right_engine"
+          ],
+          "fire_main_engine": [
+            "vx",
+            "vy",
+            "left_contact",
+            "right_contact",
+            "fire_right_engine"
+          ],
+          "fire_right_engine": [
+            "vy",
+            "angle",
+            "angular_velocity",
+            "fire_left_engine"
+          ]
+        },
+        "fidelity_stage_hte_causes": {
+          "x": [
+            "x",
+            "vx"
+          ],
+          "y": [
+            "y"
+          ],
+          "vx": [
+            "vx",
+            "angle"
+          ],
+          "vy": [
+            "vy",
+            "left_contact",
+            "fire_main_engine"
+          ],
+          "angle": [
+            "angle",
+            "angular_velocity",
+            "do_nothing",
+            "fire_left_engine",
+            "fire_main_engine",
+            "fire_right_engine"
+          ],
+          "angular_velocity": [
+            "angle",
+            "angular_velocity",
+            "do_nothing",
+            "fire_left_engine",
+            "fire_main_engine",
+            "fire_right_engine"
+          ],
+          "left_contact": [
+            "y",
+            "left_contact",
+            "right_contact"
+          ],
+          "right_contact": [
+            "y",
+            "left_contact",
+            "right_contact"
+          ],
+          "do_nothing": [
+            "vx",
+            "angle",
+            "left_contact",
+            "right_contact",
+            "do_nothing",
+            "fire_main_engine"
+          ],
+          "fire_left_engine": [
+            "x",
+            "vx",
+            "vy",
+            "angle",
+            "angular_velocity",
+            "left_contact",
+            "do_nothing",
+            "fire_left_engine",
+            "fire_right_engine"
+          ],
+          "fire_main_engine": [
+            "vx",
+            "vy",
+            "left_contact",
+            "right_contact",
+            "fire_main_engine",
+            "fire_right_engine"
+          ],
+          "fire_right_engine": [
+            "vy",
+            "angle",
+            "angular_velocity",
+            "fire_left_engine"
+          ]
+        },
+        "fidelity_stage_hte_fit_seconds": {
+          "x": 67.0,
+          "y": 59.17,
+          "vx": 51.47,
+          "vy": 53.64,
+          "angle": 57.02,
+          "angular_velocity": 47.48,
+          "left_contact": 58.39,
+          "right_contact": 59.58,
+          "do_nothing": 71.21,
+          "fire_left_engine": 67.98,
+          "fire_main_engine": 72.94,
+          "fire_right_engine": 68.51
+        },
+        "fidelity_bart_pairs": 22,
+        "fidelity_bart_fit_seconds": 266.76,
+        "ite_loop_seconds": 455.21,
+        "prior_fallback_counts_per_action": [
+          10,
+          0,
+          62,
+          0
+        ],
+        "action_priors_train": [
+          0.25515136097685065,
+          0.14640040702111423,
+          0.4868990078860341,
+          0.11154922411600102
+        ]
+      },
+      "methods": {
+        "hte": {
+          "n_edges": 51,
+          "edges": [
+            "action_do_nothing_t -> action_fire_left_engine_t+1",
+            "action_do_nothing_t -> state_vy_t+1",
+            "action_fire_left_engine_t -> action_fire_left_engine_t+1",
+            "action_fire_left_engine_t -> action_fire_main_engine_t+1",
+            "action_fire_left_engine_t -> action_fire_right_engine_t+1",
+            "action_fire_left_engine_t -> state_angular_velocity_t+1",
+            "action_fire_left_engine_t -> state_vy_t+1",
+            "action_fire_main_engine_t -> action_do_nothing_t+1",
+            "action_fire_main_engine_t -> action_fire_main_engine_t+1",
+            "action_fire_main_engine_t -> state_vy_t+1",
+            "action_fire_right_engine_t -> action_fire_left_engine_t+1",
+            "action_fire_right_engine_t -> state_angular_velocity_t+1",
+            "state_angle_t -> action_do_nothing_t+1",
+            "state_angle_t -> action_fire_left_engine_t+1",
+            "state_angle_t -> action_fire_right_engine_t+1",
+            "state_angle_t -> state_angle_t+1",
+            "state_angle_t -> state_left_contact_t+1",
+            "state_angular_velocity_t -> action_fire_left_engine_t+1",
+            "state_angular_velocity_t -> action_fire_right_engine_t+1",
+            "state_angular_velocity_t -> state_angle_t+1",
+            "state_angular_velocity_t -> state_angular_velocity_t+1",
+            "state_left_contact_t -> action_do_nothing_t+1",
+            "state_left_contact_t -> action_fire_left_engine_t+1",
+            "state_left_contact_t -> action_fire_main_engine_t+1",
+            "state_left_contact_t -> action_fire_right_engine_t+1",
+            "state_left_contact_t -> state_left_contact_t+1",
+            "state_left_contact_t -> state_right_contact_t+1",
+            "state_left_contact_t -> state_vy_t+1",
+            "state_right_contact_t -> action_do_nothing_t+1",
+            "state_right_contact_t -> action_fire_main_engine_t+1",
+            "state_right_contact_t -> state_angle_t+1",
+            "state_right_contact_t -> state_angular_velocity_t+1",
+            "state_right_contact_t -> state_left_contact_t+1",
+            "state_right_contact_t -> state_right_contact_t+1",
+            "state_vx_t -> action_do_nothing_t+1",
+            "state_vx_t -> action_fire_left_engine_t+1",
+            "state_vx_t -> state_angle_t+1",
+            "state_vx_t -> state_vx_t+1",
+            "state_vx_t -> state_x_t+1",
+            "state_vy_t -> action_fire_left_engine_t+1",
+            "state_vy_t -> action_fire_main_engine_t+1",
+            "state_vy_t -> action_fire_right_engine_t+1",
+            "state_vy_t -> state_vy_t+1",
+            "state_x_t -> action_fire_left_engine_t+1",
+            "state_x_t -> state_x_t+1",
+            "state_y_t -> action_do_nothing_t+1",
+            "state_y_t -> action_fire_left_engine_t+1",
+            "state_y_t -> action_fire_main_engine_t+1",
+            "state_y_t -> state_left_contact_t+1",
+            "state_y_t -> state_right_contact_t+1",
+            "state_y_t -> state_y_t+1"
+          ],
+          "edges_collapsed": [
+            "angle -> angle",
+            "angle -> do_nothing",
+            "angle -> fire_left_engine",
+            "angle -> fire_right_engine",
+            "angle -> left_contact",
+            "angular_velocity -> angle",
+            "angular_velocity -> angular_velocity",
+            "angular_velocity -> fire_left_engine",
+            "angular_velocity -> fire_right_engine",
+            "do_nothing -> fire_left_engine",
+            "do_nothing -> vy",
+            "fire_left_engine -> angular_velocity",
+            "fire_left_engine -> fire_left_engine",
+            "fire_left_engine -> fire_main_engine",
+            "fire_left_engine -> fire_right_engine",
+            "fire_left_engine -> vy",
+            "fire_main_engine -> do_nothing",
+            "fire_main_engine -> fire_main_engine",
+            "fire_main_engine -> vy",
+            "fire_right_engine -> angular_velocity",
+            "fire_right_engine -> fire_left_engine",
+            "left_contact -> do_nothing",
+            "left_contact -> fire_left_engine",
+            "left_contact -> fire_main_engine",
+            "left_contact -> fire_right_engine",
+            "left_contact -> left_contact",
+            "left_contact -> right_contact",
+            "left_contact -> vy",
+            "right_contact -> angle",
+            "right_contact -> angular_velocity",
+            "right_contact -> do_nothing",
+            "right_contact -> fire_main_engine",
+            "right_contact -> left_contact",
+            "right_contact -> right_contact",
+            "vx -> angle",
+            "vx -> do_nothing",
+            "vx -> fire_left_engine",
+            "vx -> vx",
+            "vx -> x",
+            "vy -> fire_left_engine",
+            "vy -> fire_main_engine",
+            "vy -> fire_right_engine",
+            "vy -> vy",
+            "x -> fire_left_engine",
+            "x -> x",
+            "y -> do_nothing",
+            "y -> fire_left_engine",
+            "y -> fire_main_engine",
+            "y -> left_contact",
+            "y -> right_contact",
+            "y -> y"
+          ],
+          "per_target_causes": {
+            "x": [
+              "state_vx_t",
+              "state_x_t"
+            ],
+            "y": [
+              "state_y_t"
+            ],
+            "vx": [
+              "state_vx_t"
+            ],
+            "vy": [
+              "action_do_nothing_t",
+              "action_fire_left_engine_t",
+              "action_fire_main_engine_t",
+              "state_left_contact_t",
+              "state_vy_t"
+            ],
+            "angle": [
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_right_contact_t",
+              "state_vx_t"
+            ],
+            "angular_velocity": [
+              "action_fire_left_engine_t",
+              "action_fire_right_engine_t",
+              "state_angular_velocity_t",
+              "state_right_contact_t"
+            ],
+            "left_contact": [
+              "state_angle_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_y_t"
+            ],
+            "right_contact": [
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_y_t"
+            ],
+            "do_nothing": [
+              "action_fire_main_engine_t",
+              "state_angle_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vx_t",
+              "state_y_t"
+            ],
+            "fire_left_engine": [
+              "action_do_nothing_t",
+              "action_fire_left_engine_t",
+              "action_fire_right_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_vx_t",
+              "state_vy_t",
+              "state_x_t",
+              "state_y_t"
+            ],
+            "fire_main_engine": [
+              "action_fire_left_engine_t",
+              "action_fire_main_engine_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vy_t",
+              "state_y_t"
+            ],
+            "fire_right_engine": [
+              "action_fire_left_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_vy_t"
+            ]
+          },
+          "infer_s": 742.91,
+          "target_checkpoints": [
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 0,
+              "target": "x",
+              "causes": [
+                0,
+                2
+              ],
+              "cause_names": [
+                "x",
+                "vx"
+              ],
+              "elapsed_seconds": 67.9,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:43:55.654379+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 1,
+              "target": "y",
+              "causes": [
+                1
+              ],
+              "cause_names": [
+                "y"
+              ],
+              "elapsed_seconds": 57.75,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:44:53.471977+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 2,
+              "target": "vx",
+              "causes": [
+                2
+              ],
+              "cause_names": [
+                "vx"
+              ],
+              "elapsed_seconds": 52.6,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:45:46.153663+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 3,
+              "target": "vy",
+              "causes": [
+                3,
+                6,
+                8,
+                9,
+                10
+              ],
+              "cause_names": [
+                "vy",
+                "left_contact",
+                "do_nothing",
+                "fire_left_engine",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 55.32,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:46:41.546351+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 4,
+              "target": "angle",
+              "causes": [
+                2,
+                4,
+                5,
+                7
+              ],
+              "cause_names": [
+                "vx",
+                "angle",
+                "angular_velocity",
+                "right_contact"
+              ],
+              "elapsed_seconds": 56.91,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:47:38.536653+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 5,
+              "target": "angular_velocity",
+              "causes": [
+                5,
+                7,
+                9,
+                11
+              ],
+              "cause_names": [
+                "angular_velocity",
+                "right_contact",
+                "fire_left_engine",
+                "fire_right_engine"
+              ],
+              "elapsed_seconds": 48.84,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:48:27.440414+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 6,
+              "target": "left_contact",
+              "causes": [
+                1,
+                4,
+                6,
+                7
+              ],
+              "cause_names": [
+                "y",
+                "angle",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 60.43,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:49:27.985420+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 7,
+              "target": "right_contact",
+              "causes": [
+                1,
+                6,
+                7
+              ],
+              "cause_names": [
+                "y",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 59.3,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:50:27.358265+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 8,
+              "target": "do_nothing",
+              "causes": [
+                1,
+                2,
+                4,
+                6,
+                7,
+                10
+              ],
+              "cause_names": [
+                "y",
+                "vx",
+                "angle",
+                "left_contact",
+                "right_contact",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 71.06,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:51:38.481264+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 9,
+              "target": "fire_left_engine",
+              "causes": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                8,
+                9,
+                11
+              ],
+              "cause_names": [
+                "x",
+                "y",
+                "vx",
+                "vy",
+                "angle",
+                "angular_velocity",
+                "left_contact",
+                "do_nothing",
+                "fire_left_engine",
+                "fire_right_engine"
+              ],
+              "elapsed_seconds": 70.39,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:52:48.961364+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 10,
+              "target": "fire_main_engine",
+              "causes": [
+                1,
+                3,
+                6,
+                7,
+                9,
+                10
+              ],
+              "cause_names": [
+                "y",
+                "vy",
+                "left_contact",
+                "right_contact",
+                "fire_left_engine",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 72.49,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:54:01.848321+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "hte",
+              "target_index": 11,
+              "target": "fire_right_engine",
+              "causes": [
+                3,
+                4,
+                5,
+                6,
+                9
+              ],
+              "cause_names": [
+                "vy",
+                "angle",
+                "angular_velocity",
+                "left_contact",
+                "fire_left_engine"
+              ],
+              "elapsed_seconds": 69.92,
+              "n_replay_rows": 13104,
+              "test_size": 0.3,
+              "seed": 0,
+              "run_id": "b38f3553",
+              "finished_utc": "2026-11-12T14:55:12.132667+00:00",
+              "replay": "replay_dqn.npz"
+            }
+          ],
+          "n_transitions": 13105
+        },
+        "ate": {
+          "n_edges": 45,
+          "edges": [
+            "action_do_nothing_t -> action_fire_left_engine_t+1",
+            "action_do_nothing_t -> action_fire_right_engine_t+1",
+            "action_fire_left_engine_t -> action_fire_right_engine_t+1",
+            "action_fire_left_engine_t -> state_angular_velocity_t+1",
+            "action_fire_main_engine_t -> state_angular_velocity_t+1",
+            "action_fire_main_engine_t -> state_vy_t+1",
+            "action_fire_right_engine_t -> action_fire_left_engine_t+1",
+            "state_angle_t -> action_do_nothing_t+1",
+            "state_angle_t -> action_fire_left_engine_t+1",
+            "state_angle_t -> action_fire_right_engine_t+1",
+            "state_angle_t -> state_angle_t+1",
+            "state_angle_t -> state_angular_velocity_t+1",
+            "state_angle_t -> state_vx_t+1",
+            "state_angular_velocity_t -> action_fire_left_engine_t+1",
+            "state_angular_velocity_t -> action_fire_main_engine_t+1",
+            "state_angular_velocity_t -> action_fire_right_engine_t+1",
+            "state_angular_velocity_t -> state_angle_t+1",
+            "state_angular_velocity_t -> state_angular_velocity_t+1",
+            "state_left_contact_t -> action_do_nothing_t+1",
+            "state_left_contact_t -> action_fire_main_engine_t+1",
+            "state_left_contact_t -> state_angular_velocity_t+1",
+            "state_left_contact_t -> state_left_contact_t+1",
+            "state_left_contact_t -> state_right_contact_t+1",
+            "state_left_contact_t -> state_vy_t+1",
+            "state_right_contact_t -> action_do_nothing_t+1",
+            "state_right_contact_t -> action_fire_main_engine_t+1",
+            "state_right_contact_t -> state_angular_velocity_t+1",
+            "state_right_contact_t -> state_left_contact_t+1",
+            "state_right_contact_t -> state_right_contact_t+1",
+            "state_right_contact_t -> state_vy_t+1",
+            "state_vx_t -> action_do_nothing_t+1",
+            "state_vx_t -> action_fire_left_engine_t+1",
+            "state_vx_t -> action_fire_main_engine_t+1",
+            "state_vx_t -> action_fire_right_engine_t+1",
+            "state_vx_t -> state_vx_t+1",
+            "state_vx_t -> state_x_t+1",
+            "state_vy_t -> action_fire_main_engine_t+1",
+            "state_vy_t -> action_fire_right_engine_t+1",
+            "state_vy_t -> state_vy_t+1",
+            "state_x_t -> action_do_nothing_t+1",
+            "state_x_t -> state_x_t+1",
+            "state_y_t -> action_fire_right_engine_t+1",
+            "state_y_t -> state_left_contact_t+1",
+            "state_y_t -> state_right_contact_t+1",
+            "state_y_t -> state_y_t+1"
+          ],
+          "edges_collapsed": [
+            "angle -> angle",
+            "angle -> angular_velocity",
+            "angle -> do_nothing",
+            "angle -> fire_left_engine",
+            "angle -> fire_right_engine",
+            "angle -> vx",
+            "angular_velocity -> angle",
+            "angular_velocity -> angular_velocity",
+            "angular_velocity -> fire_left_engine",
+            "angular_velocity -> fire_main_engine",
+            "angular_velocity -> fire_right_engine",
+            "do_nothing -> fire_left_engine",
+            "do_nothing -> fire_right_engine",
+            "fire_left_engine -> angular_velocity",
+            "fire_left_engine -> fire_right_engine",
+            "fire_main_engine -> angular_velocity",
+            "fire_main_engine -> vy",
+            "fire_right_engine -> fire_left_engine",
+            "left_contact -> angular_velocity",
+            "left_contact -> do_nothing",
+            "left_contact -> fire_main_engine",
+            "left_contact -> left_contact",
+            "left_contact -> right_contact",
+            "left_contact -> vy",
+            "right_contact -> angular_velocity",
+            "right_contact -> do_nothing",
+            "right_contact -> fire_main_engine",
+            "right_contact -> left_contact",
+            "right_contact -> right_contact",
+            "right_contact -> vy",
+            "vx -> do_nothing",
+            "vx -> fire_left_engine",
+            "vx -> fire_main_engine",
+            "vx -> fire_right_engine",
+            "vx -> vx",
+            "vx -> x",
+            "vy -> fire_main_engine",
+            "vy -> fire_right_engine",
+            "vy -> vy",
+            "x -> do_nothing",
+            "x -> x",
+            "y -> fire_right_engine",
+            "y -> left_contact",
+            "y -> right_contact",
+            "y -> y"
+          ],
+          "per_target_causes": {
+            "x": [
+              "state_vx_t",
+              "state_x_t"
+            ],
+            "y": [
+              "state_y_t"
+            ],
+            "vx": [
+              "state_angle_t",
+              "state_vx_t"
+            ],
+            "vy": [
+              "action_fire_main_engine_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vy_t"
+            ],
+            "angle": [
+              "state_angle_t",
+              "state_angular_velocity_t"
+            ],
+            "angular_velocity": [
+              "action_fire_left_engine_t",
+              "action_fire_main_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_right_contact_t"
+            ],
+            "left_contact": [
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_y_t"
+            ],
+            "right_contact": [
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_y_t"
+            ],
+            "do_nothing": [
+              "state_angle_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vx_t",
+              "state_x_t"
+            ],
+            "fire_left_engine": [
+              "action_do_nothing_t",
+              "action_fire_right_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_vx_t"
+            ],
+            "fire_main_engine": [
+              "state_angular_velocity_t",
+              "state_left_contact_t",
+              "state_right_contact_t",
+              "state_vx_t",
+              "state_vy_t"
+            ],
+            "fire_right_engine": [
+              "action_do_nothing_t",
+              "action_fire_left_engine_t",
+              "state_angle_t",
+              "state_angular_velocity_t",
+              "state_vx_t",
+              "state_vy_t",
+              "state_y_t"
+            ]
+          },
+          "infer_s": 1121.66,
+          "target_checkpoints": [
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 0,
+              "target": "x",
+              "causes": [
+                0,
+                2
+              ],
+              "cause_names": [
+                "x",
+                "vx"
+              ],
+              "elapsed_seconds": 98.88,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T14:56:58.112990+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 1,
+              "target": "y",
+              "causes": [
+                1
+              ],
+              "cause_names": [
+                "y"
+              ],
+              "elapsed_seconds": 92.99,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T14:58:31.417858+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 2,
+              "target": "vx",
+              "causes": [
+                2,
+                4
+              ],
+              "cause_names": [
+                "vx",
+                "angle"
+              ],
+              "elapsed_seconds": 83.57,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T14:59:55.300273+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 3,
+              "target": "vy",
+              "causes": [
+                3,
+                6,
+                7,
+                10
+              ],
+              "cause_names": [
+                "vy",
+                "left_contact",
+                "right_contact",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 84.96,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:01:20.570494+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 4,
+              "target": "angle",
+              "causes": [
+                4,
+                5
+              ],
+              "cause_names": [
+                "angle",
+                "angular_velocity"
+              ],
+              "elapsed_seconds": 79.44,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:02:40.316537+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 5,
+              "target": "angular_velocity",
+              "causes": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10
+              ],
+              "cause_names": [
+                "angle",
+                "angular_velocity",
+                "left_contact",
+                "right_contact",
+                "fire_left_engine",
+                "fire_main_engine"
+              ],
+              "elapsed_seconds": 72.65,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:03:53.182082+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 6,
+              "target": "left_contact",
+              "causes": [
+                1,
+                6,
+                7
+              ],
+              "cause_names": [
+                "y",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 94.41,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:05:27.721485+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 7,
+              "target": "right_contact",
+              "causes": [
+                1,
+                6,
+                7
+              ],
+              "cause_names": [
+                "y",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 94.72,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:07:02.867497+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 8,
+              "target": "do_nothing",
+              "causes": [
+                0,
+                2,
+                4,
+                6,
+                7
+              ],
+              "cause_names": [
+                "x",
+                "vx",
+                "angle",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 106.53,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:08:49.776315+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 9,
+              "target": "fire_left_engine",
+              "causes": [
+                2,
+                4,
+                5,
+                8,
+                11
+              ],
+              "cause_names": [
+                "vx",
+                "angle",
+                "angular_velocity",
+                "do_nothing",
+                "fire_right_engine"
+              ],
+              "elapsed_seconds": 103.64,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:10:33.797703+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 10,
+              "target": "fire_main_engine",
+              "causes": [
+                2,
+                3,
+                5,
+                6,
+                7
+              ],
+              "cause_names": [
+                "vx",
+                "vy",
+                "angular_velocity",
+                "left_contact",
+                "right_contact"
+              ],
+              "elapsed_seconds": 106.89,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:12:20.978853+00:00",
+              "replay": "replay_dqn.npz"
+            },
+            {
+              "policy": "dqn",
+              "method": "ate",
+              "target_index": 11,
+              "target": "fire_right_engine",
+              "causes": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                8,
+                9
+              ],
+              "cause_names": [
+                "y",
+                "vx",
+                "vy",
+                "angle",
+                "angular_velocity",
+                "do_nothing",
+                "fire_left_engine"
+              ],
+              "elapsed_seconds": 102.98,
+              "n_replay_rows": 13104,
+              "test_size": 0.5,
+              "seed": 0,
+              "run_id": "fa12b54f",
+              "finished_utc": "2026-11-12T15:14:04.304427+00:00",
+              "replay": "replay_dqn.npz"
+            }
+          ],
+          "n_transitions": 13105
+        }
+      }
+    }
+  },
+  "comparison_trained_vs_heuristic": {
+    "hte": {
+      "heuristic_n_edges": 48,
+      "dqn_n_edges": 51,
+      "jaccard": 0.5231,
+      "symdiff": 31,
+      "only_heuristic": [
+        "action_do_nothing_t -> action_do_nothing_t+1",
+        "action_fire_left_engine_t -> state_right_contact_t+1",
+        "action_fire_main_engine_t -> action_fire_left_engine_t+1",
+        "action_fire_right_engine_t -> action_fire_right_engine_t+1",
+        "state_angle_t -> state_angular_velocity_t+1",
+        "state_angle_t -> state_vx_t+1",
+        "state_left_contact_t -> state_angular_velocity_t+1",
+        "state_right_contact_t -> action_fire_right_engine_t+1",
+        "state_right_contact_t -> state_vy_t+1",
+        "state_vx_t -> action_fire_right_engine_t+1",
+        "state_vy_t -> action_do_nothing_t+1",
+        "state_vy_t -> state_right_contact_t+1",
+        "state_x_t -> action_fire_main_engine_t+1",
+        "state_y_t -> state_vy_t+1"
+      ],
+      "only_dqn": [
+        "action_do_nothing_t -> action_fire_left_engine_t+1",
+        "action_do_nothing_t -> state_vy_t+1",
+        "action_fire_left_engine_t -> action_fire_main_engine_t+1",
+        "action_fire_left_engine_t -> action_fire_right_engine_t+1",
+        "action_fire_left_engine_t -> state_vy_t+1",
+        "action_fire_right_engine_t -> state_angular_velocity_t+1",
+        "state_angle_t -> action_do_nothing_t+1",
+        "state_angle_t -> state_left_contact_t+1",
+        "state_left_contact_t -> action_fire_right_engine_t+1",
+        "state_left_contact_t -> state_vy_t+1",
+        "state_vx_t -> action_fire_left_engine_t+1",
+        "state_vx_t -> state_angle_t+1",
+        "state_vy_t -> action_fire_left_engine_t+1",
+        "state_vy_t -> action_fire_right_engine_t+1",
+        "state_x_t -> action_fire_left_engine_t+1",
+        "state_y_t -> action_do_nothing_t+1",
+        "state_y_t -> action_fire_left_engine_t+1"
+      ],
+      "common": [
+        "action_fire_left_engine_t -> action_fire_left_engine_t+1",
+        "action_fire_left_engine_t -> state_angular_velocity_t+1",
+        "action_fire_main_engine_t -> action_do_nothing_t+1",
+        "action_fire_main_engine_t -> action_fire_main_engine_t+1",
+        "action_fire_main_engine_t -> state_vy_t+1",
+        "action_fire_right_engine_t -> action_fire_left_engine_t+1",
+        "state_angle_t -> action_fire_left_engine_t+1",
+        "state_angle_t -> action_fire_right_engine_t+1",
+        "state_angle_t -> state_angle_t+1",
+        "state_angular_velocity_t -> action_fire_left_engine_t+1",
+        "state_angular_velocity_t -> action_fire_right_engine_t+1",
+        "state_angular_velocity_t -> state_angle_t+1",
+        "state_angular_velocity_t -> state_angular_velocity_t+1",
+        "state_left_contact_t -> action_do_nothing_t+1",
+        "state_left_contact_t -> action_fire_left_engine_t+1",
+        "state_left_contact_t -> action_fire_main_engine_t+1",
+        "state_left_contact_t -> state_left_contact_t+1",
+        "state_left_contact_t -> state_right_contact_t+1",
+        "state_right_contact_t -> action_do_nothing_t+1",
+        "state_right_contact_t -> action_fire_main_engine_t+1",
+        "state_right_contact_t -> state_angle_t+1",
+        "state_right_contact_t -> state_angular_velocity_t+1",
+        "state_right_contact_t -> state_left_contact_t+1",
+        "state_right_contact_t -> state_right_contact_t+1",
+        "state_vx_t -> action_do_nothing_t+1",
+        "state_vx_t -> state_vx_t+1",
+        "state_vx_t -> state_x_t+1",
+        "state_vy_t -> action_fire_main_engine_t+1",
+        "state_vy_t -> state_vy_t+1",
+        "state_x_t -> state_x_t+1",
+        "state_y_t -> action_fire_main_engine_t+1",
+        "state_y_t -> state_left_contact_t+1",
+        "state_y_t -> state_right_contact_t+1",
+        "state_y_t -> state_y_t+1"
+      ]
+    },
+    "ate": {
+      "heuristic_n_edges": 46,
+      "dqn_n_edges": 45,
+      "jaccard": 0.569,
+      "symdiff": 25,
+      "only_heuristic": [
+        "action_do_nothing_t -> action_do_nothing_t+1",
+        "action_fire_left_engine_t -> action_fire_left_engine_t+1",
+        "action_fire_main_engine_t -> action_do_nothing_t+1",
+        "action_fire_right_engine_t -> action_fire_right_engine_t+1",
+        "state_angle_t -> state_right_contact_t+1",
+        "state_angular_velocity_t -> action_do_nothing_t+1",
+        "state_angular_velocity_t -> state_right_contact_t+1",
+        "state_right_contact_t -> state_angle_t+1",
+        "state_vy_t -> action_do_nothing_t+1",
+        "state_x_t -> action_fire_main_engine_t+1",
+        "state_x_t -> action_fire_right_engine_t+1",
+        "state_x_t -> state_angular_velocity_t+1",
+        "state_y_t -> action_fire_main_engine_t+1"
+      ],
+      "only_dqn": [
+        "action_do_nothing_t -> action_fire_left_engine_t+1",
+        "action_fire_left_engine_t -> action_fire_right_engine_t+1",
+        "action_fire_main_engine_t -> state_angular_velocity_t+1",
+        "action_fire_main_engine_t -> state_vy_t+1",
+        "action_fire_right_engine_t -> action_fire_left_engine_t+1",
+        "state_angle_t -> action_do_nothing_t+1",
+        "state_angular_velocity_t -> action_fire_main_engine_t+1",
+        "state_vx_t -> action_do_nothing_t+1",
+        "state_vx_t -> action_fire_main_engine_t+1",
+        "state_vy_t -> action_fire_right_engine_t+1",
+        "state_x_t -> action_do_nothing_t+1",
+        "state_y_t -> action_fire_right_engine_t+1"
+      ],
+      "common": [
+        "action_do_nothing_t -> action_fire_right_engine_t+1",
+        "action_fire_left_engine_t -> state_angular_velocity_t+1",
+        "state_angle_t -> action_fire_left_engine_t+1",
+        "state_angle_t -> action_fire_right_engine_t+1",
+        "state_angle_t -> state_angle_t+1",
+        "state_angle_t -> state_angular_velocity_t+1",
+        "state_angle_t -> state_vx_t+1",
+        "state_angular_velocity_t -> action_fire_left_engine_t+1",
+        "state_angular_velocity_t -> action_fire_right_engine_t+1",
+        "state_angular_velocity_t -> state_angle_t+1",
+        "state_angular_velocity_t -> state_angular_velocity_t+1",
+        "state_left_contact_t -> action_do_nothing_t+1",
+        "state_left_contact_t -> action_fire_main_engine_t+1",
+        "state_left_contact_t -> state_angular_velocity_t+1",
+        "state_left_contact_t -> state_left_contact_t+1",
+        "state_left_contact_t -> state_right_contact_t+1",
+        "state_left_contact_t -> state_vy_t+1",
+        "state_right_contact_t -> action_do_nothing_t+1",
+        "state_right_contact_t -> action_fire_main_engine_t+1",
+        "state_right_contact_t -> state_angular_velocity_t+1",
+        "state_right_contact_t -> state_left_contact_t+1",
+        "state_right_contact_t -> state_right_contact_t+1",
+        "state_right_contact_t -> state_vy_t+1",
+        "state_vx_t -> action_fire_left_engine_t+1",
+        "state_vx_t -> action_fire_right_engine_t+1",
+        "state_vx_t -> state_vx_t+1",
+        "state_vx_t -> state_x_t+1",
+        "state_vy_t -> action_fire_main_engine_t+1",
+        "state_vy_t -> state_vy_t+1",
+        "state_x_t -> state_x_t+1",
+        "state_y_t -> state_left_contact_t+1",
+        "state_y_t -> state_right_contact_t+1",
+        "state_y_t -> state_y_t+1"
+      ]
+    }
+  },
+  "checkpoint_dqn": "results/lunarlander-dqn/best_checkpoint.pt (group 2, best @ ep 850; binary on Drive)",
+  "checkpoint_hyperparams": {
+    "seed": 0,
+    "episodes": 1000,
+    "hidden": 128,
+    "lr": 0.001,
+    "gamma": 0.99,
+    "batch_size": 64,
+    "buffer_size": 50000,
+    "eps_start": 1.0,
+    "eps_end": 0.02,
+    "eps_decay_episodes": 650,
+    "target_update_every": 10,
+    "warmup": 1000,
+    "loss": "mse",
+    "grad_clip": 0.0,
+    "double_dqn": true,
+    "eval_every": 50,
+    "eval_episodes": 50,
+    "eval_seed_offset": 10000,
+    "env": "LunarLander-v3",
+    "outdir": "/home/hatch/workspace/goals/cschttt-new-presentation-paper-selection/files/causalxrl-muc4-mo-rong/results/lunarlander-dqn"
+  },
+  "checkpoint_best_eval_episode": 850,
+  "checkpoint_best_eval_50ep": {
+    "n": 50,
+    "mean": 228.5428156224153,
+    "std": 58.97606949926013,
+    "min": -60.37554300541697,
+    "max": 308.3542001013347
+  },
+  "dqn_final_eval_100ep_group2": {
+    "n": 100,
+    "mean": 222.03340358957288,
+    "std": 69.29493899740132,
+    "min": -60.37554300541697,
+    "max": 308.3542001013347
+  },
+  "heuristic_eval_100ep_same_seeds": {
+    "policy": "heuristic_PD_repo",
+    "env": "LunarLander-v3",
+    "n": 100,
+    "seed_offset": 10000,
+    "protocol": "greedy/deterministic policy, 100 episodes, fresh env seeds 10000..10099, same seeds as DQN final eval",
+    "mean": 255.4094,
+    "std": 74.3171,
+    "min": -198.2053,
+    "max": 314.0403,
+    "n_ge200": 95,
+    "mean_ep_len": 248.97
+  },
+  "rollout_summaries": {
+    "heuristic": {
+      "policy": "heuristic",
+      "env": "LunarLander-v3",
+      "episodes": 30,
+      "seed": 0,
+      "n_transitions": 7594,
+      "rollout_s": 0.42,
+      "ep_lengths": [
+        152,
+        175,
+        231,
+        221,
+        205,
+        1000,
+        237,
+        212,
+        196,
+        226,
+        275,
+        286,
+        202,
+        245,
+        312,
+        503,
+        184,
+        210,
+        178,
+        195,
+        224,
+        189,
+        236,
+        192,
+        203,
+        343,
+        185,
+        198,
+        222,
+        187
+      ],
+      "ep_rewards": [
+        297.35,
+        288.39,
+        303.51,
+        290.56,
+        287.85,
+        -3.39,
+        249.95,
+        283.9,
+        245.01,
+        264.04,
+        244.16,
+        198.78,
+        277.19,
+        305.94,
+        259.46,
+        277.05,
+        262.99,
+        282.23,
+        279.95,
+        314.47,
+        253.98,
+        288.88,
+        292.67,
+        243.64,
+        262.61,
+        248.7,
+        243.84,
+        256.49,
+        295.55,
+        235.94
+      ],
+      "mean_ep_len": 254.13,
+      "mean_ep_reward": 261.06,
+      "std_ep_reward": 55.1,
+      "min_ep_reward": -3.39,
+      "max_ep_reward": 314.47,
+      "action_counts": [
+        3808,
+        397,
+        2998,
+        391
+      ],
+      "action_names": [
+        "do_nothing",
+        "fire_left_engine",
+        "fire_main_engine",
+        "fire_right_engine"
+      ]
+    },
+    "dqn": {
+      "policy": "dqn",
+      "env": "LunarLander-v3",
+      "episodes": 30,
+      "seed": 0,
+      "n_transitions": 13105,
+      "rollout_s": 1.18,
+      "ep_lengths": [
+        248,
+        407,
+        296,
+        591,
+        197,
+        545,
+        405,
+        222,
+        303,
+        439,
+        408,
+        530,
+        603,
+        235,
+        520,
+        566,
+        967,
+        369,
+        1000,
+        863,
+        524,
+        256,
+        269,
+        545,
+        218,
+        304,
+        340,
+        298,
+        376,
+        291
+      ],
+      "ep_rewards": [
+        290.07,
+        222.61,
+        252.48,
+        226.79,
+        310.87,
+        205.75,
+        220.59,
+        226.94,
+        238.8,
+        233.27,
+        212.99,
+        228.66,
+        181.44,
+        257.35,
+        212.72,
+        222.58,
+        183.23,
+        223.2,
+        99.95,
+        190.91,
+        222.77,
+        269.5,
+        208.22,
+        249.39,
+        250.71,
+        278.73,
+        264.66,
+        263.56,
+        234.88,
+        283.33
+      ],
+      "mean_ep_len": 437.83,
+      "mean_ep_reward": 232.23,
+      "std_ep_reward": 39.26,
+      "min_ep_reward": 99.95,
+      "max_ep_reward": 310.87,
+      "action_counts": [
+        3343,
+        1920,
+        6381,
+        1461
+      ],
+      "action_names": [
+        "do_nothing",
+        "fire_left_engine",
+        "fire_main_engine",
+        "fire_right_engine"
+      ],
+      "checkpoint": "/home/hatch/workspace/goals/cschttt-new-presentation-paper-selection/files/causalxrl-muc4-mo-rong/results/lunarlander-dqn/best_checkpoint.pt",
+      "checkpoint_best_eval_episode": 850,
+      "checkpoint_best_eval": {
+        "n": 50,
+        "mean": 228.5428156224153,
+        "std": 58.97606949926013,
+        "min": -60.37554300541697,
+        "max": 308.3542001013347
+      },
+      "checkpoint_hyperparams": {
+        "seed": 0,
+        "episodes": 1000,
+        "hidden": 128,
+        "lr": 0.001,
+        "gamma": 0.99,
+        "batch_size": 64,
+        "buffer_size": 50000,
+        "eps_start": 1.0,
+        "eps_end": 0.02,
+        "eps_decay_episodes": 650,
+        "target_update_every": 10,
+        "warmup": 1000,
+        "loss": "mse",
+        "grad_clip": 0.0,
+        "double_dqn": true,
+        "eval_every": 50,
+        "eval_episodes": 50,
+        "eval_seed_offset": 10000,
+        "env": "LunarLander-v3",
+        "outdir": "/home/hatch/workspace/goals/cschttt-new-presentation-paper-selection/files/causalxrl-muc4-mo-rong/results/lunarlander-dqn"
+      }
+    }
+  },
+  "environment": {
+    "python": "3.12.3",
+    "gymnasium": "1.4.0",
+    "torch": "2.15.0+cpu",
+    "sklearn": "1.9.1",
+    "R": "4.3.3",
+    "dbarts": "0.9.34",
+    "rpy2": "3.5.16",
+    "repo": "yanmluk/causal-xrl commit ae9096e (read-only copy repo-causal-xrl/)",
+    "env": "LunarLander-v3 (gymnasium, data collection only)",
+    "R_LIBS": "~/workspace/R-lib",
+    "cpu_only": true,
+    "cost_usd": 0
+  },
+  "provenance": {
+    "graphs": "48 per-target checkpoints (2 policies x 2 methods x 12 targets), one process per (policy, method), numpy RNG replay for skipped targets; each checkpoint records run_id + timestamp. No VM restart during the step-4 BART run (2026-11-12 14:23-15:52 UTC).",
+    "fidelity": "separate HTE refit per policy (fresh stochastic BART fits; bart_train has no seed), full test set, no cap. Fidelity-stage HTE causes are recorded inside each fidelity JSON and differ from graph-stage causes (heuristic Jaccard 0.7547, DQN 0.6452) \u2014 see REPORT.md.",
+    "rollouts": "collect_lunarlander.py, 30 episodes/policy, seed 0 (first reset seeded, later unseeded), repo transition-recording rule (non-terminal steps only).",
+    "heuristic_eval_100ep": "measured in this step (heuristic_eval_100ep.json/.csv in work dir), same seeds/protocol as the group-2 DQN final eval; the DQN number is group 2's, not re-measured here."
+  }
+}

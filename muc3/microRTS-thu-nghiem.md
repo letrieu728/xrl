@@ -2,13 +2,17 @@
 
 Ngày chạy bước 3: 2026-11-12. Cập nhật nhóm 2: 2026-11-12 (rollout
 100 episode, đồ thị 100 episode, fidelity, sửa 2 route dashboard).
+Cập nhật nhóm 3a: 2026-11-12 (sửa route `/get_local_causal`, chẩn đoán
+cơ chế fidelity, GES trên dữ liệu MicroRTS — xem §9.5, §10.4, §12).
 Repo tác giả: `yanmluk/causal-xrl`, commit
 `ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162`, clone mới, mọi sửa đổi chỉ làm
 trên **bản copy** (repo gốc không bị sửa). Log đầy đủ bước 3:
 `muc3/microRTS-thu-nghiem-log.txt`. Log nhóm 2:
 `muc3/results/microrts/`. Patch sửa import:
 `muc3/stratvis-fix.patch` (đã kiểm chứng áp sạch lên cây gốc). Patch sửa
-dashboard nhóm 2: `muc3/dashboard-fix.patch`.
+dashboard nhóm 2: `muc3/dashboard-fix.patch`. Patch sửa
+`/get_local_causal` nhóm 3a: `muc3/dashboard-local-causal-fix.patch`
+(đã kiểm chứng áp sạch; xem §10.4).
 
 ## Hiệu đính quan trọng đối với báo cáo bước 3 (đọc trước)
 
@@ -33,7 +37,11 @@ dashboard nhóm 2: `muc3/dashboard-fix.patch`.
 3. Hai blocker §6 của bước 3 đã được xử lý ở nhóm 2: route
    `/get_board_state` đã sửa → 200; thư mục `data/` đã tự sinh từ dữ
    liệu nhóm 2 → `/compute_global_causal` → 200. Route
-   `/get_local_causal` vẫn 500 với nguyên nhân mới, ghi rõ ở §10.
+   `/get_local_causal` còn 500 sau nhóm 2 (nguyên nhân mới, ghi rõ ở
+   §10.3); **nhóm 3a đã sửa → 200** (xem §10.4). Kết quả fidelity ở §9
+   đã được nhóm 3a chẩn đoán tới cấp cơ chế (§9.5): tập valid rỗng là
+   bản chất dữ liệu + tính chất của máy HTE, không sửa được bằng cấu
+   hình — không có số fidelity mới.
 
 ## Kết luận trước
 
@@ -67,6 +75,11 @@ paper (86,0%/85,9% — đó là expert study, không phải thứ chạy ở đ�
 > Câu cuối của đoạn trên đã được hiệu đính ở đầu báo cáo: 86,0%/85,9% là
 > behavior prediction, không phải expert study; và "10 episode" thực ra
 > là 8 episode duy nhất + 2 episode trùng lặp.
+>
+> **Cập nhật nhóm 3a (2026-11-12):** route `/get_local_causal` còn lại
+> đã sửa → 200 với đồ thị cục bộ thật (§10.4); cả 9 route đã kiểm chứng
+> đều 200. Fidelity đã chẩn đoán xong tới cấp cơ chế (§9.5): không có
+> cách sửa cấu hình nào cho tập valid khác rỗng, và không có số mới.
 
 ## 1. Sửa import `stratvis.*` (A1)
 
@@ -315,9 +328,11 @@ học chạy được đầu-cuối**, không phải bản sao kết quả của
    kiểm chứng bằng `test_client`.
 2. ~~Các route nhân quả cần file `data/`~~ — **đã tự sinh** (nhóm 2,
    §10): `/compute_global_causal` → 200, `/run_env_episode` → 200.
-   Route `/get_local_causal` **vẫn 500** do danh sách cột hard-code của
-   tác giả (10 cột) không khớp scaler học từ dữ liệu thật (8 cột) —
-   xem §10.3. Không "vá" scaler để ép chạy, vì đó sẽ là dữ liệu giả.
+   ~~Route `/get_local_causal` 500~~ — **đã sửa** (nhóm 3a, §10.4):
+   danh sách cột hard-code của tác giả (10 cột) không khớp scaler học
+   từ dữ liệu thật (8 cột); nhóm 3a suy danh sách cột từ chính dữ liệu
+   huấn luyện theo đúng quy tắc của `infer_causes_hte`, không vá
+   scaler, route trả 200 với đồ thị cục bộ thật ở cả 3 step đã thử.
 3. Đồ thị toàn cục nay học từ 100 episode (§8), vẫn ít hơn quy mô
    ~500 episode mà tên file `scm500_hte` gợi ý; 500 episode ước ~5,5 giờ
    rollout trên máy này nên nhóm 2 dừng ở 100 và ghi rõ.
@@ -325,8 +340,9 @@ học chạy được đầu-cuối**, không phải bản sao kết quả của
    này: paper không cho mã hóa action cho MicroRTS, code repo không có
    cột action; bản đo tương tự của nhóm 2 (§9) cho thấy theo đúng
    protocol notebook thì tập valid rỗng, còn bản không-lọc thì mô hình
-   nhân quả kém xa baseline đa số. Con số của paper không tái tạo được
-   từ repo.
+   nhân quả kém xa baseline đa số. Nhóm 3a đã chẩn đoán tới cấp cơ chế
+   (§9.5) và xác nhận không có cách sửa cấu hình nào cho tập valid khác
+   rỗng. Con số của paper không tái tạo được từ repo.
 5. Expert study (§6 của paper) vẫn chưa làm: cần người đánh giá thật,
    không có trong phạm vi nhóm 2.
 
@@ -528,6 +544,47 @@ quy mô dữ liệu, hoặc do cả hai; báo cáo này không suy đoán thêm.
 6. Checkpoint PPO là bản công khai seed-3 (§2), không chứng minh được
    giống byte bản của tác giả.
 
+### 9.5. Nhóm 3a — Chẩn đoán cơ chế: vì sao tập valid rỗng (không sửa được)
+
+Nhóm 3a kiểm tra lại toàn bộ chuỗi lọc (global causes, local
+treatments, scaling, ngưỡng, số mẫu từng bước) trên đúng BART action
+đã lưu. Chẩn đoán đầy đủ, kèm mọi số đếm:
+`muc3/results/microrts/fidelity_diagnosis.md` (JSON:
+`fidelity_diagnosis.json`; script:
+`muc3/scripts/fidelity_diagnosis_g3a.py`,
+`muc3/scripts/fidelity_refit_probe_g3a.py`). Kết quả chính:
+
+1. **Cơ chế quyết định.** Trong code tác giả, `local_treatments` đọc
+   đúng các cây HTE mà `is_causal_HTE` đã khớp lúc học toàn cục: một
+   cột chỉ được flag cục bộ nếu nó có ít nhất một cụm HTE có ý nghĩa,
+   tức là nếu nó đã là cause toàn cục. Do đó **tập flag cục bộ của mọi
+   hàng ⊆ tập cause toàn cục**. Với đúng 1 cause (`heavy2`), ngưỡng
+   `>1` không thể đạt được. Kiểm tra trực tiếp: 13/14 cột có 0 cụm có
+   ý nghĩa; chỉ `heavy2` có 1/8 cụm có ý nghĩa (178/1.416 hàng test).
+   Số đếm §9.2 được chạy lại và khớp đúng (A: 2.501 flag 0 / 331 flag
+   1; B: 2.856 / 344; đối chứng `worker1`: 303/1.000 hàng >1 flag).
+2. **Scaling không phải nguyên nhân.** Query chuẩn hóa bằng scaler
+   test (tái tạo đúng phép chia) cho kết quả gần như giống hệt scaler
+   train (A: 329 hàng flag 1; B: 342; vẫn 0 valid). Query thô flag 0
+   hàng — cây HTE sống trong không gian chuẩn hóa, còn `timestep` thô
+   (0–2.237) đẩy mọi hàng vào lá không có ý nghĩa. Lưu ý: notebook gym
+   của tác giả tự nó truyền query thô (không nhất quán có sẵn trong
+   code tác giả; vô hại với CartPole cỡ ~1, triệt tiêu flag với
+   MicroRTS). Ngưỡng `>1` của nhóm 2 khớp notebook; không có lỗi
+   ngưỡng, lỗi cột action, hay thiếu bước.
+3. **Tín hiệu yếu là thật.** BART action khớp kém trên 2.832 cặp
+   (R² = 0,107; accuracy làm tròn 26,9%, thua baseline đa số 65,3%);
+   cây quyết định rẻ tiền cũng thua đa số (52,1% so với 64,3%). Học
+   lại BART action trên cùng dữ liệu với seed 1 hoặc với biến thể gym
+   (1 scaler, chia 70/30) cho **0 cause** — yếu hơn, không mạnh hơn.
+4. **Không sửa.** Không nới ngưỡng, không đổi seed để ép số, không
+   đổi protocol. Bản không-lọc (§9.3) được giữ nguyên, với lưu ý bổ
+   sung từ chẩn đoán: 1.004/1.133 (A) và 1.135/1.280 (B) hàng test rơi
+   vào nhánh fallback không trọng số ITE, nên số "BART" không-lọc
+   không được đọc như hiệu năng mô hình nhân quả. Hướng duy nhất có cơ
+   sở (thu thêm dữ liệu ~500 episode) vượt phạm vi bước này và không
+   đảm bảo cho ≥2 cause — chưa thử, không khẳng định.
+
 ## 10. Nhóm 2 — Sửa 2 route dashboard + sinh thư mục `data/` (2b)
 
 ### 10.1. Sửa `/get_board_state` (patch, trên bản copy)
@@ -588,6 +645,10 @@ Không khẳng định dashboard "chạy đầy đủ": chỉ khẳng định đ
 ghi. Frontend không có code JS nào gọi `/get_board_state`, nên việc sửa
 route này chỉ được kiểm chứng bằng `test_client`.
 
+> **Nhóm 3a:** bảng trên là kết quả của nhóm 2, giữ nguyên làm lịch sử.
+> Route `/get_local_causal` đã được nhóm 3a sửa — xem §10.4 (bảng kiểm
+> chứng mới, file kết quả mới, file nhóm 2 không bị ghi đè).
+
 **File nhị phân nhóm 2 trên Drive** (thư mục "XRL - file nhi phan" /
 `muc3/results/microrts/`): file `.npz` 10 batch rollout, file gộp
 `microrts_merged.npz`, `scm_hte.pkl.gz` (SCM đã gộp, chứa đủ 13 mô hình
@@ -595,6 +656,66 @@ BART — bản nén gzip vì bản thô 378 MB bị Drive từ chối do quota; 
 upload riêng checkpoint từng target vì trùng lặp),
 `scaler_hte.pkl`/`strategy_states.npz`, `ep_play_front_data.npz`. Link
 thư mục Drive: xem README của repo.
+
+### 10.4. Nhóm 3a — Sửa `/get_local_causal` (patch, trên bản copy)
+
+Nguyên nhân gốc (lấy traceback thật bằng `test_client`, không đoán):
+`app.py` hard-code `num_cols_hte` 10 cột, nhưng mọi scaler trong
+`scaler500_hte.pickle` đều chỉ có 8 đặc trưng, vì `infer_causes_hte`
+chỉ đưa cột có >2 giá trị phân biệt vào scaler. Đã kiểm chứng: cả 13
+target state dùng chung một danh sách 8 cột `[1,2,3,4,5,8,11,12]` (cột
+`base1`, `base2`, `barrack2` có 2 giá trị; `heavy2` có 2 giá trị;
+`light2` hằng 0), mọi scaler đều `n_features_in_ = 8` và giống hệt
+nhau; suy lại danh sách từ `strategy_states` bằng đúng quy tắc >2 giá
+trị phân biệt cho ra cùng 8 cột.
+
+Cách sửa (patch `muc3/dashboard-local-causal-fix.patch`, chỉ sửa route
+này trong `app.py`, không sửa scaler hay code thư viện): thay danh sách
+hard-code bằng danh sách suy từ `strategy_states` với **cùng quy tắc
+>2 giá trị phân biệt** mà `infer_causes_hte` dùng. Vì scaler được học
+trên đúng mảng này, danh sách suy ra luôn khớp scaler — kể cả khi chạy
+lại với dữ liệu huấn luyện khác. Patch đã kiểm chứng áp sạch lên bản
+copy đang chạy (kết quả sau áp giống hệt file đã sửa) và áp được cả lên
+`app.py` gốc của tác giả (phần sửa không chồng lấn patch stratvis /
+dashboard của nhóm 2).
+
+Kiểm chứng (cùng script `test_dashboard_routes.py` của nhóm 2, dưới
+Xvfb, `R_LIBS=~/workspace/R-lib` — xem lưu ý R bên dưới; file nhóm 2
+không bị ghi đè, kết quả mới ở
+`muc3/results/microrts/dashboard_routes_g3a.json` +
+`dashboard_routes_g3a.log`):
+
+| Route | Kết quả nhóm 3a |
+|---|---|
+| `GET /` | 200 (18.741 byte, như nhóm 2) |
+| `POST /utt_to_uht`, `POST /read_xml_map` | 200 |
+| `GET /get_board_state` | 200 (7 loại unit, 8 ô có unit, 16×16 — như nhóm 2) |
+| `GET /compute_global_causal` | 200 (`{"error_code": "0"}`) |
+| `POST /get_local_causal` step_id 0 | **200** — 6 nút, 7 cạnh, 7 hiệu ứng |
+| `POST /get_local_causal` step_id 10 | **200** — 8 nút, 7 cạnh, 7 hiệu ứng |
+| `POST /get_local_causal` step_id 100 | **200** — 6 nút, 5 cạnh, 5 hiệu ứng |
+| `POST /run_env_episode` | 200 (1.160 rawobs / 1.160 gamestep) |
+
+Nội dung JSON trả về có ý nghĩa, không phải 200 rỗng (đầy đủ:
+`muc3/results/microrts/local_causal_g3a.json`; đã đối chiếu khớp với
+chạy offline trực tiếp `local_causal_network_hte` + vòng ATE). Ví dụ
+step 0: nút `base1, barrack2, worker1, heavy2, base2, worker2`; cạnh
+`[0,0], [7,2], [10,2], [6,7], [7,7], [8,8], [10,10]`; hiệu ứng ATE
+`−1,77 / 0,83 / 1,58 / 0,25 / −0,75 / −0,54 / −0,53`. Lưu ý trung thực:
+đồ thị cục bộ chứa cạnh tự-vòng (vd `base1→base1`) do code tác giả
+không lọc cạnh tự thân ở đường local (khác với `DBN_to_causal` ở đường
+toàn cục) — nhóm 3a giữ nguyên hành vi của tác giả, không lọc thêm.
+
+Yêu cầu môi trường (đã kiểm chứng cả hai chiều): vòng tính hiệu ứng
+ATE cần `dbarts` nạp được trong phiên R — chạy với
+`R_LIBS=~/workspace/R-lib` (dbarts 0.9.34, đúng thiết lập nhóm 2 ở
+§11) thì route trả 200; chạy không có `R_LIBS` thì phần đồ thị cục bộ
+(vẽ từ cây HTE, không cần R) vẫn tính được nhưng ATE sập với
+`no applicable method for 'predict' applied to an object of class
+"bart"` → route 500. Patch không nhúng đường dẫn R; ai chạy lại
+dashboard phải giữ `R_LIBS` như mọi script nhóm 2. Thứ tự gọi vẫn như
+thiết kế của tác giả: `/compute_global_causal` trước (nạp globals),
+rồi mới `/get_local_causal`.
 
 ## 11. Môi trường nhóm 2 (bổ sung §5)
 
@@ -609,3 +730,29 @@ thư mục Drive: xem README của repo.
 - Xvfb `:99` chạy lại sau restart; Java OpenJDK 21 khôi phục bằng apt
   replay. Rollout batch07 bị gián đoạn bởi restart (xem §7.2); không
   mất batch nào đã lưu.
+
+## 12. Nhóm 3a — GES trên dữ liệu MicroRTS (baseline học cấu trúc)
+
+Cùng đợt với GES trên 3 env gym (xem `muc3/EXPERIMENT_REPORT.md` mục
+GES và script `muc3/scripts/run_ges.py`), nhóm 3a chạy GES thuần của
+causal-learn 0.1.4.8 (BIC chuẩn, `maxP=None`, đo wall-clock thật —
+không dùng timer mô phỏng của notebook `eval_time`) trên
+`microrts_merged.npz`. MicroRTS không có notebook timing hay tiền lệ
+PC/FCI, nên chạy 2 biến thể theo quy ước của env gym, và **bỏ cột hằng
+`light2`** (phương sai 0, hồi quy BIC không xác định):
+
+| Biến thể | Ma trận | GES (trung vị, 3 lần) | Số cạnh | PC / FCI cùng phiên |
+|---|---|---:|---:|---|
+| Chỉ state, mọi hàng | 4.924 × 12 | 0,563 s | 50 (47 có hướng, 3 vô hướng) | 0,165 s / 0,520 s |
+| State + action, hàng có action | 3.200 × 13 | 0,685 s | 53 (53 có hướng) | 0,286 s / 1,009 s |
+
+Kết quả đầy đủ (danh sách cạnh, điểm BIC, tóm tắt cột, SHA-256 file
+nguồn): `muc3/results/microrts/ges.json`. Cảnh báo đọc số: GES/PC/FCI
+học đồ thị **đồng thời** trên [state(, action)] tại thời điểm t, trong
+khi đồ thị BART ở §8 là DBN (t → t+1, hiệu số trạng thái, 23 cạnh) —
+số cạnh không so sánh trực tiếp được; so sánh có ý nghĩa là thời gian
+chạy (GES/PC/FCI dưới 1 giây so với 498,3 giây học BART cho cả 14
+target).
+BIC giả định tuyến tính–Gauss; các cột đếm/nhị phân vi phạm giả định
+này, giống như Fisher-Z của PC/FCI. Không chuẩn hóa dữ liệu (giống
+PC/FCI ở env gym).

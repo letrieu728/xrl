@@ -1,0 +1,200 @@
+########## step4-master.log ##########
+=== STAGE graphs-heur-hte START 2026-11-12T14:23:01Z ===
+=== STAGE graphs-heur-hte END rc=0 2026-11-12T14:30:30Z ckpts=12 ===
+=== STAGE graphs-heur-ate START 2026-11-12T14:30:30Z ===
+=== STAGE graphs-heur-ate END rc=0 2026-11-12T14:42:42Z ckpts=24 ===
+=== STAGE graphs-dqn-hte START 2026-11-12T14:42:42Z ===
+=== STAGE graphs-dqn-hte END rc=0 2026-11-12T14:55:13Z ckpts=36 ===
+=== STAGE graphs-dqn-ate START 2026-11-12T14:55:13Z ===
+=== STAGE graphs-dqn-ate END rc=0 2026-11-12T15:14:05Z ckpts=48 ===
+=== STAGE fidelity-heur START 2026-11-12T15:14:05Z ===
+=== STAGE fidelity-heur END rc=0 2026-11-12T15:27:43Z ckpts=48 ===
+=== STAGE fidelity-dqn START 2026-11-12T15:27:43Z ===
+=== STAGE fidelity-dqn END rc=0 2026-11-12T15:52:09Z ckpts=48 ===
+=== STAGE assemble START 2026-11-12T15:52:09Z ===
+=== STAGE assemble END rc=0 2026-11-12T15:52:14Z ckpts=48 ===
+=== ALL DONE 2026-11-12T15:52:14Z ===
+
+########## assemble.log ##########
+2026-11-12 15:52:13,302 INFO heuristic/hte: 48 edges, 475.5s
+2026-11-12 15:52:13,690 INFO heuristic/ate: 46 edges, 724.0s
+2026-11-12 15:52:14,094 INFO dqn/hte: 51 edges, 742.9s
+2026-11-12 15:52:14,490 INFO dqn/ate: 45 edges, 1121.7s
+2026-11-12 15:52:14,494 INFO wrote comparison tables + per_run_details.json to xrl-ll-assembled
+2026-11-12 15:52:14,494 INFO DONE
+
+########## fidelity-dqn.log ##########
+2026-11-12 15:27:48,698 INFO cffi mode is CFFI_MODE.ANY
+2026-11-12 15:27:48,712 INFO R home found: /usr/lib/R
+2026-11-12 15:27:49,008 INFO R library path: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 15:27:49,009 INFO LD_LIBRARY_PATH: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 15:27:49,024 INFO Default options to initialize R: rpy2, --quiet, --no-save
+2026-11-12 15:27:49,378 INFO R is already initialized. No need to initialize.
+2026-11-12 15:27:49,385 INFO rpy2 import OK
+2026-11-12 15:27:49,470 INFO R dbarts OK, version=0.9.34
+2026-11-12 15:27:49,494 INFO policy=dqn replay_t=(13104, 12) n_transitions=13105 action_counts=[3343, 1920, 6381, 1461]
+2026-11-12 15:28:56,495 INFO fidelity HTE target 0 (x): causes=['x', 'vx'] (67.0s)
+2026-11-12 15:29:55,724 INFO fidelity HTE target 1 (y): causes=['y'] (59.2s)
+2026-11-12 15:30:47,260 INFO fidelity HTE target 2 (vx): causes=['vx', 'angle'] (51.5s)
+2026-11-12 15:31:40,968 INFO fidelity HTE target 3 (vy): causes=['vy', 'left_contact', 'fire_main_engine'] (53.6s)
+2026-11-12 15:32:38,054 INFO fidelity HTE target 4 (angle): causes=['angle', 'angular_velocity', 'do_nothing', 'fire_left_engine', 'fire_main_engine', 'fire_right_engine'] (57.0s)
+2026-11-12 15:33:25,594 INFO fidelity HTE target 5 (angular_velocity): causes=['angle', 'angular_velocity', 'do_nothing', 'fire_left_engine', 'fire_main_engine', 'fire_right_engine'] (47.5s)
+2026-11-12 15:34:24,045 INFO fidelity HTE target 6 (left_contact): causes=['y', 'left_contact', 'right_contact'] (58.4s)
+2026-11-12 15:35:23,777 INFO fidelity HTE target 7 (right_contact): causes=['y', 'left_contact', 'right_contact'] (59.6s)
+2026-11-12 15:36:35,393 INFO fidelity HTE target 8 (do_nothing): causes=['vx', 'angle', 'left_contact', 'right_contact', 'do_nothing', 'fire_main_engine'] (71.2s)
+2026-11-12 15:37:43,374 INFO fidelity HTE target 9 (fire_left_engine): causes=['x', 'vx', 'vy', 'angle', 'angular_velocity', 'left_contact', 'do_nothing', 'fire_left_engine', 'fire_right_engine'] (68.0s)
+2026-11-12 15:38:56,330 INFO fidelity HTE target 10 (fire_main_engine): causes=['vx', 'vy', 'left_contact', 'right_contact', 'fire_main_engine', 'fire_right_engine'] (72.9s)
+2026-11-12 15:40:04,842 INFO fidelity HTE target 11 (fire_right_engine): causes=['vy', 'angle', 'angular_velocity', 'fire_left_engine'] (68.5s)
+2026-11-12 15:40:04,858 INFO fidelity HTE refit total 735.4s
+2026-11-12 15:40:05,734 INFO valid_steps=13104 / 13104 (100.0%), scan 0.9s
+2026-11-12 15:40:05,782 INFO split: train=7862 test=5242 train_counts=[2006, 1151, 3828, 877] test_counts=[1337, 768, 2553, 584]
+2026-11-12 15:40:06,120 INFO DT acc=0.6616 F1w=0.6613 | LR acc=0.6167 F1w=0.5502 (n_test=5242)
+2026-11-12 15:40:06,123 INFO global causes do_nothing <- ['vx', 'angle', 'left_contact', 'right_contact', 'fire_main_engine']
+2026-11-12 15:40:06,123 INFO global causes fire_left_engine <- ['x', 'vx', 'vy', 'angle', 'angular_velocity', 'left_contact', 'do_nothing', 'fire_right_engine']
+2026-11-12 15:40:06,123 INFO global causes fire_main_engine <- ['vx', 'vy', 'left_contact', 'right_contact', 'fire_right_engine']
+2026-11-12 15:40:06,123 INFO global causes fire_right_engine <- ['vy', 'angle', 'angular_velocity', 'fire_left_engine']
+2026-11-12 15:44:32,883 INFO fidelity BART fits: 22 (action,cause) pairs in 266.8s
+2026-11-12 15:52:08,236 INFO BART-weighted acc=0.6728 F1w=0.6265 F1m=0.5059 (n_test=5242, ITE loop 455.2s, fallbacks=[10, 0, 62, 0])
+2026-11-12 15:52:08,290 INFO wrote fid-ll/fidelity_dqn.json
+2026-11-12 15:52:08,378 INFO Embedded R ended.
+2026-11-12 15:52:08,378 INFO Embedded R already ended.
+
+########## fidelity-heur.log ##########
+2026-11-12 15:14:10,783 INFO cffi mode is CFFI_MODE.ANY
+2026-11-12 15:14:10,788 INFO R home found: /usr/lib/R
+2026-11-12 15:14:11,041 INFO R library path: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 15:14:11,041 INFO LD_LIBRARY_PATH: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 15:14:11,054 INFO Default options to initialize R: rpy2, --quiet, --no-save
+2026-11-12 15:14:11,364 INFO R is already initialized. No need to initialize.
+2026-11-12 15:14:11,370 INFO rpy2 import OK
+2026-11-12 15:14:11,467 INFO R dbarts OK, version=0.9.34
+2026-11-12 15:14:11,487 INFO policy=heuristic replay_t=(7593, 12) n_transitions=7594 action_counts=[3808, 397, 2998, 391]
+2026-11-12 15:14:44,340 INFO fidelity HTE target 0 (x): causes=['x', 'vx'] (32.9s)
+2026-11-12 15:15:17,259 INFO fidelity HTE target 1 (y): causes=['y'] (32.9s)
+2026-11-12 15:15:50,457 INFO fidelity HTE target 2 (vx): causes=['vx'] (33.1s)
+2026-11-12 15:16:24,170 INFO fidelity HTE target 3 (vy): causes=['vy', 'right_contact'] (33.6s)
+2026-11-12 15:17:00,356 INFO fidelity HTE target 4 (angle): causes=['angle', 'angular_velocity', 'right_contact'] (36.1s)
+2026-11-12 15:17:32,306 INFO fidelity HTE target 5 (angular_velocity): causes=['angular_velocity', 'left_contact', 'right_contact'] (31.7s)
+2026-11-12 15:18:11,467 INFO fidelity HTE target 6 (left_contact): causes=['y', 'left_contact', 'right_contact'] (39.0s)
+2026-11-12 15:18:51,019 INFO fidelity HTE target 7 (right_contact): causes=['y', 'vy', 'angle', 'left_contact', 'right_contact'] (39.2s)
+2026-11-12 15:19:34,904 INFO fidelity HTE target 8 (do_nothing): causes=['vx', 'vy', 'left_contact', 'right_contact', 'do_nothing', 'fire_main_engine'] (43.8s)
+2026-11-12 15:20:13,996 INFO fidelity HTE target 9 (fire_left_engine): causes=['vy', 'angle', 'angular_velocity', 'left_contact', 'fire_left_engine'] (39.1s)
+2026-11-12 15:20:55,247 INFO fidelity HTE target 10 (fire_main_engine): causes=['x', 'y', 'vy', 'left_contact', 'right_contact', 'do_nothing', 'fire_main_engine'] (41.2s)
+2026-11-12 15:21:33,595 INFO fidelity HTE target 11 (fire_right_engine): causes=['vx', 'vy', 'angle', 'angular_velocity', 'right_contact', 'fire_main_engine', 'fire_right_engine'] (38.3s)
+2026-11-12 15:21:33,611 INFO fidelity HTE refit total 442.1s
+2026-11-12 15:21:34,132 INFO valid_steps=7593 / 7593 (100.0%), scan 0.5s
+2026-11-12 15:21:34,223 INFO split: train=4555 test=3038 train_counts=[2284, 238, 1798, 235] test_counts=[1524, 158, 1200, 156]
+2026-11-12 15:21:34,538 INFO DT acc=0.7870 F1w=0.7881 | LR acc=0.7808 F1w=0.7758 (n_test=3038)
+2026-11-12 15:21:34,541 INFO global causes do_nothing <- ['vx', 'vy', 'left_contact', 'right_contact', 'fire_main_engine']
+2026-11-12 15:21:34,541 INFO global causes fire_left_engine <- ['vy', 'angle', 'angular_velocity', 'left_contact']
+2026-11-12 15:21:34,541 INFO global causes fire_main_engine <- ['x', 'y', 'vy', 'left_contact', 'right_contact', 'do_nothing']
+2026-11-12 15:21:34,541 INFO global causes fire_right_engine <- ['vx', 'vy', 'angle', 'angular_velocity', 'right_contact', 'fire_main_engine']
+2026-11-12 15:24:03,473 INFO fidelity BART fits: 21 (action,cause) pairs in 148.9s
+2026-11-12 15:27:42,262 INFO BART-weighted acc=0.8348 F1w=0.8304 F1m=0.7287 (n_test=3038, ITE loop 218.7s, fallbacks=[0, 1, 18, 654])
+2026-11-12 15:27:42,308 INFO wrote fid-ll/fidelity_heuristic.json
+2026-11-12 15:27:42,366 INFO Embedded R ended.
+2026-11-12 15:27:42,366 INFO Embedded R already ended.
+
+########## graphs-dqn-ate.log ##########
+2026-11-12 14:55:18,440 INFO cffi mode is CFFI_MODE.ANY
+2026-11-12 14:55:18,445 INFO R home found: /usr/lib/R
+2026-11-12 14:55:18,752 INFO R library path: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:55:18,753 INFO LD_LIBRARY_PATH: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:55:18,768 INFO Default options to initialize R: rpy2, --quiet, --no-save
+2026-11-12 14:55:19,100 INFO R is already initialized. No need to initialize.
+2026-11-12 14:55:19,107 INFO rpy2 import OK
+2026-11-12 14:55:19,208 INFO R dbarts OK, version=0.9.34
+2026-11-12 14:55:19,224 INFO policy=dqn method=ate replay_t=(13104, 12) n_transitions=13105 action_counts=[3343, 1920, 6381, 1461] run_id=fa12b54f
+2026-11-12 14:56:58,127 INFO target 0 (x): causes=['x', 'vx'] elapsed=98.9s -> target_dqn_ate_00.json
+2026-11-12 14:58:31,425 INFO target 1 (y): causes=['y'] elapsed=93.0s -> target_dqn_ate_01.json
+2026-11-12 14:59:55,314 INFO target 2 (vx): causes=['vx', 'angle'] elapsed=83.6s -> target_dqn_ate_02.json
+2026-11-12 15:01:20,586 INFO target 3 (vy): causes=['vy', 'left_contact', 'right_contact', 'fire_main_engine'] elapsed=85.0s -> target_dqn_ate_03.json
+2026-11-12 15:02:40,325 INFO target 4 (angle): causes=['angle', 'angular_velocity'] elapsed=79.4s -> target_dqn_ate_04.json
+2026-11-12 15:03:53,197 INFO target 5 (angular_velocity): causes=['angle', 'angular_velocity', 'left_contact', 'right_contact', 'fire_left_engine', 'fire_main_engine'] elapsed=72.6s -> target_dqn_ate_05.json
+2026-11-12 15:05:27,746 INFO target 6 (left_contact): causes=['y', 'left_contact', 'right_contact'] elapsed=94.4s -> target_dqn_ate_06.json
+2026-11-12 15:07:02,896 INFO target 7 (right_contact): causes=['y', 'left_contact', 'right_contact'] elapsed=94.7s -> target_dqn_ate_07.json
+2026-11-12 15:08:49,793 INFO target 8 (do_nothing): causes=['x', 'vx', 'angle', 'left_contact', 'right_contact'] elapsed=106.5s -> target_dqn_ate_08.json
+2026-11-12 15:10:33,816 INFO target 9 (fire_left_engine): causes=['vx', 'angle', 'angular_velocity', 'do_nothing', 'fire_right_engine'] elapsed=103.6s -> target_dqn_ate_09.json
+2026-11-12 15:12:20,999 INFO target 10 (fire_main_engine): causes=['vx', 'vy', 'angular_velocity', 'left_contact', 'right_contact'] elapsed=106.9s -> target_dqn_ate_10.json
+2026-11-12 15:14:04,318 INFO target 11 (fire_right_engine): causes=['y', 'vx', 'vy', 'angle', 'angular_velocity', 'do_nothing', 'fire_left_engine'] elapsed=103.0s -> target_dqn_ate_11.json
+2026-11-12 15:14:04,659 INFO graphs stage done policy=dqn method=ate
+2026-11-12 15:14:04,773 INFO Embedded R ended.
+2026-11-12 15:14:04,773 INFO Embedded R already ended.
+
+########## graphs-dqn-hte.log ##########
+2026-11-12 14:42:47,096 INFO cffi mode is CFFI_MODE.ANY
+2026-11-12 14:42:47,099 INFO R home found: /usr/lib/R
+2026-11-12 14:42:47,338 INFO R library path: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:42:47,338 INFO LD_LIBRARY_PATH: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:42:47,352 INFO Default options to initialize R: rpy2, --quiet, --no-save
+2026-11-12 14:42:47,654 INFO R is already initialized. No need to initialize.
+2026-11-12 14:42:47,661 INFO rpy2 import OK
+2026-11-12 14:42:47,742 INFO R dbarts OK, version=0.9.34
+2026-11-12 14:42:47,757 INFO policy=dqn method=hte replay_t=(13104, 12) n_transitions=13105 action_counts=[3343, 1920, 6381, 1461] run_id=b38f3553
+2026-11-12 14:43:55,661 INFO target 0 (x): causes=['x', 'vx'] elapsed=67.9s -> target_dqn_hte_00.json
+2026-11-12 14:44:53,472 INFO target 1 (y): causes=['y'] elapsed=57.7s -> target_dqn_hte_01.json
+2026-11-12 14:45:46,160 INFO target 2 (vx): causes=['vx'] elapsed=52.6s -> target_dqn_hte_02.json
+2026-11-12 14:46:41,553 INFO target 3 (vy): causes=['vy', 'left_contact', 'do_nothing', 'fire_left_engine', 'fire_main_engine'] elapsed=55.3s -> target_dqn_hte_03.json
+2026-11-12 14:47:38,543 INFO target 4 (angle): causes=['vx', 'angle', 'angular_velocity', 'right_contact'] elapsed=56.9s -> target_dqn_hte_04.json
+2026-11-12 14:48:27,450 INFO target 5 (angular_velocity): causes=['angular_velocity', 'right_contact', 'fire_left_engine', 'fire_right_engine'] elapsed=48.8s -> target_dqn_hte_05.json
+2026-11-12 14:49:27,985 INFO target 6 (left_contact): causes=['y', 'angle', 'left_contact', 'right_contact'] elapsed=60.4s -> target_dqn_hte_06.json
+2026-11-12 14:50:27,362 INFO target 7 (right_contact): causes=['y', 'left_contact', 'right_contact'] elapsed=59.3s -> target_dqn_hte_07.json
+2026-11-12 14:51:38,484 INFO target 8 (do_nothing): causes=['y', 'vx', 'angle', 'left_contact', 'right_contact', 'fire_main_engine'] elapsed=71.1s -> target_dqn_hte_08.json
+2026-11-12 14:52:48,975 INFO target 9 (fire_left_engine): causes=['x', 'y', 'vx', 'vy', 'angle', 'angular_velocity', 'left_contact', 'do_nothing', 'fire_left_engine', 'fire_right_engine'] elapsed=70.4s -> target_dqn_hte_09.json
+2026-11-12 14:54:01,858 INFO target 10 (fire_main_engine): causes=['y', 'vy', 'left_contact', 'right_contact', 'fire_left_engine', 'fire_main_engine'] elapsed=72.5s -> target_dqn_hte_10.json
+2026-11-12 14:55:12,141 INFO target 11 (fire_right_engine): causes=['vy', 'angle', 'angular_velocity', 'left_contact', 'fire_left_engine'] elapsed=69.9s -> target_dqn_hte_11.json
+2026-11-12 14:55:12,439 INFO graphs stage done policy=dqn method=hte
+2026-11-12 14:55:12,541 INFO Embedded R ended.
+2026-11-12 14:55:12,541 INFO Embedded R already ended.
+
+########## graphs-heur-ate.log ##########
+2026-11-12 14:30:34,723 INFO cffi mode is CFFI_MODE.ANY
+2026-11-12 14:30:34,727 INFO R home found: /usr/lib/R
+2026-11-12 14:30:34,967 INFO R library path: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:30:34,967 INFO LD_LIBRARY_PATH: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:30:34,982 INFO Default options to initialize R: rpy2, --quiet, --no-save
+2026-11-12 14:30:35,312 INFO R is already initialized. No need to initialize.
+2026-11-12 14:30:35,320 INFO rpy2 import OK
+2026-11-12 14:30:35,406 INFO R dbarts OK, version=0.9.34
+2026-11-12 14:30:35,420 INFO policy=heuristic method=ate replay_t=(7593, 12) n_transitions=7594 action_counts=[3808, 397, 2998, 391] run_id=26cc16be
+2026-11-12 14:31:33,805 INFO target 0 (x): causes=['x', 'vx'] elapsed=58.4s -> target_heuristic_ate_00.json
+2026-11-12 14:32:31,088 INFO target 1 (y): causes=['y'] elapsed=57.2s -> target_heuristic_ate_01.json
+2026-11-12 14:33:24,143 INFO target 2 (vx): causes=['vx', 'angle'] elapsed=53.0s -> target_heuristic_ate_02.json
+2026-11-12 14:34:19,676 INFO target 3 (vy): causes=['vy', 'left_contact', 'right_contact'] elapsed=55.4s -> target_heuristic_ate_03.json
+2026-11-12 14:35:19,745 INFO target 4 (angle): causes=['angle', 'angular_velocity', 'right_contact'] elapsed=59.9s -> target_heuristic_ate_04.json
+2026-11-12 14:36:12,014 INFO target 5 (angular_velocity): causes=['x', 'angle', 'angular_velocity', 'left_contact', 'right_contact', 'fire_left_engine'] elapsed=51.8s -> target_heuristic_ate_05.json
+2026-11-12 14:37:12,160 INFO target 6 (left_contact): causes=['y', 'left_contact', 'right_contact'] elapsed=59.8s -> target_heuristic_ate_06.json
+2026-11-12 14:38:18,765 INFO target 7 (right_contact): causes=['y', 'angle', 'angular_velocity', 'left_contact', 'right_contact'] elapsed=66.5s -> target_heuristic_ate_07.json
+2026-11-12 14:39:30,128 INFO target 8 (do_nothing): causes=['vy', 'angular_velocity', 'left_contact', 'right_contact', 'do_nothing', 'fire_main_engine'] elapsed=71.1s -> target_heuristic_ate_08.json
+2026-11-12 14:40:32,768 INFO target 9 (fire_left_engine): causes=['vx', 'angle', 'angular_velocity', 'fire_left_engine'] elapsed=62.5s -> target_heuristic_ate_09.json
+2026-11-12 14:41:41,700 INFO target 10 (fire_main_engine): causes=['x', 'y', 'vy', 'left_contact', 'right_contact'] elapsed=68.8s -> target_heuristic_ate_10.json
+2026-11-12 14:42:41,441 INFO target 11 (fire_right_engine): causes=['x', 'vx', 'angle', 'angular_velocity', 'do_nothing', 'fire_right_engine'] elapsed=59.4s -> target_heuristic_ate_11.json
+2026-11-12 14:42:41,524 INFO graphs stage done policy=heuristic method=ate
+2026-11-12 14:42:41,606 INFO Embedded R ended.
+2026-11-12 14:42:41,606 INFO Embedded R already ended.
+
+########## graphs-heur-hte.log ##########
+2026-11-12 14:23:05,604 INFO cffi mode is CFFI_MODE.ANY
+2026-11-12 14:23:05,617 INFO R home found: /usr/lib/R
+2026-11-12 14:23:05,861 INFO R library path: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:23:05,861 INFO LD_LIBRARY_PATH: /usr/lib/R/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+2026-11-12 14:23:05,878 INFO Default options to initialize R: rpy2, --quiet, --no-save
+2026-11-12 14:23:06,188 INFO R is already initialized. No need to initialize.
+2026-11-12 14:23:06,195 INFO rpy2 import OK
+2026-11-12 14:23:06,272 INFO R dbarts OK, version=0.9.34
+2026-11-12 14:23:06,297 INFO policy=heuristic method=hte replay_t=(7593, 12) n_transitions=7594 action_counts=[3808, 397, 2998, 391] run_id=04a828d4
+2026-11-12 14:23:06,301 INFO target 0 (x): SKIP (checkpoint exists)
+2026-11-12 14:23:43,153 INFO target 1 (y): causes=['y'] elapsed=36.8s -> target_heuristic_hte_01.json
+2026-11-12 14:24:21,451 INFO target 2 (vx): causes=['vx', 'angle'] elapsed=38.0s -> target_heuristic_hte_02.json
+2026-11-12 14:24:59,300 INFO target 3 (vy): causes=['y', 'vy', 'right_contact', 'fire_main_engine'] elapsed=37.5s -> target_heuristic_hte_03.json
+2026-11-12 14:25:36,890 INFO target 4 (angle): causes=['angle', 'angular_velocity', 'right_contact'] elapsed=37.4s -> target_heuristic_hte_04.json
+2026-11-12 14:26:12,020 INFO target 5 (angular_velocity): causes=['angle', 'angular_velocity', 'left_contact', 'right_contact', 'fire_left_engine'] elapsed=35.1s -> target_heuristic_hte_05.json
+2026-11-12 14:26:52,563 INFO target 6 (left_contact): causes=['y', 'left_contact', 'right_contact'] elapsed=40.1s -> target_heuristic_hte_06.json
+2026-11-12 14:27:35,654 INFO target 7 (right_contact): causes=['y', 'vy', 'left_contact', 'right_contact', 'fire_left_engine'] elapsed=42.8s -> target_heuristic_hte_07.json
+2026-11-12 14:28:22,309 INFO target 8 (do_nothing): causes=['vx', 'vy', 'left_contact', 'right_contact', 'do_nothing', 'fire_main_engine'] elapsed=46.4s -> target_heuristic_hte_08.json
+2026-11-12 14:29:03,102 INFO target 9 (fire_left_engine): causes=['angle', 'angular_velocity', 'left_contact', 'fire_left_engine', 'fire_main_engine', 'fire_right_engine'] elapsed=40.7s -> target_heuristic_hte_09.json
+2026-11-12 14:29:47,944 INFO target 10 (fire_main_engine): causes=['x', 'y', 'vy', 'left_contact', 'right_contact', 'fire_main_engine'] elapsed=44.8s -> target_heuristic_hte_10.json
+2026-11-12 14:30:28,903 INFO target 11 (fire_right_engine): causes=['vx', 'angle', 'angular_velocity', 'right_contact', 'fire_right_engine'] elapsed=40.9s -> target_heuristic_hte_11.json
+2026-11-12 14:30:28,974 INFO graphs stage done policy=heuristic method=hte
+2026-11-12 14:30:29,063 INFO Embedded R ended.
+2026-11-12 14:30:29,063 INFO Embedded R already ended.

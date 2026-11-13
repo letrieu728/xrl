@@ -1,0 +1,27 @@
+/home/hatch/workspace/step3-scratch/causal-xrl-copy/cxrl_microRTS/lib/gym_microrts_rl/gym_microrts_rl.py:122: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  agent1.load_state_dict(torch.load(agent_model_path, map_location=device))
+GET /: {'status': 200, 'n_bytes': 18741}
+POST /utt_to_uht: {'status': 200}
+POST /read_xml_map: {'status': 200}
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+/home/hatch/workspace/step3-scratch/venv/lib/python3.12/site-packages/gym_microrts/microrts/maps/16x16/basesWorkers16x16.xml
+[Lai.rewardfunction.RewardFunctionInterface;@23e028a9
+GET /get_board_state: {'status': 200, 'utt_keys': ['1', '2', '3', '4', '5', '6', '7'], 'n_unit_cells': 8, 'uot_shape': [16, 16], 'uht_nonzero': 8}
+GET /compute_global_causal: {'status': 200, 'json': {'error_code': '0'}}
+POST /get_local_causal step_id=0: {'status': 200, 'n_nodes': 6, 'n_edges': 7, 'n_effects': 7}
+POST /get_local_causal step_id=10: {'status': 200, 'n_nodes': 8, 'n_edges': 7, 'n_effects': 7}
+POST /get_local_causal step_id=100: {'status': 200, 'n_nodes': 6, 'n_edges': 5, 'n_effects': 5}
+POST /run_env_episode: {'status': 200, 'n_rawobs': 1160, 'n_gamesteps': 1160}
+DASHBOARD ROUTE CHECK DONE -> /home/hatch/workspace/xrl-g3a-push/muc3/results/microrts/dashboard_routes_g3a.json
+SUMMARY: {
+  "GET /": 200,
+  "POST /utt_to_uht": 200,
+  "POST /read_xml_map": 200,
+  "GET /get_board_state": 200,
+  "GET /compute_global_causal": 200,
+  "POST /get_local_causal step_id=0": 200,
+  "POST /get_local_causal step_id=10": 200,
+  "POST /get_local_causal step_id=100": 200,
+  "POST /run_env_episode": 200
+}

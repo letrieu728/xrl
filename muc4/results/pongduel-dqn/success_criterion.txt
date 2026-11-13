@@ -1,0 +1,15 @@
+PongDuel DQN step-5 success criterion — FIXED BEFORE TRAINING (2026-11-12).
+Baselines measured first, 100 episodes, seeds 10000..10099, agent1 reward /10:
+  heuristic strong/weak (repo notebook): mean 8.81, std 1.04, min 6, max 10
+  random (uniform joint action, Random(12345)): mean 4.90, std 1.56, min 1, max 8
+Ceiling is 10 (10 rounds/episode); heuristic headroom is only 1.19.
+
+SUCCESS requires BOTH:
+  (1) best-checkpoint final eval (100 ep, same seeds) mean agent1 >= 9.30
+      (heuristic mean + 0.50, about half the remaining headroom; with
+      std ~1.0 and n=100, +0.50 is ~5 standard errors), AND
+  (2) stability: at least 3 of the last 4 periodic evals (50 ep each)
+      also above the heuristic mean 8.81.
+Otherwise (below 9.30, or unstable, or below heuristic): NEGATIVE result —
+stop, record logs/curve, skip step 6. Budget: max 2000 episodes, no restart
+if killed (report the partial run from the saved best checkpoint).

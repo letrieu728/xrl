@@ -1,0 +1,428 @@
+{
+  "pairs_n": 2832,
+  "global_causes_action": [
+    "heavy2"
+  ],
+  "num_cols_action": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    8,
+    11,
+    12,
+    13
+  ],
+  "hte_per_column": {
+    "base1": {
+      "n_clusters": 8,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "4": 141,
+        "5": 142,
+        "7": 148,
+        "8": 147,
+        "10": 222,
+        "11": 166,
+        "13": 258,
+        "14": 192
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "barrack1": {
+      "n_clusters": 5,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "1": 189,
+        "5": 169,
+        "6": 198,
+        "7": 163,
+        "8": 697
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "worker1": {
+      "n_clusters": 9,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "4": 160,
+        "5": 148,
+        "6": 155,
+        "7": 147,
+        "11": 173,
+        "12": 143,
+        "13": 153,
+        "15": 174,
+        "16": 163
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "light1": {
+      "n_clusters": 8,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "4": 144,
+        "5": 182,
+        "7": 266,
+        "8": 146,
+        "9": 190,
+        "12": 147,
+        "13": 194,
+        "14": 147
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "heavy1": {
+      "n_clusters": 9,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "3": 144,
+        "5": 182,
+        "6": 146,
+        "8": 182,
+        "9": 176,
+        "13": 141,
+        "14": 160,
+        "15": 142,
+        "16": 143
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "ranged1": {
+      "n_clusters": 6,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "4": 248,
+        "5": 193,
+        "6": 250,
+        "7": 223,
+        "9": 251,
+        "10": 251
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "base2": {
+      "n_clusters": 6,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "2": 273,
+        "3": 208,
+        "6": 255,
+        "7": 274,
+        "9": 187,
+        "10": 219
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "barrack2": {
+      "n_clusters": 8,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "4": 319,
+        "5": 210,
+        "7": 141,
+        "8": 153,
+        "10": 141,
+        "11": 159,
+        "13": 147,
+        "14": 146
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "worker2": {
+      "n_clusters": 8,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "1": 189,
+        "4": 247,
+        "6": 174,
+        "7": 191,
+        "10": 160,
+        "11": 169,
+        "13": 142,
+        "14": 144
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "light2": {
+      "n_clusters": 1,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "0": 1416
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "heavy2": {
+      "n_clusters": 8,
+      "significant_clusters": [
+        5
+      ],
+      "cluster_sizes": {
+        "2": 189,
+        "5": 178,
+        "6": 200,
+        "7": 196,
+        "11": 141,
+        "12": 142,
+        "13": 219,
+        "14": 151
+      },
+      "rows_in_significant_clusters": 178,
+      "n_test_rows": 1416
+    },
+    "ranged2": {
+      "n_clusters": 5,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "1": 189,
+        "3": 159,
+        "6": 506,
+        "7": 323,
+        "8": 239
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "timestep": {
+      "n_clusters": 7,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "1": 253,
+        "4": 146,
+        "5": 254,
+        "8": 160,
+        "9": 187,
+        "11": 147,
+        "12": 269
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    },
+    "action": {
+      "n_clusters": 6,
+      "significant_clusters": [],
+      "cluster_sizes": {
+        "4": 282,
+        "5": 222,
+        "7": 175,
+        "8": 207,
+        "9": 240,
+        "10": 290
+      },
+      "rows_in_significant_clusters": 0,
+      "n_test_rows": 1416
+    }
+  },
+  "scaler_train_mean": [
+    1.5635593220338984,
+    6.8192090395480225,
+    0.393361581920904,
+    0.5557909604519774,
+    0.451271186440678,
+    0.1271186440677966,
+    1.36864406779661,
+    770.8990112994351,
+    1.0656779661016949
+  ],
+  "scaler_test_mean": [
+    1.5444915254237288,
+    6.766949152542373,
+    0.4314971751412429,
+    0.53954802259887,
+    0.4413841807909605,
+    0.1115819209039548,
+    1.344632768361582,
+    773.8841807909605,
+    0.990819209039548
+  ],
+  "scaler_train_scale": [
+    0.5639096655384406,
+    1.236714001406234,
+    0.6465344374919516,
+    0.7304865040325206,
+    0.6881963406572812,
+    0.4747275787851158,
+    0.7391244422347815,
+    215.46600161540525,
+    1.6070316772075173
+  ],
+  "scaler_test_scale": [
+    0.5682246573562403,
+    1.3108341514302178,
+    0.6865100607794049,
+    0.749663441780655,
+    0.6676201975010452,
+    0.45127726492992953,
+    0.7286602562893945,
+    227.3521388957823,
+    1.5719290412793618
+  ],
+  "screens": {
+    "A_train_scaler": {
+      "n": 2832,
+      "flag_count_dist": {
+        "1": 331,
+        "0": 2501
+      },
+      "valid_gt1": 0,
+      "flag_cols": {
+        "heavy2": 331
+      }
+    },
+    "A_test_scaler": {
+      "n": 2832,
+      "flag_count_dist": {
+        "1": 329,
+        "0": 2503
+      },
+      "valid_gt1": 0,
+      "flag_cols": {
+        "heavy2": 329
+      }
+    },
+    "A_raw": {
+      "n": 2832,
+      "flag_count_dist": {
+        "0": 2832
+      },
+      "valid_gt1": 0,
+      "flag_cols": {}
+    },
+    "B_train_scaler": {
+      "n": 3200,
+      "flag_count_dist": {
+        "0": 2856,
+        "1": 344
+      },
+      "valid_gt1": 0,
+      "flag_cols": {
+        "heavy2": 344
+      }
+    },
+    "B_test_scaler": {
+      "n": 3200,
+      "flag_count_dist": {
+        "0": 2858,
+        "1": 342
+      },
+      "valid_gt1": 0,
+      "flag_cols": {
+        "heavy2": 342
+      }
+    },
+    "B_raw": {
+      "n": 3200,
+      "flag_count_dist": {
+        "0": 3200
+      },
+      "valid_gt1": 0,
+      "flag_cols": {}
+    }
+  },
+  "bart_fit": {
+    "r2": 0.10683848071559088,
+    "corr": 0.32874852714313124,
+    "rounded_acc": 0.2690677966101695
+  },
+  "dt_probe": {
+    "acc": 0.5207413945278023,
+    "importances": {
+      "timestep": 0.46436743632191435,
+      "worker1": 0.14281162669432684,
+      "ranged2": 0.0656352605052462,
+      "action": 0.06514701297131475,
+      "heavy1": 0.05951127723763718,
+      "light1": 0.05905613089975609,
+      "ranged1": 0.046303483379715134,
+      "heavy2": 0.032157471463050986,
+      "barrack1": 0.02989559922753497,
+      "worker2": 0.01275162567274016,
+      "barrack2": 0.01235941597078178,
+      "base2": 0.005396934567350841,
+      "base1": 0.004606725088630574,
+      "light2": 0.0
+    }
+  },
+  "refit_probes": {
+    "note": "Diagnostic only (same 2832 pairs, BART refit). Neither variant justifies switching protocol.",
+    "microrts_seed1": {
+      "split": "test_size=0.5, random_state=1, two scalers (MicroRTS code path)",
+      "causes": [],
+      "time_s": 21.8,
+      "log": "refit run 2026-11-12, all 14 columns zero significant HTE clusters"
+    },
+    "gym_style_seed99": {
+      "split": "test_size=0.3, random_state=99, single scaler fit on X_train (cxrl code path, seeded; gym code itself is unseeded)",
+      "causes": [],
+      "time_s": 13.6,
+      "log": "refit run 2026-11-12, all 14 columns zero significant HTE clusters"
+    },
+    "original_group2": {
+      "split": "test_size=0.5, random_state=99, two scalers",
+      "causes": [
+        "heavy2"
+      ],
+      "time_s": 21.2
+    }
+  },
+  "filter_funnel": {
+    "transitions_total": 4924,
+    "acted_transitions_n_valid_gt0": 3200,
+    "construction_A_pairs": 2832,
+    "construction_B_rows": 3200,
+    "notebook_valid_gt1_train_scaler": {
+      "A": 0,
+      "B": 0
+    },
+    "notebook_valid_gt1_test_scaler": {
+      "A": 0,
+      "B": 0
+    },
+    "notebook_valid_gt1_raw": {
+      "A": 0,
+      "B": 0
+    }
+  },
+  "nofilter_fallback": {
+    "source": "muc3/results/microrts/fidelity_nofilter.json",
+    "construction_A": {
+      "n_test": 1133,
+      "n_zero_weight_fallback": 1004
+    },
+    "construction_B": {
+      "n_test": 1280,
+      "n_zero_weight_fallback": 1135
+    },
+    "note": "Fallback rows use the unweighted mean of per-cause BART predictions because no flagged treatment carried ITE weight; a direct consequence of the same empty local signal."
+  },
+  "worker1_control_rerun": {
+    "scaled_n1000": {
+      "flag_count_dist": {
+        "0": 163,
+        "1": 534,
+        "2": 284,
+        "3": 19
+      },
+      "rows_gt1": 303
+    },
+    "raw_n500": {
+      "flag_count_dist": {
+        "0": 84,
+        "1": 416
+      },
+      "rows_gt1": 0
+    },
+    "note": "Mechanism works: the same local_treatments/scaling pipeline flags multiple columns for a target with 5 global causes (scaled queries). Raw queries suppress flags (see diagnosis)."
+  }
+}

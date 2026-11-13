@@ -1,0 +1,1045 @@
+{
+  "environment": "microrts",
+  "method": "GES (causal-learn), score local_score_BIC, maxP=None, parameters=None (lambda_value default 0.5, standard BIC), plain score",
+  "date": "2026-11-12",
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-44-generic-x86_64-with-glibc2.39",
+    "causal_learn": "0.1.4.8",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit_learn": "1.9.1",
+    "cpu_count": 4
+  },
+  "source_file": {
+    "path": "/home/hatch/workspace/step3-scratch/group2/microrts100/microrts_merged.npz",
+    "sha256": "0a9d406bb7a743f9f4a7c7a38d0ebeb49bca894c04102ae39644ab37073cbe45",
+    "note": "microrts_merged.npz, 100 episodes, Drive artifact (not in repo); same file used for the BART global graph and fidelity."
+  },
+  "variants": [
+    {
+      "variant": "states_only_all_rows",
+      "representation": "states_t, all 4924 rows; dropped constant column(s) ['light2'] (zero variance; BIC regression undefined). No standardisation.",
+      "columns": [
+        "base1",
+        "barrack1",
+        "worker1",
+        "light1",
+        "heavy1",
+        "ranged1",
+        "base2",
+        "barrack2",
+        "worker2",
+        "heavy2",
+        "ranged2",
+        "timestep"
+      ],
+      "n_rows": 4924,
+      "n_columns": 12,
+      "column_summary": [
+        {
+          "column": "base1",
+          "index": 0,
+          "n_unique": 2,
+          "std": 0.12564418456055335,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "barrack1",
+          "index": 1,
+          "n_unique": 3,
+          "std": 0.8336103389888861,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "column": "worker1",
+          "index": 2,
+          "n_unique": 13,
+          "std": 1.8375433354897008,
+          "min": 0.0,
+          "max": 12.0
+        },
+        {
+          "column": "light1",
+          "index": 3,
+          "n_unique": 5,
+          "std": 0.5712208038064103,
+          "min": 0.0,
+          "max": 4.0
+        },
+        {
+          "column": "heavy1",
+          "index": 4,
+          "n_unique": 6,
+          "std": 0.6605735456590739,
+          "min": 0.0,
+          "max": 5.0
+        },
+        {
+          "column": "ranged1",
+          "index": 5,
+          "n_unique": 5,
+          "std": 0.5923606161339363,
+          "min": 0.0,
+          "max": 4.0
+        },
+        {
+          "column": "base2",
+          "index": 6,
+          "n_unique": 2,
+          "std": 0.4266173242570959,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "barrack2",
+          "index": 7,
+          "n_unique": 2,
+          "std": 0.36682439867751104,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "worker2",
+          "index": 8,
+          "n_unique": 3,
+          "std": 0.8754873424211954,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "column": "heavy2",
+          "index": 9,
+          "n_unique": 2,
+          "std": 0.48101427746910075,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "ranged2",
+          "index": 10,
+          "n_unique": 7,
+          "std": 0.8517728893384515,
+          "min": 0.0,
+          "max": 6.0
+        },
+        {
+          "column": "timestep",
+          "index": 11,
+          "n_unique": 735,
+          "std": 309.3801093608331,
+          "min": 0.0,
+          "max": 2237.0
+        }
+      ],
+      "standardisation": "none",
+      "ges_wall_clock_s": [
+        0.5640113150000161,
+        0.5585969500000374,
+        0.5632720250000602
+      ],
+      "ges_wall_clock_median_s": 0.5632720250000602,
+      "ges_score": [
+        -13717.794008873469,
+        -13717.794008873469,
+        -13717.794008873469
+      ],
+      "edge_sets_identical_across_reps": true,
+      "n_edges": 50,
+      "n_directed": 47,
+      "n_undirected": 3,
+      "n_other": 0,
+      "edges": [
+        {
+          "source": "base1",
+          "target": "barrack1",
+          "source_index": 0,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "base1",
+          "target": "worker1",
+          "source_index": 0,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "base1",
+          "target": "heavy1",
+          "source_index": 0,
+          "target_index": 4,
+          "kind": "directed"
+        },
+        {
+          "source": "base1",
+          "target": "base2",
+          "source_index": 0,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "base1",
+          "target": "heavy2",
+          "source_index": 0,
+          "target_index": 9,
+          "kind": "undirected"
+        },
+        {
+          "source": "base1",
+          "target": "ranged2",
+          "source_index": 0,
+          "target_index": 10,
+          "kind": "undirected"
+        },
+        {
+          "source": "base1",
+          "target": "timestep",
+          "source_index": 0,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "barrack1",
+          "source_index": 2,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "light1",
+          "source_index": 1,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "heavy1",
+          "source_index": 1,
+          "target_index": 4,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "ranged1",
+          "source_index": 1,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "base2",
+          "source_index": 1,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "barrack1",
+          "source_index": 8,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "barrack1",
+          "source_index": 9,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "barrack1",
+          "source_index": 10,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "timestep",
+          "source_index": 1,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "light1",
+          "source_index": 2,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "heavy1",
+          "source_index": 2,
+          "target_index": 4,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "ranged1",
+          "source_index": 2,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "base2",
+          "source_index": 2,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "worker1",
+          "source_index": 7,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "worker1",
+          "source_index": 8,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "worker1",
+          "source_index": 9,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "worker1",
+          "source_index": 10,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "timestep",
+          "source_index": 2,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "light1",
+          "source_index": 4,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "light1",
+          "target": "ranged1",
+          "source_index": 3,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "light1",
+          "source_index": 7,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "light1",
+          "source_index": 9,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "timestep",
+          "target": "light1",
+          "source_index": 11,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "ranged1",
+          "source_index": 4,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "heavy1",
+          "source_index": 9,
+          "target_index": 4,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "heavy1",
+          "source_index": 10,
+          "target_index": 4,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "timestep",
+          "source_index": 4,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "ranged1",
+          "source_index": 7,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "ranged1",
+          "source_index": 9,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "ranged1",
+          "source_index": 10,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "timestep",
+          "target": "ranged1",
+          "source_index": 11,
+          "target_index": 5,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "base2",
+          "source_index": 7,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "base2",
+          "source_index": 8,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "base2",
+          "source_index": 9,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "base2",
+          "target": "timestep",
+          "source_index": 6,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "barrack2",
+          "source_index": 8,
+          "target_index": 7,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "barrack2",
+          "source_index": 9,
+          "target_index": 7,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "barrack2",
+          "source_index": 10,
+          "target_index": 7,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "timestep",
+          "source_index": 7,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "ranged2",
+          "source_index": 8,
+          "target_index": 10,
+          "kind": "undirected"
+        },
+        {
+          "source": "worker2",
+          "target": "timestep",
+          "source_index": 8,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "timestep",
+          "source_index": 9,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "timestep",
+          "source_index": 10,
+          "target_index": 11,
+          "kind": "directed"
+        }
+      ],
+      "same_session_pc_fci_wall_clock_s": {
+        "pc_fisherz_wall_clock_s": 0.16510160899997572,
+        "fci_fisherz_wall_clock_s": 0.5198030310000377
+      },
+      "dropped_constant_columns": [
+        "light2"
+      ]
+    },
+    {
+      "variant": "states_plus_action_acted_rows",
+      "representation": "[states_t, action_label] on acted rows only (n_valid>0, 3200 rows); dropped constant column(s) ['light2']. No standardisation.",
+      "columns": [
+        "base1",
+        "barrack1",
+        "worker1",
+        "light1",
+        "heavy1",
+        "ranged1",
+        "base2",
+        "barrack2",
+        "worker2",
+        "heavy2",
+        "ranged2",
+        "timestep",
+        "action_label"
+      ],
+      "n_rows": 3200,
+      "n_columns": 13,
+      "column_summary": [
+        {
+          "column": "base1",
+          "index": 0,
+          "n_unique": 2,
+          "std": 0.10102550343230167,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "barrack1",
+          "index": 1,
+          "n_unique": 3,
+          "std": 0.6706048313602803,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "column": "worker1",
+          "index": 2,
+          "n_unique": 13,
+          "std": 1.4767192046475863,
+          "min": 0.0,
+          "max": 12.0
+        },
+        {
+          "column": "light1",
+          "index": 3,
+          "n_unique": 5,
+          "std": 0.6637885464325217,
+          "min": 0.0,
+          "max": 4.0
+        },
+        {
+          "column": "heavy1",
+          "index": 4,
+          "n_unique": 6,
+          "std": 0.7493997598078078,
+          "min": 0.0,
+          "max": 5.0
+        },
+        {
+          "column": "ranged1",
+          "index": 5,
+          "n_unique": 5,
+          "std": 0.6878004315161121,
+          "min": 0.0,
+          "max": 4.0
+        },
+        {
+          "column": "base2",
+          "index": 6,
+          "n_unique": 2,
+          "std": 0.27701252228013085,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "barrack2",
+          "index": 7,
+          "n_unique": 2,
+          "std": 0.3148274266860338,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "worker2",
+          "index": 8,
+          "n_unique": 3,
+          "std": 0.63388920746748,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "column": "heavy2",
+          "index": 9,
+          "n_unique": 2,
+          "std": 0.4650117606039659,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "column": "ranged2",
+          "index": 10,
+          "n_unique": 6,
+          "std": 0.7949017234853627,
+          "min": 0.0,
+          "max": 5.0
+        },
+        {
+          "column": "timestep",
+          "index": 11,
+          "n_unique": 676,
+          "std": 251.9316393309822,
+          "min": 150.0,
+          "max": 2217.0
+        },
+        {
+          "column": "action_label",
+          "index": 12,
+          "n_unique": 6,
+          "std": 1.5374004032782091,
+          "min": 0.0,
+          "max": 5.0
+        }
+      ],
+      "standardisation": "none",
+      "ges_wall_clock_s": [
+        0.6752105430000483,
+        0.6850962980000759,
+        0.7235471609999422
+      ],
+      "ges_wall_clock_median_s": 0.6850962980000759,
+      "ges_score": [
+        -10571.012081637346,
+        -10571.012081637346,
+        -10571.012081637346
+      ],
+      "edge_sets_identical_across_reps": true,
+      "n_edges": 53,
+      "n_directed": 53,
+      "n_undirected": 0,
+      "n_other": 0,
+      "edges": [
+        {
+          "source": "base1",
+          "target": "barrack1",
+          "source_index": 0,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "base1",
+          "target": "worker1",
+          "source_index": 0,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "base1",
+          "target": "base2",
+          "source_index": 0,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "base1",
+          "target": "timestep",
+          "source_index": 0,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "worker1",
+          "source_index": 1,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "light1",
+          "source_index": 1,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "barrack1",
+          "source_index": 4,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "barrack1",
+          "source_index": 5,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "base2",
+          "source_index": 1,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "barrack1",
+          "source_index": 8,
+          "target_index": 1,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "heavy2",
+          "source_index": 1,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "ranged2",
+          "source_index": 1,
+          "target_index": 10,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack1",
+          "target": "timestep",
+          "source_index": 1,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "light1",
+          "source_index": 2,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "worker1",
+          "source_index": 4,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "worker1",
+          "source_index": 5,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "base2",
+          "source_index": 2,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "barrack2",
+          "source_index": 2,
+          "target_index": 7,
+          "kind": "directed"
+        },
+        {
+          "source": "worker1",
+          "target": "heavy2",
+          "source_index": 2,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "worker1",
+          "source_index": 10,
+          "target_index": 2,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "light1",
+          "source_index": 4,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "light1",
+          "source_index": 5,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "light1",
+          "source_index": 7,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "light1",
+          "source_index": 10,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "timestep",
+          "target": "light1",
+          "source_index": 11,
+          "target_index": 3,
+          "kind": "directed"
+        },
+        {
+          "source": "light1",
+          "target": "action_label",
+          "source_index": 3,
+          "target_index": 12,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "worker2",
+          "source_index": 4,
+          "target_index": 8,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "heavy2",
+          "source_index": 4,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "ranged2",
+          "source_index": 4,
+          "target_index": 10,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy1",
+          "target": "timestep",
+          "source_index": 4,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "barrack2",
+          "source_index": 5,
+          "target_index": 7,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "worker2",
+          "source_index": 5,
+          "target_index": 8,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "ranged2",
+          "source_index": 5,
+          "target_index": 10,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "timestep",
+          "source_index": 5,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged1",
+          "target": "action_label",
+          "source_index": 5,
+          "target_index": 12,
+          "kind": "directed"
+        },
+        {
+          "source": "base2",
+          "target": "barrack2",
+          "source_index": 6,
+          "target_index": 7,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "base2",
+          "source_index": 8,
+          "target_index": 6,
+          "kind": "directed"
+        },
+        {
+          "source": "base2",
+          "target": "heavy2",
+          "source_index": 6,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "base2",
+          "target": "timestep",
+          "source_index": 6,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "base2",
+          "target": "action_label",
+          "source_index": 6,
+          "target_index": 12,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "heavy2",
+          "source_index": 7,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "barrack2",
+          "source_index": 10,
+          "target_index": 7,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "timestep",
+          "source_index": 7,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "barrack2",
+          "target": "action_label",
+          "source_index": 7,
+          "target_index": 12,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "heavy2",
+          "source_index": 8,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "ranged2",
+          "source_index": 8,
+          "target_index": 10,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "timestep",
+          "source_index": 8,
+          "target_index": 11,
+          "kind": "directed"
+        },
+        {
+          "source": "worker2",
+          "target": "action_label",
+          "source_index": 8,
+          "target_index": 12,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "heavy2",
+          "source_index": 10,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "timestep",
+          "target": "heavy2",
+          "source_index": 11,
+          "target_index": 9,
+          "kind": "directed"
+        },
+        {
+          "source": "heavy2",
+          "target": "action_label",
+          "source_index": 9,
+          "target_index": 12,
+          "kind": "directed"
+        },
+        {
+          "source": "ranged2",
+          "target": "action_label",
+          "source_index": 10,
+          "target_index": 12,
+          "kind": "directed"
+        },
+        {
+          "source": "timestep",
+          "target": "action_label",
+          "source_index": 11,
+          "target_index": 12,
+          "kind": "directed"
+        }
+      ],
+      "same_session_pc_fci_wall_clock_s": {
+        "pc_fisherz_wall_clock_s": 0.28550011100003303,
+        "fci_fisherz_wall_clock_s": 1.0086935620000759
+      },
+      "dropped_constant_columns": [
+        "light2"
+      ]
+    }
+  ],
+  "protocol_deviations": [
+    "No PC/FCI precedent or timing notebook exists for MicroRTS; representations follow the gym conventions (states-only like LunarLander; states+action like CartPole).",
+    "Contemporaneous [state(, action)] matrix, NOT the lagged state-difference data of the BART global graph; edge counts are not directly comparable with the BART graph.",
+    "Constant column(s) dropped: zero-variance columns make the BIC regression undefined.",
+    "BIC assumes linear-Gaussian data; binary/count columns violate it, as for Fisher-Z PC/FCI."
+  ]
+}

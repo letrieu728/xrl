@@ -1,0 +1,24 @@
+--- a/cxrl_microRTS/app.py
++++ b/cxrl_microRTS/app.py
+@@ -426,8 +426,19 @@
+     post_data = request.get_json(force=True)
+     step_id = post_data['step_id']
+ 
+-    num_cols_hte = [0, 1, 2, 3, 4, 5, 8, 10, 11, 12]
+-    # num_cols_hte = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12]
++    # --- FIX (Group 3a, 2026-11-12): the authors' hard-coded 10-column
++    # list [0, 1, 2, 3, 4, 5, 8, 10, 11, 12] assumed data in which base1
++    # (col 0) and heavy2 (col 10) take >2 distinct values. infer_causes_hte
++    # fits each StandardScaler only on columns with >2 distinct values in
++    # the training states, so on the 100-episode data every scaler expects
++    # 8 features and the hard-coded list raised "X has 10 features, but
++    # StandardScaler is expecting 8 features" (500 on every step_id).
++    # Derive the list from strategy_states with the SAME >2-uniques rule
++    # infer_causes_hte uses, so the route stays correct for any training
++    # data (the scalers were fit on exactly this array). No scaler or
++    # library code is changed; only this route's column list.
++    num_cols_hte = [c for c in range(strategy_states.shape[1])
++                    if len(np.unique(strategy_states[:, c])) > 2]
+     state_features = ["base1", "barrack1", "worker1", "light1", "heavy1", "ranged1", "base2", "barrack2", "worker2", "light2", "heavy2", "ranged2", "timestep"]
+     state_features_wot = state_features[:-1]
+ 

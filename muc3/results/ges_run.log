@@ -1,0 +1,7 @@
+versions: {"python": "3.12.3", "platform": "Linux-7.0.0-44-generic-x86_64-with-glibc2.39", "causal_learn": "0.1.4.8", "numpy": "2.5.4", "scipy": "1.18.1", "scikit_learn": "1.9.1", "cpu_count": 4}
+[cartpole] edges=7 (dir 0, undir 7), median=0.018s, PC=0.014s, FCI=0.017s
+[lunarlander] edges=18 (dir 18, undir 0), median=0.090s, PC=0.040s, FCI=0.104s
+[pongduel] edges=34 (dir 32, undir 2), median=0.346s, PC=0.273s, FCI=0.274s
+[microrts/states_only_all_rows] edges=50, median=0.563s
+[microrts/states_plus_action_acted_rows] edges=53, median=0.685s
+GES DONE

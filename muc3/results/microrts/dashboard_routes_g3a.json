@@ -1,0 +1,59 @@
+{
+  "GET /": {
+    "status": 200,
+    "n_bytes": 18741
+  },
+  "POST /utt_to_uht": {
+    "status": 200
+  },
+  "POST /read_xml_map": {
+    "status": 200
+  },
+  "GET /get_board_state": {
+    "status": 200,
+    "utt_keys": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "n_unit_cells": 8,
+    "uot_shape": [
+      16,
+      16
+    ],
+    "uht_nonzero": 8
+  },
+  "GET /compute_global_causal": {
+    "status": 200,
+    "json": {
+      "error_code": "0"
+    }
+  },
+  "POST /get_local_causal step_id=0": {
+    "status": 200,
+    "n_nodes": 6,
+    "n_edges": 7,
+    "n_effects": 7
+  },
+  "POST /get_local_causal step_id=10": {
+    "status": 200,
+    "n_nodes": 8,
+    "n_edges": 7,
+    "n_effects": 7
+  },
+  "POST /get_local_causal step_id=100": {
+    "status": 200,
+    "n_nodes": 6,
+    "n_edges": 5,
+    "n_effects": 5
+  },
+  "POST /run_env_episode": {
+    "status": 200,
+    "n_rawobs": 1160,
+    "n_gamesteps": 1160
+  }
+}

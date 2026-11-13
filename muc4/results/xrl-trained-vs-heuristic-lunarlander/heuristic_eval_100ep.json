@@ -1,0 +1,13 @@
+{
+  "policy": "heuristic_PD_repo",
+  "env": "LunarLander-v3",
+  "n": 100,
+  "seed_offset": 10000,
+  "protocol": "greedy/deterministic policy, 100 episodes, fresh env seeds 10000..10099, same seeds as DQN final eval",
+  "mean": 255.4094,
+  "std": 74.3171,
+  "min": -198.2053,
+  "max": 314.0403,
+  "n_ge200": 95,
+  "mean_ep_len": 248.97
+}

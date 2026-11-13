@@ -1,0 +1,33 @@
+seed=0 episodes=2000 env=PongDuel-v0 (wrapper, reward agent1) torch=2.5.1+cpu device=cpu
+env dims: state_dim=20 action_dim=9
+ep    1 reward_agent1=  5.0 mean_last100= 5.00 eps=1.000 loss=nan elapsed=0s
+  [periodic eval ep 50] greedy 50ep agent1: mean=4.88 std=1.54 min=2 max=9 (agent2 mean=5.12) NEW BEST (best: 4.88 @ ep 50)
+ep   50 reward_agent1=  4.0 mean_last100= 4.58 eps=0.963 loss=0.0021 elapsed=57s
+  [periodic eval ep 100] greedy 50ep agent1: mean=4.96 std=1.62 min=2 max=9 (agent2 mean=5.04) NEW BEST (best: 4.96 @ ep 100)
+ep  100 reward_agent1=  5.0 mean_last100= 4.92 eps=0.925 loss=0.0025 elapsed=135s
+  [periodic eval ep 150] greedy 50ep agent1: mean=5.10 std=1.63 min=2 max=8 (agent2 mean=4.90) NEW BEST (best: 5.10 @ ep 150)
+ep  150 reward_agent1=  5.0 mean_last100= 5.24 eps=0.888 loss=0.0068 elapsed=207s
+  [periodic eval ep 200] greedy 50ep agent1: mean=5.04 std=1.40 min=2 max=9 (agent2 mean=4.96)  (best: 5.10 @ ep 150)
+ep  200 reward_agent1=  4.0 mean_last100= 4.98 eps=0.850 loss=0.0122 elapsed=274s
+  [periodic eval ep 250] greedy 50ep agent1: mean=5.10 std=1.54 min=2 max=9 (agent2 mean=4.90)  (best: 5.10 @ ep 150)
+ep  250 reward_agent1=  9.0 mean_last100= 5.12 eps=0.812 loss=0.0174 elapsed=341s
+  [periodic eval ep 300] greedy 50ep agent1: mean=5.06 std=1.49 min=2 max=8 (agent2 mean=4.94)  (best: 5.10 @ ep 150)
+ep  300 reward_agent1=  3.0 mean_last100= 5.16 eps=0.775 loss=0.0193 elapsed=408s
+  [periodic eval ep 350] greedy 50ep agent1: mean=5.42 std=1.42 min=2 max=8 (agent2 mean=4.58) NEW BEST (best: 5.42 @ ep 350)
+ep  350 reward_agent1=  6.0 mean_last100= 4.92 eps=0.737 loss=0.0227 elapsed=470s
+  [periodic eval ep 400] greedy 50ep agent1: mean=4.80 std=1.52 min=2 max=8 (agent2 mean=5.20)  (best: 5.42 @ ep 350)
+ep  400 reward_agent1=  3.0 mean_last100= 5.05 eps=0.699 loss=0.0235 elapsed=535s
+  [periodic eval ep 450] greedy 50ep agent1: mean=5.12 std=1.57 min=2 max=8 (agent2 mean=4.88)  (best: 5.42 @ ep 350)
+ep  450 reward_agent1=  5.0 mean_last100= 5.09 eps=0.662 loss=0.0274 elapsed=603s
+  [periodic eval ep 500] greedy 50ep agent1: mean=5.18 std=1.56 min=2 max=9 (agent2 mean=4.82)  (best: 5.42 @ ep 350)
+ep  500 reward_agent1=  6.0 mean_last100= 5.12 eps=0.624 loss=0.0241 elapsed=675s
+  [periodic eval ep 550] greedy 50ep agent1: mean=5.18 std=1.40 min=2 max=8 (agent2 mean=4.82)  (best: 5.42 @ ep 350)
+ep  550 reward_agent1=  4.0 mean_last100= 5.15 eps=0.586 loss=0.0304 elapsed=738s
+  [periodic eval ep 600] greedy 50ep agent1: mean=5.26 std=1.63 min=2 max=9 (agent2 mean=4.74)  (best: 5.42 @ ep 350)
+ep  600 reward_agent1=  6.0 mean_last100= 5.26 eps=0.548 loss=0.0293 elapsed=807s
+  [periodic eval ep 650] greedy 50ep agent1: mean=5.20 std=1.65 min=2 max=9 (agent2 mean=4.80)  (best: 5.42 @ ep 350)
+ep  650 reward_agent1=  6.0 mean_last100= 5.48 eps=0.511 loss=0.0343 elapsed=864s
+  [periodic eval ep 700] greedy 50ep agent1: mean=5.12 std=1.48 min=2 max=9 (agent2 mean=4.88)  (best: 5.42 @ ep 350)
+ep  700 reward_agent1=  4.0 mean_last100= 5.61 eps=0.473 loss=0.0342 elapsed=920s
+  [periodic eval ep 750] greedy 50ep agent1: mean=5.26 std=1.66 min=2 max=9 (agent2 mean=4.74)  (best: 5.42 @ ep 350)
+ep  750 reward_agent1=  6.0 mean_last100= 5.67 eps=0.435 loss=0.0372 elapsed=976s

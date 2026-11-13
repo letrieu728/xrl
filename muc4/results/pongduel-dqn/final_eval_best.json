@@ -1,0 +1,27 @@
+{
+  "checkpoint": "/home/hatch/workspace/xrl-g3b-work/pongduel-dqn/best_checkpoint.pt",
+  "best_eval_episode": 350,
+  "best_eval_50ep": {
+    "n": 50,
+    "mean": 5.42,
+    "std": 1.4154857823376397,
+    "min": 2.0,
+    "max": 8.0
+  },
+  "final_eval_100ep_agent1": {
+    "n": 100,
+    "mean": 5.44,
+    "std": 1.564097183681372,
+    "min": 1.0,
+    "max": 9.0
+  },
+  "final_eval_100ep_agent2": {
+    "n": 100,
+    "mean": 4.56,
+    "std": 1.564097183681372,
+    "min": 1.0,
+    "max": 9.0
+  },
+  "mean_ep_len": 179.76,
+  "protocol": "greedy, 100 episodes, fresh env seeds 10000..10099, same evaluate() as train_dqn_pongduel.py"
+}
