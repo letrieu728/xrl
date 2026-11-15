@@ -612,6 +612,9 @@ Gói tổng hợp cho thầy đọc (thư giới thiệu + báo cáo + số li�
 - `dba9d9a` — Rà soát đồng bộ toàn repo: sửa số PC/FCI MicroRTS, sửa
   nhãn accuracy/weighted-F1 ở so sánh XRL LunarLander, viết lại README
   cho thầy đọc (13/11)
+- `5449cd2` — Nhóm 4: counterfactual DQN 36/36, sensitivity LunarLander
+  + trọng số cạnh, mô phỏng sửa đồ thị (không kiểm chứng); chấm lại
+  7,70/10 (15/11)
 
 ## Credits
 
