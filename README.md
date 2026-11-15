@@ -47,7 +47,10 @@ hình ảnh, paper và bản dịch, các patch) nằm ở thư mục Drive
 | GES (baseline thứ ba paper nhắc tới) | Đủ 4 môi trường, wall-clock thật | Paper không có cột GES trong Table 1 |
 | Train DQN thật (tác giả không có) | CartPole 500,00/500 (2 seed); LunarLander 222,03; PongDuel **âm tính** (5,44) | Mở rộng của nhóm, không phải tái hiện |
 | So sánh XRL trained-vs-heuristic | CartPole và LunarLander, BART thật | Agent giỏi hơn **khó giải thích hơn** ở CartPole |
-| Counterfactual (DiCE) | 25/25 kiểm chứng lật đúng action | Code gốc của tác giả không chạy được, nhóm đã sửa |
+| Counterfactual (DiCE) | 25/25 (heuristic) + 36/36 (DQN run 9) kiểm chứng lật đúng action | Code gốc của tác giả không chạy được, nhóm đã sửa |
+| Sensitivity CI 90/95/99% (BART thật) | CartPole hte 13→13→11; LunarLander hte 55→39→23 | Chỉ so xu hướng, khác môi trường |
+| Trọng số cạnh (mean \|ITE\|) | LunarLander hte, đủ 144 cặp; CartPole chưa làm (không còn draws đã lưu) | Không phải hệ số có đơn vị vật lý |
+| Mô phỏng phản thực bằng sửa đồ thị | CartPole 1 bước, 80 query, kiểm chứng bằng env thật: **không đạt mức kiểm chứng** theo tiêu chí đặt trước | Hướng mới của nhóm, không phải tái hiện |
 | Nghiên cứu chuyên gia (expert study) | **Không làm** | Ngoài khả năng của sinh viên (xem "Hạn chế") |
 
 Ba điểm đáng chú ý nhất:
@@ -63,13 +66,13 @@ Ba điểm đáng chú ý nhất:
    notebook `eval_time_*` của tác giả, đo wall-clock thật và ghi rõ hai
    cách đo không so trực tiếp được.
 
-**Điểm tự chấm của nhóm sau toàn bộ công việc: 7,55/10** (theo 8 tiêu chí
+**Điểm tự chấm của nhóm sau toàn bộ công việc: 7,70/10** (theo 8 tiêu chí
 đối chiếu với nội dung paper: fidelity 3 môi trường gym 2,1/2,5; hiệu quả
-học cấu trúc 0,9/1,5; đồ thị toàn cục + mô hình local 1,3/1,5; MicroRTS +
-dashboard 1,0/1,5; counterfactual + sensitivity 0,85/1,0; expert study
-0/0,5; mở rộng vượt paper 0,95/1,0; trung thực/kiểm chứng được 0,45/0,5).
+học cấu trúc 0,9/1,5; đồ thị toàn cục + mô hình local 1,35/1,5; MicroRTS +
+dashboard 1,0/1,5; counterfactual + sensitivity 0,90/1,0; expert study
+0/0,5; mở rộng vượt paper 0,95/1,0; trung thực/kiểm chứng được 0,5/0,5).
 Đây là điểm tự đánh giá của nhóm, **không phải điểm học phần**. Điểm trước
-các nhóm việc 1–3 là 6,7/10.
+nhóm việc 4 là 7,55/10.
 
 ## Bài báo nói gì (tóm tắt)
 
@@ -139,6 +142,11 @@ toàn văn (28 trang, đủ 8/8 hình): thư mục Drive dưới đây.
    nhiều nơi với file JSON/log nguồn; sửa số PC/FCI MicroRTS trong bảng
    so sánh, sửa nhãn accuracy/weighted-F1 ở so sánh XRL LunarLander, vẽ
    lại 3 biểu đồ theo số chốt; viết lại README này.
+8. **Nhóm việc 4** (15/11): counterfactual DiCE cho policy DQN CartPole
+   (36/36 kiểm chứng lật); sensitivity CI cho LunarLander bằng BART thật
+   + phân tích trọng số cạnh; mô phỏng phản thực bằng sửa đồ thị (bản
+   thu hẹp 1 bước trên CartPole, kiểm chứng bằng env thật, không đạt mức
+   kiểm chứng theo tiêu chí đặt trước).
 
 Bảng đối chiếu đầy đủ mọi con số: `SO-SANH-TAC-GIA-VS-NHOM.md`.
 
@@ -321,6 +329,23 @@ nhân cho `push`. Kết quả BART thật ở `muc4/results/ablation-bart/`; s�
 surrogate giữ ở `muc4/results/ablation/` làm lịch sử, luôn ghi nhãn
 surrogate.
 
+**Sensitivity cho LunarLander (nhóm 4, hte, BART thật):** refit 1 lần
+(12 target, 29,4 phút) trên replay Mục 3, lưu 500 ITE draws, tính lại
+quyết định cạnh ở CI 90/95/99% từ cùng draws: **55→39→23 cạnh**
+(lồng nhau đơn điệu, 0 cạnh tăng thêm); kiểm chứng quyết định 95% khớp
+phương thức repo ở 144/144 cặp, 0 mismatch. Xu hướng nhạy với mức CI
+hơn hẳn CartPole (13→13→11) — chỉ so xu hướng, không so số tuyệt đối.
+ATE LunarLander không chạy (vượt giới hạn 1 giờ). Draws 12 file `.npz`
+(1,28 GB) lưu trên Drive, có manifest kèm sha256. Chi tiết:
+`muc4/results/ablation-bart/lunarlander_ci_sensitivity.md`.
+
+**Trọng số cạnh (nhóm 4):** từ draws LunarLander, mean |ITE| + CI cho
+đủ 144 cặp target×treatment; 16/39 cạnh 95% mất ở 99% (mỏng manh).
+Trọng số không phải hệ số nhân quả có đơn vị vật lý và không so ngang
+giữa các target khác thang đo. CartPole không làm được phần này: draws
+của ablation BART không được lưu ra đĩa, và nhóm không chạy BART mới
+cho CartPole. Chi tiết: `muc4/results/ablation-bart/edge_weights.md`.
+
 ### Counterfactual (DiCE) — code gốc không chạy được, nhóm sửa và chạy được
 
 `XRL.counterfactual()` của tác giả không bao giờ chạy được (thiếu
@@ -329,9 +354,38 @@ thiểu trên bản copy (patch ở `muc4/xrl-counterfactual-fix.patch`, patch
 đa lớp ở `muc4/xrl-multiclass-fix.patch`) và chạy được đầu-cuối:
 **CartPole 6 query, 9/9 counterfactual kiểm chứng lật đúng action bằng
 policy gốc; LunarLander 4 query (4 action), 16/16 kiểm chứng lật** —
-tổng **25/25**. Chi tiết: `muc4/counterfactual-thu-nghiem.md`. Giới hạn:
-chỉ policy heuristic/PD, chưa thử policy DQN, chưa thử PongDuel; DiCE
-dùng phương pháp `random`.
+tổng **25/25**. Chi tiết: `muc4/counterfactual-thu-nghiem.md`.
+
+**Counterfactual cho policy DQN (nhóm 4):** cùng code đã sửa, không cần
+thêm patch, cho DQN CartPole run 9 (checkpoint đã kiểm chứng lại
+500,00/500): 6 query, DiCE sinh 40 CF thô/query → 36 CF cuối, **36/36
+kiểm chứng lật đúng bằng forward trực tiếp mạng DQN**, đạt tiêu chí đặt
+trước (≥5/6 query). Khác biệt so với heuristic: tỉ lệ lật bằng nhau
+(100%) nhưng DQN cần thay đổi lớn hơn ~4,6 lần (trung vị L1 chuẩn hoá
+1,70 so với 0,37) và sửa cả 4 đặc trưng (kể cả vận tốc), trong khi
+heuristic chỉ sửa 1 đặc trưng/query và không bao giờ sửa vận tốc — đúng
+bản chất biên phi tuyến của mạng so với biên tuyến tính. Chi tiết:
+`muc4/counterfactual-dqn-thu-nghiem.md`. Giới hạn chung: chưa thử
+PongDuel/MicroRTS; DiCE dùng phương pháp `random`.
+
+### Mô phỏng phản thực bằng sửa đồ thị (nhóm 4, bản thu hẹp — không đạt mức kiểm chứng)
+
+Hướng mới của nhóm, khác counterfactual DiCE: can thiệp lên đồ thị
+(`do(X=x)`, cắt cạnh vào) rồi lan truyền qua các cạnh bằng mô hình thay
+thế (RandomForest riêng cho từng node, mỗi node chỉ dùng các cha theo
+đồ thị BART Mục 3), kiểm chứng bằng env CartPole thật. Chỉ 1 bước, 80
+query (40 can thiệp state, 40 can thiệp action), tiêu chí đặt trước
+trong `PREREGISTRATION.md`. Fidelity mô hình thay thế: regressor
+R² ≥ 0,9995, nhưng dự đoán `push'` của mô hình đồ thị chỉ 91,98% so với
+baseline dùng mọi feature 97,47% (cha của `push'` bỏ mất tín hiệu v, w).
+Loại (a): đồ thị khớp env thật 90,0% so với baseline 87,5% — hơn đúng 1
+query, **không có khác biệt rõ**. Loại (b): đồ thị tốt hơn ở vận tốc
+nhưng kém ở θ' (thiếu cạnh `w→θ'`). Theo quy tắc đặt trước, thí nghiệm
+**không đạt mức "được kiểm chứng"** (2/8 tiêu chí không đạt) và được
+báo cáo đúng như vậy. Không rollout nhiều bước, không chạy MicroRTS
+(chỉ viết code theo interface chung), không tuyên bố đồ thị là nhân
+quả thật. Chi tiết:
+`muc4/results/graph-surgery-simulation/REPORT.md`.
 
 ## Hạn chế và việc chưa làm (ghi rõ, không giấu)
 
@@ -346,8 +400,12 @@ dùng phương pháp `random`.
 - **PongDuel chỉ là proxy** (không có BART phân loại trong repo tác giả);
   LunarLander Mục 3 chỉ 30 episode; DQN LunarLander train dở dang; so
   sánh XRL PongDuel bỏ qua (bước 5 âm tính + ước tính >70 giờ BART).
-- **Sensitivity** mới làm cho CartPole; **counterfactual** chưa làm cho
-  policy DQN, PongDuel, MicroRTS; **phân tích trọng số cạnh** chưa làm.
+- **Sensitivity** đã làm cho CartPole (hte+ate) và LunarLander (hte);
+  chưa làm cho PongDuel/MicroRTS và ate LunarLander. **Counterfactual**
+  chưa làm cho PongDuel/MicroRTS (DQN CartPole đã làm, nhóm 4).
+  **Trọng số cạnh** chỉ có cho LunarLander hte; CartPole không làm được
+  vì draws không được lưu. **Mô phỏng sửa đồ thị** chỉ 1 bước trên
+  CartPole, không đạt mức kiểm chứng, chưa chạy MicroRTS.
 - Số BART dao động ±1–2 cạnh giữa các lần chạy (code gốc không đặt
   seed); không đọc chênh lệch 1–2 cạnh thành kết luận.
 
@@ -376,7 +434,8 @@ XRL/
 │                              # ges.json từng môi trường + ges_run.log; microrts/ (đồ thị,
 │                              # fidelity, chẩn đoán, dashboard); baselines_recomputed/aligned
 └── muc4/                      # Mục 4 — Mở rộng
-    ├── counterfactual-thu-nghiem.md # báo cáo counterfactual (25/25 kiểm chứng lật)
+    ├── counterfactual-thu-nghiem.md # báo cáo counterfactual heuristic (25/25 kiểm chứng lật)
+    ├── counterfactual-dqn-thu-nghiem.md # báo cáo counterfactual DQN run 9 (36/36, nhóm 4)
     ├── xrl-counterfactual-fix.patch # patch sửa counterfactual (+ xrl-multiclass-fix.patch)
     ├── scripts/               # train_dqn_cartpole/lunarlander/pongduel.py,
     │                          # run_xrl_comparison.py, run_ablation_bart.py, ...
@@ -387,7 +446,9 @@ XRL/
         ├── lunarlander-dqn/   # DQN LunarLander (best @ ep 850, eval 222,03; .pt trên Drive)
         ├── pongduel-dqn/      # DQN PongDuel âm tính + ước tính bỏ qua bước 6
         ├── ablation/          # bảng + ảnh đồ thị (surrogate — chỉ còn là lịch sử)
-        ├── ablation-bart/     # ablation + sensitivity bằng BART thật (ảnh đồ thị trên Drive)
+        ├── ablation-bart/     # ablation + sensitivity bằng BART thật (CartPole + LunarLander hte,
+        │                          # trọng số cạnh; ảnh đồ thị + draws .npz trên Drive)
+        ├── graph-surgery-simulation/ # mô phỏng sửa đồ thị 1 bước CartPole (nhóm 4, không kiểm chứng)
         ├── so-sanh/           # script vẽ 3 biểu đồ so sánh (ảnh PNG trên Drive)
         ├── xrl-trained-vs-heuristic/        # so sánh XRL CartPole (checkpoint run 9)
         ├── xrl-trained-vs-heuristic-run5/   # bảng cũ lưu trữ (checkpoint run 5)
@@ -561,3 +622,4 @@ Gói tổng hợp cho thầy đọc (thư giới thiệu + báo cáo + số li�
   (MSSV 24022750) và Nguyễn Sỹ Việt.
 - Giấy phép của repo này: MIT (xem `LICENSE`), cùng loại với repo tác
   giả.
+

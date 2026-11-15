@@ -1,0 +1,46 @@
+checkpoint: /home/hatch/workspace/xrl-g4a-work/checkpoint/dqn_checkpoint.pt (73833 bytes, md5=a6fa113cae140c50f1d8e469eb77caac)
+checkpoint meta: best_eval_episode=1150 best_eval={'n': 50, 'mean': 500.0, 'std': 0.0, 'min': 500.0, 'max': 500.0}
+BART SLA elapsed time: 0.0 seconds
+XRL built in 1400.6s; pi n_classes=2
+replay: 39800 transitions; actions: 0=20011 1=19789
+causalG edges: [('action_push_t', 'action_push_t'), ('action_push_t', 'state_cart_velocity_t'), ('action_push_t', 'state_pole_velocity_t'), ('state_cart_position_t', 'action_push_t'), ('state_cart_position_t', 'state_cart_position_t'), ('state_cart_velocity_t', 'action_push_t'), ('state_cart_velocity_t', 'state_cart_velocity_t'), ('state_pole_angle_t', 'action_push_t'), ('state_pole_angle_t', 'state_pole_angle_t'), ('state_pole_angle_t', 'state_pole_velocity_t'), ('state_pole_velocity_t', 'action_push_t'), ('state_pole_velocity_t', 'state_pole_angle_t'), ('state_pole_velocity_t', 'state_pole_velocity_t')]
+replay feature std: {'cart_position': 0.3658943076431779, 'cart_velocity': 0.45736710273894143, 'pole_angle': 0.06021141726611138, 'pole_velocity': 0.31731394121533685}
+replay/policy agreement on 200 sampled states: 200/200
+
+--- query row 6: observed=0 desired=1 Q=[81.263, 81.049] margin=0.2140 ---
+query: {'cart_position': 0.019910279661417007, 'cart_velocity': 0.04157968610525131, 'pole_angle': 0.049792125821113586, 'pole_velocity': 0.09363598376512527, 'action': 0}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.27it/s]100%|██████████| 1/1 [00:00<00:00,  1.24it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.11s/it]100%|██████████| 1/1 [00:01<00:00,  1.11s/it]
+raw DiCE=40 final=6 verified=6/6 score={'cart_position': 0.16666666666666666, 'cart_velocity': 0.3333333333333333, 'pole_angle': 0.16666666666666666, 'pole_velocity': 0.3333333333333333}
+
+--- query row 100: observed=1 desired=0 Q=[90.0786, 90.4622] margin=0.3836 ---
+query: {'cart_position': 0.47872141003608704, 'cart_velocity': -0.32612642645835876, 'pole_angle': -0.06799490749835968, 'pole_velocity': 0.18208442628383636, 'action': 1}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.21s/it]100%|██████████| 1/1 [00:01<00:00,  1.21s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  2.48it/s]100%|██████████| 1/1 [00:00<00:00,  2.48it/s]
+raw DiCE=40 final=6 verified=6/6 score={'cart_position': 0.2857142857142857, 'cart_velocity': 0.42857142857142855, 'pole_angle': 0.0, 'pole_velocity': 0.2857142857142857}
+
+--- query row 500: observed=0 desired=1 Q=[93.7886, 93.4906] margin=0.2980 ---
+query: {'cart_position': 0.8230198621749878, 'cart_velocity': 0.3262730538845062, 'pole_angle': -0.04395822435617447, 'pole_velocity': -0.03653738647699356, 'action': 0}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  2.96it/s]100%|██████████| 1/1 [00:00<00:00,  2.95it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  4.12it/s]100%|██████████| 1/1 [00:00<00:00,  4.11it/s]
+raw DiCE=40 final=5 verified=5/5 score={'cart_position': 0.3333333333333333, 'cart_velocity': 0.3333333333333333, 'pole_angle': 0.16666666666666666, 'pole_velocity': 0.16666666666666666}
+
+--- query row 1000: observed=1 desired=0 Q=[69.0328, 84.4788] margin=15.4459 ---
+query: {'cart_position': -0.08306141197681427, 'cart_velocity': -0.9745312929153442, 'pole_angle': 0.022670213133096695, 'pole_velocity': 1.4595881700515747, 'action': 1}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  3.47it/s]100%|██████████| 1/1 [00:00<00:00,  3.47it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  2.81it/s]100%|██████████| 1/1 [00:00<00:00,  2.81it/s]
+raw DiCE=40 final=6 verified=6/6 score={'cart_position': 0.3333333333333333, 'cart_velocity': 0.0, 'pole_angle': 0.2222222222222222, 'pole_velocity': 0.4444444444444444}
+
+--- query row 2000: observed=0 desired=1 Q=[80.8155, 80.5288] margin=0.2867 ---
+query: {'cart_position': 0.012646835297346115, 'cart_velocity': -0.006332932505756617, 'pole_angle': 0.027531400322914124, 'pole_velocity': 0.03101624920964241, 'action': 0}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  2.04it/s]100%|██████████| 1/1 [00:00<00:00,  2.04it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  2.05it/s]100%|██████████| 1/1 [00:00<00:00,  2.05it/s]
+raw DiCE=40 final=6 verified=6/6 score={'cart_position': 0.14285714285714285, 'cart_velocity': 0.14285714285714285, 'pole_angle': 0.2857142857142857, 'pole_velocity': 0.42857142857142855}
+
+--- query row 3000: observed=1 desired=0 Q=[82.8497, 83.4554] margin=0.6057 ---
+query: {'cart_position': -0.04909133538603783, 'cart_velocity': -0.20961543917655945, 'pole_angle': 0.09923647344112396, 'pole_velocity': 0.5176676511764526, 'action': 1}
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.64it/s]100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.99it/s]100%|██████████| 1/1 [00:00<00:00,  1.99it/s]
+raw DiCE=40 final=7 verified=7/7 score={'cart_position': 0.18181818181818182, 'cart_velocity': 0.36363636363636365, 'pole_angle': 0.09090909090909091, 'pole_velocity': 0.36363636363636365}
+
+saved DQN counterfactual results; C1: 6/6 queries with >=1 verified flip -> MET; DONE

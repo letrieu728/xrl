@@ -1,0 +1,814 @@
+{
+  "checkpoint": "/home/hatch/workspace/xrl-g4c-work/dqn_run9_best_checkpoint.pt",
+  "checkpoint_hyperparams": {
+    "hidden": 128,
+    "seed": 0,
+    "episodes": 2000
+  },
+  "n_queries": 80,
+  "dqn_vs_heuristic_at_real_next_state_agreement": 0.7125,
+  "graph_pred_vs_dqn_at_real_next_state_agreement": 0.675,
+  "note": "Diagnostic only; not part of the pre-registered criteria.",
+  "per_query": [
+    {
+      "query_id": "A001",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A002",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A003",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A004",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A005",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A006",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A007",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A008",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A009",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A010",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A011",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A012",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A013",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A014",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A015",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A016",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A017",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A018",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A019",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A020",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A021",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A022",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A023",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A024",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A025",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A026",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A027",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A028",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A029",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A030",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A031",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A032",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A033",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A034",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A035",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A036",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A037",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A038",
+      "type": "state",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "A039",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "A040",
+      "type": "state",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B041",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B042",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B043",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B044",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B045",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B046",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B047",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B048",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B049",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B050",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B051",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B052",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B053",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B054",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B055",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B056",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B057",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B058",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B059",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B060",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B061",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B062",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B063",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B064",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B065",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B066",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B067",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B068",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B069",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B070",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B071",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B072",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B073",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B074",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B075",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B076",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B077",
+      "type": "action",
+      "dqn_action_at_query_state": 1,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 1,
+      "graph_pred_push_next": 1,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    },
+    {
+      "query_id": "B078",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B079",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 0,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": true,
+      "graph_matches_dqn_at_next": true
+    },
+    {
+      "query_id": "B080",
+      "type": "action",
+      "dqn_action_at_query_state": 0,
+      "dqn_action_at_real_next_state": 1,
+      "heuristic_next_action": 0,
+      "graph_pred_push_next": 0,
+      "dqn_matches_heuristic_at_next": false,
+      "graph_matches_dqn_at_next": false
+    }
+  ]
+}

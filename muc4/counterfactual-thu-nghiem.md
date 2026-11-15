@@ -247,6 +247,17 @@ chạy với `R_LIBS=~/workspace/R-lib` sau VM restart (xem báo cáo MicroRTS
   đầu-cuối cho CartPole (6 query, 9/9 CF kiểm chứng lật) và LunarLander
   4 action (4 query, 16/16 CF kiểm chứng lật), đều kiểm chứng bằng
   policy gốc, không qua DiCE.
-- Giới hạn còn lại: chưa thử policy DQN của Mục 4 (chỉ heuristic/PD);
-  chưa thử PongDuel; DiCE vẫn là phương pháp `random`; query LunarLander
-  chỉ lấy hàng đầu tiên của mỗi action, chưa quét nhiều hàng như CartPole.
+- Giới hạn còn lại: ~~chưa thử policy DQN của Mục 4~~ — **đã thử ở
+  nhóm 4 (15/11)**, xem §8; chưa thử PongDuel; DiCE vẫn là phương pháp
+  `random`; query LunarLander chỉ lấy hàng đầu tiên của mỗi action, chưa
+  quét nhiều hàng như CartPole.
+
+## 8. Counterfactual cho policy DQN (nhóm 4, 15/11/2026) — xem báo cáo riêng
+
+`muc4/counterfactual-dqn-thu-nghiem.md`: cùng code đã sửa (không thêm
+patch), DQN CartPole run 9, 6 query → 36 CF cuối, **36/36 kiểm chứng
+lật đúng bằng forward trực tiếp mạng DQN**, đạt tiêu chí đặt trước
+trong `muc4/counterfactual-dqn-criteria.md`. DQN cần thay đổi lớn hơn
+heuristic ~4,6 lần và sửa cả 4 đặc trưng. File này giữ nguyên phạm vi
+heuristic/PD; mọi số DQN nằm ở báo cáo riêng.
+

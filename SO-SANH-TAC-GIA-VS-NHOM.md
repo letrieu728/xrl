@@ -1,8 +1,8 @@
 # So sánh tất cả con số: tác giả CausalXRL vs nhóm
 
 Ngày lập: 12/11/2026. Cập nhật nhóm 1, 2 và 3: 12/11/2026; rà soát
-đồng bộ toàn repo và sửa số PC/FCI MicroRTS: 13/11/2026 (xem các mục
-đánh dấu). Mọi số trong file này đều đọc từ nguồn gốc ghi ở
+đồng bộ toàn repo và sửa số PC/FCI MicroRTS: 13/11/2026; nhóm việc 4:
+15/11/2026 (xem các mục đánh dấu). Mọi số trong file này đều đọc từ nguồn gốc ghi ở
 đầu mỗi mục — không bịa, không lấy số tác giả ghi thành số nhóm.
 Số thập phân viết theo kiểu Việt Nam (dấu phẩy).
 
@@ -235,9 +235,35 @@ phương thức repo ở cả 25 cặp × 2 phương pháp, 0 mismatch):
 | 99% | 13 cạnh (mất thêm 3) | 11 cạnh (mất 2: `θ→w`, `w→θ`) | 14 cạnh (mất 1: `w→push`) |
 
 **Khác môi trường nên chỉ so xu hướng** (cạnh giảm hoặc không đổi khi
-ngưỡng chặt hơn), không so số tuyệt đối. Nhóm chưa làm sensitivity cho
-LunarLander, PongDuel hay MicroRTS. Sensitivity surrogate cũ (90% → 8
-cạnh, 95% → 7 cạnh, hte) là **SURROGATE, đã thay thế**, không trích.
+ngưỡng chặt hơn), không so số tuyệt đối.
+
+Nhóm (**LunarLander**, BART thật, hte, nhóm 4): refit 1 lần (12 target,
+29,4 phút) trên replay Mục 3 (30 episode, 7.382 transition), lưu 500
+ITE draws, tính lại quyết định từ cùng draws; kiểm chứng 95% khớp
+phương thức repo 144/144 cặp, 0 mismatch; tính lại từ file draws đã
+lưu (thuần numpy) 0 mismatch / 432 kiểm tra:
+
+| Ngưỡng CI | Nhóm hte (LunarLander) |
+|---|---:|
+| 90% | 55 cạnh |
+| 95% | 39 cạnh (mất 16, 0 tăng thêm) |
+| 99% | 23 cạnh (mất 16, 0 tăng thêm) |
+
+Xu hướng nhạy với mức CI hơn hẳn CartPole (13→13→11): số cạnh 95% của
+LunarLander phải luôn ghi kèm mức CI; lõi chặt là 23 cạnh ở 99%. Đối
+chiếu: đồ thị 95% này vs đồ thị Mục 3 (44 cạnh, fit khác không seed)
+Jaccard 0,6275. ATE LunarLander không chạy (vượt giới hạn 1 giờ).
+Nhóm chưa làm sensitivity cho PongDuel hay MicroRTS. Sensitivity
+surrogate cũ (90% → 8 cạnh, 95% → 7 cạnh, hte) là **SURROGATE, đã thay
+thế**, không trích.
+
+**Trọng số cạnh (nhóm 4, LunarLander hte):** mean |ITE| + CI cho đủ
+144 cặp từ draws đã lưu; 16/39 cạnh 95% mất ở 99% (mỏng manh); cạnh
+95% yếu nhất nhưng vẫn sống ở 99%: `vx→x` (0,0047),
+`angular_velocity→angle` (0,0067) — nhỏ nhưng ổn định. Trọng số không
+phải hệ số có đơn vị vật lý, không so ngang giữa các target khác thang
+đo. CartPole chưa làm: draws ablation BART không được lưu, không chạy
+BART mới. Chi tiết: `muc4/results/ablation-bart/edge_weights.md`.
 
 ---
 
@@ -265,9 +291,11 @@ script Range-fetch + SHA-256 ghi trong báo cáo.
 |---|---|---|
 | Phương pháp | `XRL.counterfactual()` dùng DiCE, 40 counterfactual thô, rồi lọc simplify + dominating | Chạy được **sau khi sửa code tác giả trên bản copy** (patch `muc4/xrl-counterfactual-fix.patch`): code gốc sập 100% khi gọi (`self.exp` và `self.state_features` không tồn tại, `self.pi` là hàm thuần không có `.predict`) |
 | Chạy thử | Không có số counterfactual nào báo trong paper (chỉ mô tả phương pháp + UI) | Bước 3: 1 query CartPole (hàng replay số 6, action 0 → muốn 1, seed 99, 200 episode, 6.115 transition): DiCE sinh **40** → còn **2** counterfactual; cả **2/2 kiểm chứng độc lập bằng hàm policy gốc đều lật 0→1**. **Nhóm 2 (mở rộng): 6 query CartPole → 9/9 lật + 4 query LunarLander (4 action, sửa đa lớp) → 16/16 lật; tổng 25/25** kiểm chứng bằng policy gốc |
-| Phạm vi khác | — | **Không làm**: counterfactual cho policy DQN, PongDuel, MicroRTS; DiCE ở đây là phương pháp `random`, không phải `genetic`/`kdtree` |
+| Chạy thử cho policy DQN | — | **Nhóm 4: 6 query CartPole cho DQN run 9** (checkpoint kiểm chứng lại 500,00/500, replay 39.800 transition): 40 CF thô/query → 36 CF cuối, **36/36 kiểm chứng lật đúng bằng forward trực tiếp mạng DQN**, đạt tiêu chí đặt trước (≥5/6 query). So với heuristic: tỉ lệ lật bằng nhau (100%) nhưng DQN cần thay đổi lớn hơn ~4,6 lần (trung vị L1 chuẩn hoá 1,70 vs 0,37), sửa cả 4 đặc trưng (heuristic chỉ 1/query, không sửa vận tốc) |
+| Phạm vi khác | — | **Không làm**: counterfactual cho PongDuel, MicroRTS; DiCE ở đây là phương pháp `random`, không phải `genetic`/`kdtree` |
 
-Chi tiết: `muc4/counterfactual-thu-nghiem.md`.
+Chi tiết: `muc4/counterfactual-thu-nghiem.md` (heuristic),
+`muc4/counterfactual-dqn-thu-nghiem.md` (DQN).
 
 ---
 
@@ -376,6 +404,21 @@ qua**; ước tính so sánh đầy đủ >70 giờ BART liên tục (~28 giờ 
 tốc độ 2,5× của VM), quy mô 30 episode vẫn ~5–6 giờ + rủi ro OOM chưa
 kiểm chứng. Bằng chứng: `muc4/results/pongduel-dqn/`.
 
+### 9.6. Mô phỏng phản thực bằng sửa đồ thị — bản thu hẹp, không đạt mức kiểm chứng (nhóm 4)
+
+Can thiệp lên đồ thị BART Mục 3 (`do(X=x)`, cắt cạnh vào) rồi lan
+truyền bằng mô hình thay thế (RandomForest từng node, chỉ dùng các cha
+theo đồ thị), kiểm chứng bằng env CartPole thật. Chỉ 1 bước, 80 query,
+tiêu chí đặt trước trong `PREREGISTRATION.md`. Fidelity: regressor
+R² ≥ 0,9995; dự đoán `push'` của mô hình đồ thị 91,98% so với baseline
+mọi-feature 97,47%. Loại (a) can thiệp state: khớp env thật 90,0% so
+với baseline 87,5% (hơn 1 query, không khác biệt rõ). Loại (b) can
+thiệp action: MAE 0,01237 so với baseline 0,01641, tốt hơn ở vận tốc
+nhưng kém ở θ' (thiếu cạnh `w→θ'`). **2/8 tiêu chí không đạt nên theo
+quy tắc đặt trước thí nghiệm không đạt mức "được kiểm chứng".** Không
+rollout nhiều bước, không chạy MicroRTS, không tuyên bố nhân quả thật.
+Bằng chứng: `muc4/results/graph-surgery-simulation/`.
+
 ## 10. Biểu đồ
 
 3 biểu đồ vẽ bằng matplotlib (script text trong repo, ảnh PNG trên
@@ -422,10 +465,12 @@ Drive (giữ nguyên link).
 5. ~~GES: không làm~~ — **đã chạy đủ 4 môi trường** (nhóm 3).
 6. ~~Ảnh đồ thị Mục 3, case study local kiểu Hình 4: không làm~~ —
    **đã làm ở nhóm 1** (ảnh trên Drive + case study hàng 1131). Phân
-   tích trọng số cạnh: **chưa làm**.
-7. Sensitivity cho LunarLander/PongDuel/MicroRTS: **không làm**.
-8. Counterfactual cho DQN/PongDuel/MicroRTS: **không làm** (CartPole +
-   LunarLander đã làm tới 25/25, nhóm 2).
+   tích trọng số cạnh: **đã làm cho LunarLander hte** (nhóm 4);
+   CartPole chưa làm (draws không được lưu).
+7. Sensitivity cho PongDuel/MicroRTS và ate LunarLander: **không làm**
+   (CartPole hte+ate và LunarLander hte đã làm, nhóm 4).
+8. Counterfactual cho PongDuel/MicroRTS: **không làm** (CartPole +
+   LunarLander heuristic 25/25, nhóm 2; DQN CartPole 36/36, nhóm 4).
 9. ~~DQN cho LunarLander/PongDuel: không làm~~ — **LunarLander đã làm
    (222,03, nhóm 2); PongDuel đã thử, âm tính** (nhóm 3). So sánh XRL
    PongDuel: **bỏ qua có lý do** (nhóm 3).
@@ -439,3 +484,4 @@ Drive (giữ nguyên link).
 11. Số cạnh Hình 8 của tác giả (21/16/13) là số đếm từ hình, paper chỉ
     ghi số cạnh mất (5 rồi 3) bằng chữ — khi trích thì ghi rõ là đếm
     từ hình.
+

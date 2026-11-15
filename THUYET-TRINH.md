@@ -185,6 +185,19 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
   XRL PongDuel bỏ qua** (ước tính >70 giờ BART nếu làm đầy đủ). Đây là kết
   quả âm tính được ghi lại đầy đủ, không phải "chưa làm".
 
+### 5.5. Nhóm việc 4 (15/11): counterfactual DQN, sensitivity LunarLander, mô phỏng sửa đồ thị
+
+- **Counterfactual cho DQN run 9:** 6 query CartPole, 36/36 kiểm chứng
+  lật đúng bằng mạng DQN. DQN cần thay đổi lớn hơn heuristic ~4,6 lần
+  và sửa cả vận tốc — biên phi tuyến khó lật hơn biên tuyến tính.
+- **Sensitivity LunarLander (BART thật, hte):** 55→39→23 cạnh ở
+  CI 90/95/99% — nhạy với mức CI hơn hẳn CartPole. Trọng số cạnh
+  (mean |ITE|) cho đủ 144 cặp; 16/39 cạnh 95% mỏng manh, mất ở 99%.
+- **Mô phỏng sửa đồ thị (1 bước, CartPole):** can thiệp lên đồ thị rồi
+  lan truyền, kiểm chứng bằng env thật — **không đạt mức kiểm chứng**
+  theo tiêu chí đặt trước (đồ thị chỉ hơn baseline 1 query ở loại can
+  thiệp state). Nói thẳng kết quả này, không tô hồng.
+
 ## 6. Hạn chế — nói thẳng (1 phút)
 
 - Tác giả: cần biểu diễn trích sẵn; hiệu quả phụ thuộc chất lượng biểu diễn;
@@ -195,7 +208,9 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
   BART thật, kết luận cũ từ surrogate không còn đứng; Hướng D đã làm tới
   LunarLander (so sánh XRL xong) và thử PongDuel (DQN âm tính, so sánh XRL
   bỏ qua có lý do); fidelity MicroRTS theo protocol vẫn chưa đo được
-  (đã chẩn đoán tới cấp cơ chế).
+  (đã chẩn đoán tới cấp cơ chế); mô phỏng sửa đồ thị chỉ 1 bước trên
+  CartPole và không đạt mức kiểm chứng; trọng số cạnh chưa có cho
+  CartPole.
 - Repo tác giả có bug đã tìm thấy: `counterfactual()` gọi `self.pi.predict`
   trong khi `pi` là hàm; `HTE` assert hardcode 500; `infer_causes_ate_barl`
   import module không tồn tại; MicroRTS import `stratvis` sót (nhóm đã sửa
@@ -261,3 +276,16 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
     Nhóm đặt tiêu chí thành công trước khi train, dừng khi không đạt, ghi
     đầy đủ log, và bỏ qua bước so sánh XRL PongDuel vì không có policy đã
     train để giải thích. Kết quả âm tính có bằng chứng vẫn là kết quả.
+11. **"Counterfactual cho DQN khác gì cho heuristic?"** — Cùng code DiCE
+    đã sửa, tỉ lệ lật đều 100%, nhưng DQN cần thay đổi lớn hơn ~4,6 lần
+    (trung vị L1 chuẩn hoá 1,70 vs 0,37) và phải sửa cả vận tốc, trong
+    khi heuristic chỉ cần sửa 1 đặc trưng (góc hoặc vị trí). Biên quyết
+    định của mạng phi tuyến nên khó lật hơn.
+12. **"Mô phỏng sửa đồ thị không kiểm chứng được thì có ý nghĩa gì?"** —
+    Nó cho thấy đồ thị BART học được chưa đủ để mô phỏng: mô hình chỉ
+    dùng các cha theo đồ thị dự đoán action bước sau kém hơn baseline
+    dùng mọi feature (91,98% vs 97,47%), và đồ thị thiếu cạnh vật lý
+    `w→θ'`. Đó là bằng chứng đồ thị còn thiếu, không phải bằng chứng
+    phương pháp nhân quả sai — và nhóm báo đúng như vậy thay vì chọn
+    lọc kết quả đẹp.
+
