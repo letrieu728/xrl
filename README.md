@@ -336,7 +336,8 @@ quyết định cạnh ở CI 90/95/99% từ cùng draws: **55→39→23 cạnh*
 phương thức repo ở 144/144 cặp, 0 mismatch. Xu hướng nhạy với mức CI
 hơn hẳn CartPole (13→13→11) — chỉ so xu hướng, không so số tuyệt đối.
 ATE LunarLander không chạy (vượt giới hạn 1 giờ). Draws 12 file `.npz`
-(1,28 GB) lưu trên Drive, có manifest kèm sha256. Chi tiết:
+(1,28 GB) **không lên được Drive** (Drive báo hết quota ngày 15/11, đã
+thử lại và xác nhận), chỉ lưu local, có manifest kèm sha256. Chi tiết:
 `muc4/results/ablation-bart/lunarlander_ci_sensitivity.md`.
 
 **Trọng số cạnh (nhóm 4):** từ draws LunarLander, mean |ITE| + CI cho
@@ -447,7 +448,7 @@ XRL/
         ├── pongduel-dqn/      # DQN PongDuel âm tính + ước tính bỏ qua bước 6
         ├── ablation/          # bảng + ảnh đồ thị (surrogate — chỉ còn là lịch sử)
         ├── ablation-bart/     # ablation + sensitivity bằng BART thật (CartPole + LunarLander hte,
-        │                          # trọng số cạnh; ảnh đồ thị + draws .npz trên Drive)
+        │                          # trọng số cạnh; ảnh đồ thị trên Drive, draws .npz chỉ lưu local)
         ├── graph-surgery-simulation/ # mô phỏng sửa đồ thị 1 bước CartPole (nhóm 4, không kiểm chứng)
         ├── so-sanh/           # script vẽ 3 biểu đồ so sánh (ảnh PNG trên Drive)
         ├── xrl-trained-vs-heuristic/        # so sánh XRL CartPole (checkpoint run 9)

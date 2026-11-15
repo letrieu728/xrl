@@ -1,10 +1,18 @@
 # ITE-draw files for the LunarLander CI sensitivity run (NOT pushed as text)
 
 These 12 per-target `.npz` files hold the 500 saved ITE posterior draws behind
-`lunarlander_ci_sensitivity.md` and `edge_weights.md`. They live in the work dir and
-must be uploaded to Drive by the coordinator (Drive folder `XRL - file nhi phan`,
-under `muc4/results/ablation-bart/ite_draws_lunarlander/`); do NOT push them via the
-GitHub connector (binary, 1.2 GB total).
+`lunarlander_ci_sensitivity.md` and `edge_weights.md`. Do NOT push them via the
+GitHub connector (binary, 1.28 GB total).
+
+**Upload status 2026-11-15: NOT on Drive.** Upload to Drive folder `XRL - file nhi
+phan`, under `muc4/results/ablation-bart/ite_draws_lunarlander/`, FAILED: Drive
+returned 403 `storageQuotaExceeded` for every file after the first (retried and
+confirmed; the single uploaded file was moved to trash because a 1-of-12 partial
+set cannot reproduce anything). The 12 files are kept ONLY locally at
+`~/workspace/xrl-g4b-work/ite_draws_lunarlander/` — verify by sha256 below before
+any future upload or recompute. The phase-2 recompute check (0 mismatches / 432)
+was run from these local files before the failed upload, so the sensitivity and
+edge-weight results do not depend on the Drive copy.
 
 Each file: `ite_draws` float64 (12 columns, 500 draws, 2215 points), `X_est`
 (2215, 12), `clusters` (12, 2215), `features`, `num_cols`, `causes95`,
