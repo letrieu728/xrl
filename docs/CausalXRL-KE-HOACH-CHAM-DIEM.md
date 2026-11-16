@@ -1,5 +1,13 @@
 # Kế hoạch chấm điểm CausalXRL — theo tiêu chí thầy gửi (11/11/2026)
 
+> **Cập nhật 16/11/2026:** hướng mở rộng ở §4 dưới đây (A/B/C/D) là kế
+> hoạch viết ngày 11/11 và **đã bị thay thế** — nhóm đã quyết định bỏ
+> hướng mở rộng cũ và gỡ toàn bộ nội dung của nó khỏi repo (còn trong
+> lịch sử git). Nội dung §4 giữ nguyên làm lịch sử, không còn là hướng
+> đi hiện tại.
+>
+> Hướng mở rộng mới (đang lên kế hoạch, chưa có kết quả): Causal-Guided RL — đóng kín vòng lặp hành động → tự soi chiếu nhân quả → sửa sai, dùng đồ thị nhân quả ngay trong lúc train để cảnh báo/phạt quyết định tự hủy và thưởng cho chuỗi hành động dẫn tới kết quả tốt. Làm pilot nhỏ trước, đăng ký tiêu chí trước, báo cáo cả khi kết quả âm tính — theo bài học từ nhóm 4 (mô phỏng phẫu thuật đồ thị không đạt kiểm chứng), độ tin cậy của đồ thị phải được chứng minh, không được giả định.
+
 > Cập nhật 13/11/2026: kế hoạch này viết ngày 11/11, trước khi chạy thực
 > nghiệm. Cột "hiện trạng" trong các bảng dưới đây phản ánh đúng lúc lập
 > kế hoạch (nhiều mục khi đó "chưa có số chạy thật") và được giữ nguyên

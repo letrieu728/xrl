@@ -4,7 +4,7 @@ Bài: **CausalXRL: Explainable Reinforcement Learning through Causal Graph
 Reasoning** — Yanming Zhang, Eric Papenhausen, Klaus Mueller (Stony Brook),
 arXiv:2610.42028v1, ICML 2026.
 Repo nhóm: https://github.com/letrieu728/XRL (xem `README.md` và
-`muc4/results/REPORT.md` để đối chiếu mọi số dưới đây).
+`muc3/EXPERIMENT_REPORT.md` để đối chiếu mọi số dưới đây).
 
 > Quy tắc của bản này: **chỉ dùng số đã kiểm chứng**. Số của tác giả ghi rõ
 > "tác giả"; số của nhóm ghi rõ "nhóm". Số nào chưa có thì ghi "chưa có",
@@ -82,7 +82,7 @@ trên 7 route đều 200** (kể cả `/get_local_causal`, sửa ở nhóm 3 ng�
 12/11/2026). Fidelity
 MicroRTS theo Table 1 vẫn chưa có — nhóm 3 đã chẩn đoán tới cấp cơ chế:
 tập valid rỗng là bản chất dữ liệu + cơ chế HTE, không sửa được bằng cấu
-hình. GES cũng đã chạy đủ 4 môi trường (nhóm 3). Chi tiết:
+hình. Chi tiết:
 `muc3/microRTS-thu-nghiem.md`.
 
 Số chốt của nhóm (accuracy / F1 so được với Table 1 — F1 nhị phân ở CartPole,
@@ -107,96 +107,9 @@ Nói thẳng 3 caveat:
   local, trên 74.445 transition), không phải fidelity phân loại tương
   đương paper — đừng so với 90,2%/90,7% của Table 1.
 
-## 5. Mở rộng của nhóm — Mục 4, Hướng D (5 phút — phần hay nhất)
+## 5. Hướng mở rộng mới (2 phút — chỉ nói hướng đi, chưa có kết quả)
 
-Tác giả không train agent RL. Nhóm train agent thật rồi giải thích nó bằng
-chính CausalXRL — đúng interface `XRL(env, pi)` của tác giả.
-
-### 5.1. Train DQN CartPole: 500,00/500
-
-- DQN tự viết bằng PyTorch (MLP 4→128→128→2, replay buffer, epsilon-greedy,
-  target network, Adam), không dùng stable-baselines3. CPU-only, $0.
-- **Run 9 — Double DQN, 2.000 episode: eval greedy 100 episode
-  500,00 ± 0,00 (min 500, max 500).** Heuristic cùng điều kiện:
-  31,53 ± 11,16 → DQN hơn **+468,47**.
-- Các run trước: run 1: 246,16; run 5: 272,68; run 7: dở dang do VM restart,
-  best 343,26; run 8: 234,51 (đổi target-update thì thụt lùi).
-
-**Điểm hay nhất để nói — Q-instability:** eval định kỳ của run 9 dao động
-500 ↔ ~97–146 giữa các lần đo cách nhau 50 episode. Policy tốt liên tục bị
-train tiếp phá hỏng rồi tìm lại được. Vì vậy **chọn checkpoint theo eval định
-kỳ là bắt buộc** — lấy checkpoint cuối train là sai. Run 9 có 10/40 lần eval
-đạt đúng 500,00.
-
-### 5.2. So sánh XRL: agent giỏi hơn nhưng khó giải thích hơn
-
-Chạy pipeline XRL gốc bằng **BART thật** (R/dbarts 0.9.34), 200
-episode/policy, seed 0, checkpoint DQN run 9.
-
-| | DT acc / F1 | LR acc / F1 | BART acc / F1 | push parents |
-|---|---|---|---|---|
-| Heuristic (6.330 trans) | 0,9491 / 0,9498 | 0,9111 / 0,9121 | 0,9350 / 0,9340 | 3 (push, x, θ) |
-| DQN run 9 (99.800 trans) | 0,9356 / 0,9392 | 0,8195 / 0,8363 | 0,8050 / 0,8368 | 5 (push, x, v, θ, w) |
-
-- Đồ thị: hte 14 vs 14 cạnh, **Jaccard 0,75, khác 4 cạnh** (chỉ DQN có
-  `v→push`, `w→push`); ate 15 vs 16 cạnh, **Jaccard 0,6316, khác 7 cạnh**.
-- `push` của DQN có cả 5 biến làm nguyên nhân, heuristic chỉ 3 — mạng DQN
-  dùng toàn bộ state kể cả vận tốc, còn heuristic chỉ là hàm của vị trí và
-  góc cột.
-- Thời gian học cấu trúc: DQN chậm hơn ~19–20 lần (hte 1.756s vs 86s; ate
-  2.306s vs 120s) do có ~15,8 lần transitions.
-- **Kết luận để nói:** DQN hoàn hảo kém heuristic ở cả 3 thước đo fidelity.
-  Giỏi hơn không đồng nghĩa dễ giải thích hơn — biên quyết định của mạng
-  nơ-ron phi tuyến hơn luật tuyến tính. Lưu ý: số BART dao động ±1–2 cạnh
-  giữa các lần chạy; tập valid steps khác nhau giữa 2 checkpoint nên không so
-  trực tiếp số run 5 vs run 9 như cùng test set.
-
-### 5.3. Ablation — Hướng A (1 phút, nói nhanh)
-
-Lần đầu dùng **surrogate RandomForest thay BART** (ghi rõ, không phải số
-BART); 6 run (50/100/200 ep × hte/ate), DT/LR 0,978–0,989. Đã **chạy
-lại bằng BART thật** (R/dbarts 0.9.34): lưới 50/100/200 ep × hte/ate,
-hte 12–13 cạnh, ate 15 cạnh; sensitivity 90/95/99% đủ cả hte/ate. Kết luận cũ từ surrogate — "hte ổn định từ 100 episode, Jaccard
-1,0" — **không còn đứng**: BART thật cho Jaccard so với đồ thị 200
-episode là 0,79/0,86 (hte) và 0,88/0,76 (ate), trong dải
-nhiễu. Surrogate cho `push: []` trong khi BART thật tìm được 3–4 nguyên
-nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
-`muc4/results/REPORT.md`.
-
-
-### 5.4. So sánh XRL LunarLander + thử DQN PongDuel (nhóm 2–3)
-
-- **DQN LunarLander** (nhóm 2): train 873/1.000 episode (VM restart),
-  checkpoint tốt nhất ở ep 850, eval cuối **222,03 ± 69,29** (100 ep).
-  Heuristic cùng điều kiện **255,41 ± 74,32** — ở LunarLander heuristic
-  mạnh hơn DQN, ngược với CartPole.
-- **So sánh XRL LunarLander** (nhóm 3, BART thật, 30 ep/policy): accuracy
-  heuristic DT 0,7870 / LR 0,7808 / BART 0,8348 so với DQN DT 0,6616 / LR
-  0,6167 / BART 0,6728; weighted-F1 heuristic 0,7881 / 0,7758 / 0,8304 so
-  với DQN 0,6613 / 0,5502 / 0,6265. Đồ thị hte 48 vs 51 cạnh (Jaccard
-  0,5231), ate 46 vs 45 (Jaccard 0,5690); thời gian học cấu trúc chỉ chậm
-  hơn ~1,55 lần. Kết luận: đồ thị khác nhau rõ rệt, nhưng số BART có nhiễu
-  (refit cùng dữ liệu cho Jaccard 0,65–0,75) nên chỉ kết luận "khác nhau",
-  không đọc từng cạnh.
-- **DQN PongDuel: âm tính, nói thẳng.** Joint action 0–8, cùng recipe run 9,
-  dừng ở 800/2.000 episode do VM restart; eval cuối của checkpoint tốt nhất
-  **5,44 ± 1,56** so với heuristic 8,81 ± 1,04 — không đạt tiêu chí thành
-  công đã đặt trước khi train. Vì không có policy đã train nên **so sánh
-  XRL PongDuel bỏ qua** (ước tính >70 giờ BART nếu làm đầy đủ). Đây là kết
-  quả âm tính được ghi lại đầy đủ, không phải "chưa làm".
-
-### 5.5. Nhóm việc 4 (15/11): counterfactual DQN, sensitivity LunarLander, mô phỏng sửa đồ thị
-
-- **Counterfactual cho DQN run 9:** 6 query CartPole, 36/36 kiểm chứng
-  lật đúng bằng mạng DQN. DQN cần thay đổi lớn hơn heuristic ~4,6 lần
-  và sửa cả vận tốc — biên phi tuyến khó lật hơn biên tuyến tính.
-- **Sensitivity LunarLander (BART thật, hte):** 55→39→23 cạnh ở
-  CI 90/95/99% — nhạy với mức CI hơn hẳn CartPole. Trọng số cạnh
-  (mean |ITE|) cho đủ 144 cặp; 16/39 cạnh 95% mỏng manh, mất ở 99%.
-- **Mô phỏng sửa đồ thị (1 bước, CartPole):** can thiệp lên đồ thị rồi
-  lan truyền, kiểm chứng bằng env thật — **không đạt mức kiểm chứng**
-  theo tiêu chí đặt trước (đồ thị chỉ hơn baseline 1 query ở loại can
-  thiệp state). Nói thẳng kết quả này, không tô hồng.
+Hướng mở rộng mới (đang lên kế hoạch, chưa có kết quả): Causal-Guided RL — đóng kín vòng lặp hành động → tự soi chiếu nhân quả → sửa sai, dùng đồ thị nhân quả ngay trong lúc train để cảnh báo/phạt quyết định tự hủy và thưởng cho chuỗi hành động dẫn tới kết quả tốt. Làm pilot nhỏ trước, đăng ký tiêu chí trước, báo cáo cả khi kết quả âm tính — theo bài học từ nhóm 4 (mô phỏng phẫu thuật đồ thị không đạt kiểm chứng), độ tin cậy của đồ thị phải được chứng minh, không được giả định.
 
 ## 6. Hạn chế — nói thẳng (1 phút)
 
@@ -204,13 +117,8 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
   nghiên cứu chuyên gia chỉ n=8, khám phá; không công bố đủ dữ liệu MicroRTS.
 - Nhóm: CartPole thua DT ở paper (91,4% vs 94,1%) — đó là số của tác giả,
   không phải lỗi của nhóm; BART cần R/dbarts, cài khó, VM restart xóa R 2 lần
-  trong ngày làm; số BART có nhiễu ±1–2 cạnh; ablation đã chạy lại bằng
-  BART thật, kết luận cũ từ surrogate không còn đứng; Hướng D đã làm tới
-  LunarLander (so sánh XRL xong) và thử PongDuel (DQN âm tính, so sánh XRL
-  bỏ qua có lý do); fidelity MicroRTS theo protocol vẫn chưa đo được
-  (đã chẩn đoán tới cấp cơ chế); mô phỏng sửa đồ thị chỉ 1 bước trên
-  CartPole và không đạt mức kiểm chứng; trọng số cạnh chưa có cho
-  CartPole.
+  trong ngày làm; số BART có nhiễu ±1–2 cạnh; fidelity MicroRTS theo
+  protocol vẫn chưa đo được (đã chẩn đoán tới cấp cơ chế).
 - Repo tác giả có bug đã tìm thấy: `counterfactual()` gọi `self.pi.predict`
   trong khi `pi` là hàm; `HTE` assert hardcode 500; `infer_causes_ate_barl`
   import module không tồn tại; MicroRTS import `stratvis` sót (nhóm đã sửa
@@ -219,16 +127,16 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
 ## 7. Câu hỏi dự kiến + đáp án ngắn
 
 1. **"Sao không train RL?"** — Repo tác giả không có code train, policy là
-   heuristic viết tay. Nhóm đã train DQN thật ở Mục 4 (run 9 đạt 500/500) và
-   giải thích nó bằng CausalXRL — đó chính là mở rộng.
+   heuristic viết tay; nhóm tái hiện đúng như vậy (evaluation-only).
+   Hướng mở rộng mới dùng đồ thị nhân quả ngay trong lúc train đang lên
+   kế hoạch, chưa có kết quả.
 2. **"Sao CartPole thua DT?"** — Đó là số của tác giả (91,4% vs 94,1%), tác
    giả thừa nhận chỉ "competitive". Môi trường đơn giản thì cây quyết định đủ
    tốt; CausalXRL thắng ở môi trường phức tạp (PongDuel 90,2%, MicroRTS
    86,0%).
 3. **"BART cần R thì cài thế nào?"** — Cài R 4.3.3 + `dbarts` 0.9.34 qua CRAN
-   + `rpy2`; chi tiết trong `muc4/notes/bart-check.md`. VM restart xóa R 2
-   lần, khôi phục bằng `dpkg -i /var/cache/apt/archives/*.deb` rồi cài lại
-   dbarts.
+   + `rpy2` 3.5.16. VM restart xóa R 2 lần, khôi phục bằng
+   `dpkg -i /var/cache/apt/archives/*.deb` rồi cài lại dbarts.
 4. **"MicroRTS chạy tới đâu?"** — Nhóm đã chạy tối thiểu thật: sửa 22 chỗ
    import `stratvis` → `cxrl_microRTS` trong 8 file, lấy checkpoint PPO
    `agent-3.pt` công khai (không đưa vào repo), env thật chạy được,
@@ -244,48 +152,5 @@ nhân cho `push`. Kết quả ở `muc4/results/ablation-bart/`; chi tiết xem
    nhanh hơn PC/FCI (theo thời gian Table 1 — nhóm phát hiện thời gian đó
    đo bằng timer mô phỏng trong notebook của tác giả, không phải wall-clock
    BART thật, nên không dùng làm bằng chứng mạnh), chuyên gia thấy hợp lý
-   (8/8 vs 4/8), và đồ thị DQN vs heuristic khác nhau đúng theo bản chất
-   policy (DQN dùng vận tốc, heuristic không). Số BART có nhiễu ±1–2 cạnh
+   (8/8 vs 4/8). Số BART có nhiễu ±1–2 cạnh
    giữa các lần chạy.
-6. **"Sao DQN 500/500 mà fidelity lại kém heuristic?"** — Vì biên quyết định
-   của mạng nơ-ron phi tuyến, mô hình tuyến tính và BART theo trọng số ITE
-   bắt chước kém hơn luật tuyến tính. Giỏi hơn không đồng nghĩa dễ giải thích
-   hơn — đây chính là điểm hay nhất của mở rộng.
-7. **"Ablation dùng surrogate thì có tin được không?"** — Surrogate chỉ để
-   kiểm tra độ ổn định, không phải số CausalXRL/BART. Nhóm đã chạy lại
-   bằng BART thật (R/dbarts 0.9.34): kết luận cũ "hte ổn định từ 100
-   episode, Jaccard 1,0" không còn đứng (BART thật Jaccard 0,79/0,86
-   hte và 0,88/0,76 ate, trong dải nhiễu); surrogate cho `push: []`
-   trong khi BART tìm được
-   3–4 nguyên nhân. Số chốt là số BART thật ở
-   `muc4/results/ablation-bart/`.
-8. **"Sao chọn checkpoint theo eval mà không lấy cuối train?"** — Vì
-   Q-instability: eval run 9 dao động 500 ↔ ~97 giữa các lần đo cách nhau 50
-   episode. Lấy cuối train có thể vớ phải policy đã bị phá hỏng.
-
-9. **"GES là gì, sao giờ mới chạy?"** — GES là baseline học cấu trúc thứ ba
-   paper nhắc tới (cùng PC/FCI) nhưng Table 1 không có cột GES. Nhóm 3 chạy
-   GES đủ 4 môi trường bằng causal-learn, wall-clock thật: CartPole 7 cạnh
-   (0,018s), LunarLander 18 cạnh (0,090s), PongDuel 34 cạnh (0,346s),
-   MicroRTS 50 cạnh (0,563s, states-only; biến thể states+action 53 cạnh,
-   0,685s). Không so trực tiếp với thời gian của tác giả
-   vì thời gian đó là timer mô phỏng.
-10. **"DQN PongDuel thất bại thì có sao không?"** — Không sao nếu nói thẳng:
-    recipe DQN đã thắng CartPole (500/500) không học được gì trên joint
-    action 9 class của PongDuel trong 800 episode (5,44 vs heuristic 8,81).
-    Nhóm đặt tiêu chí thành công trước khi train, dừng khi không đạt, ghi
-    đầy đủ log, và bỏ qua bước so sánh XRL PongDuel vì không có policy đã
-    train để giải thích. Kết quả âm tính có bằng chứng vẫn là kết quả.
-11. **"Counterfactual cho DQN khác gì cho heuristic?"** — Cùng code DiCE
-    đã sửa, tỉ lệ lật đều 100%, nhưng DQN cần thay đổi lớn hơn ~4,6 lần
-    (trung vị L1 chuẩn hoá 1,70 vs 0,37) và phải sửa cả vận tốc, trong
-    khi heuristic chỉ cần sửa 1 đặc trưng (góc hoặc vị trí). Biên quyết
-    định của mạng phi tuyến nên khó lật hơn.
-12. **"Mô phỏng sửa đồ thị không kiểm chứng được thì có ý nghĩa gì?"** —
-    Nó cho thấy đồ thị BART học được chưa đủ để mô phỏng: mô hình chỉ
-    dùng các cha theo đồ thị dự đoán action bước sau kém hơn baseline
-    dùng mọi feature (91,98% vs 97,47%), và đồ thị thiếu cạnh vật lý
-    `w→θ'`. Đó là bằng chứng đồ thị còn thiếu, không phải bằng chứng
-    phương pháp nhân quả sai — và nhóm báo đúng như vậy thay vì chọn
-    lọc kết quả đẹp.
-
