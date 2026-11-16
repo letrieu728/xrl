@@ -3,7 +3,7 @@
 Ngày chạy bước 3: 2026-11-12. Cập nhật nhóm 2: 2026-11-12 (rollout
 100 episode, đồ thị 100 episode, fidelity, sửa 2 route dashboard).
 Cập nhật nhóm 3a: 2026-11-12 (sửa route `/get_local_causal`, chẩn đoán
-cơ chế fidelity, GES trên dữ liệu MicroRTS — xem §9.5, §10.4, §12).
+cơ chế fidelity — xem §9.5, §10.4).
 Repo tác giả: `yanmluk/causal-xrl`, commit
 `ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162`, clone mới, mọi sửa đổi chỉ làm
 trên **bản copy** (repo gốc không bị sửa). Log đầy đủ bước 3:
@@ -733,28 +733,8 @@ rồi mới `/get_local_causal`.
   replay. Rollout batch07 bị gián đoạn bởi restart (xem §7.2); không
   mất batch nào đã lưu.
 
-## 12. Nhóm 3a — GES trên dữ liệu MicroRTS (baseline học cấu trúc)
+## 12. Nhóm 3a — GES trên dữ liệu MicroRTS (đã gỡ ngày 16/11/2026)
 
-Cùng đợt với GES trên 3 env gym (xem `muc3/EXPERIMENT_REPORT.md` mục
-GES và script `muc3/scripts/run_ges.py`), nhóm 3a chạy GES thuần của
-causal-learn 0.1.4.8 (BIC chuẩn, `maxP=None`, đo wall-clock thật —
-không dùng timer mô phỏng của notebook `eval_time`) trên
-`microrts_merged.npz`. MicroRTS không có notebook timing hay tiền lệ
-PC/FCI, nên chạy 2 biến thể theo quy ước của env gym, và **bỏ cột hằng
-`light2`** (phương sai 0, hồi quy BIC không xác định):
-
-| Biến thể | Ma trận | GES (trung vị, 3 lần) | Số cạnh | PC / FCI cùng phiên |
-|---|---|---:|---:|---|
-| Chỉ state, mọi hàng | 4.924 × 12 | 0,563 s | 50 (47 có hướng, 3 vô hướng) | 0,165 s / 0,520 s |
-| State + action, hàng có action | 3.200 × 13 | 0,685 s | 53 (53 có hướng) | 0,286 s / 1,009 s |
-
-Kết quả đầy đủ (danh sách cạnh, điểm BIC, tóm tắt cột, SHA-256 file
-nguồn): `muc3/results/microrts/ges.json`. Cảnh báo đọc số: GES/PC/FCI
-học đồ thị **đồng thời** trên [state(, action)] tại thời điểm t, trong
-khi đồ thị BART ở §8 là DBN (t → t+1, hiệu số trạng thái, 23 cạnh) —
-số cạnh không so sánh trực tiếp được; so sánh có ý nghĩa là thời gian
-chạy (GES/PC/FCI dưới 1 giây so với 498,3 giây học BART cho cả 14
-target).
-BIC giả định tuyến tính–Gauss; các cột đếm/nhị phân vi phạm giả định
-này, giống như Fisher-Z của PC/FCI. Không chuẩn hóa dữ liệu (giống
-PC/FCI ở env gym).
+Nhóm 3a đã chạy GES trên dữ liệu MicroRTS ngày 12/11/2026. Toàn bộ kết
+quả GES (kết quả, script, file `ges.json`) đã gỡ khỏi repo ngày
+16/11/2026 cùng hướng mở rộng cũ; nội dung còn trong lịch sử git.
