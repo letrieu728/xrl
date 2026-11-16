@@ -41,7 +41,7 @@ hard-code như script nhóm 2; chạy với `R_LIBS=~/workspace/R-lib`).
 ## 1. Phễu lọc: số mẫu qua từng bước
 
 Dữ liệu: `microrts_merged.npz`, 100 episode, 4.924 transition
-(SHA-256 `0a9d406b…73cbe45`, xem `ges.json` cùng thư mục).
+(SHA-256 `0a9d406b…73cbe45`).
 
 | Bước | Số mẫu |
 |---|---:|
