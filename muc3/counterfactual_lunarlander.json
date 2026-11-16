@@ -1,0 +1,495 @@
+{
+  "seed": 99,
+  "episodes": 30,
+  "transitions": 7005,
+  "action_dist": {
+    "0": 3640,
+    "1": 386,
+    "2": 2680,
+    "3": 299
+  },
+  "causal_edges": [
+    [
+      "action_action_t",
+      "action_action_t"
+    ],
+    [
+      "action_action_t",
+      "state_angular_velocity_t"
+    ],
+    [
+      "action_action_t",
+      "state_left_contact_t"
+    ],
+    [
+      "action_action_t",
+      "state_vy_t"
+    ],
+    [
+      "state_angle_t",
+      "state_angle_t"
+    ],
+    [
+      "state_angle_t",
+      "state_angular_velocity_t"
+    ],
+    [
+      "state_angular_velocity_t",
+      "state_angle_t"
+    ],
+    [
+      "state_angular_velocity_t",
+      "state_angular_velocity_t"
+    ],
+    [
+      "state_left_contact_t",
+      "action_action_t"
+    ],
+    [
+      "state_left_contact_t",
+      "state_angular_velocity_t"
+    ],
+    [
+      "state_left_contact_t",
+      "state_left_contact_t"
+    ],
+    [
+      "state_left_contact_t",
+      "state_right_contact_t"
+    ],
+    [
+      "state_left_contact_t",
+      "state_vx_t"
+    ],
+    [
+      "state_right_contact_t",
+      "action_action_t"
+    ],
+    [
+      "state_right_contact_t",
+      "state_angle_t"
+    ],
+    [
+      "state_right_contact_t",
+      "state_angular_velocity_t"
+    ],
+    [
+      "state_right_contact_t",
+      "state_left_contact_t"
+    ],
+    [
+      "state_right_contact_t",
+      "state_right_contact_t"
+    ],
+    [
+      "state_right_contact_t",
+      "state_vx_t"
+    ],
+    [
+      "state_vx_t",
+      "state_vx_t"
+    ],
+    [
+      "state_vx_t",
+      "state_x_t"
+    ],
+    [
+      "state_vy_t",
+      "action_action_t"
+    ],
+    [
+      "state_vy_t",
+      "state_vy_t"
+    ],
+    [
+      "state_x_t",
+      "state_x_t"
+    ],
+    [
+      "state_y_t",
+      "state_left_contact_t"
+    ],
+    [
+      "state_y_t",
+      "state_right_contact_t"
+    ],
+    [
+      "state_y_t",
+      "state_y_t"
+    ]
+  ],
+  "queries": [
+    {
+      "query_row": 0,
+      "query": {
+        "x": -0.00021629333787132055,
+        "y": 1.4110695123672485,
+        "vx": -0.021911125630140305,
+        "vy": 0.006641484331339598,
+        "angle": 0.00025728781474754214,
+        "angular_velocity": 0.0049632033333182335,
+        "left_contact": 0.0,
+        "right_contact": 0.0,
+        "action": 0
+      },
+      "observed_action": 0,
+      "desired_action": 2,
+      "attempt": "A_stock_counterfactual",
+      "cf_time_s": 0.27,
+      "n_raw_dice": 40,
+      "n_final": 8,
+      "score": {
+        "x": 0.06666666666666667,
+        "y": 0.3333333333333333,
+        "vx": 0.0,
+        "vy": 0.4,
+        "angle": 0.0,
+        "angular_velocity": 0.0,
+        "left_contact": 0.06666666666666667,
+        "right_contact": 0.13333333333333333
+      },
+      "counterfactuals": [
+        {
+          "cf": {
+            "x": -0.00021629333787132055,
+            "y": 1.4110695123672485,
+            "vx": -0.021911125630140305,
+            "vy": -0.139275238229,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.0,
+            "right_contact": 0.7,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": 0.5791902,
+            "y": -0.0148363618,
+            "vx": -0.021911125630140305,
+            "vy": 0.006641484331339598,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": -0.00021629333787132055,
+            "y": 0.2439327393,
+            "vx": -0.021911125630140305,
+            "vy": -0.970322385092,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": -0.00021629333787132055,
+            "y": 1.4110695123672485,
+            "vx": -0.021911125630140305,
+            "vy": -0.108352752912,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.9,
+            "right_contact": 0.0,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": -0.00021629333787132055,
+            "y": -0.1095000719,
+            "vx": -0.021911125630140305,
+            "vy": 0.006641484331339598,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": -0.00021629333787132055,
+            "y": 0.1051523042,
+            "vx": -0.021911125630140305,
+            "vy": -0.936706333106,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": -0.00021629333787132055,
+            "y": -0.0274728789,
+            "vx": -0.021911125630140305,
+            "vy": -0.519463455212,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": -0.00021629333787132055,
+            "y": 1.4110695123672485,
+            "vx": -0.021911125630140305,
+            "vy": -0.729640306836,
+            "angle": 0.00025728781474754214,
+            "angular_velocity": 0.0049632033333182335,
+            "left_contact": 0.0,
+            "right_contact": 0.1,
+            "action": 2.0
+          },
+          "raw_policy_action": 2,
+          "flips": true
+        }
+      ],
+      "n_verified_flip": 8
+    },
+    {
+      "query_row": 184,
+      "query": {
+        "x": 0.003482818603515625,
+        "y": 1.4018346071243286,
+        "vx": 0.3527606129646301,
+        "vy": -0.40380337834358215,
+        "angle": -0.004028966184705496,
+        "angular_velocity": -0.07990539073944092,
+        "left_contact": 0.0,
+        "right_contact": 0.0,
+        "action": 1
+      },
+      "observed_action": 1,
+      "desired_action": 3,
+      "attempt": "A_stock_counterfactual",
+      "cf_time_s": 0.25,
+      "n_raw_dice": 40,
+      "n_final": 4,
+      "score": {
+        "x": 0.2,
+        "y": 0.0,
+        "vx": 0.2,
+        "vy": 0.0,
+        "angle": 0.4,
+        "angular_velocity": 0.2,
+        "left_contact": 0.0,
+        "right_contact": 0.0
+      },
+      "counterfactuals": [
+        {
+          "cf": {
+            "x": -0.4891661,
+            "y": 1.4018346071243286,
+            "vx": 0.3527606129646301,
+            "vy": -0.40380337834358215,
+            "angle": 0.47450655,
+            "angular_velocity": -0.07990539073944092,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 3.0
+          },
+          "raw_policy_action": 3,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": 0.003482818603515625,
+            "y": 1.4018346071243286,
+            "vx": -0.293660877,
+            "vy": -0.40380337834358215,
+            "angle": -0.004028966184705496,
+            "angular_velocity": -0.07990539073944092,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 3.0
+          },
+          "raw_policy_action": 3,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": 0.003482818603515625,
+            "y": 1.4018346071243286,
+            "vx": 0.3527606129646301,
+            "vy": -0.40380337834358215,
+            "angle": 0.6911081,
+            "angular_velocity": -0.07990539073944092,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 3.0
+          },
+          "raw_policy_action": 3,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": 0.003482818603515625,
+            "y": 1.4018346071243286,
+            "vx": 0.3527606129646301,
+            "vy": -0.40380337834358215,
+            "angle": -0.004028966184705496,
+            "angular_velocity": 0.2902080891,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 3.0
+          },
+          "raw_policy_action": 3,
+          "flips": true
+        }
+      ],
+      "n_verified_flip": 4
+    },
+    {
+      "query_row": 40,
+      "query": {
+        "x": -0.008872603997588158,
+        "y": 0.9255762696266174,
+        "vx": -0.021889617666602135,
+        "vy": -1.0600248575210571,
+        "angle": 0.010040024295449257,
+        "angular_velocity": 0.004886322189122438,
+        "left_contact": 0.0,
+        "right_contact": 0.0,
+        "action": 2
+      },
+      "observed_action": 2,
+      "desired_action": 0,
+      "attempt": "A_stock_counterfactual",
+      "cf_time_s": 0.27,
+      "n_raw_dice": 40,
+      "n_final": 2,
+      "score": {
+        "x": 0.0,
+        "y": 0.5,
+        "vx": 0.0,
+        "vy": 0.5,
+        "angle": 0.0,
+        "angular_velocity": 0.0,
+        "left_contact": 0.0,
+        "right_contact": 0.0
+      },
+      "counterfactuals": [
+        {
+          "cf": {
+            "x": -0.008872603997588158,
+            "y": 0.9255762696266174,
+            "vx": -0.021889617666602135,
+            "vy": -0.929938217142,
+            "angle": 0.010040024295449257,
+            "angular_velocity": 0.004886322189122438,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 0.0
+          },
+          "raw_policy_action": 0,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": -0.008872603997588158,
+            "y": 0.980938264,
+            "vx": -0.021889617666602135,
+            "vy": -1.0600248575210571,
+            "angle": 0.010040024295449257,
+            "angular_velocity": 0.004886322189122438,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 0.0
+          },
+          "raw_policy_action": 0,
+          "flips": true
+        }
+      ],
+      "n_verified_flip": 2
+    },
+    {
+      "query_row": 211,
+      "query": {
+        "x": 0.08658075332641602,
+        "y": 0.933498740196228,
+        "vx": 0.2813241481781006,
+        "vy": -1.0154386758804321,
+        "angle": 0.16151542961597443,
+        "angular_velocity": 0.15233385562896729,
+        "left_contact": 0.0,
+        "right_contact": 0.0,
+        "action": 3
+      },
+      "observed_action": 3,
+      "desired_action": 1,
+      "attempt": "A_stock_counterfactual",
+      "cf_time_s": 0.49,
+      "n_raw_dice": 40,
+      "n_final": 2,
+      "score": {
+        "x": 0.0,
+        "y": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "angle": 0.5,
+        "angular_velocity": 0.5,
+        "left_contact": 0.0,
+        "right_contact": 0.0
+      },
+      "counterfactuals": [
+        {
+          "cf": {
+            "x": 0.08658075332641602,
+            "y": 0.933498740196228,
+            "vx": 0.2813241481781006,
+            "vy": -1.0154386758804321,
+            "angle": 0.16151542961597443,
+            "angular_velocity": 0.0128707838,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 1.0
+          },
+          "raw_policy_action": 1,
+          "flips": true
+        },
+        {
+          "cf": {
+            "x": 0.08658075332641602,
+            "y": 0.933498740196228,
+            "vx": 0.2813241481781006,
+            "vy": -1.0154386758804321,
+            "angle": -0.12772603,
+            "angular_velocity": 0.15233385562896729,
+            "left_contact": 0.0,
+            "right_contact": 0.0,
+            "action": 1.0
+          },
+          "raw_policy_action": 1,
+          "flips": true
+        }
+      ],
+      "n_verified_flip": 2
+    }
+  ]
+}

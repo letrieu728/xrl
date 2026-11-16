@@ -1,0 +1,86 @@
+{
+  "seed": 99,
+  "episodes": 200,
+  "transitions": 6115,
+  "query": {
+    "cart_position": 0.09018818289041519,
+    "cart_velocity": 1.214399814605713,
+    "pole_angle": -0.05634969472885132,
+    "pole_velocity": -1.7100423574447632,
+    "action": 0
+  },
+  "desired_action": 1,
+  "n_counterfactuals": 2,
+  "score": {
+    "cart_position": 0.5,
+    "cart_velocity": 0.0,
+    "pole_angle": 0.5,
+    "pole_velocity": 0.0
+  },
+  "counterfactuals": [
+    {
+      "cart_position": 0.09018818289041519,
+      "cart_velocity": 1.214399814605713,
+      "pole_angle": -0.04748106,
+      "pole_velocity": -1.7100423574447632,
+      "action": 1
+    },
+    {
+      "cart_position": 0.09773685,
+      "cart_velocity": 1.214399814605713,
+      "pole_angle": -0.05634969472885132,
+      "pole_velocity": -1.7100423574447632,
+      "action": 1
+    }
+  ],
+  "causal_edges": [
+    [
+      "action_push_t",
+      "action_push_t"
+    ],
+    [
+      "action_push_t",
+      "state_cart_velocity_t"
+    ],
+    [
+      "action_push_t",
+      "state_pole_velocity_t"
+    ],
+    [
+      "state_cart_position_t",
+      "action_push_t"
+    ],
+    [
+      "state_cart_position_t",
+      "state_cart_position_t"
+    ],
+    [
+      "state_cart_velocity_t",
+      "state_cart_position_t"
+    ],
+    [
+      "state_cart_velocity_t",
+      "state_cart_velocity_t"
+    ],
+    [
+      "state_cart_velocity_t",
+      "state_pole_angle_t"
+    ],
+    [
+      "state_pole_angle_t",
+      "action_push_t"
+    ],
+    [
+      "state_pole_angle_t",
+      "state_pole_angle_t"
+    ],
+    [
+      "state_pole_velocity_t",
+      "state_pole_angle_t"
+    ],
+    [
+      "state_pole_velocity_t",
+      "state_pole_velocity_t"
+    ]
+  ]
+}

@@ -1,0 +1,101 @@
+diff --git a/cxrl/lib/xrl/xrl.py b/cxrl/lib/xrl/xrl.py
+--- a/cxrl/lib/xrl/xrl.py
++++ b/cxrl/lib/xrl/xrl.py
+@@ -53,14 +53,64 @@
+         """
+         if not callable(pi) and pi is not None:
+             raise TypeError("pi is expected to be function.")
+-        
++
+         self.env = env
+-        # self.pi = DummySklearn(pi)
+-        self.pi = pi
+-        
++        # --- FIX (Step 3, 2026-11-12): the original code left the next line
++        # commented out and stored the bare function as self.pi, so
++        # counterfactual()'s self.pi.predict(...) raised AttributeError.
++        # DummySklearn (defined above, shipped by the authors) wraps the
++        # policy with the sklearn predict/predict_proba API that both
++        # __simplify_counterfactuals and DiCE require.
++        self.pi = DummySklearn(pi)
++
+         # infer the causal network form the environment
+         self.causalG, self.scm, self.replay_buffer = infer_from_env(self.env, pi=pi, repr_names=repr_names, **kwargs)
+ 
++        # --- FIX (Step 3, 2026-11-12): counterfactual() also used
++        # self.exp and self.state_features, which __init__ never assigned
++        # (AttributeError on every call). Build both from the replay
++        # buffer returned by infer_from_env, using the dice-ml 0.7.2 API
++        # pinned in cxrl/requirements.txt (verified against the installed
++        # wheel: Data(dataframe, continuous_features, outcome_name),
++        # Model(model, backend='sklearn'), Dice(data, model, method)).
++        self.state_features, self.exp = self._build_dice_explainer(repr_names)
++
++    def _build_dice_explainer(self, repr_names):
++        """Build the DiCE explainer for counterfactual() from replay data.
++
++        Returns (state_features, explainer). State features are all replay
++        columns except the trailing action column; the action column is
++        the DiCE outcome. If repr_names was not given, fall back to
++        state_0..state_{n-1} + 'action' (infer_DBN's own default is
++        integer names, which DiCE cannot use as feature names).
++        """
++        states, actions, _rewards, _states_new = self.replay_buffer
++        states = convert_and_expand(states).astype(float)
++        actions = convert_and_expand(actions).astype(float).ravel()
++        n_states = states.shape[1]
++        if repr_names is None:
++            names = [f"state_{i}" for i in range(n_states)] + ["action"]
++        else:
++            names = list(repr_names)
++            assert len(names) == n_states + 1, (
++                "repr_names must cover states + action: "
++                f"got {len(names)}, need {n_states + 1}")
++        state_features = names[:-1]
++        # NOTE: counterfactual() and its helpers hard-code the outcome
++        # column name 'action' (cf_df.drop(['action']), ...). The DiCE
++        # dataframe therefore always uses 'action' as its last column,
++        # whatever repr_names calls it (the notebook uses 'push'); the
++        # causal graph built by infer_DBN still uses repr_names.
++        df = pd.DataFrame(
++            np.concatenate([states, actions[:, None]], axis=1),
++            columns=state_features + ["action"])
++        df["action"] = df["action"].astype(int)
++        dice_data = dice_ml.Data(
++            dataframe=df, continuous_features=state_features,
++            outcome_name="action")
++        dice_model = dice_ml.Model(model=self.pi, backend="sklearn")
++        return state_features, Dice(dice_data, dice_model, method="random")
++
+ 
+     def local_causal_network(self, query_state):
+         """ Compute the local causal network for the query instance. 
+@@ -144,7 +194,15 @@
+ 
+             # Group by those less than / greater than query instance
+             for k1, v1 in (cf_difference < 0).groupby(cols.tolist()):
+-                if not isinstance(k1, list):
++                # --- FIX (Step 3, 2026-11-12): with >=2 differing columns,
++                # groupby yields k1 as a TUPLE of bools; the original code
++                # wrapped it as [tuple], and Index[[tuple]] raises
++                # IndexError on pandas 2.x. Normalize tuple->list so the
++                # next line gets a proper boolean mask (single-column
++                # groups still yield a scalar, kept as [scalar]).
++                if isinstance(k1, tuple):
++                    k1 = list(k1)
++                elif not isinstance(k1, list):
+                     k1 = [k1]
+ 
+                 # cf states less than query
+@@ -169,7 +227,10 @@
+         
+                 dom = dom | set(dom_bel) | set(dom_abv)
+ 
+-        return cf_df.loc[dom]
++        # --- FIX (Step 3, 2026-11-12): pandas >=1.5 forbids a set as a
++        # .loc indexer ("Passing a set as an indexer is not supported").
++        # Sort the collected index labels: same rows, deterministic order.
++        return cf_df.loc[sorted(dom)]
+ 
+     
+     def counterfactual(self, query_instance, desired_action, return_score=True):
