@@ -4,7 +4,7 @@ do pipe; thu tu cac doan: A1 stratvis grep+fix -> S1/S2 map features+roundtrip -
 error) -> S4a import OK voi shim -> S4b JVMNotFound -> S4c env run + np.int shim + HeadlessException ->
 S4c probe (run_num_steps OK, JVM shutdown hang) -> S4d case1 -> S5/S5b Flask -> S6a BART -> S6b/S6b2
 trajectories -> S6c infer_DBN crash (heavy2) -> S6c2 per-target graph -> FALLBACK counterfactual x4 runs.
-Chi tiet va ket luan: muc3/microRTS-thu-nghiem.md va muc4/counterfactual-thu-nghiem.md.
+Chi tiet va ket luan: muc3/microRTS-thu-nghiem.md va muc3/counterfactual-thu-nghiem.md.
 ================================================================================
 ===== STEP 3 MASTER LOG — 2026-11-12T03:51:27Z =====
 Author repo: yanmluk/causal-xrl @ ae9096ea3065cd2ac6ee4f5fdcbc7fb6a9504162 (fresh clone, working COPY at /home/hatch/workspace/step3-scratch/causal-xrl-copy; original untouched)
